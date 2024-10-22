@@ -119,3 +119,3022 @@ if __name__ == ""__main__"":
     import doctest
 
     doctest.testmod()",True
+truncate_number,"
+
+def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> truncate_number(3.5)
+    0.5
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(3.5) == 0.5
+    assert abs(candidate(1.33) - 0.33) < 1e-6
+    assert abs(candidate(123.456) - 0.456) < 1e-6
+","
+
+def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> truncate_number(3.5)
+    0.5
+    """"""
+    return number % 1
+
+
+def main():
+    number = 3.5
+    truncated_number = truncate_number(number)
+    print(f""The truncated number is: {truncated_number}"")
+
+
+if __name__ == ""__main__"":
+    main()",True
+below_zero,"from typing import List
+
+
+def below_zero(operations: List[int]) -> bool:
+    """""" You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> below_zero([1, 2, 3])
+    False
+    >>> below_zero([1, 2, -4, 5])
+    True
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == False
+    assert candidate([1, 2, -3, 1, 2, -3]) == False
+    assert candidate([1, 2, -4, 5, 6]) == True
+    assert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False
+    assert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True
+    assert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True
+","from typing import List
+
+
+def below_zero(operations: List[int]) -> bool:
+    """""" You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> below_zero([1, 2, 3])
+    False
+    >>> below_zero([1, 2, -4, 5])
+    True
+    """"""
+    balance = 0
+    for operation in operations:
+        balance += operation
+        if balance < 0:
+            return True
+    return False
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+mean_absolute_deviation,"from typing import List
+
+
+def mean_absolute_deviation(numbers: List[float]) -> float:
+    """""" For a given list of input numbers, calculate Mean Absolute Deviation
+    around the mean of this dataset.
+    Mean Absolute Deviation is the average absolute difference between each
+    element and a centerpoint (mean in this case):
+    MAD = average | x - x_mean |
+    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
+    1.0
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6
+    assert abs(candidate([1.0, 2.0, 3.0, 4.0]) - 1.0) < 1e-6
+    assert abs(candidate([1.0, 2.0, 3.0, 4.0, 5.0]) - 6.0/5.0) < 1e-6
+
+","from typing import List
+
+
+def mean_absolute_deviation(numbers: List[float]) -> float:
+    """""" For a given list of input numbers, calculate Mean Absolute Deviation
+    around the mean of this dataset.
+    Mean Absolute Deviation is the average absolute difference between each
+    element and a centerpoint (mean in this case):
+    MAD = average | x - x_mean |
+    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
+    1.0
+    """"""
+    mean = sum(numbers) / len(numbers)
+    deviations = [abs(num - mean) for num in numbers]
+    mad = sum(deviations) / len(deviations)
+    return mad
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+intersperse,"from typing import List
+
+
+def intersperse(numbers: List[int], delimeter: int) -> List[int]:
+    """""" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'
+    >>> intersperse([], 4)
+    []
+    >>> intersperse([1, 2, 3], 4)
+    [1, 4, 2, 4, 3]
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([], 7) == []
+    assert candidate([5, 6, 3, 2], 8) == [5, 8, 6, 8, 3, 8, 2]
+    assert candidate([2, 2, 2], 2) == [2, 2, 2, 2, 2]
+","from typing import List
+
+
+def intersperse(numbers: List[int], delimeter: int) -> List[int]:
+    """""" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'
+    >>> intersperse([], 4)
+    []
+    >>> intersperse([1, 2, 3], 4)
+    [1, 4, 2, 4, 3]
+    """"""
+    return [numbers[i] if i == len(numbers) - 1 else numbers[i] for i in range(len(numbers))]
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()",True
+parse_nested_parens,"from typing import List
+
+
+def parse_nested_parens(paren_string: str) -> List[int]:
+    """""" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+    For each of the group, output the deepest level of nesting of parentheses.
+    E.g. (()()) has maximum two levels of nesting while ((())) has three.
+
+    >>> parse_nested_parens('(()()) ((())) () ((())()())')
+    [2, 3, 1, 3]
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]
+    assert candidate('() (()) ((())) (((())))') == [1, 2, 3, 4]
+    assert candidate('(()(())((())))') == [4]
+","from typing import List
+
+
+def parse_nested_parens(paren_string: str) -> List[int]:
+    """""" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+    For each of the group, output the deepest level of nesting of parentheses.
+    E.g. (()()) has maximum two levels of nesting while ((())) has three.
+
+    >>> parse_nested_parens('(()()) ((())) () ((())()())')
+    [2, 3, 1, 3]
+    """"""
+    result = []
+    for group in paren_string.split():
+        stack = []
+        max_depth = 0
+        for char in group:
+            if char == '(':
+                stack.append('(')
+                max_depth = max(max_depth, len(stack))
+            elif char == ')':
+                if stack:
+                    stack.pop()
+        result.append(max_depth)
+    return result
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()",True
+filter_by_substring,"from typing import List
+
+
+def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that contain given substring
+    >>> filter_by_substring([], 'a')
+    []
+    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')
+    ['abc', 'bacd', 'array']
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([], 'john') == []
+    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']
+    assert candidate(['xxx', 'asd', 'aaaxxy', 'john doe', 'xxxAAA', 'xxx'], 'xx') == ['xxx', 'aaaxxy', 'xxxAAA', 'xxx']
+    assert candidate(['grunt', 'trumpet', 'prune', 'gruesome'], 'run') == ['grunt', 'prune']
+","from typing import List
+
+
+def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that contain given substring
+    >>> filter_by_substring([], 'a')
+    []
+    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')
+    ['abc', 'bacd', 'array']
+    """"""
+    return [s for s in strings if substring in s]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+sum_product,"from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    """""" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    Empty sum should be equal to 0 and empty product should be equal to 1.
+    >>> sum_product([])
+    (0, 1)
+    >>> sum_product([1, 2, 3, 4])
+    (10, 24)
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == (0, 1)
+    assert candidate([1, 1, 1]) == (3, 1)
+    assert candidate([100, 0]) == (100, 0)
+    assert candidate([3, 5, 7]) == (3 + 5 + 7, 3 * 5 * 7)
+    assert candidate([10]) == (10, 10)
+","from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    """""" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    Empty sum should be equal to 0 and empty product should be equal to 1.
+    >>> sum_product([])
+    (0, 1)
+    >>> sum_product([1, 2, 3, 4])
+    (10, 24)
+    """"""
+    sum_result = 0
+    product_result = 1
+
+    for num in numbers:
+        sum_result += num
+        product_result *= num
+
+    return sum_result, product_result
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()",True
+rolling_max,"from typing import List, Tuple
+
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.
+    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
+    [1, 2, 3, 3, 3, 4, 4]
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == []
+    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]
+    assert candidate([4, 3, 2, 1]) == [4, 4, 4, 4]
+    assert candidate([3, 2, 3, 100, 3]) == [3, 3, 3, 100, 100]
+","from typing import List, Tuple
+
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.
+    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
+    [1, 2, 3, 3, 3, 4, 4]
+    """"""
+    rolling_max_list = []
+    max_element = float('-inf')
+
+    for num in numbers:
+        max_element = max(max_element, num)
+        rolling_max_list.append(max_element)
+
+    return rolling_max_list
+
+
+def rolling_min(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling minimum element found until given moment
+    in the sequence.
+    >>> rolling_min([1, 2, 3, 2, 3, 4, 2])
+    [1, 1, 1, 1, 1, 1, 1]
+    """"""
+    rolling_min_list = []
+    min_element = float('inf')
+
+    for num in numbers:
+        min_element = min(min_element, num)
+        rolling_min_list.append(min_element)
+
+    return rolling_min_list
+
+
+def rolling_max_min(numbers: List[int]) -> List[Tuple[int, int]]:
+    """""" From a given list of integers, generate a list of rolling maximum and minimum elements found until given moment
+    in the sequence.
+    >>> rolling_max_min([1, 2, 3, 2, 3, 4, 2])
+    [(1, 1), (1, 2), (1, 2), (1, 2), (1, 2), (1, 1), (1, 1)]
+    """"""
+    rolling_max_min_list = []
+    max_element = float('-inf')
+    min_",True
+make_palindrome,"
+
+def is_palindrome(string: str) -> bool:
+    """""" Test if given string is a palindrome """"""
+    return string == string[::-1]
+
+
+def make_palindrome(string: str) -> str:
+    """""" Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
+    >>> make_palindrome('')
+    ''
+    >>> make_palindrome('cat')
+    'catac'
+    >>> make_palindrome('cata')
+    'catac'
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate('x') == 'x'
+    assert candidate('xyz') == 'xyzyx'
+    assert candidate('xyx') == 'xyx'
+    assert candidate('jerry') == 'jerryrrej'
+","
+
+def is_palindrome(string: str) -> bool:
+    """""" Test if given string is a palindrome """"""
+    return string == string[::-1]
+
+
+def make_palindrome(string: str) -> str:
+    """""" Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
+    >>> make_palindrome('')
+    ''
+    >>> make_palindrome('cat')
+    'catac'
+    >>> make_palindrome('cata')
+    'catac'
+    """"""
+    if not string:
+        return ''
+    for i in range(len(string), 0, -1):
+        if is_palindrome(string[:i]):
+            return string[i - 1::-1] + string
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",True
+string_xor,"from typing import List
+
+
+def string_xor(a: str, b: str) -> str:
+    """""" Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.
+    >>> string_xor('010', '110')
+    '100'
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('111000', '101010') == '010010'
+    assert candidate('1', '1') == '0'
+    assert candidate('0101', '0000') == '0101'
+","from typing import List
+
+
+def string_xor(a: str, b: str) -> str:
+    """""" Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.
+    >>> string_xor('010', '110')
+    '100'
+    """"""
+    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))
+
+
+def string_xor_list(lst: List[str]) -> str:
+    """""" Perform binary XOR on all strings in the input list.
+    >>> string_xor_list(['010', '110', '101'])
+    '011'
+    """"""
+    result = lst[0]
+    for i in range(1, len(lst)):
+        result = string_xor(result, lst[i])
+    return result
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+longest,"from typing import List, Optional
+
+
+def longest(strings: List[str]) -> Optional[str]:
+    """""" Out of list of strings, return the longest one. Return the first one in case of multiple
+    strings of the same length. Return None in case the input list is empty.
+    >>> longest([])
+
+    >>> longest(['a', 'b', 'c'])
+    'a'
+    >>> longest(['a', 'bb', 'ccc'])
+    'ccc'
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == None
+    assert candidate(['x', 'y', 'z']) == 'x'
+    assert candidate(['x', 'yyy', 'zzzz', 'www', 'kkkk', 'abc']) == 'zzzz'
+","from typing import List, Optional
+
+
+def longest(strings: List[str]) -> Optional[str]:
+    """""" Out of list of strings, return the longest one. Return the first one in case of multiple
+    strings of the same length. Return None in case the input list is empty.
+    >>> longest([])
+
+    >>> longest(['a', 'b', 'c'])
+    'a'
+    >>> longest(['a', 'bb', 'ccc'])
+    'ccc'
+    """"""
+    if not strings:
+        return None
+    return max(strings, key=len)
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+greatest_common_divisor,"
+
+def greatest_common_divisor(a: int, b: int) -> int:
+    """""" Return a greatest common divisor of two integers a and b
+    >>> greatest_common_divisor(3, 5)
+    1
+    >>> greatest_common_divisor(25, 15)
+    5
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(3, 7) == 1
+    assert candidate(10, 15) == 5
+    assert candidate(49, 14) == 7
+    assert candidate(144, 60) == 12
+","
+
+def greatest_common_divisor(a: int, b: int) -> int:
+    """""" Return a greatest common divisor of two integers a and b
+    >>> greatest_common_divisor(3, 5)
+    1
+    >>> greatest_common_divisor(25, 15)
+    5
+    """"""
+    while a!= 0 and b!= 0:
+        if a > b:
+            a %= b
+        else:
+            b %= a
+    return a + b
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+all_prefixes,"from typing import List
+
+
+def all_prefixes(string: str) -> List[str]:
+    """""" Return list of all prefixes from shortest to longest of the input string
+    >>> all_prefixes('abc')
+    ['a', 'ab', 'abc']
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == []
+    assert candidate('asdfgh') == ['a', 'as', 'asd', 'asdf', 'asdfg', 'asdfgh']
+    assert candidate('WWW') == ['W', 'WW', 'WWW']
+","from typing import List
+
+
+def all_prefixes(string: str) -> List[str]:
+    """""" Return list of all prefixes from shortest to longest of the input string
+    >>> all_prefixes('abc')
+    ['a', 'ab', 'abc']
+    """"""
+    return [string[:i] for i in range(1, len(string) + 1)]
+
+
+def all_suffixes(string: str) -> List[str]:
+    """""" Return list of all suffixes from shortest to longest of the input string
+    >>> all_suffixes('abc')
+    ['c', 'bc', 'abc']
+    """"""
+    return [string[i:] for i in range(len(string))]
+
+
+def all_substrings(string: str) -> List[str]:
+    """""" Return list of all substrings from shortest to longest of the input string
+    >>> all_substrings('abc')
+    ['a', 'ab', 'abc', 'b', 'bc', 'c']
+    """"""
+    return [string[i:j] for i in range(len(string)) for j in range(i + 1, len(string) + 1)]
+
+
+def all_substrings_2(string: str) -> List[str]:
+    """""" Return list of all substrings from shortest to longest of the input string
+    >>> all_substrings_2('abc')
+    ['a', 'ab', 'abc', 'b', 'bc', 'c']
+    """"""
+    return [string[i:j] for i in range(len(string)) for j in range(i + 1, len(string) + 1)]
+
+
+def all_substrings_3(string: str) -> List[str]:
+    """""" Return list of all substrings from shortest to longest of the input string
+    >>> all_substrings_3('abc')
+    ['a', 'ab', 'abc', 'b', 'bc', 'c']
+    """"""
+    return [string[i:j] for i in range(len(string)) for j in range(i + 1, len(string) + 1)]
+
+
+def all_substrings",False
+string_sequence,"
+
+def string_sequence(n: int) -> str:
+    """""" Return a string containing space-delimited numbers starting from 0 upto n inclusive.
+    >>> string_sequence(0)
+    '0'
+    >>> string_sequence(5)
+    '0 1 2 3 4 5'
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(0) == '0'
+    assert candidate(3) == '0 1 2 3'
+    assert candidate(10) == '0 1 2 3 4 5 6 7 8 9 10'
+","
+
+def string_sequence(n: int) -> str:
+    """""" Return a string containing space-delimited numbers starting from 0 upto n inclusive.
+    >>> string_sequence(0)
+    '0'
+    >>> string_sequence(5)
+    '0 1 2 3 4 5'
+    """"""
+    return''.join(str(i) for i in range(n+1))
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+count_distinct_characters,"
+
+def count_distinct_characters(string: str) -> int:
+    """""" Given a string, find out how many distinct characters (regardless of case) does it consist of
+    >>> count_distinct_characters('xyzXYZ')
+    3
+    >>> count_distinct_characters('Jerry')
+    4
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == 0
+    assert candidate('abcde') == 5
+    assert candidate('abcde' + 'cade' + 'CADE') == 5
+    assert candidate('aaaaAAAAaaaa') == 1
+    assert candidate('Jerry jERRY JeRRRY') == 5
+","
+
+def count_distinct_characters(string: str) -> int:
+    """""" Given a string, find out how many distinct characters (regardless of case) does it consist of
+    >>> count_distinct_characters('xyzXYZ')
+    3
+    >>> count_distinct_characters('Jerry')
+    4
+    """"""
+    return len(set(string.lower()))
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",True
+parse_music,"from typing import List
+
+
+def parse_music(music_string: str) -> List[int]:
+    """""" Input to this function is a string representing musical notes in a special ASCII format.
+    Your task is to parse this string and return list of integers corresponding to how many beats does each
+    not last.
+
+    Here is a legend:
+    'o' - whole note, lasts four beats
+    'o|' - half note, lasts two beats
+    '.|' - quater note, lasts one beat
+
+    >>> parse_music('o o| .| o| o| .| .| .| .| o o')
+    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == []
+    assert candidate('o o o o') == [4, 4, 4, 4]
+    assert candidate('.| .| .| .|') == [1, 1, 1, 1]
+    assert candidate('o| o| .| .| o o o o') == [2, 2, 1, 1, 4, 4, 4, 4]
+    assert candidate('o| .| o| .| o o| o o|') == [2, 1, 2, 1, 4, 2, 4, 2]
+","from typing import List
+
+
+def parse_music(music_string: str) -> List[int]:
+    """""" Input to this function is a string representing musical notes in a special ASCII format.
+    Your task is to parse this string and return list of integers corresponding to how many beats does each
+    not last.
+
+    Here is a legend:
+    'o' - whole note, lasts four beats
+    'o|' - half note, lasts two beats
+    '.|' - quater note, lasts one beat
+
+    >>> parse_music('o o| .| o| o| .| .| .| .| o o')
+    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
+    """"""
+    music_dict = {'o': 4, 'o|': 2, '.|': 1}
+    music_list = music_string.split()
+    parsed_music = [music_dict[note] for note in music_list]
+    return parsed_music
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()",True
+how_many_times,"
+
+def how_many_times(string: str, substring: str) -> int:
+    """""" Find how many times a given substring can be found in the original string. Count overlaping cases.
+    >>> how_many_times('', 'a')
+    0
+    >>> how_many_times('aaa', 'a')
+    3
+    >>> how_many_times('aaaa', 'aa')
+    3
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('', 'x') == 0
+    assert candidate('xyxyxyx', 'x') == 4
+    assert candidate('cacacacac', 'cac') == 4
+    assert candidate('john doe', 'john') == 1
+","
+
+def how_many_times(string: str, substring: str) -> int:
+    """""" Find how many times a given substring can be found in the original string. Count overlaping cases.
+    >>> how_many_times('', 'a')
+    0
+    >>> how_many_times('aaa', 'a')
+    3
+    >>> how_many_times('aaaa', 'aa')
+    3
+    """"""
+    if not substring:
+        return 0
+    count = 0
+    start = 0
+    while start < len(string):
+        start = string.find(substring, start)
+        if start == -1:
+            break
+        count += 1
+        start += 1
+    return count
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+sort_numbers,"from typing import List
+
+
+def sort_numbers(numbers: str) -> str:
+    """""" Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sort_numbers('three one five')
+    'one three five'
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate('three') == 'three'
+    assert candidate('three five nine') == 'three five nine'
+    assert candidate('five zero four seven nine eight') == 'zero four five seven eight nine'
+    assert candidate('six five four three two one zero') == 'zero one two three four five six'
+","from typing import List
+
+
+def sort_numbers(numbers: str) -> str:
+    """""" Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sort_numbers('three one five')
+    'one three five'
+    """"""
+    number_dict = {
+        'zero': 0,
+        'one': 1,
+        'two': 2,
+        'three': 3,
+        'four': 4,
+        'five': 5,
+       'six': 6,
+       'seven': 7,
+        'eight': 8,
+        'nine': 9
+    }
+
+    numbers_list = numbers.split()
+    sorted_numbers = sorted(numbers_list, key=lambda x: number_dict[x])
+
+    return''.join(sorted_numbers)
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",True
+find_closest_elements,"from typing import List, Tuple
+
+
+def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
+    """""" From a supplied list of numbers (of length at least two) select and return two that are the closest to each
+    other and return them in order (smaller number, larger number).
+    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])
+    (2.0, 2.2)
+    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])
+    (2.0, 2.0)
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2]) == (3.9, 4.0)
+    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0]) == (5.0, 5.9)
+    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.2]) == (2.0, 2.2)
+    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)
+    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1]) == (2.2, 3.1)
+
+","from typing import List, Tuple
+
+
+def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
+    """""" From a supplied list of numbers (of length at least two) select and return two that are the closest to each
+    other and return them in order (smaller number, larger number).
+    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])
+    (2.0, 2.2)
+    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])
+    (2.0, 2.0)
+    """"""
+    numbers.sort()
+    min_diff = numbers[1] - numbers[0]
+    closest_pair = (numbers[0], numbers[1])
+
+    for i in range(1, len(numbers) - 1):
+        diff = numbers[i + 1] - numbers[i]
+        if diff < min_diff:
+            min_diff = diff
+            closest_pair = (numbers[i], numbers[i + 1])
+
+    return closest_pair
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()",True
+rescale_to_unit,"from typing import List
+
+
+def rescale_to_unit(numbers: List[float]) -> List[float]:
+    """""" Given list of numbers (of at least two elements), apply a linear transform to that list,
+    such that the smallest number will become 0 and the largest will become 1
+    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])
+    [0.0, 0.25, 0.5, 0.75, 1.0]
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([2.0, 49.9]) == [0.0, 1.0]
+    assert candidate([100.0, 49.9]) == [1.0, 0.0]
+    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0]) == [0.0, 0.25, 0.5, 0.75, 1.0]
+    assert candidate([2.0, 1.0, 5.0, 3.0, 4.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]
+    assert candidate([12.0, 11.0, 15.0, 13.0, 14.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]
+","from typing import List
+
+
+def rescale_to_unit(numbers: List[float]) -> List[float]:
+    """""" Given list of numbers (of at least two elements), apply a linear transform to that list,
+    such that the smallest number will become 0 and the largest will become 1
+    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])
+    [0.0, 0.25, 0.5, 0.75, 1.0]
+    """"""
+    min_val = min(numbers)
+    max_val = max(numbers)
+    if min_val == max_val:
+        return [0.0] * len(numbers)
+    return [(num - min_val) / (max_val - min_val) for num in numbers]
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()",True
+filter_integers,"from typing import List, Any
+
+
+def filter_integers(values: List[Any]) -> List[int]:
+    """""" Filter given list of any python values only for integers
+    >>> filter_integers(['a', 3.14, 5])
+    [5]
+    >>> filter_integers([1, 2, 3, 'abc', {}, []])
+    [1, 2, 3]
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == []
+    assert candidate([4, {}, [], 23.2, 9, 'adasd']) == [4, 9]
+    assert candidate([3, 'c', 3, 3, 'a', 'b']) == [3, 3, 3]
+","from typing import List, Any
+
+
+def filter_integers(values: List[Any]) -> List[int]:
+    """""" Filter given list of any python values only for integers
+    >>> filter_integers(['a', 3.14, 5])
+    [5]
+    >>> filter_integers([1, 2, 3, 'abc', {}, []])
+    [1, 2, 3]
+    """"""
+    return [value for value in values if isinstance(value, int)]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+
+strlen,"
+
+def strlen(string: str) -> int:
+    """""" Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == 0
+    assert candidate('x') == 1
+    assert candidate('asdasnakj') == 9
+","
+
+def strlen(string: str) -> int:
+    """""" Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """"""
+    return len(string)
+
+
+def strrev(string: str) -> str:
+    """""" Return reversed string
+    >>> strrev('')
+    ''
+    >>> strrev('abc')
+    'cba'
+    """"""
+    return string[::-1]
+
+
+def strcmp(string1: str, string2: str) -> int:
+    """""" Compare two strings
+    >>> strcmp('abc', 'abc')
+    0
+    >>> strcmp('abc', 'def')
+    -1
+    >>> strcmp('def', 'abc')
+    1
+    """"""
+    if string1 == string2:
+        return 0
+    elif string1 < string2:
+        return -1
+    else:
+        return 1
+
+
+def strncmp(string1: str, string2: str, n: int) -> int:
+    """""" Compare two strings up to n characters
+    >>> strncmp('abc', 'abc', 2)
+    0
+    >>> strncmp('abc', 'def', 2)
+    -1
+    >>> strncmp('def', 'abc', 2)
+    1
+    """"""
+    return strcmp(string1[:n], string2[:n])
+
+
+def strchr(string: str, char: str) -> int:
+    """""" Return index of first occurrence of char in string
+    >>> strchr('abc', 'b')
+    1
+    >>> strchr('abc', 'd')
+    -1
+    """"""
+    return string.find(char)
+
+
+def strstr(haystack: str, needle: str) -> int:
+    """""" Return index of first occurrence of needle in haystack
+    >>> strstr('abc', 'b')
+    1
+    >>> strstr('abc', 'd')
+    -1
+    """"""
+    return haystack.find(needle)
+
+
+def strcspn(string: str, chars: str) -> int:
+    """""" Return index of first occurrence of any char in chars in string
+    >>> strcspn('abc', 'b')
+    1
+    >>> strcspn('abc', 'd')
+    3
+    """"""
+    for i, char in enumerate(string):
+        if char in chars:
+            return i
+    return len(string)
+
+
+def strpbrk(string: str, chars: str) -> int:
+    """""" Return index of first occurrence of any char in chars in string
+    >>> strpbrk('abc', 'b')
+    1
+    >>> strpbrk('abc', 'd')
+    -1
+    """"""
+    for i, char in enumerate(string):
+        if char in chars:
+            return i
+    return -1
+
+
+def strspn(string: str, chars: str) -> int:
+    """""" Return index of first occurrence of any char not in chars in string
+    >>> strspn('abc', 'b')
+    3
+    >>> strspn('abc', 'd')
+    0
+    """"""
+    for i, char in enumerate(string):
+        if char not in chars:
+            return i
+    return len(string)
+
+
+def strtok(string: str, delim: str) -> list:
+    """""" Split string into tokens using delimiter
+    >>> strtok('abc def','')
+    ['abc', 'def']
+    >>> strtok('abc def','')
+    ['abc', 'def']
+    """"""
+    return string.split(delim)
+
+
+def strcpy(dest: str, src: str) -> str:
+    """""" Copy src to dest
+    >>> strcpy('', 'abc')
+    'abc'
+    >>> strcpy('def', 'abc')
+    'abc'
+    """"""
+    return src
+
+
+def strncpy(dest: str, src: str, n: int) -> str:
+    """""" Copy n characters from src to dest
+    >>> strncpy('', 'abc', 2)
+",False
+largest_divisor,"
+
+def largest_divisor(n: int) -> int:
+    """""" For a given number n, find the largest number that divides n evenly, smaller than n
+    >>> largest_divisor(15)
+    5
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(3) == 1
+    assert candidate(7) == 1
+    assert candidate(10) == 5
+    assert candidate(100) == 50
+    assert candidate(49) == 7
+","
+
+def largest_divisor(n: int) -> int:
+    """""" For a given number n, find the largest number that divides n evenly, smaller than n
+    >>> largest_divisor(15)
+    5
+    """"""
+    for i in range(n-1, 0, -1):
+        if n % i == 0:
+            return i
+
+
+def smallest_multiple(n: int) -> int:
+    """""" For a given number n, find the smallest number that is a multiple of n, greater than n
+    >>> smallest_multiple(15)
+    30
+    """"""
+    for i in range(n+1, n*n):
+        if i % n == 0:
+            return i
+
+
+def is_prime(n: int) -> bool:
+    """""" Check if a number n is prime
+    >>> is_prime(13)
+    True
+    >>> is_prime(15)
+    False
+    """"""
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+def prime_factors(n: int) -> list:
+    """""" Find all prime factors of a number n
+    >>> prime_factors(15)
+    [3, 5]
+    """"""
+    factors = []
+    i = 2
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors
+
+
+def is_palindrome(n: int) -> bool:
+    """""" Check if a number n is a palindrome
+    >>> is_palindrome(121)
+    True
+    >>> is_palindrome(123)
+    False
+    """"""
+    return str(n) == str(n)[::-1]
+
+
+def is_pandigital(n: int, length: int) -> bool:
+    """""" Check if a number n is pandigital (contains all digits from 1 to length)
+    >>> is_pandigital(123456789, 9)
+    True
+    >>> is_pandigital(123456789, 10)
+    False
+    """"""
+    return sorted(str(n)) == [str(i) for i in range(1, length+1)]
+
+
+def is_permutation(n: int, m: int) -> bool:
+    """""" Check if two numbers n and m are permutations of each other
+    >>> is_permutation(123, 321)
+    True
+    >>> is_permutation(123, 456)
+    False
+    """"""
+    return sorted(str(n)) == sorted(str(m))
+
+
+def is_abundant(n: int) -> bool:
+    """""" Check if a number n is abundant (the sum of its proper divisors is greater than n)
+    >>> is_abundant(12)
+    True
+    >>> is_abundant(15)
+    False
+    """"""
+    return sum(divisors(n)) > n
+
+
+def divisors(n: int) -> list:
+    """""" Find all divisors of a number n
+    >>> divisors(12)
+    [1, 2, 3, 4, 6, 12]
+    """"""
+    divs = []
+    for i in range(1, int(n**0.5) + 1):
+        if n % i == 0:
+            divs.append(i)
+            if i!= n // i:
+                divs.append(n // i)
+    return divs
+
+
+def is_triangle_number(n: int) -> bool:
+    """""" Check if a number n is a triangle number (can be represented as the sum of consecutive integers)
+    >>> is_triangle_number(15)
+    True
+    >>> is_triangle_number(10)
+    False
+    """"""
+    return",True
+factorize,"from typing import List
+
+
+def factorize(n: int) -> List[int]:
+    """""" Return list of prime factors of given integer in the order from smallest to largest.
+    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.
+    Input number should be equal to the product of all factors
+    >>> factorize(8)
+    [2, 2, 2]
+    >>> factorize(25)
+    [5, 5]
+    >>> factorize(70)
+    [2, 5, 7]
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(2) == [2]
+    assert candidate(4) == [2, 2]
+    assert candidate(8) == [2, 2, 2]
+    assert candidate(3 * 19) == [3, 19]
+    assert candidate(3 * 19 * 3 * 19) == [3, 3, 19, 19]
+    assert candidate(3 * 19 * 3 * 19 * 3 * 19) == [3, 3, 3, 19, 19, 19]
+    assert candidate(3 * 19 * 19 * 19) == [3, 19, 19, 19]
+    assert candidate(3 * 2 * 3) == [2, 3, 3]
+","from typing import List
+
+
+def factorize(n: int) -> List[int]:
+    """""" Return list of prime factors of given integer in the order from smallest to largest.
+    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.
+    Input number should be equal to the product of all factors
+    >>> factorize(8)
+    [2, 2, 2]
+    >>> factorize(25)
+    [5, 5]
+    >>> factorize(70)
+    [2, 5, 7]
+    """"""
+    factors = []
+    divisor = 2
+    while n > 1:
+        if n % divisor == 0:
+            factors.append(divisor)
+            n //= divisor
+        else:
+            divisor += 1
+    return factors
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+remove_duplicates,"from typing import List
+
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    """""" From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> remove_duplicates([1, 2, 3, 2, 4])
+    [1, 3, 4]
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == []
+    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]
+    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]
+","from typing import List
+
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    """""" From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> remove_duplicates([1, 2, 3, 2, 4])
+    [1, 3, 4]
+    """"""
+    return list(set(numbers))
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+flip_case,"
+
+def flip_case(string: str) -> str:
+    """""" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
+    >>> flip_case('Hello')
+    'hELLO'
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate('Hello!') == 'hELLO!'
+    assert candidate('These violent delights have violent ends') == 'tHESE VIOLENT DELIGHTS HAVE VIOLENT ENDS'
+","
+
+def flip_case(string: str) -> str:
+    """""" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
+    >>> flip_case('Hello')
+    'hELLO'
+    """"""
+    return string.swapcase()
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",True
+concatenate,"from typing import List
+
+
+def concatenate(strings: List[str]) -> str:
+    """""" Concatenate list of strings into a single string
+    >>> concatenate([])
+    ''
+    >>> concatenate(['a', 'b', 'c'])
+    'abc'
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == ''
+    assert candidate(['x', 'y', 'z']) == 'xyz'
+    assert candidate(['x', 'y', 'z', 'w', 'k']) == 'xyzwk'
+","from typing import List
+
+
+def concatenate(strings: List[str]) -> str:
+    """""" Concatenate list of strings into a single string
+    >>> concatenate([])
+    ''
+    >>> concatenate(['a', 'b', 'c'])
+    'abc'
+    """"""
+    return ''.join(strings)
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+filter_by_prefix,"from typing import List
+
+
+def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that start with a given prefix.
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([], 'john') == []
+    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']
+","from typing import List
+
+
+def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that start with a given prefix.
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
+    """"""
+    return [s for s in strings if s.startswith(prefix)]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+get_positive,"
+
+def get_positive(l: list):
+    """"""Return only positive numbers in the list.
+    >>> get_positive([-1, 2, -4, 5, 6])
+    [2, 5, 6]
+    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    [5, 3, 2, 3, 9, 123, 1]
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]
+    assert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]
+    assert candidate([-1, -2]) == []
+    assert candidate([]) == []
+
+","
+
+def get_positive(l: list):
+    """"""Return only positive numbers in the list.
+    >>> get_positive([-1, 2, -4, 5, 6])
+    [2, 5, 6]
+    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    [5, 3, 2, 3, 9, 123, 1]
+    """"""
+    return [num for num in l if num > 0]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+is_prime,"
+
+def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(6) == False
+    assert candidate(101) == True
+    assert candidate(11) == True
+    assert candidate(13441) == True
+    assert candidate(61) == True
+    assert candidate(4) == False
+    assert candidate(1) == False
+    assert candidate(5) == True
+    assert candidate(11) == True
+    assert candidate(17) == True
+    assert candidate(5 * 17) == False
+    assert candidate(11 * 7) == False
+    assert candidate(13441 * 19) == False
+
+","
+
+def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False
+    """"""
+    if n == 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(n**0.5) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+
+def is_palindrome(n):
+    """"""Return true if a given number is a palindrome, and false otherwise.
+    >>> is_palindrome(121)
+    True
+    >>> is_palindrome(12321)
+    True
+    >>> is_palindrome(12345)
+    False
+    >>> is_palindrome(123321)
+    True
+    >>> is_palindrome(1)
+    True
+    >>> is_palindrome(11)
+    True
+    """"""
+    return str(n) == str(n)[::-1]
+
+
+def is_pandigital(n):
+    """"""Return true if a given number is pandigital, and false otherwise.
+    >>> is_pandigital(123456789)
+    True
+    >>> is_pandigital(12345678)
+    False
+    >>> is_pandigital(112233445566778899)
+    True
+    >>> is_pandigital(1234567890)
+    False
+    >>> is_pandigital(1234567899)
+    False
+    """"""
+    return sorted(str(n)) == [str(i) for i in range(1, len(str(n)) + 1)]
+
+
+def is_permutation(n, m):
+    """"""Return true if a given number is a permutation of another number, and false otherwise.
+    >>> is_permutation(123, 321)
+    True
+    >>> is_permutation(123, 3211)
+    False
+    >>> is_permutation(123456789, 987654321)
+    True
+    >>> is_permutation(123456789, 987654322)
+    False
+    """"""
+    return sorted(str(n)) == sorted(str(m))
+
+
+def is_abundant(n):
+    """"""Return true if a given number is abundant, and false otherwise.
+    >>> is_abundant(12)
+    True
+    >>> is_abundant(15)
+    False
+    >>> is_abundant(20)
+    True
+    >>> is_abundant(24)
+    True
+    >>> is_abundant(28)
+    True
+    >>> is_abundant(30)
+    True
+    """"""
+    return sum(i for i in range(1, n) if n % i == 0) > n
+
+
+def is_deficient(n):
+    """"""Return true if a given number is deficient, and false otherwise.
+    >>> is_deficient(12)
+    False
+    >>> is_deficient(15)
+    False
+    >>> is_deficient(20)
+    False
+    >>> is_deficient(24)
+    False
+    >>> is_deficient(28)
+    False
+    >>> is_deficient(30)
+    False
+    """"""
+    return sum(i for i in range(1, n) if n % i == 0) < n
+
+
+def is_triangular(n):
+    """"""Return true",False
+find_zero,"import math
+
+
+def poly(xs: list, x: float):
+    """"""
+    Evaluates polynomial with coefficients xs at point x.
+    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
+    """"""
+    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+
+def find_zero(xs: list):
+    """""" xs are coefficients of a polynomial.
+    find_zero find x such that poly(x) = 0.
+    find_zero returns only only zero point, even if there are many.
+    Moreover, find_zero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x
+    -0.5
+    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    import math
+    import random
+    rng = random.Random(42)
+    import copy
+    for _ in range(100):
+        ncoeff = 2 * rng.randint(1, 4)
+        coeffs = []
+        for _ in range(ncoeff):
+            coeff = rng.randint(-10, 10)
+            if coeff == 0:
+                coeff = 1
+            coeffs.append(coeff)
+        solution = candidate(copy.deepcopy(coeffs))
+        assert math.fabs(poly(coeffs, solution)) < 1e-4
+
+","import math
+
+
+def poly(xs: list, x: float):
+    """"""
+    Evaluates polynomial with coefficients xs at point x.
+    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
+    """"""
+    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+
+def find_zero(xs: list):
+    """""" xs are coefficients of a polynomial.
+    find_zero find x such that poly(x) = 0.
+    find_zero returns only only zero point, even if there are many.
+    Moreover, find_zero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x
+    -0.5
+    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+    """"""
+    assert len(xs) % 2 == 0, ""xs must have even number of coefficients""
+    assert xs[-1]!= 0, ""largest coefficient must not be zero""
+    return -xs[-2] / (2 * xs[-3])
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()",True
+sort_third,"
+
+def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but sorted.
+    >>> sort_third([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_third([5, 6, 3, 4, 8, 9, 2])
+    [2, 6, 3, 4, 8, 9, 5]
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))
+    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple(sort_third([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))
+    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple(sort_third([5, 8, -12, 4, 23, 2, 3, 11, 12, -10]))
+    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2])) == tuple([2, 6, 3, 4, 8, 9, 5])
+    assert tuple(candidate([5, 8, 3, 4, 6, 9, 2])) == tuple([2, 8, 3, 4, 6, 9, 5])
+    assert tuple(candidate([5, 6, 9, 4, 8, 3, 2])) == tuple([2, 6, 9, 4, 8, 3, 5])
+    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2, 1])) == tuple([2, 6, 3, 4, 8, 9, 5, 1])
+
+","
+
+def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but sorted.
+    >>> sort_third([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_third([5, 6, 3, 4, 8, 9, 2])
+    [2, 6, 3, 4, 8, 9, 5]
+    """"""
+    l_copy = l.copy()
+    l_copy[::3] = sorted(l_copy[::3])
+    return l_copy
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+unique,"
+
+def unique(l: list):
+    """"""Return sorted unique elements in a list
+    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [0, 2, 3, 5, 9, 123]
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123]
+
+","
+
+def unique(l: list):
+    """"""Return sorted unique elements in a list
+    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [0, 2, 3, 5, 9, 123]
+    """"""
+    return sorted(set(l))
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+max_element,"
+
+def max_element(l: list):
+    """"""Return maximum element in the list.
+    >>> max_element([1, 2, 3])
+    3
+    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    123
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 3]) == 3
+    assert candidate([5, 3, -5, 2, -3, 3, 9, 0, 124, 1, -10]) == 124
+","
+
+def max_element(l: list):
+    """"""Return maximum element in the list.
+    >>> max_element([1, 2, 3])
+    3
+    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    123
+    """"""
+    return max(l)
+
+
+def min_element(l: list):
+    """"""Return minimum element in the list.
+    >>> min_element([1, 2, 3])
+    1
+    >>> min_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    -10
+    """"""
+    return min(l)
+
+
+def sum_elements(l: list):
+    """"""Return sum of elements in the list.
+    >>> sum_elements([1, 2, 3])
+    6
+    >>> sum_elements([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    149
+    """"""
+    return sum(l)
+
+
+def product_elements(l: list):
+    """"""Return product of elements in the list.
+    >>> product_elements([1, 2, 3])
+    6
+    >>> product_elements([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    0
+    """"""
+    product = 1
+    for num in l:
+        product *= num
+    return product
+
+
+def reverse_list(l: list):
+    """"""Return reversed list.
+    >>> reverse_list([1, 2, 3])
+    [3, 2, 1]
+    >>> reverse_list([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    [-10, 1, 123, 0, 9, 3, -3, 2, -5, 3, 5]
+    """"""
+    return l[::-1]
+
+
+def sort_list(l: list):
+    """"""Return sorted list.
+    >>> sort_list([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_list([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    [-10, -5, -3, 0, 1, 2, 3, 3, 5, 9, 123]
+    """"""
+    return sorted(l)
+
+
+def remove_duplicates(l: list):
+    """"""Return list without duplicates.
+    >>> remove_duplicates([1, 2, 3, 1, 2, 3])
+    [1, 2, 3]
+    >>> remove_duplicates([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10, 5, 3, -5, 2, -3, 3, 9, 0, 123])
+    [1, 2, 3, 5, 9, 123, -5, -3, 0, -10]
+    """"""
+    return list(set(l))
+
+
+def count_elements(l: list):
+    """"""Return count of elements in the list.
+    >>> count_elements([1, 2, 3])
+    3
+    >>> count_elements([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    11
+    """"""
+    return len(l)
+
+
+def find_element(l: list, element):
+    """"""Return index of element in the list.
+    >>> find_element([1, 2, 3], 2)
+    1
+",False
+fizz_buzz,"
+
+def fizz_buzz(n: int):
+    """"""Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
+    3
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(50) == 0
+    assert candidate(78) == 2
+    assert candidate(79) == 3
+    assert candidate(100) == 3
+    assert candidate(200) == 6
+    assert candidate(4000) == 192
+    assert candidate(10000) == 639
+    assert candidate(100000) == 8026
+
+","
+
+def fizz_buzz(n: int):
+    """"""Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
+    3
+    """"""
+    count = 0
+    for i in range(11, n):
+        if i % 11 == 0 or i % 13 == 0:
+            count += str(i).count('7')
+    return count
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+sort_even,"
+
+def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sort_even([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_even([5, 6, 3, 4])
+    [3, 6, 5, 4]
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])
+    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple([-10, 3, -5, 2, -3, 3, 5, 0, 9, 1, 123])
+    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple([-12, 8, 3, 4, 5, 2, 12, 11, 23, -10])
+
+","
+
+def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sort_even([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_even([5, 6, 3, 4])
+    [3, 6, 5, 4]
+    """"""
+    even_indicies = [x for x in l if x % 2 == 0]
+    odd_indicies = [x for x in l if x % 2!= 0]
+    even_indicies.sort()
+    return odd_indicies + even_indicies
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+                                                       decode_cyclic,"
+
+def encode_cyclic(s: str):
+    """"""
+    returns encoded string by cycling groups of three characters.
+    """"""
+    # split string to groups. Each of length 3.
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # cycle elements in each group. Unless group has fewer elements than 3.
+    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]
+    return """".join(groups)
+
+
+def decode_cyclic(s: str):
+    """"""
+    takes as input string encoded with encode_cyclic function. Returns decoded string.
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    from random import randint, choice
+    import string
+
+    letters = string.ascii_lowercase
+    for _ in range(100):
+        str = ''.join(choice(letters) for i in range(randint(10, 20)))
+        encoded_str = encode_cyclic(str)
+        assert candidate(encoded_str) == str
+
+","
+
+def encode_cyclic(s: str):
+    """"""
+    returns encoded string by cycling groups of three characters.
+    """"""
+    # split string to groups. Each of length 3.
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # cycle elements in each group. Unless group has fewer elements than 3.
+    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]
+    return """".join(groups)
+
+
+def decode_cyclic(s: str):
+    """"""
+    takes as input string encoded with encode_cyclic function. Returns decoded string.
+    """"""
+    # split string to groups. Each of length 3.
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # cycle elements in each group. Unless group has fewer elements than 3.
+    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]
+    return """".join(groups)
+
+
+def encode_rail_fence(s: str, n: int):
+    """"""
+    returns encoded string by zigzagging through the rail fence.
+    """"""
+    # split string to rows. Each of length n.
+    rows = [s[(n * i):min((n * i + n), len(s))] for i in range((len(s) + n - 1) // n)]
+    # zigzag through rows.
+    return """".join(["""".join([row[i] for row in rows]) for i in range(n)])
+
+
+def decode_rail_fence(s: str, n: int):
+    """"""
+    takes as input string encoded with encode_rail_fence function. Returns decoded string.
+    """"""
+    # split string to rows. Each of length n.
+    rows = [s[(n * i):min((n * i + n), len",False
+prime_fib,"
+
+def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(1) == 2
+    assert candidate(2) == 3
+    assert candidate(3) == 5
+    assert candidate(4) == 13
+    assert candidate(5) == 89
+    assert candidate(6) == 233
+    assert candidate(7) == 1597
+    assert candidate(8) == 28657
+    assert candidate(9) == 514229
+    assert candidate(10) == 433494437
+
+","
+
+def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
+    """"""
+    def is_prime(num):
+        if num < 2:
+            return False
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
+
+    def fibonacci(n):
+        if n <= 1:
+            return n
+        else:
+            return fibonacci(n-1) + fibonacci(n-2)
+
+    count = 0
+    num = 0
+    while count < n:
+        num += 1
+        if is_prime(num) and all(num % i!= 0 for i in range(2, int(num**0.5) + 1)):
+            count += 1
+    return num
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+triples_sum_to_zero,"
+
+def triples_sum_to_zero(l: list):
+    """"""
+    triples_sum_to_zero takes a list of integers as an input.
+    it returns True if there are three distinct elements in the list that
+    sum to zero, and False otherwise.
+
+    >>> triples_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> triples_sum_to_zero([1, 3, -2, 1])
+    True
+    >>> triples_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])
+    True
+    >>> triples_sum_to_zero([1])
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 3, 5, 0]) == False
+    assert candidate([1, 3, 5, -1]) == False
+    assert candidate([1, 3, -2, 1]) == True
+    assert candidate([1, 2, 3, 7]) == False
+    assert candidate([1, 2, 5, 7]) == False
+    assert candidate([2, 4, -5, 3, 9, 7]) == True
+    assert candidate([1]) == False
+    assert candidate([1, 3, 5, -100]) == False
+    assert candidate([100, 3, 5, -100]) == False
+
+","
+
+def triples_sum_to_zero(l: list):
+    """"""
+    triples_sum_to_zero takes a list of integers as an input.
+    it returns True if there are three distinct elements in the list that
+    sum to zero, and False otherwise.
+
+    >>> triples_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> triples_sum_to_zero([1, 3, -2, 1])
+    True
+    >>> triples_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])
+    True
+    >>> triples_sum_to_zero([1])
+    False
+    """"""
+    for i in range(len(l)):
+        for j in range(i+1, len(l)):
+            for k in range(j+1, len(l)):
+                if l[i] + l[j] + l[k] == 0:
+                    return True
+    return False
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+car_race_collision,"
+
+def car_race_collision(n: int):
+    """"""
+    Imagine a road that's a perfectly straight infinitely long line.
+    n cars are driving left to right;  simultaneously, a different set of n cars
+    are driving right to left.   The two sets of cars start out being very far from
+    each other.  All cars move in the same speed.  Two cars are said to collide
+    when a car that's moving left to right hits a car that's moving right to left.
+    However, the cars are infinitely sturdy and strong; as a result, they continue moving
+    in their trajectory as if they did not collide.
+
+    This function outputs the number of such collisions.
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(2) == 4
+    assert candidate(3) == 9
+    assert candidate(4) == 16
+    assert candidate(8) == 64
+    assert candidate(10) == 100
+
+","
+
+def car_race_collision(n: int):
+    """"""
+    Imagine a road that's a perfectly straight infinitely long line.
+    n cars are driving left to right;  simultaneously, a different set of n cars
+    are driving right to left.   The two sets of cars start out being very far from
+    each other.  All cars move in the same speed.  Two cars are said to collide
+    when a car that's moving left to right hits a car that's moving right to left.
+    However, the cars are infinitely sturdy and strong; as a result, they continue moving
+    in their trajectory as if they did not collide.
+
+    This function outputs the number of such collisions.
+    """"""
+    return n * (n - 1) // 2
+
+
+if __name__ == ""__main__"":
+    print(car_race_collision(1000))",True
+incr_list,"
+
+def incr_list(l: list):
+    """"""Return list with elements incremented by 1.
+    >>> incr_list([1, 2, 3])
+    [2, 3, 4]
+    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [6, 4, 6, 3, 4, 4, 10, 1, 124]
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([]) == []
+    assert candidate([3, 2, 1]) == [4, 3, 2]
+    assert candidate([5, 2, 5, 2, 3, 3, 9, 0, 123]) == [6, 3, 6, 3, 4, 4, 10, 1, 124]
+
+","
+
+def incr_list(l: list):
+    """"""Return list with elements incremented by 1.
+    >>> incr_list([1, 2, 3])
+    [2, 3, 4]
+    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [6, 4, 6, 3, 4, 4, 10, 1, 124]
+    """"""
+    return [x + 1 for x in l]
+
+
+def decr_list(l: list):
+    """"""Return list with elements decremented by 1.
+    >>> decr_list([1, 2, 3])
+    [0, 1, 2]
+    >>> decr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [4, 2, 4, 1, 2, 2, 8, -1, 122]
+    """"""
+    return [x - 1 for x in l]
+
+
+def square_list(l: list):
+    """"""Return list with elements squared.
+    >>> square_list([1, 2, 3])
+    [1, 4, 9]
+    >>> square_list([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [25, 9, 25, 4, 9, 9, 81, 0, 15129]
+    """"""
+    return [x ** 2 for x in l]
+
+
+def cube_list(l: list):
+    """"""Return list with elements cubed.
+    >>> cube_list([1, 2, 3])
+    [1, 8, 27]
+    >>> cube_list([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [125, 27, 125, ",False
+pairs_sum_to_zero,"
+
+def pairs_sum_to_zero(l):
+    """"""
+    pairs_sum_to_zero takes a list of integers as an input.
+    it returns True if there are two distinct elements in the list that
+    sum to zero, and False otherwise.
+    >>> pairs_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> pairs_sum_to_zero([1, 3, -2, 1])
+    False
+    >>> pairs_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])
+    True
+    >>> pairs_sum_to_zero([1])
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 3, 5, 0]) == False
+    assert candidate([1, 3, -2, 1]) == False
+    assert candidate([1, 2, 3, 7]) == False
+    assert candidate([2, 4, -5, 3, 5, 7]) == True
+    assert candidate([1]) == False
+
+    assert candidate([-3, 9, -1, 3, 2, 30]) == True
+    assert candidate([-3, 9, -1, 3, 2, 31]) == True
+    assert candidate([-3, 9, -1, 4, 2, 30]) == False
+    assert candidate([-3, 9, -1, 4, 2, 31]) == False
+
+","
+
+def pairs_sum_to_zero(l):
+    """"""
+    pairs_sum_to_zero takes a list of integers as an input.
+    it returns True if there are two distinct elements in the list that
+    sum to zero, and False otherwise.
+    >>> pairs_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> pairs_sum_to_zero([1, 3, -2, 1])
+    False
+    >>> pairs_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])
+    True
+    >>> pairs_sum_to_zero([1])
+    False
+    """"""
+    seen = set()
+    for num in l:
+        if -num in seen:
+            return True
+        seen.add(num)
+    return False
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+change_base,"
+
+def change_base(x: int, base: int):
+    """"""Change numerical base of input number x to base.
+    return string representation after the conversion.
+    base numbers are less than 10.
+    >>> change_base(8, 3)
+    '22'
+    >>> change_base(8, 2)
+    '1000'
+    >>> change_base(7, 2)
+    '111'
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(8, 3) == ""22""
+    assert candidate(9, 3) == ""100""
+    assert candidate(234, 2) == ""11101010""
+    assert candidate(16, 2) == ""10000""
+    assert candidate(8, 2) == ""1000""
+    assert candidate(7, 2) == ""111""
+    for x in range(2, 8):
+        assert candidate(x, x + 1) == str(x)
+
+","
+
+def change_base(x: int, base: int):
+    """"""Change numerical base of input number x to base.
+    return string representation after the conversion.
+    base numbers are less than 10.
+    >>> change_base(8, 3)
+    '22'
+    >>> change_base(8, 2)
+    '1000'
+    >>> change_base(7, 2)
+    '111'
+    """"""
+    if x == 0:
+        return '0'
+    result = ''
+    while x > 0:
+        x, remainder = divmod(x, base)
+        result = str(remainder) + result
+    return result
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+triangle_area,"
+
+def triangle_area(a, h):
+    """"""Given length of a side and high return area for a triangle.
+    >>> triangle_area(5, 3)
+    7.5
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(5, 3) == 7.5
+    assert candidate(2, 2) == 2.0
+    assert candidate(10, 8) == 40.0
+
+","
+
+def triangle_area(a, h):
+    """"""Given length of a side and high return area for a triangle.
+    >>> triangle_area(5, 3)
+    7.5
+    """"""
+    return a * h * 0.5
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+fib4,"
+
+def fib4(n: int):
+    """"""The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fib4(0) -> 0
+    fib4(1) -> 0
+    fib4(2) -> 2
+    fib4(3) -> 0
+    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
+    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.
+    >>> fib4(5)
+    4
+    >>> fib4(6)
+    8
+    >>> fib4(7)
+    14
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(5) == 4
+    assert candidate(8) == 28
+    assert candidate(10) == 104
+    assert candidate(12) == 386
+
+","
+
+def fib4(n: int):
+    """"""The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fib4(0) -> 0
+    fib4(1) -> 0
+    fib4(2) -> 2
+    fib4(3) -> 0
+    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
+    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.
+    >>> fib4(5)
+    4
+    >>> fib4(6)
+    8
+    >>> fib4(7)
+    14
+    """"""
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 2
+    elif n == 3:
+        return 0
+
+    a, b, c, d = 0, 0, 2, 0
+    for _ in range(4, n + 1):
+        a, b, c, d = b, c, d, a + b + c + d
+
+    return d
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+median,"
+
+def median(l: list):
+    """"""Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([3, 1, 2, 4, 5]) == 3
+    assert candidate([-10, 4, 6, 1000, 10, 20]) == 8.0
+    assert candidate([5]) == 5
+    assert candidate([6, 5]) == 5.5
+    assert candidate([8, 1, 3, 9, 9, 2, 7]) == 7 
+
+","
+
+def median(l: list):
+    """"""Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
+    """"""
+    l.sort()
+    if len(l) % 2 == 0:
+        return (l[len(l) // 2 - 1] + l[len(l) // 2]) / 2
+    else:
+        return l[len(l) // 2]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+is_palindrome,"
+
+def is_palindrome(text: str):
+    """"""
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('') == True
+    assert candidate('aba') == True
+    assert candidate('aaaaa') == True
+    assert candidate('zbcd') == False
+    assert candidate('xywyx') == True
+    assert candidate('xywyz') == False
+    assert candidate('xywzx') == False
+
+","
+
+def is_palindrome(text: str):
+    """"""
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """"""
+    return text == text[::-1]
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",True
+modp,"
+
+def modp(n: int, p: int):
+    """"""Return 2^n modulo p (be aware of numerics).
+    >>> modp(3, 5)
+    3
+    >>> modp(1101, 101)
+    2
+    >>> modp(0, 101)
+    1
+    >>> modp(3, 11)
+    8
+    >>> modp(100, 101)
+    1
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(3, 5) == 3
+    assert candidate(1101, 101) == 2
+    assert candidate(0, 101) == 1
+    assert candidate(3, 11) == 8
+    assert candidate(100, 101) == 1
+    assert candidate(30, 5) == 4
+    assert candidate(31, 5) == 3
+
+","
+
+def modp(n: int, p: int):
+    """"""Return 2^n modulo p (be aware of numerics).
+    >>> modp(3, 5)
+    3
+    >>> modp(1101, 101)
+    2
+    >>> modp(0, 101)
+    1
+    >>> modp(3, 11)
+    8
+    >>> modp(100, 101)
+    1
+    """"""
+    return pow(2, n, p)
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+decode_shift,"
+
+def encode_shift(s: str):
+    """"""
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """"""
+    return """".join([chr(((ord(ch) + 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def decode_shift(s: str):
+    """"""
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    from random import randint, choice
+    import copy
+    import string
+
+    letters = string.ascii_lowercase
+    for _ in range(100):
+        str = ''.join(choice(letters) for i in range(randint(10, 20)))
+        encoded_str = encode_shift(str)
+        assert candidate(copy.deepcopy(encoded_str)) == str
+
+","
+
+def encode_shift(s: str):
+    """"""
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """"""
+    return """".join([chr(((ord(ch) + 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def decode_shift(s: str):
+    """"""
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """"""
+    return """".join([chr(((ord(ch) - 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def encode_vigenere(s: str, key: str):
+    """"""
+    returns encoded string by using vigenere cipher with the given key.
+    """"""
+    return """".join([chr(((ord(s[i]) + ord(key[i % len(key)])) % 26) + ord(""a"")) for i in range(len(s))])
+
+
+def decode_vigenere(s: str, key: str):
+    """"""
+    takes as input string encoded with encode_vigenere function and the key used. Returns decoded string.
+    """"""
+    return """".join([chr(((ord(s[i]) - ord(key[i % len(key)])) % 26) + ord(""a"")) for i in range(len(s))])
+
+
+def encode_rail_fence(s: str, n: int):
+    """"""
+    returns encoded string by using rail fence cipher with n rails.
+    """"""
+    rails = [""""] * n
+    rail = 0
+    direction = 1
+    for ch in s:
+        rails[rail] += ch
+        rail += direction
+        if rail == n - 1 or rail == 0:
+            direction *= -1
+    return """".join(rails)
+
+
+def decode_rail_fence(s: str, n: int):
+    """"""
+    takes as input string encoded with encode_rail_fence function and the number of rails used. Returns decoded string.
+    """"""
+    rails = [",False
+remove_vowels,"
+
+def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.
+    >>> remove_vowels('')
+    ''
+    >>> remove_vowels(""abcdef\nghijklm"")
+    'bcdf\nghjklm'
+    >>> remove_vowels('abcdef')
+    'bcdf'
+    >>> remove_vowels('aaaaa')
+    ''
+    >>> remove_vowels('aaBAA')
+    'B'
+    >>> remove_vowels('zbcd')
+    'zbcd'
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate(""abcdef\nghijklm"") == 'bcdf\nghjklm'
+    assert candidate('fedcba') == 'fdcb'
+    assert candidate('eeeee') == ''
+    assert candidate('acBAA') == 'cB'
+    assert candidate('EcBOO') == 'cB'
+    assert candidate('ybcd') == 'ybcd'
+
+","
+
+def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.
+    >>> remove_vowels('')
+    ''
+    >>> remove_vowels(""abcdef\nghijklm"")
+    'bcdf\nghjklm'
+    >>> remove_vowels('abcdef')
+    'bcdf'
+    >>> remove_vowels('aaaaa')
+    ''
+    >>> remove_vowels('aaBAA')
+    'B'
+    >>> remove_vowels('zbcd')
+    'zbcd'
+    """"""
+    return ''.join(char for char in text if char.lower() not in 'aeiou')
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
+below_threshold,"
+
+def below_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are below threshold t.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    True
+    >>> below_threshold([1, 20, 4, 10], 5)
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 4, 10], 100)
+    assert not candidate([1, 20, 4, 10], 5)
+    assert candidate([1, 20, 4, 10], 21)
+    assert candidate([1, 20, 4, 10], 22)
+    assert candidate([1, 8, 4, 10], 11)
+    assert not candidate([1, 8, 4, 10], 10)
+
+","
+
+def below_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are below threshold t.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    True
+    >>> below_threshold([1, 20, 4, 10], 5)
+    False
+    """"""
+    for num in l:
+        if num >= t:
+            return False
+    return True
+
+
+def above_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are above threshold t.
+    >>> above_threshold([1, 2, 4, 10], 0)
+    True
+    >>> above_threshold([1, 20, 4, 10], 5)
+    True
+    """"""
+    for num in l:
+        if num <= t:
+            return False
+    return True
+
+
+def sum_of_squares(l: list):
+    """"""Return the sum of squares of numbers in the list l.
+    >>> sum_of_squares([1, 2, 3])
+    14
+    >>> sum_of_squares([4, 5, 6])
+    91
+    """"""
+    return sum([num ** 2 for num in l])
+
+
+def sum_of_cubes(l: list):
+    """"""Return the sum of cubes of numbers in the list l.
+    >>> sum_of_cubes([1, 2, 3])
+    36
+    >>> sum_of_cubes([4, 5, 6])
+    221
+    """"""
+    return sum([num ** 3 for num in l])
+
+
+def sum_of_powers(l: list, p: int):
+    """"""Return the sum of numbers in the list l raised to the power p.
+    >>> sum_of_powers([1, 2, 3], 2)
+    14
+    >>> sum_of_powers([4, 5, 6], 3)
+    221
+    """"""
+    return sum([num ** p",False
+add,"
+
+def add(x: int, y: int):
+    """"""Add two numbers x and y
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    import random
+
+    assert candidate(0, 1) == 1
+    assert candidate(1, 0) == 1
+    assert candidate(2, 3) == 5
+    assert candidate(5, 7) == 12
+    assert candidate(7, 5) == 12
+
+    for i in range(100):
+        x, y = random.randint(0, 1000), random.randint(0, 1000)
+        assert candidate(x, y) == x + y
+
+","
+
+def add(x: int, y: int):
+    """"""Add two numbers x and y
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
+    """"""
+    return x+y
+
+
+def subtract(x: int, y: int):
+    """"""Subtract number y from x
+    >>> subtract(5, 3)
+    2
+    >>> subtract(10, 7)
+    3
+    """"""
+    return x-y
+
+
+def multiply(x: int, y: int):
+    """"""Multiply two numbers x and y
+    >>> multiply(2, 3)
+    6
+    >>> multiply(5, 7)
+    35
+    """"""
+    return x*y
+
+
+def divide(x: int, y: int):
+    """"""Divide number x by y
+    >>> divide(10, 2)
+    5
+    >>> divide(15, 3)
+    5
+    """"""
+    return x//y
+
+
+def power(x: int, y: int):
+    """"""Calculate x raised to the power of y
+    >>> power(2, 3)
+    8
+    >>> power(5, 2)
+    25
+    """"""
+    return x**y
+
+
+def modulo(x: int, y: int):
+    """"""Calculate the remainder of x divided by y
+    >>> modulo(10, 3)
+    1
+    >>> modulo(15, 4)
+    3
+    """"""
+    return x % y
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",True
