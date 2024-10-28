@@ -2556,3 +2556,289 @@ def fib4(n: int):
 if __name__ == ""__main__"":
     import doctest
     doctest.testmod()",
+median,"
+
+def median(l: list):
+    """"""Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([3, 1, 2, 4, 5]) == 3
+    assert candidate([-10, 4, 6, 1000, 10, 20]) == 8.0
+    assert candidate([5]) == 5
+    assert candidate([6, 5]) == 5.5
+    assert candidate([8, 1, 3, 9, 9, 2, 7]) == 7 
+
+","
+
+def median(l: list):
+    """"""Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
+    """"""
+    l.sort()
+    if len(l) % 2 == 0:
+        return (l[len(l) // 2 - 1] + l[len(l) // 2]) / 2
+    else:
+        return l[len(l) // 2]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+is_palindrome,"
+
+def is_palindrome(text: str):
+    """"""
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('') == True
+    assert candidate('aba') == True
+    assert candidate('aaaaa') == True
+    assert candidate('zbcd') == False
+    assert candidate('xywyx') == True
+    assert candidate('xywyz') == False
+    assert candidate('xywzx') == False
+
+","
+
+def is_palindrome(text: str):
+    """"""
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """"""
+    return text == text[::-1]
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",
+modp,"
+
+def modp(n: int, p: int):
+    """"""Return 2^n modulo p (be aware of numerics).
+    >>> modp(3, 5)
+    3
+    >>> modp(1101, 101)
+    2
+    >>> modp(0, 101)
+    1
+    >>> modp(3, 11)
+    8
+    >>> modp(100, 101)
+    1
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(3, 5) == 3
+    assert candidate(1101, 101) == 2
+    assert candidate(0, 101) == 1
+    assert candidate(3, 11) == 8
+    assert candidate(100, 101) == 1
+    assert candidate(30, 5) == 4
+    assert candidate(31, 5) == 3
+
+","
+
+def modp(n: int, p: int):
+    """"""Return 2^n modulo p (be aware of numerics).
+    >>> modp(3, 5)
+    3
+    >>> modp(1101, 101)
+    2
+    >>> modp(0, 101)
+    1
+    >>> modp(3, 11)
+    8
+    >>> modp(100, 101)
+    1
+    """"""
+    return pow(2, n, p)
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+decode_shift,"
+
+def encode_shift(s: str):
+    """"""
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """"""
+    return """".join([chr(((ord(ch) + 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def decode_shift(s: str):
+    """"""
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    from random import randint, choice
+    import copy
+    import string
+
+    letters = string.ascii_lowercase
+    for _ in range(100):
+        str = ''.join(choice(letters) for i in range(randint(10, 20)))
+        encoded_str = encode_shift(str)
+        assert candidate(copy.deepcopy(encoded_str)) == str
+
+","
+
+def encode_shift(s: str):
+    """"""
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """"""
+    return """".join([chr(((ord(ch) + 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def decode_shift(s: str):
+    """"""
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """"""
+    return """".join([chr(((ord(ch) - 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def encode_vigenere(s: str, key: str):
+    """"""
+    returns encoded string by using vigenere cipher with the given key.
+    """"""
+    return """".join([chr(((ord(s[i]) + ord(key[i % len(key)])) % 26) + ord(""a"")) for i in range(len(s))])
+
+
+def decode_vigenere(s: str, key: str):
+    """"""
+    takes as input string encoded with encode_vigenere function and the key used. Returns decoded string.
+    """"""
+    return """".join([chr(((ord(s[i]) - ord(key[i % len(key)])) % 26) + ord(""a"")) for i in range(len(s))])
+
+
+def encode_rail_fence(s: str, n: int):
+    """"""
+    returns encoded string by using rail fence cipher with n rails.
+    """"""
+    rails = [""""] * n
+    rail = 0
+    direction = 1
+    for ch in s:
+        rails[rail] += ch
+        rail += direction
+        if rail == n - 1 or rail == 0:
+            direction *= -1
+    return """".join(rails)
+
+
+def decode_rail_fence(s: str, n: int):
+    """"""
+    takes as input string encoded with encode_rail_fence function and the number of rails used. Returns decoded string.
+    """"""
+    rails = [""""] * n
+    rail = 0
+    direction = 1
+    for ch in s:
+        rails[rail] += ch
+        rail += direction
+        if rail == n - 1 or rail == 0:
+            direction *= -1
+    result = """"
+    i = 0
+    for _ in range(len(s)):
+        result += rails[i][0]
+        rails[i] = rails[i][1:]
+        i += direction",
+remove_vowels,"
+
+def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.
+    >>> remove_vowels('')
+    ''
+    >>> remove_vowels(""abcdef\nghijklm"")
+    'bcdf\nghjklm'
+    >>> remove_vowels('abcdef')
+    'bcdf'
+    >>> remove_vowels('aaaaa')
+    ''
+    >>> remove_vowels('aaBAA')
+    'B'
+    >>> remove_vowels('zbcd')
+    'zbcd'
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate(""abcdef\nghijklm"") == 'bcdf\nghjklm'
+    assert candidate('fedcba') == 'fdcb'
+    assert candidate('eeeee') == ''
+    assert candidate('acBAA') == 'cB'
+    assert candidate('EcBOO') == 'cB'
+    assert candidate('ybcd') == 'ybcd'
+
+","
+
+def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.
+    >>> remove_vowels('')
+    ''
+    >>> remove_vowels(""abcdef\nghijklm"")
+    'bcdf\nghjklm'
+    >>> remove_vowels('abcdef')
+    'bcdf'
+    >>> remove_vowels('aaaaa')
+    ''
+    >>> remove_vowels('aaBAA')
+    'B'
+    >>> remove_vowels('zbcd')
+    'zbcd'
+    """"""
+    return ''.join(char for char in text if char.lower() not in 'aeiou')
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
