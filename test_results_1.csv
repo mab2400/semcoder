@@ -1695,3 +1695,275 @@ def is_permutation(n, m):
     >>> is_permutation(123, 3211)
     False
     >>> is_permutation(123456789,",
+find_zero,"import math
+
+
+def poly(xs: list, x: float):
+    """"""
+    Evaluates polynomial with coefficients xs at point x.
+    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
+    """"""
+    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+
+def find_zero(xs: list):
+    """""" xs are coefficients of a polynomial.
+    find_zero find x such that poly(x) = 0.
+    find_zero returns only only zero point, even if there are many.
+    Moreover, find_zero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x
+    -0.5
+    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    import math
+    import random
+    rng = random.Random(42)
+    import copy
+    for _ in range(100):
+        ncoeff = 2 * rng.randint(1, 4)
+        coeffs = []
+        for _ in range(ncoeff):
+            coeff = rng.randint(-10, 10)
+            if coeff == 0:
+                coeff = 1
+            coeffs.append(coeff)
+        solution = candidate(copy.deepcopy(coeffs))
+        assert math.fabs(poly(coeffs, solution)) < 1e-4
+
+","import math
+
+
+def poly(xs: list, x: float):
+    """"""
+    Evaluates polynomial with coefficients xs at point x.
+    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
+    """"""
+    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+
+def find_zero(xs: list):
+    """""" xs are coefficients of a polynomial.
+    find_zero find x such that poly(x) = 0.
+    find_zero returns only only zero point, even if there are many.
+    Moreover, find_zero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x
+    -0.5
+    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+    """"""
+    assert len(xs) % 2 == 0, ""xs must have even number of coefficients""
+    assert xs[-1]!= 0, ""largest coefficient must not be zero""
+    return -xs[-2] / (2 * xs[-3])
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()",
+sort_third,"
+
+def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but sorted.
+    >>> sort_third([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_third([5, 6, 3, 4, 8, 9, 2])
+    [2, 6, 3, 4, 8, 9, 5]
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))
+    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple(sort_third([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))
+    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple(sort_third([5, 8, -12, 4, 23, 2, 3, 11, 12, -10]))
+    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2])) == tuple([2, 6, 3, 4, 8, 9, 5])
+    assert tuple(candidate([5, 8, 3, 4, 6, 9, 2])) == tuple([2, 8, 3, 4, 6, 9, 5])
+    assert tuple(candidate([5, 6, 9, 4, 8, 3, 2])) == tuple([2, 6, 9, 4, 8, 3, 5])
+    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2, 1])) == tuple([2, 6, 3, 4, 8, 9, 5, 1])
+
+","
+
+def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but sorted.
+    >>> sort_third([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_third([5, 6, 3, 4, 8, 9, 2])
+    [2, 6, 3, 4, 8, 9, 5]
+    """"""
+    l_copy = l.copy()
+    l_copy[::3] = sorted(l_copy[::3])
+    return l_copy
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+unique,"
+
+def unique(l: list):
+    """"""Return sorted unique elements in a list
+    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [0, 2, 3, 5, 9, 123]
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123]
+
+","
+
+def unique(l: list):
+    """"""Return sorted unique elements in a list
+    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [0, 2, 3, 5, 9, 123]
+    """"""
+    return sorted(set(l))
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+max_element,"
+
+def max_element(l: list):
+    """"""Return maximum element in the list.
+    >>> max_element([1, 2, 3])
+    3
+    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    123
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 3]) == 3
+    assert candidate([5, 3, -5, 2, -3, 3, 9, 0, 124, 1, -10]) == 124
+","
+
+def max_element(l: list):
+    """"""Return maximum element in the list.
+    >>> max_element([1, 2, 3])
+    3
+    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    123
+    """"""
+    return max(l)
+
+
+def min_element(l: list):
+    """"""Return minimum element in the list.
+    >>> min_element([1, 2, 3])
+    1
+    >>> min_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    -10
+    """"""
+    return min(l)
+
+
+def sum_elements(l: list):
+    """"""Return sum of elements in the list.
+    >>> sum_elements([1, 2, 3])
+    6
+    >>> sum_elements([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    149
+    """"""
+    return sum(l)
+
+
+def product_elements(l: list):
+    """"""Return product of elements in the list.
+    >>> product_elements([1, 2, 3])
+    6
+    >>> product_elements([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    0
+    """"""
+    product = 1
+    for num in l:
+        product *= num
+    return product
+
+
+def reverse_list(l: list):
+    """"""Return reversed list.
+    >>> reverse_list([1, 2, 3])
+    [3, 2, 1]
+    >>> reverse_list([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    [-10, 1, 123, 0, 9, 3, -3, 2, -5, 3, 5]
+    """"""
+    return l[::-1]
+
+
+def sort_list(l: list):
+    """"""Return sorted list.
+    >>> sort_list([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_list([5, 3, -5, 2",
+fizz_buzz,"
+
+def fizz_buzz(n: int):
+    """"""Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
+    3
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(50) == 0
+    assert candidate(78) == 2
+    assert candidate(79) == 3
+    assert candidate(100) == 3
+    assert candidate(200) == 6
+    assert candidate(4000) == 192
+    assert candidate(10000) == 639
+    assert candidate(100000) == 8026
+
+","
+
+def fizz_buzz(n: int):
+    """"""Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
+    3
+    """"""
+    count = 0
+    for i in range(11, n):
+        if i % 11 == 0 or i % 13 == 0:
+            count += str(i).count('7')
+    return count
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
