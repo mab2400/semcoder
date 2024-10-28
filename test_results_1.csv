@@ -8368,3 +8368,178 @@ print(compare_one(1, ""2,3""))  # ➞ ""2,3""
 print(compare_one(""5,1"", ""6""))  # ➞ ""6""
 print(compare_one(""1"", 1))  # ➞ None
 ",
+is_equal_to_sum_even,"
+def is_equal_to_sum_even(n):
+    """"""Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers
+    Example
+    is_equal_to_sum_even(4) == False
+    is_equal_to_sum_even(6) == False
+    is_equal_to_sum_even(8) == True
+    """"""
+","def check(candidate):
+    assert candidate(4) == False
+    assert candidate(6) == False
+    assert candidate(8) == True
+    assert candidate(10) == True
+    assert candidate(11) == False
+    assert candidate(12) == True
+    assert candidate(13) == False
+    assert candidate(16) == True
+","
+def is_equal_to_sum_even(n):
+    """"""Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers
+    Example
+    is_equal_to_sum_even(4) == False
+    is_equal_to_sum_even(6) == False
+    is_equal_to_sum_even(8) == True
+    """"""
+    if n % 2!= 0:
+        return False
+    for i in range(2, n // 2 + 1, 2):
+        for j in range(i, n // 2 + 1, 2):
+            for k in range(j, n // 2 + 1, 2):
+                for l in range(k, n // 2 + 1, 2):
+                    if i + j + k + l == n:
+                        return True
+    return False
+
+
+def is_equal_to_sum_odd(n):
+    """"""Evaluate whether the given number n can be written as the sum of exactly 4 positive odd numbers
+    Example
+    is_equal_to_sum_odd(3) == False
+    is_equal_to_sum_odd(5) == False
+    is_equal_to_sum_odd(7) == True
+    """"""
+    if n % 2 == 0:
+        return False
+    for i in range(1, n // 2 + 1, 2):
+        for j in range(i, n // 2 + 1, 2):
+            for k in range(j, n // 2 + 1, 2):
+                for l in range(k, n // 2 + 1, 2):
+                    if i + j + k + l == n:
+                        return True
+    return False
+
+
+def is_equal_to_sum_even_odd(n):
+    """"""Evaluate whether the given number n can be written as the sum of exactly 4 positive even and odd numbers
+    Example
+    is_equal_to_sum_even_odd(5) == False
+    is_equal_to_sum_even_odd(7) == False
+    is_equal_to_sum_even_odd(10) == True
+    """"""
+    for i in range(2, n // 2 + 1, 2):
+        for j in range(1, n // 2 + 1, 2):
+            for k in range(j, n // 2 + 1, 2):
+                for l in range(k, n // 2 + 1, 2):
+                    if i + j + k + l == n:
+                       ",
+special_factorial,"
+def special_factorial(n):
+    """"""The Brazilian factorial is defined as:
+    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!
+    where n > 0
+
+    For example:
+    >>> special_factorial(4)
+    288
+
+    The function will receive an integer as input and should return the special
+    factorial of this integer.
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(4) == 288, ""Test 4""
+    assert candidate(5) == 34560, ""Test 5""
+    assert candidate(7) == 125411328000, ""Test 7""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1) == 1, ""Test 1""
+
+","
+def special_factorial(n):
+    """"""The Brazilian factorial is defined as:
+    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!
+    where n > 0
+
+    For example:
+    >>> special_factorial(4)
+    288
+
+    The function will receive an integer as input and should return the special
+    factorial of this integer.
+    """"""
+    if n == 0:
+        return 1
+    else:
+        return n * special_factorial(n - 1)
+
+
+def test_special_factorial():
+    assert special_factorial(4) == 288
+    assert special_factorial(5) == 1200
+    assert special_factorial(6) == 7200
+    assert special_factorial(7) == 50400
+    assert special_factorial(8) == 403200
+    assert special_factorial(9) == 3628800
+    assert special_factorial(10) == 36288000
+    assert special_factorial(11) == 399168000
+    assert special_factorial(12) == 4790016000
+    assert special_factorial(13) == 62270208000
+    assert special_factorial(14) == 871782912000
+    assert special_factorial(15) == 13076743680000
+    assert special_factorial(16) == 209227898880000
+    assert special_factorial(17) == 35568742100480000
+    assert special_factorial(18) == 640237370572800000
+    assert special_factorial(19) == 121645100408832000000
+    assert special_factorial(20) == 2432902008176640000000
+    assert special_factorial(21) == 51090942171709440000000
+    assert special_factorial(22) == 11240007277776076800000000
+    assert special_factorial(23) == 25",
+fix_spaces,"
+def fix_spaces(text):
+    """"""
+    Given a string text, replace all spaces in it with underscores, 
+    and if a string has more than 2 consecutive spaces, 
+    then replace all consecutive spaces with - 
+    
+    fix_spaces(""Example"") == ""Example""
+    fix_spaces(""Example 1"") == ""Example_1""
+    fix_spaces("" Example 2"") == ""_Example_2""
+    fix_spaces("" Example   3"") == ""_Example-3""
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""Example"") == ""Example"", ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(""Mudasir Hanif "") == ""Mudasir_Hanif_"", ""This prints if this assert fails 2 (good for debugging!)""
+    assert candidate(""Yellow Yellow  Dirty  Fellow"") == ""Yellow_Yellow__Dirty__Fellow"", ""This prints if this assert fails 3 (good for debugging!)""
+    
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(""Exa   mple"") == ""Exa-mple"", ""This prints if this assert fails 4 (good for debugging!)""
+    assert candidate(""   Exa 1 2 2 mple"") == ""-Exa_1_2_2_mple"", ""This prints if this assert fails 4 (good for debugging!)""
+
+","
+def fix_spaces(text):
+    """"""
+    Given a string text, replace all spaces in it with underscores, 
+    and if a string has more than 2 consecutive spaces, 
+    then replace all consecutive spaces with - 
+    
+    fix_spaces(""Example"") == ""Example""
+    fix_spaces(""Example 1"") == ""Example_1""
+    fix_spaces("" Example 2"") == ""_Example_2""
+    fix_spaces("" Example   3"") == ""_Example-3""
+    """"""
+    text = text.replace(""  "", ""-"")
+    text = text.replace("" "", ""_"")
+    return text
+
+# Test cases
+print(fix_spaces(""Example""))  # Output: ""Example""
+print(fix_spaces(""Example 1""))  # Output: ""Example_1""
+print(fix_spaces("" Example 2""))  # Output: ""_Example_2""
+print(fix_spaces("" Example   3""))  # Output: ""_Example-3""
+",
