@@ -1406,3 +1406,292 @@ def factorize(n: int) -> List[int]:
 if __name__ == ""__main__"":
     import doctest
     doctest.testmod()",
+remove_duplicates,"from typing import List
+
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    """""" From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> remove_duplicates([1, 2, 3, 2, 4])
+    [1, 3, 4]
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == []
+    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]
+    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]
+","from typing import List
+
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    """""" From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> remove_duplicates([1, 2, 3, 2, 4])
+    [1, 3, 4]
+    """"""
+    return list(set(numbers))
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+flip_case,"
+
+def flip_case(string: str) -> str:
+    """""" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
+    >>> flip_case('Hello')
+    'hELLO'
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate('Hello!') == 'hELLO!'
+    assert candidate('These violent delights have violent ends') == 'tHESE VIOLENT DELIGHTS HAVE VIOLENT ENDS'
+","
+
+def flip_case(string: str) -> str:
+    """""" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
+    >>> flip_case('Hello')
+    'hELLO'
+    """"""
+    return string.swapcase()
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",
+concatenate,"from typing import List
+
+
+def concatenate(strings: List[str]) -> str:
+    """""" Concatenate list of strings into a single string
+    >>> concatenate([])
+    ''
+    >>> concatenate(['a', 'b', 'c'])
+    'abc'
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == ''
+    assert candidate(['x', 'y', 'z']) == 'xyz'
+    assert candidate(['x', 'y', 'z', 'w', 'k']) == 'xyzwk'
+","from typing import List
+
+
+def concatenate(strings: List[str]) -> str:
+    """""" Concatenate list of strings into a single string
+    >>> concatenate([])
+    ''
+    >>> concatenate(['a', 'b', 'c'])
+    'abc'
+    """"""
+    return ''.join(strings)
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+filter_by_prefix,"from typing import List
+
+
+def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that start with a given prefix.
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
+    """"""
+","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([], 'john') == []
+    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']
+","from typing import List
+
+
+def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that start with a given prefix.
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
+    """"""
+    return [s for s in strings if s.startswith(prefix)]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+get_positive,"
+
+def get_positive(l: list):
+    """"""Return only positive numbers in the list.
+    >>> get_positive([-1, 2, -4, 5, 6])
+    [2, 5, 6]
+    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    [5, 3, 2, 3, 9, 123, 1]
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]
+    assert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]
+    assert candidate([-1, -2]) == []
+    assert candidate([]) == []
+
+","
+
+def get_positive(l: list):
+    """"""Return only positive numbers in the list.
+    >>> get_positive([-1, 2, -4, 5, 6])
+    [2, 5, 6]
+    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    [5, 3, 2, 3, 9, 123, 1]
+    """"""
+    return [num for num in l if num > 0]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+is_prime,"
+
+def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(6) == False
+    assert candidate(101) == True
+    assert candidate(11) == True
+    assert candidate(13441) == True
+    assert candidate(61) == True
+    assert candidate(4) == False
+    assert candidate(1) == False
+    assert candidate(5) == True
+    assert candidate(11) == True
+    assert candidate(17) == True
+    assert candidate(5 * 17) == False
+    assert candidate(11 * 7) == False
+    assert candidate(13441 * 19) == False
+
+","
+
+def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False
+    """"""
+    if n == 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(n**0.5) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+
+def is_palindrome(n):
+    """"""Return true if a given number is a palindrome, and false otherwise.
+    >>> is_palindrome(121)
+    True
+    >>> is_palindrome(12321)
+    True
+    >>> is_palindrome(12345)
+    False
+    >>> is_palindrome(123321)
+    True
+    >>> is_palindrome(1)
+    True
+    >>> is_palindrome(11)
+    True
+    """"""
+    return str(n) == str(n)[::-1]
+
+
+def is_pandigital(n):
+    """"""Return true if a given number is pandigital, and false otherwise.
+    >>> is_pandigital(123456789)
+    True
+    >>> is_pandigital(12345678)
+    False
+    >>> is_pandigital(112233445566778899)
+    True
+    >>> is_pandigital(1234567890)
+    False
+    >>> is_pandigital(1234567899)
+    False
+    """"""
+    return sorted(str(n)) == [str(i) for i in range(1, len(str(n)) + 1)]
+
+
+def is_permutation(n, m):
+    """"""Return true if a given number is a permutation of another number, and false otherwise.
+    >>> is_permutation(123, 321)
+    True
+    >>> is_permutation(123, 3211)
+    False
+    >>> is_permutation(123456789,",
