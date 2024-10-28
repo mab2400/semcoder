@@ -4471,3 +4471,186 @@ def test_iscube():
 
 if __name__ == ""__main__"":
     test_iscube()",
+hex_key,"
+def hex_key(num):
+    """"""You have been tasked to write a function that receives 
+    a hexadecimal number as a string and counts the number of hexadecimal 
+    digits that are primes (prime number, or a prime, is a natural number 
+    greater than 1 that is not a product of two smaller natural numbers).
+    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
+    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
+    So you have to determine a number of the following digits: 2, 3, 5, 7, 
+    B (=decimal 11), D (=decimal 13).
+    Note: you may assume the input is always correct or empty string, 
+    and symbols A,B,C,D,E,F are always uppercase.
+    Examples:
+    For num = ""AB"" the output should be 1.
+    For num = ""1077E"" the output should be 2.
+    For num = ""ABED1A33"" the output should be 4.
+    For num = ""123456789ABCDEF0"" the output should be 6.
+    For num = ""2020"" the output should be 2.
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""AB"") == 1, ""First test error: "" + str(candidate(""AB""))      
+    assert candidate(""1077E"") == 2, ""Second test error: "" + str(candidate(""1077E""))  
+    assert candidate(""ABED1A33"") == 4, ""Third test error: "" + str(candidate(""ABED1A33""))      
+    assert candidate(""2020"") == 2, ""Fourth test error: "" + str(candidate(""2020""))  
+    assert candidate(""123456789ABCDEF0"") == 6, ""Fifth test error: "" + str(candidate(""123456789ABCDEF0""))      
+    assert candidate(""112233445566778899AABBCCDDEEFF00"") == 12, ""Sixth test error: "" + str(candidate(""112233445566778899AABBCCDDEEFF00""))  
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([]) == 0
+
+","
+def hex_key(num):
+    """"""You have been tasked to write a function that receives 
+    a hexadecimal number as a string and counts the number of hexadecimal 
+    digits that are primes (prime number, or a prime, is a natural number 
+    greater than 1 that is not a product of two smaller natural numbers).
+    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
+    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
+    So you have to determine a number of the following digits: 2, 3, 5, 7, 
+    B (=decimal 11), D (=decimal 13).
+    Note: you may assume the input is always correct or empty string, 
+    and symbols A,B,C,D,E,F are always uppercase.
+    Examples:
+    For num = ""AB"" the output should be 1.
+    For num = ""1077E"" the output should be 2.
+    For num = ""ABED1A33"" the output should be 4.
+    For num = ""123456789ABCDEF0"" the output should be 6.
+    For num = ""2020"" the output should be 2.
+    """"""
+    primes = {2, 3, 5, 7, 11, 13, 17}
+    return sum(int(c, 16) in primes for c in num)
+
+
+def test_hex_key():
+    assert hex_key(""AB"") == 1
+    assert hex_key(""1077E"") == 2
+    assert hex_key(""ABED1A33"") == 4
+    assert hex_key(""123456789ABCDEF0"") == 6
+    assert hex_key(""2020"") == 2
+
+
+if __name__ == ""__main__"":
+    test_hex_key()",
+decimal_to_binary,"
+def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
+    Examples:
+    decimal_to_binary(15)   # returns ""db1111db""
+    decimal_to_binary(32)   # returns ""db100000db""
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(0) == ""db0db""
+    assert candidate(32) == ""db100000db""
+    assert candidate(103) == ""db1100111db""
+    assert candidate(15) == ""db1111db"", ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
+    Examples:
+    decimal_to_binary(15)   # returns ""db1111db""
+    decimal_to_binary(32)   # returns ""db100000db""
+    """"""
+    binary = bin(decimal)[2:]  # Convert decimal to binary and remove '0b' prefix
+    return 'db' + binary + 'db'
+
+
+def binary_to_decimal(binary):
+    """"""You will be given a number in binary form and your task is to convert it to
+    decimal format. The function should return an integer.
+
+    The input will be a string, with each character representing a binary number.
+    Each character in the string will be '0' or '1'.
+
+    Examples:
+    binary_to_decimal(""db1111db"")   # returns 15
+    binary_to_decimal(""db100000db"") # returns 32
+    """"""
+    binary = binary[2:-2]  # Remove 'db' prefix and suffix
+    return int(binary, 2)  # Convert binary to decimal
+
+
+# Test the functions
+print(decimal_to_binary(15))  # Output: db1111db
+print(binary_to_decimal(""db1111db""))  # Output: 15
+print(decimal_to_binary(32))  # Output: db100000db
+print(binary_to_decimal(""db100000db""))  # Output: 32
+",
+is_happy,"
+def is_happy(s):
+    """"""You are given a string s.
+    Your task is to check if the string is happy or not.
+    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct
+    For example:
+    is_happy(a) => False
+    is_happy(aa) => False
+    is_happy(abcd) => True
+    is_happy(aabb) => False
+    is_happy(adb) => True
+    is_happy(xyy) => False
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""a"") == False , ""a""
+    assert candidate(""aa"") == False , ""aa""
+    assert candidate(""abcd"") == True , ""abcd""
+    assert candidate(""aabb"") == False , ""aabb""
+    assert candidate(""adb"") == True , ""adb""
+    assert candidate(""xyy"") == False , ""xyy""
+    assert candidate(""iopaxpoi"") == True , ""iopaxpoi""
+    assert candidate(""iopaxioi"") == False , ""iopaxioi""
+","
+def is_happy(s):
+    """"""You are given a string s.
+    Your task is to check if the string is happy or not.
+    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct
+    For example:
+    is_happy(a) => False
+    is_happy(aa) => False
+    is_happy(abcd) => True
+    is_happy(aabb) => False
+    is_happy(adb) => True
+    is_happy(xyy) => False
+    """"""
+    if len(s) < 3:
+        return False
+    for i in range(len(s) - 2):
+        if s[i] == s[i + 1] == s[i + 2]:
+            return False
+    return True
+
+
+def test_is_happy():
+    assert is_happy(""a"") == False
+    assert is_happy(""aa"") == False
+    assert is_happy(""abcd"") == True
+    assert is_happy(""aabb"") == False
+    assert is_happy(""adb"") == True
+    assert is_happy(""xyy"") == False
+
+
+test_is_happy()",
