@@ -9369,3 +9369,183 @@ def Strongest_Extension(class_name, extensions):
 # Test the function with the provided example
 print(Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']))  # Output: Slices.SErviNGSliCes
 ",
+cycpattern_check,"
+def cycpattern_check(a , b):
+    """"""You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
+    cycpattern_check(""abcd"",""abd"") => False
+    cycpattern_check(""hello"",""ell"") => True
+    cycpattern_check(""whassup"",""psus"") => False
+    cycpattern_check(""abab"",""baa"") => True
+    cycpattern_check(""efef"",""eeff"") => False
+    cycpattern_check(""himenss"",""simen"") => True
+
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    #assert True, ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    #assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert  candidate(""xyzw"",""xyw"") == False , ""test #0""
+    assert  candidate(""yello"",""ell"") == True , ""test #1""
+    assert  candidate(""whattup"",""ptut"") == False , ""test #2""
+    assert  candidate(""efef"",""fee"") == True , ""test #3""
+    assert  candidate(""abab"",""aabb"") == False , ""test #4""
+    assert  candidate(""winemtt"",""tinem"") == True , ""test #5""
+
+","
+def cycpattern_check(a , b):
+    """"""You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
+    cycpattern_check(""abcd"",""abd"") => False
+    cycpattern_check(""hello"",""ell"") => True
+    cycpattern_check(""whassup"",""psus"") => False
+    cycpattern_check(""abab"",""baa"") => True
+    cycpattern_check(""efef"",""eeff"") => False
+    cycpattern_check(""himenss"",""simen"") => True
+
+    """"""
+    if b in a:
+        return True
+    for i in range(len(b)):
+        b = b[1:] + b[0]
+        if b in a:
+            return True
+    return False
+
+
+print(cycpattern_check(""abcd"",""abd""))  # => False
+print(cycpattern_check(""hello"",""ell""))  # => True
+print(cycpattern_check(""whassup"",""psus""))  # => False
+print(cycpattern_check(""abab"",""baa""))  # => True
+print(cycpattern_check(""efef"",""eeff""))  # => False
+print(cycpattern_check(""himenss"",""simen""))  # => True",
+even_odd_count,"
+def even_odd_count(num):
+    """"""Given an integer. return a tuple that has the number of even and odd digits respectively.
+
+     Example:
+        even_odd_count(-12) ==> (1, 1)
+        even_odd_count(123) ==> (1, 2)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(7) == (0, 1)
+    assert candidate(-78) == (1, 1)
+    assert candidate(3452) == (2, 2)
+    assert candidate(346211) == (3, 3)
+    assert candidate(-345821) == (3, 3)
+    assert candidate(-2) == (1, 0)
+    assert candidate(-45347) == (2, 3)
+    assert candidate(0) == (1, 0)
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","
+def even_odd_count(num):
+    """"""Given an integer. return a tuple that has the number of even and odd digits respectively.
+
+     Example:
+        even_odd_count(-12) ==> (1, 1)
+        even_odd_count(123) ==> (1, 2)
+    """"""
+    even_count = 0
+    odd_count = 0
+    num = abs(num)
+    while num > 0:
+        digit = num % 10
+        if digit % 2 == 0:
+            even_count += 1
+        else:
+            odd_count += 1
+        num //= 10
+    return even_count, odd_count
+
+
+def test_even_odd_count():
+    assert even_odd_count(-12) == (1, 1)
+    assert even_odd_count(123) == (1, 2)
+    assert even_odd_count(13579) == (0, 5)
+    assert even_odd_count(2468) == (4, 0)
+    assert even_odd_count(1000) == (4, 0)
+    assert even_odd_count(-1000) == (4, 0)
+    assert even_odd_count(0) == (1, 0)
+    assert even_odd_count(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+int_to_mini_roman,"
+def int_to_mini_roman(number):
+    """"""
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(19) == 'xix'
+    assert candidate(152) == 'clii'
+    assert candidate(251) == 'ccli'
+    assert candidate(426) == 'cdxxvi'
+    assert candidate(500) == 'd'
+    assert candidate(1) == 'i'
+    assert candidate(4) == 'iv'
+    assert candidate(43) == 'xliii'
+    assert candidate(90) == 'xc'
+    assert candidate(94) == 'xciv'
+    assert candidate(532) == 'dxxxii'
+    assert candidate(900) == 'cm'
+    assert candidate(994) == 'cmxciv'
+    assert candidate(1000) == 'm'
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","
+def int_to_mini_roman(number):
+    """"""
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """"""
+    roman_numerals = {
+        1: 'i',
+        5: 'v',
+        10: 'x',
+        50: 'l',
+        100: 'c',
+        500: 'd',
+        1000:'m'
+    }
+
+    roman_numeral = ''
+    for power in [1000, 100, 10, 1]:
+        digit = number // power
+        number %= power
+        if digit == 9:
+            roman_numeral += roman_numerals[power] + roman_numerals[power * 10]
+        elif digit >= 5:
+            roman_numeral += roman_numerals[power * 5] + roman_numerals[power] * (digit - 5)
+        elif digit == 4:
+            roman_numeral += roman_numerals[power] + roman_numerals[power * 5]
+        else:
+            roman_numeral += roman_numerals[power] * digit
+
+    return roman_numeral.lower()
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()",
