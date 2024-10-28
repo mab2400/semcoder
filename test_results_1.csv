@@ -8894,3 +8894,178 @@ if __name__ == ""__main__"":
     import doctest
 
     doctest.testmod()",
+specialFilter,"
+def specialFilter(nums):
+    """"""Write a function that takes an array of numbers as input and returns 
+    the number of elements in the array that are greater than 10 and both 
+    first and last digits of a number are odd (1, 3, 5, 7, 9).
+    For example:
+    specialFilter([15, -73, 14, -15]) => 1 
+    specialFilter([33, -2, -3, 45, 21, 109]) => 2
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([5, -2, 1, -5]) == 0  
+    assert candidate([15, -73, 14, -15]) == 1
+    assert candidate([33, -2, -3, 45, 21, 109]) == 2
+    assert candidate([43, -12, 93, 125, 121, 109]) == 4
+    assert candidate([71, -2, -33, 75, 21, 19]) == 3
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([1]) == 0              
+    assert candidate([]) == 0                   
+
+","
+def specialFilter(nums):
+    """"""Write a function that takes an array of numbers as input and returns 
+    the number of elements in the array that are greater than 10 and both 
+    first and last digits of a number are odd (1, 3, 5, 7, 9).
+    For example:
+    specialFilter([15, -73, 14, -15]) => 1 
+    specialFilter([33, -2, -3, 45, 21, 109]) => 2
+    """"""
+    count = 0
+    for num in nums:
+        if num > 10 and num % 2!= 0 and abs(num) // 10 % 10 % 2!= 0:
+            count += 1
+    return count
+
+# Test cases
+print(specialFilter([15, -73, 14, -15]))  # Output: 1
+print(specialFilter([33, -2, -3, 45, 21, 109]))  # Output: 2
+print(specialFilter([11, 22, 33, 44, 55, 66, 77, 88, 99]))  # Output: 9
+print(specialFilter([10, 20, 30, 40, 50, 60, 70, 80, 90]))  # Output: 0
+print(specialFilter([1, 3, 5, 7, 9, 11, 13, 15, 17, 19]))  # Output: 10
+print(specialFilter([2, 4, 6, 8, 10, 12, 14, 16, 18, 20]))  # Output: 0
+print(specialFilter([-11, -22, -33, -44, -55, -66, -77, -88, -99]))  # Output: 9
+print(specialFilter([-1, -3, -5, -7, -9, -11, -13, -15, -17, -19]))  # Output: 10
+print(specialFilter([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))  # Output: 0
+print(specialFilter([100, 200, 300, 400, 500, 600, 700, 800, 900]))  # Output: 0
+print(specialFilter([111",
+get_max_triples,"
+def get_max_triples(n):
+    """"""
+    You are given a positive integer n. You have to create an integer array a of length n.
+        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.
+        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, 
+    and a[i] + a[j] + a[k] is a multiple of 3.
+
+    Example :
+        Input: n = 5
+        Output: 1
+        Explanation: 
+        a = [1, 3, 7, 13, 21]
+        The only valid triple is (1, 7, 13).
+    """"""
+","def check(candidate):
+
+    assert candidate(5) == 1
+    assert candidate(6) == 4
+    assert candidate(10) == 36
+    assert candidate(100) == 53361
+","
+def get_max_triples(n):
+    """"""
+    You are given a positive integer n. You have to create an integer array a of length n.
+        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.
+        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, 
+    and a[i] + a[j] + a[k] is a multiple of 3.
+
+    Example :
+        Input: n = 5
+        Output: 1
+        Explanation: 
+        a = [1, 3, 7, 13, 21]
+        The only valid triple is (1, 7, 13).
+    """"""
+    a = [i*i - i + 1 for i in range(1, n+1)]
+    count = 0
+    for i in range(n):
+        for j in range(i+1, n):
+            for k in range(j+1, n):
+                if (a[i] + a[j] + a[k]) % 3 == 0:
+                    count += 1
+    return count
+
+# Test the function with the example
+n = 5
+print(get_max_triples(n))  # Output: 1",
+bf,"
+def bf(planet1, planet2):
+    '''
+    There are eight planets in our solar system: the closerst to the Sun 
+    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
+    Uranus, Neptune.
+    Write a function that takes two planet names as strings planet1 and planet2. 
+    The function should return a tuple containing all planets whose orbits are 
+    located between the orbit of planet1 and the orbit of planet2, sorted by 
+    the proximity to the sun. 
+    The function should return an empty tuple if planet1 or planet2
+    are not correct planet names. 
+    Examples
+    bf(""Jupiter"", ""Neptune"") ==> (""Saturn"", ""Uranus"")
+    bf(""Earth"", ""Mercury"") ==> (""Venus"")
+    bf(""Mercury"", ""Uranus"") ==> (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn"")
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""Jupiter"", ""Neptune"") == (""Saturn"", ""Uranus""), ""First test error: "" + str(len(candidate(""Jupiter"", ""Neptune"")))      
+    assert candidate(""Earth"", ""Mercury"") == (""Venus"",), ""Second test error: "" + str(candidate(""Earth"", ""Mercury""))  
+    assert candidate(""Mercury"", ""Uranus"") == (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn""), ""Third test error: "" + str(candidate(""Mercury"", ""Uranus""))      
+    assert candidate(""Neptune"", ""Venus"") == (""Earth"", ""Mars"", ""Jupiter"", ""Saturn"", ""Uranus""), ""Fourth test error: "" + str(candidate(""Neptune"", ""Venus""))  
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(""Earth"", ""Earth"") == ()
+    assert candidate(""Mars"", ""Earth"") == ()
+    assert candidate(""Jupiter"", ""Makemake"") == ()
+
+","
+def bf(planet1, planet2):
+    '''
+    There are eight planets in our solar system: the closerst to the Sun 
+    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
+    Uranus, Neptune.
+    Write a function that takes two planet names as strings planet1 and planet2. 
+    The function should return a tuple containing all planets whose orbits are 
+    located between the orbit of planet1 and the orbit of planet2, sorted by 
+    the proximity to the sun. 
+    The function should return an empty tuple if planet1 or planet2
+    are not correct planet names. 
+    Examples
+    bf(""Jupiter"", ""Neptune"") ==> (""Saturn"", ""Uranus"")
+    bf(""Earth"", ""Mercury"") ==> (""Venus"")
+    bf(""Mercury"", ""Uranus"") ==> (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn"")
+    '''
+    planets = {
+        ""Mercury"": 1,
+        ""Venus"": 2,
+        ""Earth"": 3,
+        ""Mars"": 4,
+        ""Jupiter"": 5,
+        ""Saturn"": 6,
+        ""Uranus"": 7,
+        ""Neptune"": 8
+    }
+    
+    if planet1 not in planets or planet2 not in planets:
+        return ()
+    
+    planet1_index = planets[planet1]
+    planet2_index = planets[planet2]
+    
+    if planet1_index > planet2_index:
+        planet1_index, planet2_index = planet2_index, planet1_index
+    
+    result = [planet for planet, index in planets.items() if index > planet1_index and index < planet2_index]
+    
+    return tuple(result)
+
+# Test cases
+print(bf(""Jupiter"", ""Neptune"") == (""Saturn"", ""Uranus""))
+print(bf(""Earth"", ""Mercury"") == (""Venus"",))
+print(bf(""Mercury"", ""Uranus"") == (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn""))
+print(bf(""Pluto"", ""Neptune"") == ())",
