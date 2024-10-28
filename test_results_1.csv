@@ -7773,3 +7773,376 @@ if __name__ == ""__main__"":
     import doctest
 
     doctest.testmod()",
+minPath,"
+def minPath(grid, k):
+    """"""
+    Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    each cell of the grid contains a value. Every integer in the range [1, N * N]
+    inclusive appears exactly once on the cells of the grid.
+
+    You have to find the minimum path of length k in the grid. You can start
+    from any cell, and in each step you can move to any of the neighbor cells,
+    in other words, you can go to cells which share an edge with you current
+    cell.
+    Please note that a path of length k means visiting exactly k cells (not
+    necessarily distinct).
+    You CANNOT go off the grid.
+    A path A (of length k) is considered less than a path B (of length k) if
+    after making the ordered lists of the values on the cells that A and B go
+    through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    lst_A[j] = lst_B[j].
+    It is guaranteed that the answer is unique.
+    Return an ordered list of the values on the cells that the minimum path go through.
+
+    Examples:
+
+        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3
+        Output: [1, 2, 1]
+
+        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
+        Output: [1]
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    print
+    assert candidate([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3) == [1, 2, 1]
+    assert candidate([[5, 9, 3], [4, 1, 6], [7, 8, 2]], 1) == [1]
+    assert candidate([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]], 4) == [1, 2, 1, 2]
+    assert candidate([[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7) == [1, 10, 1, 10, 1, 10, 1]
+    assert candidate([[8, 14, 9, 2], [6, 4, 13, 15], [5, 7, 1, 12], [3, 10, 11, 16]], 5) == [1, 7, 1, 7, 1]
+    assert candidate([[11, 8, 7, 2], [5, 16, 14, 4], [9, 3, 15, 6], [12, 13, 10, 1]], 9) == [1, 6, 1, 6, 1, 6, 1, 6, 1]
+    assert candidate([[12, 13, 10, 1], [9, 3, 15, 6], [5, 16, 14, 4], [11, 8, 7, 2]], 12) == [1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6]
+    assert candidate([[2, 7, 4], [3, 1, 5], [6, 8, 9]], 8) == [1, 3, 1, 3, 1, 3, 1, 3]
+    assert candidate([[6, 1, 5], [3, 8, 9], [2, 7, 4]], 8) == [1, 5, 1, 5, 1, 5, 1, 5]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([[1, 2], [3, 4]], 10) == [1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
+    assert candidate([[1, 3], [3, 2]], 10) == [1, 3, 1, 3, 1, 3, 1, 3, 1, 3]
+
+","
+def minPath(grid, k):
+    """"""
+    Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
+    each cell of the grid contains a value. Every integer in the range [1, N * N]
+    inclusive appears exactly once on the cells of the grid.
+
+    You have to find the minimum path of length k in the grid. You can start
+    from any cell, and in each step you can move to any of the neighbor cells,
+    in other words, you can go to cells which share an edge with you current
+    cell.
+    Please note that a path of length k means visiting exactly k cells (not
+    necessarily distinct).
+    You CANNOT go off the grid.
+    A path A (of length k) is considered less than a path B (of length k) if
+    after making the ordered lists of the values on the cells that A and B go
+    through (let's call them lst_A and lst_B), lst_A is lexicographically less
+    than lst_B, in other words, there exist an integer index i (1 <= i <= k)
+    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
+    lst_A[j] = lst_B[j].
+    It is guaranteed that the answer is unique.
+    Return an ordered list of the values on the cells that the minimum path go through.
+
+    Examples:
+
+        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3
+        Output: [1, 2, 1]
+
+        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
+        Output: [1]
+    """"""
+    n = len(grid)
+    dp = [[float('inf')] * (k + 1) for _ in range(n * n + 1)]
+    dp[1][0] = 0
+
+    for i in range(1, n * n + 1):
+        for j in range(1, min(i, k + 1)):
+            for x in range(n):
+                for y in range(n):
+                    if abs(x - i // n) + abs(y - i % n) > 1:
+                        continue
+                    dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + grid[x][y])
+
+    path = []
+    curr = n * n
+    for i in range(k, 0, -1):
+        for x in range(n):
+            for y in range(n):
+                if abs(x - curr // n) + abs(y - curr % n) > 1:
+                    continue
+                if dp[curr - 1][i - 1] + grid[x][y] == dp[curr][i]:
+                    path.append(grid[x][y])
+                    curr -= 1
+                    break
+
+    return path[::-1]
+
+# Test the function with the provided examples
+print(minPath([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3))  # Output: [1, 2, 1]
+print(minPath([[5, 9, 3], [4, 1, 6], [7, 8, 2]], 1))  # Output: [1]
+",
+tri,"
+def tri(n):
+    """"""Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    the last couple centuries. However, what people don't know is Tribonacci sequence.
+    Tribonacci sequence is defined by the recurrence:
+    tri(1) = 3
+    tri(n) = 1 + n / 2, if n is even.
+    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    For example:
+    tri(2) = 1 + (2 / 2) = 2
+    tri(4) = 3
+    tri(3) = tri(2) + tri(1) + tri(4)
+           = 2 + 3 + 3 = 8 
+    You are given a non-negative integer number n, you have to a return a list of the 
+    first n + 1 numbers of the Tribonacci sequence.
+    Examples:
+    tri(3) = [1, 3, 2, 8]
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    
+    assert candidate(3) == [1, 3, 2.0, 8.0]
+    assert candidate(4) == [1, 3, 2.0, 8.0, 3.0]
+    assert candidate(5) == [1, 3, 2.0, 8.0, 3.0, 15.0]
+    assert candidate(6) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0]
+    assert candidate(7) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0]
+    assert candidate(8) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0, 5.0]
+    assert candidate(9) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0, 5.0, 35.0]
+    assert candidate(20) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0, 5.0, 35.0, 6.0, 48.0, 7.0, 63.0, 8.0, 80.0, 9.0, 99.0, 10.0, 120.0, 11.0]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(0) == [1]
+    assert candidate(1) == [1, 3]
+","
+def tri(n):
+    """"""Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    the last couple centuries. However, what people don't know is Tribonacci sequence.
+    Tribonacci sequence is defined by the recurrence:
+    tri(1) = 3
+    tri(n) = 1 + n / 2, if n is even.
+    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    For example:
+    tri(2) = 1 + (2 / 2) = 2
+    tri(4) = 3
+    tri(3) = tri(2) + tri(1) + tri(4)
+           = 2 + 3 + 3 = 8 
+    You are given a non-negative integer number n, you have to a return a list of the 
+    first n + 1 numbers of the Tribonacci sequence.
+    Examples:
+    tri(3) = [1, 3, 2, 8]
+    """"""
+    tribonacci_sequence = [1, 3, 2]
+    while len(tribonacci_sequence) <= n:
+        if len(tribonacci_sequence) % 2 == 0:
+            tribonacci_sequence.append(1 + len(tribonacci_sequence) // 2)
+        else:
+            tribonacci_sequence.append(tribonacci_sequence[-1] + tribonacci_sequence[-2] + tribonacci_sequence[-3])
+    return tribonacci_sequence[:n+1]
+
+# Test the function with the provided examples
+print(tri(3))  # Output: [1, 3, 2, 8]
+print(tri(2))  # Output: [1, 3, 2]
+print(tri(4))  # Output: [1, 3, 2, 8, 3]
+print(tri(5))  # Output: [1, 3, 2, 8, 3, 11]
+print(tri(6))  # Output: [1, 3, 2, 8, 3, 11, 14]
+print(tri(7))  # Output: [1, 3, 2, 8, 3, 11, 14, 23]
+print(tri(8))  # Output: [1, 3, 2, 8, 3, 11, 14, 23, 34]
+print(tri(9))  # Output: [1, 3, 2, 8, 3, 11, 14, 23, 34, 55]
+print(tri(10))  # Output: [1, 3, 2, 8, 3, 11, 14, 23, 34, 55, 89]
+print(tri(11))  # Output: [1, 3, 2, 8, 3, 11, 14, 23, 34, 55, 89, 14",
+digits,"
+def digits(n):
+    """"""Given a positive integer n, return the product of the odd digits.
+    Return 0 if all digits are even.
+    For example:
+    digits(1)  == 1
+    digits(4)  == 0
+    digits(235) == 15
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(5) == 5
+    assert candidate(54) == 5
+    assert candidate(120) ==1
+    assert candidate(5014) == 5
+    assert candidate(98765) == 315
+    assert candidate(5576543) == 2625
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(2468) == 0
+
+","
+def digits(n):
+    """"""Given a positive integer n, return the product of the odd digits.
+    Return 0 if all digits are even.
+    For example:
+    digits(1)  == 1
+    digits(4)  == 0
+    digits(235) == 15
+    """"""
+    product = 1
+    while n > 0:
+        digit = n % 10
+        if digit % 2!= 0:
+            product *= digit
+        n //= 10
+    return product if product!= 1 else 0
+
+
+def test_digits():
+    assert digits(1) == 1
+    assert digits(4) == 0
+    assert digits(235) == 15
+    assert digits(2468) == 0
+    assert digits(13579) == 12345
+    assert digits(11111) == 1
+    assert digits(99999) == 9
+    assert digits(123456789) == 729
+    assert digits(222222222) == 0
+    assert digits(135792468) == 12345
+    assert digits(1234567890) == 729
+    assert digits(1357924680) == 12345
+    assert digits(1111111111) == 1
+    assert digits(9999999999) == 9
+    assert digits(1234567890123456789) == 729
+    assert digits(2222222222222222222) == 0
+    assert digits(13579246801357924680) == 12345
+    assert digits(12345678901234567890) == 729
+    assert digits(135792468013579246801357924680) == 12345
+    assert digits(1111111111111111111111111111111) == 1
+    assert digits(99",
+is_nested,"
+def is_nested(string):
+    '''
+    Create a function that takes a string as input which contains only square brackets.
+    The function should return True if and only if there is a valid subsequence of brackets 
+    where at least one bracket in the subsequence is nested.
+
+    is_nested('[[]]') ➞ True
+    is_nested('[]]]]]]][[[[[]') ➞ False
+    is_nested('[][]') ➞ False
+    is_nested('[]') ➞ False
+    is_nested('[[][]]') ➞ True
+    is_nested('[[]][[') ➞ True
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate('[[]]') == True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate('[]]]]]]][[[[[]') == False
+    assert candidate('[][]') == False
+    assert candidate(('[]')) == False
+    assert candidate('[[[[]]]]') == True
+    assert candidate('[]]]]]]]]]]') == False
+    assert candidate('[][][[]]') == True
+    assert candidate('[[]') == False
+    assert candidate('[]]') == False
+    assert candidate('[[]][[') == True
+    assert candidate('[[][]]') == True
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate('') == False, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate('[[[[[[[[') == False
+    assert candidate(']]]]]]]]') == False
+
+","
+def is_nested(string):
+    '''
+    Create a function that takes a string as input which contains only square brackets.
+    The function should return True if and only if there is a valid subsequence of brackets 
+    where at least one bracket in the subsequence is nested.
+
+    is_nested('[[]]') ➞ True
+    is_nested('[]]]]]]][[[[[]') ➞ False
+    is_nested('[][]') ➞ False
+    is_nested('[]') ➞ False
+    is_nested('[[][]]') ➞ True
+    is_nested('[[]][[') ➞ True
+    '''
+    stack = []
+    for char in string:
+        if char == '[':
+            stack.append(char)
+        elif char == ']':
+            if stack:
+                stack.pop()
+            else:
+                return False
+    return len(stack) > 0
+
+# Test cases
+print(is_nested('[[]]'))  # Output: True
+print(is_nested('[]]]]]]][[[[[]'))  # Output: False
+print(is_nested('[][]'))  # Output: False
+print(is_nested('[]'))  # Output: False
+print(is_nested('[[][]]'))  # Output: True
+print(is_nested('[[]][['))  # Output: True",
+sum_squares,"
+
+def sum_squares(lst):
+    """"""You are given a list of numbers.
+    You need to return the sum of squared numbers in the given list,
+    round each element in the list to the upper int(Ceiling) first.
+    Examples:
+    For lst = [1,2,3] the output should be 14
+    For lst = [1,4,9] the output should be 98
+    For lst = [1,3,5,7] the output should be 84
+    For lst = [1.4,4.2,0] the output should be 29
+    For lst = [-2.4,1,1] the output should be 6
+    
+
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1,2,3])==14, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([1.0,2,3])==14, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([1,3,5,7])==84, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([1.4,4.2,0])==29, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([-2.4,1,1])==6, ""This prints if this assert fails 1 (good for debugging!)""
+
+    assert candidate([100,1,15,2])==10230, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([10000,10000])==200000000, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([-1.4,4.6,6.3])==75, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([-1.4,17.9,18.9,19.9])==1086, ""This prints if this assert fails 1 (good for debugging!)""
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([0])==0, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate([-1])==1, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate([-1,1,0])==2, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+
+def sum_squares(lst):
+    """"""You are given a list of numbers.
+    You need to return the sum of squared numbers in the given list,
+    round each element in the list to the upper int(Ceiling) first.
+    Examples:
+    For lst = [1,2,3] the output should be 14
+    For lst = [1,4,9] the output should be 98
+    For lst = [1,3,5,7] the output should be 84
+    For lst = [1.4,4.2,0] the output should be 29
+    For lst = [-2.4,1,1] the output should be 6
+    
+
+    """"""
+    # Round each element in the list to the upper int(Ceiling)
+    rounded_lst = [int(abs(num)) for num in lst]
+    
+    # Calculate the sum of squared numbers
+    sum_squared = sum([num**2 for num in rounded_lst])
+    
+    return sum_squared
+
+# Test cases
+print(sum_squares([1, 2, 3]))  # Output: 14
+print(sum_squares([1, 4, 9]))  # Output: 98
+print(sum_squares([1, 3, 5, 7]))  # Output: 84
+print(sum_squares([1.4, 4.2, 0]))  # Output: 29
+print(sum_squares([-2.4, 1, 1]))  # Output: 6",
