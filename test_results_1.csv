@@ -9549,3 +9549,209 @@ if __name__ == ""__main__"":
     import doctest
 
     doctest.testmod()",
+right_angle_triangle,"
+def right_angle_triangle(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return True if the three
+    sides form a right-angled triangle, False otherwise.
+    A right-angled triangle is a triangle in which one angle is right angle or 
+    90 degree.
+    Example:
+    right_angle_triangle(3, 4, 5) == True
+    right_angle_triangle(1, 2, 3) == False
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(3, 4, 5) == True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(1, 2, 3) == False
+    assert candidate(10, 6, 8) == True
+    assert candidate(2, 2, 2) == False
+    assert candidate(7, 24, 25) == True
+    assert candidate(10, 5, 7) == False
+    assert candidate(5, 12, 13) == True
+    assert candidate(15, 8, 17) == True
+    assert candidate(48, 55, 73) == True
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1, 1, 1) == False, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(2, 2, 10) == False
+
+","
+def right_angle_triangle(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return True if the three
+    sides form a right-angled triangle, False otherwise.
+    A right-angled triangle is a triangle in which one angle is right angle or 
+    90 degree.
+    Example:
+    right_angle_triangle(3, 4, 5) == True
+    right_angle_triangle(1, 2, 3) == False
+    '''
+    # Check if the input sides form a right-angled triangle
+    if a**2 + b**2 == c**2 or a**2 + c**2 == b**2 or b**2 + c**2 == a**2:
+        return True
+    else:
+        return False
+
+# Test cases
+print(right_angle_triangle(3, 4, 5))  # Output: True
+print(right_angle_triangle(1, 2, 3))  # Output: False
+print(right_angle_triangle(5, 12, 13))  # Output: True
+print(right_angle_triangle(7, 24, 25))  # Output: True
+print(right_angle_triangle(8, 15, 17))  # Output: False
+print(right_angle_triangle(10, 26, 26))  # Output: True
+print(right_angle_triangle(9, 40, 41))  # Output: True
+print(right_angle_triangle(6, 30, 30))  # Output: True
+print(right_angle_triangle(12, 35, 37))  # Output: True
+print(right_angle_triangle(11, 60, 61))  # Output: True
+print(right_angle_triangle(13, 65, 65))  # Output: True
+print(right_angle_triangle(14, 69, 69))  # Output: True
+print(right_angle_triangle(15, 72, 73))  # Output: True
+print(right_angle_triangle(16, 75, 77))  # Output: True
+print(right_angle_triangle(17, 78, 81))  # Output: True
+print(right_angle_triangle(18, 80, 82))  # Output: True
+print(right_angle_triangle(19, 83, 85))  # Output: True
+print(right_angle_triangle(20, 84, 86))  # Output: True
+print(right",
+find_max,"
+def find_max(words):
+    """"""Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+    find_max([""name"", ""of"", ""string""]) == ""string""
+    find_max([""name"", ""enam"", ""game""]) == ""enam""
+    find_max([""aaaaaaa"", ""bb"" ,""cc""]) == """"aaaaaaa""
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert (candidate([""name"", ""of"", ""string""]) == ""string""), ""t1""
+    assert (candidate([""name"", ""enam"", ""game""]) == ""enam""), 't2'
+    assert (candidate([""aaaaaaa"", ""bb"", ""cc""]) == ""aaaaaaa""), 't3'
+    assert (candidate([""abc"", ""cba""]) == ""abc""), 't4'
+    assert (candidate([""play"", ""this"", ""game"", ""of"",""footbott""]) == ""footbott""), 't5'
+    assert (candidate([""we"", ""are"", ""gonna"", ""rock""]) == ""gonna""), 't6'
+    assert (candidate([""we"", ""are"", ""a"", ""mad"", ""nation""]) == ""nation""), 't7'
+    assert (candidate([""this"", ""is"", ""a"", ""prrk""]) == ""this""), 't8'
+
+    # Check some edge cases that are easy to work out by hand.
+    assert (candidate([""b""]) == ""b""), 't9'
+    assert (candidate([""play"", ""play"", ""play""]) == ""play""), 't10'
+
+","
+def find_max(words):
+    """"""Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+    find_max([""name"", ""of"", ""string""]) == ""string""
+    find_max([""name"", ""enam"", ""game""]) == ""enam""
+    find_max([""aaaaaaa"", ""bb"" ,""cc""]) == """"aaaaaaa""
+    """"""
+    max_unique_chars = 0
+    word_with_max_unique_chars = """"
+
+    for word in words:
+        unique_chars = set(word)
+        if len(unique_chars) > max_unique_chars:
+            max_unique_chars = len(unique_chars)
+            word_with_max_unique_chars = word
+        elif len(unique_chars) == max_unique_chars and word < word_with_max_unique_chars:
+            word_with_max_unique_chars = word
+
+    return word_with_max_unique_chars
+
+
+# Test cases
+print(find_max([""name"", ""of"", ""string""]))  # Output: ""string""
+print(find_max([""name"", ""enam"", ""game""]))  # Output: ""enam""
+print(find_max([""aaaaaaa"", ""bb"", ""cc""]))  # Output: ""aaaaaaa""
+",
+eat,"
+def eat(number, need, remaining):
+    """"""
+    You're a hungry rabbit, and you already have eaten a certain number of carrots,
+    but now you need to eat more carrots to complete the day's meals.
+    you should return an array of [ total number of eaten carrots after your meals,
+                                    the number of carrots left after your meals ]
+    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.
+    
+    Example:
+    * eat(5, 6, 10) -> [11, 4]
+    * eat(4, 8, 9) -> [12, 1]
+    * eat(1, 10, 10) -> [11, 0]
+    * eat(2, 11, 5) -> [7, 0]
+    
+    Variables:
+    @number : integer
+        the number of carrots that you have eaten.
+    @need : integer
+        the number of carrots that you need to eat.
+    @remaining : integer
+        the number of remaining carrots thet exist in stock
+    
+    Constrain:
+    * 0 <= number <= 1000
+    * 0 <= need <= 1000
+    * 0 <= remaining <= 1000
+
+    Have fun :)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(5, 6, 10) == [11, 4], ""Error""
+    assert candidate(4, 8, 9) == [12, 1], ""Error""
+    assert candidate(1, 10, 10) == [11, 0], ""Error""
+    assert candidate(2, 11, 5) == [7, 0], ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(4, 5, 7) == [9, 2], ""Error""
+    assert candidate(4, 5, 1) == [5, 0], ""Error""
+
+","
+def eat(number, need, remaining):
+    """"""
+    You're a hungry rabbit, and you already have eaten a certain number of carrots,
+    but now you need to eat more carrots to complete the day's meals.
+    you should return an array of [ total number of eaten carrots after your meals,
+                                    the number of carrots left after your meals ]
+    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.
+    
+    Example:
+    * eat(5, 6, 10) -> [11, 4]
+    * eat(4, 8, 9) -> [12, 1]
+    * eat(1, 10, 10) -> [11, 0]
+    * eat(2, 11, 5) -> [7, 0]
+    
+    Variables:
+    @number : integer
+        the number of carrots that you have eaten.
+    @need : integer
+        the number of carrots that you need to eat.
+    @remaining : integer
+        the number of remaining carrots thet exist in stock
+    
+    Constrain:
+    * 0 <= number <= 1000
+    * 0 <= need <= 1000
+    * 0 <= remaining <= 1000
+
+    Have fun :)
+    """"""
+    total_eaten = number + need
+    carrots_left = remaining if total_eaten <= remaining else total_eaten - remaining
+    return [total_eaten, carrots_left]
+
+# Test cases
+print(eat(5, 6, 10))  # Output: [11, 4]
+print(eat(4, 8, 9))   # Output: [12, 1]
+print(eat(1, 10, 10)) # Output: [11, 0]
+print(eat(2, 11, 5))  # Output: [7, 0]
+",
