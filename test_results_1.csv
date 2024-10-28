@@ -4889,3 +4889,333 @@ print(starts_one_ends(n))  # Output: 9000000000000
 # Test the function with a larger example
 n = 14
 ",
+solve,"
+def solve(N):
+    """"""Given a positive integer N, return the total sum of its digits in binary.
+    
+    Example
+        For N = 1000, the sum of digits will be 1 the output should be ""1"".
+        For N = 150, the sum of digits will be 6 the output should be ""110"".
+        For N = 147, the sum of digits will be 12 the output should be ""1100"".
+    
+    Variables:
+        @N integer
+             Constraints: 0 ≤ N ≤ 10000.
+    Output:
+         a string of binary number
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(1000) == ""1"", ""Error""
+    assert candidate(150) == ""110"", ""Error""
+    assert candidate(147) == ""1100"", ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(333) == ""1001"", ""Error""
+    assert candidate(963) == ""10010"", ""Error""
+
+","
+def solve(N):
+    """"""Given a positive integer N, return the total sum of its digits in binary.
+    
+    Example
+        For N = 1000, the sum of digits will be 1 the output should be ""1"".
+        For N = 150, the sum of digits will be 6 the output should be ""110"".
+        For N = 147, the sum of digits will be 12 the output should be ""1100"".
+    
+    Variables:
+        @N integer
+             Constraints: 0 ≤ N ≤ 10000.
+    Output:
+         a string of binary number
+    """"""
+    # Convert N to binary
+    binary_num = bin(N)[2:]  # Convert N to binary and remove the '0b' prefix
+
+    # Calculate the sum of digits in the binary representation
+    digit_sum = sum(int(digit) for digit in binary_num)
+
+    # Convert the sum to binary and return it as a string
+    return bin(digit_sum)[2:]
+
+# Test cases
+print(solve(1000))  # Output: ""1""
+print(solve(150))   # Output: ""110""
+print(solve(147))   # Output: ""1100""
+",
+add,"
+def add(lst):
+    """"""Given a non-empty list of integers lst. add the even elements that are at odd indices..
+
+
+    Examples:
+        add([4, 2, 6, 7]) ==> 2 
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([4, 88]) == 88
+    assert candidate([4, 5, 6, 7, 2, 122]) == 122
+    assert candidate([4, 0, 6, 7]) == 0
+    assert candidate([4, 4, 6, 8]) == 12
+
+    # Check some edge cases that are easy to work out by hand.
+    
+","
+def add(lst):
+    """"""Given a non-empty list of integers lst. add the even elements that are at odd indices..
+
+
+    Examples:
+        add([4, 2, 6, 7]) ==> 2 
+    """"""
+    return sum(lst[1::2])
+
+
+def test_add():
+    assert add([4, 2, 6, 7]) == 2
+    assert add([1, 2, 3, 4, 5]) == 4
+    assert add([10, 20, 30, 40, 50]) == 60
+    assert add([100, 200, 300, 400, 500]) == 600
+    assert add([1000, 2000, 3000, 4000, 5000]) == 6000
+    assert add([10000, 20000, 30000, 40000, 50000]) == 60000
+    assert add([100000, 200000, 300000, 400000, 500000]) == 600000
+    assert add([1000000, 2000000, 3000000, 4000000, 5000000]) == 6000000
+    assert add([10000000, 20000000, 30000000, 40000000, 50000000]) == 60000000
+    assert add([100000000, 200000000, 300000000, 400000000, 500000000]) == 600000000
+    assert add([1000000000, 2000000000, 3000000000, 4000000000, 5000000000]) == 60000",
+anti_shuffle,"
+def anti_shuffle(s):
+    """"""
+    Write a function that takes a string and returns an ordered version of it.
+    Ordered version of string, is a string where all words (separated by space)
+    are replaced by a new word where all the characters arranged in
+    ascending order based on ascii value.
+    Note: You should keep the order of words and blank spaces in the sentence.
+
+    For example:
+    anti_shuffle('Hi') returns 'Hi'
+    anti_shuffle('hello') returns 'ehllo'
+    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate('Hi') == 'Hi'
+    assert candidate('hello') == 'ehllo'
+    assert candidate('number') == 'bemnru'
+    assert candidate('abcd') == 'abcd'
+    assert candidate('Hello World!!!') == 'Hello !!!Wdlor'
+    assert candidate('') == ''
+    assert candidate('Hi. My name is Mister Robot. How are you?') == '.Hi My aemn is Meirst .Rboot How aer ?ouy'
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","
+def anti_shuffle(s):
+    """"""
+    Write a function that takes a string and returns an ordered version of it.
+    Ordered version of string, is a string where all words (separated by space)
+    are replaced by a new word where all the characters arranged in
+    ascending order based on ascii value.
+    Note: You should keep the order of words and blank spaces in the sentence.
+
+    For example:
+    anti_shuffle('Hi') returns 'Hi'
+    anti_shuffle('hello') returns 'ehllo'
+    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'
+    """"""
+    result = []
+    for word in s.split():
+        sorted_word = ''.join(sorted(word))
+        result.append(sorted_word)
+    return''.join(result)
+
+
+def test_anti_shuffle():
+    assert anti_shuffle('Hi') == 'Hi'
+    assert anti_shuffle('hello') == 'ehllo'
+    assert anti_shuffle('Hello World!!!') == 'Hello!!!Wdlor'
+    assert anti_shuffle('') == ''
+    assert anti_shuffle('123') == '123'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('abc') == 'abc'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c'
+    assert anti_shuffle('a b c') == 'a b c",
+get_row,"
+def get_row(lst, x):
+    """"""
+    You are given a 2 dimensional data, as a nested lists,
+    which is similar to matrix, however, unlike matrices,
+    each row may contain a different number of columns.
+    Given lst, and integer x, find integers x in the list,
+    and return list of tuples, [(x1, y1), (x2, y2) ...] such that
+    each tuple is a coordinate - (row, columns), starting with 0.
+    Sort coordinates initially by rows in ascending order.
+    Also, sort coordinates of the row by columns in descending order.
+    
+    Examples:
+    get_row([
+      [1,2,3,4,5,6],
+      [1,2,3,4,1,6],
+      [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    get_row([], 1) == []
+    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([
+        [1,2,3,4,5,6],
+        [1,2,3,4,1,6],
+        [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    assert candidate([
+        [1,2,3,4,5,6],
+        [1,2,3,4,5,6],
+        [1,2,3,4,5,6],
+        [1,2,3,4,5,6],
+        [1,2,3,4,5,6],
+        [1,2,3,4,5,6]
+    ], 2) == [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1)]
+    assert candidate([
+        [1,2,3,4,5,6],
+        [1,2,3,4,5,6],
+        [1,1,3,4,5,6],
+        [1,2,1,4,5,6],
+        [1,2,3,1,5,6],
+        [1,2,3,4,1,6],
+        [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 0), (2, 1), (2, 0), (3, 2), (3, 0), (4, 3), (4, 0), (5, 4), (5, 0), (6, 5), (6, 0)]
+    assert candidate([], 1) == []
+    assert candidate([[1]], 2) == []
+    assert candidate([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","
+def get_row(lst, x):
+    """"""
+    You are given a 2 dimensional data, as a nested lists,
+    which is similar to matrix, however, unlike matrices,
+    each row may contain a different number of columns.
+    Given lst, and integer x, find integers x in the list,
+    and return list of tuples, [(x1, y1), (x2, y2) ...] such that
+    each tuple is a coordinate - (row, columns), starting with 0.
+    Sort coordinates initially by rows in ascending order.
+    Also, sort coordinates of the row by columns in descending order.
+    
+    Examples:
+    get_row([
+      [1,2,3,4,5,6],
+      [1,2,3,4,1,6],
+      [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    get_row([], 1) == []
+    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    """"""
+    res = []
+    for i in range(len(lst)):
+        for j in range(len(lst[i])):
+            if lst[i][j] == x:
+                res.append((i, j))
+    res.sort(key=lambda x: (x[0], -x[1]))
+    return res
+
+
+def test_get_row():
+    assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6], [1, 2, 3, 4, 5, 1]], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    assert get_row([], 1) == []
+    assert get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6], [1, 2, 3, 4, 5, 1]], 5) == [(0, 4), (1, 4), (2, 4)]
+    assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6], [1, 2, 3, 4, 5, 1]], 6) == [(0, 5), (1, 5), (2, 5)]
+    assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6], [1, 2, 3, 4, 5, 1]], 7) == []
+    assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6",
+sort_array,"
+def sort_array(array):
+    """"""
+    Given an array of non-negative integers, return a copy of the given array after sorting,
+    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,
+    or sort it in descending order if the sum( first index value, last index value) is even.
+
+    Note:
+    * don't change the given array.
+
+    Examples:
+    * sort_array([]) => []
+    * sort_array([5]) => [5]
+    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]
+    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([]) == [], ""Error""
+    assert candidate([5]) == [5], ""Error""
+    assert candidate([2, 4, 3, 0, 1, 5]) == [0, 1, 2, 3, 4, 5], ""Error""
+    assert candidate([2, 4, 3, 0, 1, 5, 6]) == [6, 5, 4, 3, 2, 1, 0], ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate([2, 1]) == [1, 2], ""Error""
+    assert candidate([15, 42, 87, 32 ,11, 0]) == [0, 11, 15, 32, 42, 87], ""Error""
+    assert candidate([21, 14, 23, 11]) == [23, 21, 14, 11], ""Error""
+
+","
+def sort_array(array):
+    """"""
+    Given an array of non-negative integers, return a copy of the given array after sorting,
+    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,
+    or sort it in descending order if the sum( first index value, last index value) is even.
+
+    Note:
+    * don't change the given array.
+
+    Examples:
+    * sort_array([]) => []
+    * sort_array([5]) => [5]
+    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]
+    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]
+    """"""
+    if len(array) < 2:
+        return array.copy()
+
+    if (array[0] + array[-1]) % 2 == 0:
+        return sorted(array, reverse=True)
+    else:
+        return sorted(array)
+
+
+# Test cases
+print(sort_array([]))  # Output: []
+print(sort_array([5]))  # Output: [5]
+print(sort_array([2, 4, 3, 0, 1, 5]))  # Output: [0, 1, 2, 3, 4, 5]
+print(sort_array([2, 4, 3, 0, 1, 5, 6]))  # Output: [6, 5, 4, 3, 2, 1, 0]
+print(sort_array([7, 1, 2, 3, 4, 5, 6]))  # Output: [1, 2, 3, 4, 5, 6, 7]
+print(sort_array([7, 1, 2, 3, 4, 5, 6, 0]))  # Output: [0, 1, 2, 3, 4, 5, 6, 7]
+print(sort_array([7, 1, 2, 3, 4, 5, 6, 0, 8]))  # Output: [8, 7, 6, 5, 4, 3, 2, 1, 0]
+print(sort_array([7, 1, 2, 3, 4, 5, 6, 0, 8, 9]))  # Output: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+print(sort_array([7, 1, 2, 3, 4, 5, 6, 0, 8, 9, 10]))  # Output: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, ",
