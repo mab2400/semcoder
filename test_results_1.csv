@@ -3169,3 +3169,570 @@ def max_product(s):
     >>> max_product([10, 2, 3, 10]) # 10 * 3
     300
     >>> max",
+correct_bracketing,"
+
+def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""<"" and "">"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""<"")
+    False
+    >>> correct_bracketing(""<>"")
+    True
+    >>> correct_bracketing(""<<><>>"")
+    True
+    >>> correct_bracketing(""><<>"")
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(""<>"")
+    assert candidate(""<<><>>"")
+    assert candidate(""<><><<><>><>"")
+    assert candidate(""<><><<<><><>><>><<><><<>>>"")
+    assert not candidate(""<<<><>>>>"")
+    assert not candidate(""><<>"")
+    assert not candidate(""<"")
+    assert not candidate(""<<<<"")
+    assert not candidate("">"")
+    assert not candidate(""<<>"")
+    assert not candidate(""<><><<><>><>><<>"")
+    assert not candidate(""<><><<><>><>>><>"")
+
+","
+
+def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""<"" and "">"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""<"")
+    False
+    >>> correct_bracketing(""<>"")
+    True
+    >>> correct_bracketing(""<<><>>"")
+    True
+    >>> correct_bracketing(""><<>"")
+    False
+    """"""
+    stack = []
+    for bracket in brackets:
+        if bracket == ""<"":
+            stack.append(""<"")
+        elif bracket == "">"":
+            if not stack:
+                return False
+            stack.pop()
+    return not stack
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+monotonic,"
+
+def monotonic(l: list):
+    """"""Return True is list elements are monotonically increasing or decreasing.
+    >>> monotonic([1, 2, 4, 20])
+    True
+    >>> monotonic([1, 20, 4, 10])
+    False
+    >>> monotonic([4, 1, 0, -10])
+    True
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 4, 10]) == True
+    assert candidate([1, 2, 4, 20]) == True
+    assert candidate([1, 20, 4, 10]) == False
+    assert candidate([4, 1, 0, -10]) == True
+    assert candidate([4, 1, 1, 0]) == True
+    assert candidate([1, 2, 3, 2, 5, 60]) == False
+    assert candidate([1, 2, 3, 4, 5, 60]) == True
+    assert candidate([9, 9, 9, 9]) == True
+
+","
+
+def monotonic(l: list):
+    """"""Return True is list elements are monotonically increasing or decreasing.
+    >>> monotonic([1, 2, 4, 20])
+    True
+    >>> monotonic([1, 20, 4, 10])
+    False
+    >>> monotonic([4, 1, 0, -10])
+    True
+    """"""
+    return all(l[i] <= l[i + 1] for i in range(len(l) - 1)) or all(l[i] >= l[i + 1] for i in range(len(l) - 1))
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+common,"
+
+def common(l1: list, l2: list):
+    """"""Return sorted unique common elements for two lists.
+    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
+    [1, 5, 653]
+    >>> common([5, 3, 2, 8], [3, 2])
+    [2, 3]
+
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]
+    assert candidate([5, 3, 2, 8], [3, 2]) == [2, 3]
+    assert candidate([4, 3, 2, 8], [3, 2, 4]) == [2, 3, 4]
+    assert candidate([4, 3, 2, 8], []) == []
+
+","
+
+def common(l1: list, l2: list):
+    """"""Return sorted unique common elements for two lists.
+    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
+    [1, 5, 653]
+    >>> common([5, 3, 2, 8], [3, 2])
+    [2, 3]
+
+    """"""
+    return sorted(set(l1) & set(l2))
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+largest_prime_factor,"
+
+def largest_prime_factor(n: int):
+    """"""Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    >>> largest_prime_factor(13195)
+    29
+    >>> largest_prime_factor(2048)
+    2
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(15) == 5
+    assert candidate(27) == 3
+    assert candidate(63) == 7
+    assert candidate(330) == 11
+    assert candidate(13195) == 29
+
+","
+
+def largest_prime_factor(n: int):
+    """"""Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    >>> largest_prime_factor(13195)
+    29
+    >>> largest_prime_factor(2048)
+    2
+    """"""
+    factor = 2
+    while factor * factor <= n:
+        if n % factor == 0:
+            n //= factor
+        else:
+            factor += 1
+    return n
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+sum_to_n,"
+
+def sum_to_n(n: int):
+    """"""sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(1) == 1
+    assert candidate(6) == 21
+    assert candidate(11) == 66
+    assert candidate(30) == 465
+    assert candidate(100) == 5050
+
+","
+
+def sum_to_n(n: int):
+    """"""sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
+    """"""
+    return n * (n + 1) // 2
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+correct_bracketing,"
+
+def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""("" and "")"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""("")
+    False
+    >>> correct_bracketing(""()"")
+    True
+    >>> correct_bracketing(""(()())"")
+    True
+    >>> correct_bracketing("")(()"")
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(""()"")
+    assert candidate(""(()())"")
+    assert candidate(""()()(()())()"")
+    assert candidate(""()()((()()())())(()()(()))"")
+    assert not candidate(""((()())))"")
+    assert not candidate("")(()"")
+    assert not candidate(""("")
+    assert not candidate(""(((("")
+    assert not candidate("")"")
+    assert not candidate(""(()"")
+    assert not candidate(""()()(()())())(()"")
+    assert not candidate(""()()(()())()))()"")
+
+","
+
+def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""("" and "")"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""("")
+    False
+    >>> correct_bracketing(""()"")
+    True
+    >>> correct_bracketing(""(()())"")
+    True
+    >>> correct_bracketing("")(()"")
+    False
+    """"""
+    stack = []
+    for bracket in brackets:
+        if bracket == ""("":
+            stack.append(bracket)
+        elif bracket == "")"":
+            if not stack:
+                return False
+            stack.pop()
+    return len(stack) == 0
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+derivative,"
+
+def derivative(xs: list):
+    """""" xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    [1, 4, 12, 20]
+    >>> derivative([1, 2, 3])
+    [2, 6]
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([3, 1, 2, 4, 5]) == [1, 4, 12, 20]
+    assert candidate([1, 2, 3]) == [2, 6]
+    assert candidate([3, 2, 1]) == [2, 2]
+    assert candidate([3, 2, 1, 0, 4]) == [2, 2, 0, 16]
+    assert candidate([1]) == []
+
+","
+
+def derivative(xs: list):
+    """""" xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    [1, 4, 12, 20]
+    >>> derivative([1, 2, 3])
+    [2, 6]
+    """"""
+    return [i * xs[i] for i in range(1, len(xs))]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+fibfib,"
+
+def fibfib(n: int):
+    """"""The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fibfib(0) == 0
+    fibfib(1) == 0
+    fibfib(2) == 1
+    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
+    Please write a function to efficiently compute the n-th element of the fibfib number sequence.
+    >>> fibfib(1)
+    0
+    >>> fibfib(5)
+    4
+    >>> fibfib(8)
+    24
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(2) == 1
+    assert candidate(1) == 0
+    assert candidate(5) == 4
+    assert candidate(8) == 24
+    assert candidate(10) == 81
+    assert candidate(12) == 274
+    assert candidate(14) == 927
+
+","
+
+def fibfib(n: int):
+    """"""The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fibfib(0) == 0
+    fibfib(1) == 0
+    fibfib(2) == 1
+    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
+    Please write a function to efficiently compute the n-th element of the fibfib number sequence.
+    >>> fibfib(1)
+    0
+    >>> fibfib(5)
+    4
+    >>> fibfib(8)
+    24
+    """"""
+    if n == 0 or n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    else:
+        a, b, c = 0, 0, 1
+        for _ in range(3, n + 1):
+            a, b, c = b, c, a + b + c
+        return c
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+vowels_count,"
+FIX = """"""
+Add more test cases.
+""""""
+
+def vowels_count(s):
+    """"""Write a function vowels_count which takes a string representing
+    a word as input and returns the number of vowels in the string.
+    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
+    vowel, but only when it is at the end of the given word.
+
+    Example:
+    >>> vowels_count(""abcde"")
+    2
+    >>> vowels_count(""ACEDY"")
+    3
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""abcde"") == 2, ""Test 1""
+    assert candidate(""Alone"") == 3, ""Test 2""
+    assert candidate(""key"") == 2, ""Test 3""
+    assert candidate(""bye"") == 1, ""Test 4""
+    assert candidate(""keY"") == 2, ""Test 5""
+    assert candidate(""bYe"") == 1, ""Test 6""
+    assert candidate(""ACEDY"") == 3, ""Test 7""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+FIX = """"""
+Add more test cases.
+""""""
+
+def vowels_count(s):
+    """"""Write a function vowels_count which takes a string representing
+    a word as input and returns the number of vowels in the string.
+    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
+    vowel, but only when it is at the end of the given word.
+
+    Example:
+    >>> vowels_count(""abcde"")
+    2
+    >>> vowels_count(""ACEDY"")
+    3
+    """"""
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    count = 0
+    for char in s:
+        if char.lower() in vowels:
+            count += 1
+    return count
+
+# Test cases
+print(vowels_count(""abcde""))  # Output: 2
+print(vowels_count(""ACEDY""))  # Output: 3
+print(vowels_count(""xyz""))    # Output: 0
+print(vowels_count(""AaEeIiOoUu""))  # Output: 10
+print(vowels_count(""Yy""))      # Output: 0
+print(vowels_count(""""))        # Output: 0
+",
+circular_shift,"
+def circular_shift(x, shift):
+    """"""Circular shift the digits of the integer x, shift the digits right by shift
+    and return the result as a string.
+    If shift > number of digits, return digits reversed.
+    >>> circular_shift(12, 1)
+    ""21""
+    >>> circular_shift(12, 2)
+    ""12""
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(100, 2) == ""001""
+    assert candidate(12, 2) == ""12""
+    assert candidate(97, 8) == ""79""
+    assert candidate(12, 1) == ""21"", ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(11, 101) == ""11"", ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def circular_shift(x, shift):
+    """"""Circular shift the digits of the integer x, shift the digits right by shift
+    and return the result as a string.
+    If shift > number of digits, return digits reversed.
+    >>> circular_shift(12, 1)
+    ""21""
+    >>> circular_shift(12, 2)
+    ""12""
+    """"""
+    digits = [int(d) for d in str(x)]
+    if shift > len(digits):
+        return """".join(str(d) for d in reversed(digits))
+    else:
+        return """".join(str(d) for d in digits[-shift:] + digits[:-shift])
+
+
+def main():
+    """"""Main function to read input and print output.""""""
+    try:
+        x, shift = map(int, input().split())
+        result = circular_shift(x, shift)
+        print(result)
+    except EOFError:
+        print(""Error: No input provided."")
+
+
+if __name__ == ""__main__"":
+    main()",
+digitSum,"
+def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("""") => 0
+        digitSum(""abAB"") => 131
+        digitSum(""abcCd"") => 67
+        digitSum(""helloE"") => 69
+        digitSum(""woArBld"") => 131
+        digitSum(""aAaaaXa"") => 153
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate("""") == 0, ""Error""
+    assert candidate(""abAB"") == 131, ""Error""
+    assert candidate(""abcCd"") == 67, ""Error""
+    assert candidate(""helloE"") == 69, ""Error""
+    assert candidate(""woArBld"") == 131, ""Error""
+    assert candidate(""aAaaaXa"") == 153, ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate("" How are yOu?"") == 151, ""Error""
+    assert candidate(""You arE Very Smart"") == 327, ""Error""
+
+","
+def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("""") => 0
+        digitSum(""abAB"") => 131
+        digitSum(""abcCd"") => 67
+        digitSum(""helloE"") => 69
+        digitSum(""woArBld"") => 131
+        digitSum(""aAaaaXa"") => 153
+    """"""
+    return sum(ord(c) for c in s if c.isupper())
+
+
+def test_digitSum():
+    assert digitSum("""") == 0
+    assert digitSum(""abAB"") == 131
+    assert digitSum(""abcCd"") == 67
+    assert digitSum(""helloE"") == 69
+    assert digitSum(""woArBld"") == 131
+    assert digitSum(""aAaaaXa"") == 153
+
+
+if __name__ == ""__main__"":
+    test_digitSum()",
