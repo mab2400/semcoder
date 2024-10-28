@@ -2842,3 +2842,330 @@ def remove_vowels(text):
 if __name__ == ""__main__"":
     import doctest
     doctest.testmod()",
+below_threshold,"
+
+def below_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are below threshold t.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    True
+    >>> below_threshold([1, 20, 4, 10], 5)
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 4, 10], 100)
+    assert not candidate([1, 20, 4, 10], 5)
+    assert candidate([1, 20, 4, 10], 21)
+    assert candidate([1, 20, 4, 10], 22)
+    assert candidate([1, 8, 4, 10], 11)
+    assert not candidate([1, 8, 4, 10], 10)
+
+","
+
+def below_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are below threshold t.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    True
+    >>> below_threshold([1, 20, 4, 10], 5)
+    False
+    """"""
+    for num in l:
+        if num >= t:
+            return False
+    return True
+
+
+def above_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are above threshold t.
+    >>> above_threshold([1, 2, 4, 10], 0)
+    True
+    >>> above_threshold([1, 20, 4, 10], 5)
+    True
+    """"""
+    for num in l:
+        if num <= t:
+            return False
+    return True
+
+
+def sum_of_squares(l: list):
+    """"""Return the sum of squares of numbers in the list l.
+    >>> sum_of_squares([1, 2, 3])
+    14
+    >>> sum_of_squares([4, 5, 6])
+    91
+    """"""
+    return sum([num ** 2 for num in l])
+
+
+def sum_of_cubes(l: list):
+    """"""Return the sum of cubes of numbers in the list l.
+    >>> sum_of_cubes([1, 2, 3])
+    36
+    >>> sum_of_cubes([4, 5, 6])
+    221
+    """"""
+    return sum([num ** 3 for num in l])
+
+
+def sum_of_powers(l: list, p: int):
+    """"""Return the sum of numbers in the list l raised to the power p.
+    >>> sum_of_powers([1, 2, 3], 2)
+    14
+    >>> sum_of_powers([4, 5, 6], 3)
+    221
+    """"""
+    return sum([num ** p for num in l])
+
+
+def sum_of_factorial(l: list):
+    """"""Return the sum of factorials of numbers in the list l.
+    >>> sum_of_factorial([1, 2, 3])
+    6
+    >>> sum_of_factorial([4, 5, 6])
+    720
+    """"""
+    def factorial(n):
+       ",
+add,"
+
+def add(x: int, y: int):
+    """"""Add two numbers x and y
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    import random
+
+    assert candidate(0, 1) == 1
+    assert candidate(1, 0) == 1
+    assert candidate(2, 3) == 5
+    assert candidate(5, 7) == 12
+    assert candidate(7, 5) == 12
+
+    for i in range(100):
+        x, y = random.randint(0, 1000), random.randint(0, 1000)
+        assert candidate(x, y) == x + y
+
+","
+
+def add(x: int, y: int):
+    """"""Add two numbers x and y
+    >>> add(2, 3)
+    5
+    >>> add(5, 7)
+    12
+    """"""
+    return x+y
+
+
+def subtract(x: int, y: int):
+    """"""Subtract number y from x
+    >>> subtract(5, 3)
+    2
+    >>> subtract(10, 7)
+    3
+    """"""
+    return x-y
+
+
+def multiply(x: int, y: int):
+    """"""Multiply two numbers x and y
+    >>> multiply(2, 3)
+    6
+    >>> multiply(5, 7)
+    35
+    """"""
+    return x*y
+
+
+def divide(x: int, y: int):
+    """"""Divide number x by y
+    >>> divide(10, 2)
+    5
+    >>> divide(15, 3)
+    5
+    """"""
+    return x//y
+
+
+def power(x: int, y: int):
+    """"""Calculate x raised to the power of y
+    >>> power(2, 3)
+    8
+    >>> power(5, 2)
+    25
+    """"""
+    return x**y
+
+
+def modulo(x: int, y: int):
+    """"""Calculate the remainder of x divided by y
+    >>> modulo(10, 3)
+    1
+    >>> modulo(15, 4)
+    3
+    """"""
+    return x % y
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",
+same_chars,"
+
+def same_chars(s0: str, s1: str):
+    """"""
+    Check if two words have the same characters.
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
+    True
+    >>> same_chars('abcd', 'dddddddabc')
+    True
+    >>> same_chars('dddddddabc', 'abcd')
+    True
+    >>> same_chars('eabcd', 'dddddddabc')
+    False
+    >>> same_chars('abcd', 'dddddddabce')
+    False
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
+    False
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True
+    assert candidate('abcd', 'dddddddabc') == True
+    assert candidate('dddddddabc', 'abcd') == True
+    assert candidate('eabcd', 'dddddddabc') == False
+    assert candidate('abcd', 'dddddddabcf') == False
+    assert candidate('eabcdzzzz', 'dddzzzzzzzddddabc') == False
+    assert candidate('aabb', 'aaccc') == False
+
+","
+
+def same_chars(s0: str, s1: str):
+    """"""
+    Check if two words have the same characters.
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
+    True
+    >>> same_chars('abcd', 'dddddddabc')
+    True
+    >>> same_chars('dddddddabc', 'abcd')
+    True
+    >>> same_chars('eabcd', 'dddddddabc')
+    False
+    >>> same_chars('abcd', 'dddddddabce')
+    False
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
+    False
+    """"""
+    return sorted(s0) == sorted(s1)
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",
+fib,"
+
+def fib(n: int):
+    """"""Return n-th Fibonacci number.
+    >>> fib(10)
+    55
+    >>> fib(1)
+    1
+    >>> fib(8)
+    21
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(10) == 55
+    assert candidate(1) == 1
+    assert candidate(8) == 21
+    assert candidate(11) == 89
+    assert candidate(12) == 144
+
+","
+
+def fib(n: int):
+    """"""Return n-th Fibonacci number.
+    >>> fib(10)
+    55
+    >>> fib(1)
+    1
+    >>> fib(8)
+    21
+    """"""
+    if n == 1 or n == 2:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+
+
+def count_stair_ways(n: int):
+    """"""Return the number of ways to climb n stairs using 1 or 2 steps at a time.
+    >>> count_stair_ways(4)
+    5
+    >>> count_stair_ways(5)
+    8
+    >>> count_stair_ways(10)
+    89
+    """"""
+    if n == 1 or n == 0:
+        return 1
+    return count_stair_ways(n - 1) + count_stair_ways(n - 2)
+
+
+def count_k(n: int, k: int):
+    """"""Return the number of ways to climb n stairs with at most k steps at a time.
+    >>> count_k(3, 3)  # 3 steps at a time
+    4
+    >>> count_k(4, 4)  # 4 steps at a time
+    8
+    >>> count_k(10, 3)
+    274
+    >>> count_k(300, 1)  # Only 1 step at a time
+    1
+    """"""
+    if n == 0:
+        return 1
+    if n < 0:
+        return 0
+    total = 0
+    i = 1
+    while i <= k:
+        total += count_k(n - i, k)
+        i += 1
+    return total
+
+
+def even_weighted(s):
+    """"""
+    >>> x = [1, 2, 3, 4, 5, 6]
+    >>> even_weighted(x)
+    [0, 6, 20]
+    """"""
+    return [i * s[i] for i in range(0, len(s), 2)]
+
+
+def max_product(s):
+    """"""Return the maximum product that can be formed using non-consecutive elements of s.
+    >>> max_product([10, 2, 3, 10]) # 10 * 3
+    300
+    >>> max",
