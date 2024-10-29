@@ -580,7 +580,7 @@ def make_palindrome(string: str) -> str:
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()",Error
+    doctest.testmod()",Failed
 string_xor,"from typing import List
 
 
@@ -1814,7 +1814,7 @@ def sort_third(l: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",Error
+    doctest.testmod()",Passed
 unique,"
 
 def unique(l: list):
@@ -2785,7 +2785,7 @@ def decode_rail_fence(s: str, n: int):
     for _ in range(len(s)):
         result += rails[i][0]
         rails[i] = rails[i][1:]
-        i += direction",Error
+        i += direction",Passed
 remove_vowels,"
 
 def remove_vowels(text):
@@ -4413,7 +4413,7 @@ def test_is_simple_power():
     assert is_simple_power(5, 3) == False
 
 
-test_is_simple_power()",Error
+test_is_simple_power()",Passed
 iscube,"
 def iscube(a):
     '''
@@ -4653,7 +4653,7 @@ def test_is_happy():
     assert is_happy(""xyy"") == False
 
 
-test_is_happy()",Error
+test_is_happy()",Failed
 numerical_letter_grade,"
 def numerical_letter_grade(grades):
     """"""It is the last week of the semester and the teacher has to give the grades
@@ -7712,7 +7712,7 @@ def is_prime(num):
 print(intersection((1, 2), (2, 3)))  # Output: ""NO""
 print(intersection((-1, 1), (0, 4)))  # Output: ""NO""
 print(intersection((-3, -1), (-5, 5)))  # Output: ""YES""
-",Error
+",Failed
 prod_signs,"
 def prod_signs(arr):
     """"""
@@ -8497,7 +8497,7 @@ def test_special_factorial():
     assert special_factorial(20) == 2432902008176640000000
     assert special_factorial(21) == 51090942171709440000000
     assert special_factorial(22) == 11240007277776076800000000
-    assert special_factorial(23) == 25",Error
+    assert special_factorial(23) == 25",Failed
 fix_spaces,"
 def fix_spaces(text):
     """"""
@@ -8893,7 +8893,7 @@ def sum_of_digits(num):
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",Error
+    doctest.testmod()",Failed
 specialFilter,"
 def specialFilter(nums):
     """"""Write a function that takes an array of numbers as input and returns 
