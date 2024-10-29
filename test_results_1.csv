@@ -47,7 +47,7 @@ def has_close_elements(numbers: List[float], threshold: float) -> bool:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 separate_paren_groups,"from typing import List
 
 
@@ -118,7 +118,7 @@ def separate_paren_groups(paren_string: str) -> List[str]:
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Failed
 truncate_number,"
 
 def truncate_number(number: float) -> float:
@@ -163,7 +163,7 @@ def main():
 
 
 if __name__ == ""__main__"":
-    main()",
+    main()",Passed
 below_zero,"from typing import List
 
 
@@ -213,7 +213,7 @@ def below_zero(operations: List[int]) -> bool:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 mean_absolute_deviation,"from typing import List
 
 
@@ -259,7 +259,7 @@ def mean_absolute_deviation(numbers: List[float]) -> float:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 intersperse,"from typing import List
 
 
@@ -298,7 +298,7 @@ def intersperse(numbers: List[int], delimeter: int) -> List[int]:
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Failed
 parse_nested_parens,"from typing import List
 
 
@@ -351,7 +351,7 @@ def parse_nested_parens(paren_string: str) -> List[int]:
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Passed
 filter_by_substring,"from typing import List
 
 
@@ -390,7 +390,7 @@ def filter_by_substring(strings: List[str], substring: str) -> List[str]:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 sum_product,"from typing import List, Tuple
 
 
@@ -440,7 +440,7 @@ def sum_product(numbers: List[int]) -> Tuple[int, int]:
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Passed
 rolling_max,"from typing import List, Tuple
 
 
@@ -518,7 +518,7 @@ def rolling_max_min(numbers: List[int]) -> List[Tuple[int, int]]:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 make_palindrome,"
 
 def is_palindrome(string: str) -> bool:
@@ -580,7 +580,7 @@ def make_palindrome(string: str) -> str:
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Error
 string_xor,"from typing import List
 
 
@@ -627,7 +627,7 @@ def string_xor_list(lst: List[str]) -> str:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 longest,"from typing import List, Optional
 
 
@@ -673,7 +673,7 @@ def longest(strings: List[str]) -> Optional[str]:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 greatest_common_divisor,"
 
 def greatest_common_divisor(a: int, b: int) -> int:
@@ -715,7 +715,7 @@ def greatest_common_divisor(a: int, b: int) -> int:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 all_prefixes,"from typing import List
 
 
@@ -784,7 +784,7 @@ def all_substrings_4(string: str) -> List[str]:
     >>> all_substrings_4('abc')
     ['a', 'ab', 'abc', 'b', 'bc', 'c']
     """"""
-    return [string[i:j] for i in",
+    return [string[i:j] for i in",Error
 string_sequence,"
 
 def string_sequence(n: int) -> str:
@@ -820,7 +820,7 @@ def string_sequence(n: int) -> str:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Failed
 count_distinct_characters,"
 
 def count_distinct_characters(string: str) -> int:
@@ -858,7 +858,7 @@ def count_distinct_characters(string: str) -> int:
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 parse_music,"from typing import List
 
 
@@ -914,7 +914,7 @@ def parse_music(music_string: str) -> List[int]:
 if __name__ == '__main__':
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Passed
 how_many_times,"
 
 def how_many_times(string: str, substring: str) -> int:
@@ -965,7 +965,7 @@ def how_many_times(string: str, substring: str) -> int:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 sort_numbers,"from typing import List
 
 
@@ -1021,7 +1021,7 @@ def sort_numbers(numbers: str) -> str:
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Failed
 find_closest_elements,"from typing import List, Tuple
 
 
@@ -1075,7 +1075,7 @@ def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Passed
 rescale_to_unit,"from typing import List
 
 
@@ -1118,7 +1118,7 @@ def rescale_to_unit(numbers: List[float]) -> List[float]:
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Passed
 filter_integers,"from typing import List, Any
 
 
@@ -1156,7 +1156,7 @@ def filter_integers(values: List[Any]) -> List[int]:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 strlen,"
 
 def strlen(string: str) -> int:
@@ -1255,7 +1255,7 @@ def strcspn(string: str, chars: str) -> int:
     1
     >>> strcspn('abc', 'd')
     3
-",
+",Error
 largest_divisor,"
 
 def largest_divisor(n: int) -> int:
@@ -1346,7 +1346,7 @@ def is_pandigital(n: int, length: int) -> bool:
     """""" Check if a number n is pandigital (contains all digits from 1 to length)
     >>> is_pandigital(123456789, 9)
     True
-    >>> is_pandigital(123456789, 1",
+    >>> is_pandigital(123456789, 1",Error
 factorize,"from typing import List
 
 
@@ -1405,7 +1405,7 @@ def factorize(n: int) -> List[int]:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 remove_duplicates,"from typing import List
 
 
@@ -1441,7 +1441,7 @@ def remove_duplicates(numbers: List[int]) -> List[int]:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Failed
 flip_case,"
 
 def flip_case(string: str) -> str:
@@ -1473,7 +1473,7 @@ def flip_case(string: str) -> str:
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 concatenate,"from typing import List
 
 
@@ -1511,7 +1511,7 @@ def concatenate(strings: List[str]) -> str:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 filter_by_prefix,"from typing import List
 
 
@@ -1548,7 +1548,7 @@ def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 get_positive,"
 
 def get_positive(l: list):
@@ -1583,7 +1583,7 @@ def get_positive(l: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 is_prime,"
 
 def is_prime(n):
@@ -1694,7 +1694,7 @@ def is_permutation(n, m):
     True
     >>> is_permutation(123, 3211)
     False
-    >>> is_permutation(123456789,",
+    >>> is_permutation(123456789,",Error
 find_zero,"import math
 
 
@@ -1770,7 +1770,7 @@ def find_zero(xs: list):
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Error
 sort_third,"
 
 def sort_third(l: list):
@@ -1814,7 +1814,7 @@ def sort_third(l: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Error
 unique,"
 
 def unique(l: list):
@@ -1842,7 +1842,7 @@ def unique(l: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 max_element,"
 
 def max_element(l: list):
@@ -1919,7 +1919,7 @@ def sort_list(l: list):
     """"""Return sorted list.
     >>> sort_list([1, 2, 3])
     [1, 2, 3]
-    >>> sort_list([5, 3, -5, 2",
+    >>> sort_list([5, 3, -5, 2",Error
 fizz_buzz,"
 
 def fizz_buzz(n: int):
@@ -1966,7 +1966,7 @@ def fizz_buzz(n: int):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 sort_even,"
 
 def sort_even(l: list):
@@ -2007,7 +2007,7 @@ def sort_even(l: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Failed
 decode_cyclic,"
 
 def encode_cyclic(s: str):
@@ -2093,7 +2093,7 @@ def encode_rot13(s: str):
         ""nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM""))
 
 
-def decode",
+def decode",Error
 prime_fib,"
 
 def prime_fib(n: int):
@@ -2168,7 +2168,7 @@ def prime_fib(n: int):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Failed
 triples_sum_to_zero,"
 
 def triples_sum_to_zero(l: list):
@@ -2233,7 +2233,7 @@ def triples_sum_to_zero(l: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 car_race_collision,"
 
 def car_race_collision(n: int):
@@ -2278,7 +2278,7 @@ def car_race_collision(n: int):
 
 
 if __name__ == ""__main__"":
-    print(car_race_collision(1000))",
+    print(car_race_collision(1000))",Failed
 incr_list,"
 
 def incr_list(l: list):
@@ -2344,7 +2344,7 @@ def double_list(l: list):
     """"""Return list with elements doubled.
     >>> double_list([1, 2, 3])
     [2, 4, 6]
-    >>> double_list([5, 3, 5, 2, 3, 3, 9, 0, 123])",
+    >>> double_list([5, 3, 5, 2, 3, 3, 9, 0, 123])",Error
 pairs_sum_to_zero,"
 
 def pairs_sum_to_zero(l):
@@ -2408,7 +2408,7 @@ def pairs_sum_to_zero(l):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 change_base,"
 
 def change_base(x: int, base: int):
@@ -2461,7 +2461,7 @@ def change_base(x: int, base: int):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 triangle_area,"
 
 def triangle_area(a, h):
@@ -2491,7 +2491,7 @@ def triangle_area(a, h):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 fib4,"
 
 def fib4(n: int):
@@ -2555,7 +2555,7 @@ def fib4(n: int):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 median,"
 
 def median(l: list):
@@ -2595,7 +2595,7 @@ def median(l: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 is_palindrome,"
 
 def is_palindrome(text: str):
@@ -2643,7 +2643,7 @@ def is_palindrome(text: str):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 modp,"
 
 def modp(n: int, p: int):
@@ -2693,7 +2693,7 @@ def modp(n: int, p: int):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 decode_shift,"
 
 def encode_shift(s: str):
@@ -2785,7 +2785,7 @@ def decode_rail_fence(s: str, n: int):
     for _ in range(len(s)):
         result += rails[i][0]
         rails[i] = rails[i][1:]
-        i += direction",
+        i += direction",Error
 remove_vowels,"
 
 def remove_vowels(text):
@@ -2841,7 +2841,7 @@ def remove_vowels(text):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 below_threshold,"
 
 def below_threshold(l: list, t: int):
@@ -2930,7 +2930,7 @@ def sum_of_factorial(l: list):
     720
     """"""
     def factorial(n):
-       ",
+       ",Error
 add,"
 
 def add(x: int, y: int):
@@ -3022,7 +3022,7 @@ def modulo(x: int, y: int):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 same_chars,"
 
 def same_chars(s0: str, s1: str):
@@ -3078,7 +3078,7 @@ def same_chars(s0: str, s1: str):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Failed
 fib,"
 
 def fib(n: int):
@@ -3168,7 +3168,7 @@ def max_product(s):
     """"""Return the maximum product that can be formed using non-consecutive elements of s.
     >>> max_product([10, 2, 3, 10]) # 10 * 3
     300
-    >>> max",
+    >>> max",Error
 correct_bracketing,"
 
 def correct_bracketing(brackets: str):
@@ -3231,7 +3231,7 @@ def correct_bracketing(brackets: str):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 monotonic,"
 
 def monotonic(l: list):
@@ -3274,7 +3274,7 @@ def monotonic(l: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 common,"
 
 def common(l1: list, l2: list):
@@ -3311,7 +3311,7 @@ def common(l1: list, l2: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 largest_prime_factor,"
 
 def largest_prime_factor(n: int):
@@ -3353,7 +3353,7 @@ def largest_prime_factor(n: int):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 sum_to_n,"
 
 def sum_to_n(n: int):
@@ -3401,7 +3401,7 @@ def sum_to_n(n: int):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 correct_bracketing,"
 
 def correct_bracketing(brackets: str):
@@ -3464,7 +3464,7 @@ def correct_bracketing(brackets: str):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 derivative,"
 
 def derivative(xs: list):
@@ -3504,7 +3504,7 @@ def derivative(xs: list):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 fibfib,"
 
 def fibfib(n: int):
@@ -3564,7 +3564,7 @@ def fibfib(n: int):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 vowels_count,"
 FIX = """"""
 Add more test cases.
@@ -3627,7 +3627,7 @@ print(vowels_count(""xyz""))    # Output: 0
 print(vowels_count(""AaEeIiOoUu""))  # Output: 10
 print(vowels_count(""Yy""))      # Output: 0
 print(vowels_count(""""))        # Output: 0
-",
+",Failed
 circular_shift,"
 def circular_shift(x, shift):
     """"""Circular shift the digits of the integer x, shift the digits right by shift
@@ -3677,7 +3677,7 @@ def main():
 
 
 if __name__ == ""__main__"":
-    main()",
+    main()",Passed
 digitSum,"
 def digitSum(s):
     """"""Task
@@ -3735,7 +3735,7 @@ def test_digitSum():
 
 
 if __name__ == ""__main__"":
-    test_digitSum()",
+    test_digitSum()",Passed
 fruit_distribution,"
 def fruit_distribution(s,n):
     """"""
@@ -3788,7 +3788,7 @@ print(fruit_distribution(""5 apples and 6 oranges"", 19))  # Output: 8
 print(fruit_distribution(""0 apples and 1 oranges"", 3))   # Output: 2
 print(fruit_distribution(""2 apples and 3 oranges"", 100)) # Output: 95
 print(fruit_distribution(""100 apples and 1 oranges"", 120)) # Output: 19
-",
+",Passed
 pluck,"
 def pluck(arr):
     """"""
@@ -3893,7 +3893,7 @@ print(pluck([4, 2, 3]))  # Output: [2, 1]
 print(pluck([1, 2, 3]))  # Output: [2, 1]
 print(pluck([]))         # Output: []
 print(pluck([5, 0, 3, 0, 4, 2]))  # Output: [0, 1]
-",
+",Passed
 search,"
 def search(lst):
     '''
@@ -3966,7 +3966,7 @@ def search(lst):
 print(search([4, 1, 2, 2, 3, 1]))  # Output: 2
 print(search([1, 2, 2, 3, 3, 3, 4, 4, 4]))  # Output: 3
 print(search([5, 5, 4, 4, 4]))  # Output: -1
-",
+",Passed
 strange_sort_list,"
 def strange_sort_list(lst):
     '''
@@ -4032,7 +4032,7 @@ def test_strange_sort_list():
 
 
 if __name__ == ""__main__"":
-    test_strange_sort_list()",
+    test_strange_sort_list()",Passed
 triangle_area,"
 def triangle_area(a, b, c):
     '''
@@ -4101,7 +4101,7 @@ def test_triangle_area():
     assert triangle_area(3, 2, 1) == 0.97
     assert triangle_area(1, 1, 2) == 0.43
     assert triangle_area(1, 2, 1) == 0.43
-    assert triangle_area(2, 1, 1) == 0.43",
+    assert triangle_area(2, 1, 1) == 0.43",Passed
 will_it_fly,"
 def will_it_fly(q,w):
     '''
@@ -4163,7 +4163,7 @@ def will_it_fly(q,w):
 print(will_it_fly([1, 2], 5))  # Output: False
 print(will_it_fly([3, 2, 3], 1))  # Output: False
 print(will_it_fly([3, 2, 3], 9))  # Output: True
-print(will_it_fly([3], 5))  # Output: True",
+print(will_it_fly([3], 5))  # Output: True",Passed
 smallest_change,"
 def smallest_change(arr):
     """"""
@@ -4223,7 +4223,7 @@ def smallest_change(arr):
 print(smallest_change([1, 2, 3, 5, 4, 7, 9, 6]))  # Output: 4
 print(smallest_change([1, 2, 3, 4, 3, 2, 2]))  # Output: 1
 print(smallest_change([1, 2, 3, 2, 1]))  # Output: 0
-",
+",Passed
 total_match,"
 def total_match(lst1, lst2):
     '''
@@ -4288,7 +4288,7 @@ print(total_match(['hi', 'admin'], ['hI', 'Hi']))  # Output: ['hI', 'Hi']
 print(total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']))  # Output: ['hi', 'admin']
 print(total_match(['hi', 'admin'], ['hI', 'hi', 'hi']))  # Output: ['hI', 'hi', 'hi']
 print(total_match(['4'], ['1', '2', '3', '4', '5']))  # Output: ['4']
-",
+",Passed
 is_multiply_prime,"
 def is_multiply_prime(a):
     """"""Write a function that returns true if the given number is the multiplication of 3 prime numbers
@@ -4354,7 +4354,7 @@ def test_is_multiply_prime():
     assert is_multiply_prime(195) == True
     assert is_multiply_prime(211) == False
     assert is_multiply_prime(225) == False
-    assert is_multiply_prime(23",
+    assert is_multiply_prime(23",Error
 is_simple_power,"
 def is_simple_power(x, n):
     """"""Your task is to write a function that returns true if a number x is a simple
@@ -4413,7 +4413,7 @@ def test_is_simple_power():
     assert is_simple_power(5, 3) == False
 
 
-test_is_simple_power()",
+test_is_simple_power()",Error
 iscube,"
 def iscube(a):
     '''
@@ -4470,7 +4470,7 @@ def test_iscube():
 
 
 if __name__ == ""__main__"":
-    test_iscube()",
+    test_iscube()",Error
 hex_key,"
 def hex_key(num):
     """"""You have been tasked to write a function that receives 
@@ -4536,7 +4536,7 @@ def test_hex_key():
 
 
 if __name__ == ""__main__"":
-    test_hex_key()",
+    test_hex_key()",Passed
 decimal_to_binary,"
 def decimal_to_binary(decimal):
     """"""You will be given a number in decimal form and your task is to convert it to
@@ -4598,7 +4598,7 @@ print(decimal_to_binary(15))  # Output: db1111db
 print(binary_to_decimal(""db1111db""))  # Output: 15
 print(decimal_to_binary(32))  # Output: db100000db
 print(binary_to_decimal(""db100000db""))  # Output: 32
-",
+",Passed
 is_happy,"
 def is_happy(s):
     """"""You are given a string s.
@@ -4653,7 +4653,7 @@ def test_is_happy():
     assert is_happy(""xyy"") == False
 
 
-test_is_happy()",
+test_is_happy()",Error
 numerical_letter_grade,"
 def numerical_letter_grade(grades):
     """"""It is the last week of the semester and the teacher has to give the grades
@@ -4750,7 +4750,7 @@ def numerical_letter_grade(grades):
     return letter_grades
 
 
-print(numerical_letter_grade([4.0, 3, 1.7, 2, 3.5]))",
+print(numerical_letter_grade([4.0, 3, 1.7, 2, 3.5]))",Failed
 prime_length,"
 def prime_length(string):
     """"""Write a function that takes a string and returns True if the string
@@ -4807,7 +4807,7 @@ print(prime_length('Hello'))  # Output: True
 print(prime_length('abcdcba'))  # Output: True
 print(prime_length('kittens'))  # Output: True
 print(prime_length('orange'))  # Output: False
-",
+",Passed
 starts_one_ends,"
 def starts_one_ends(n):
     """"""
@@ -4888,7 +4888,7 @@ print(starts_one_ends(n))  # Output: 9000000000000
 
 # Test the function with a larger example
 n = 14
-",
+",Failed
 solve,"
 def solve(N):
     """"""Given a positive integer N, return the total sum of its digits in binary.
@@ -4945,7 +4945,7 @@ def solve(N):
 print(solve(1000))  # Output: ""1""
 print(solve(150))   # Output: ""110""
 print(solve(147))   # Output: ""1100""
-",
+",Failed
 add,"
 def add(lst):
     """"""Given a non-empty list of integers lst. add the even elements that are at odd indices..
@@ -4986,7 +4986,7 @@ def test_add():
     assert add([1000000, 2000000, 3000000, 4000000, 5000000]) == 6000000
     assert add([10000000, 20000000, 30000000, 40000000, 50000000]) == 60000000
     assert add([100000000, 200000000, 300000000, 400000000, 500000000]) == 600000000
-    assert add([1000000000, 2000000000, 3000000000, 4000000000, 5000000000]) == 60000",
+    assert add([1000000000, 2000000000, 3000000000, 4000000000, 5000000000]) == 60000",Failed
 anti_shuffle,"
 def anti_shuffle(s):
     """"""
@@ -5061,7 +5061,7 @@ def test_anti_shuffle():
     assert anti_shuffle('a b c') == 'a b c'
     assert anti_shuffle('a b c') == 'a b c'
     assert anti_shuffle('a b c') == 'a b c'
-    assert anti_shuffle('a b c') == 'a b c",
+    assert anti_shuffle('a b c') == 'a b c",Error
 get_row,"
 def get_row(lst, x):
     """"""
@@ -5152,7 +5152,7 @@ def test_get_row():
     assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6], [1, 2, 3, 4, 5, 1]], 5) == [(0, 4), (1, 4), (2, 4)]
     assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6], [1, 2, 3, 4, 5, 1]], 6) == [(0, 5), (1, 5), (2, 5)]
     assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6], [1, 2, 3, 4, 5, 1]], 7) == []
-    assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6",
+    assert get_row([[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 1, 6",Error
 sort_array,"
 def sort_array(array):
     """"""
@@ -5218,7 +5218,7 @@ print(sort_array([7, 1, 2, 3, 4, 5, 6]))  # Output: [1, 2, 3, 4, 5, 6, 7]
 print(sort_array([7, 1, 2, 3, 4, 5, 6, 0]))  # Output: [0, 1, 2, 3, 4, 5, 6, 7]
 print(sort_array([7, 1, 2, 3, 4, 5, 6, 0, 8]))  # Output: [8, 7, 6, 5, 4, 3, 2, 1, 0]
 print(sort_array([7, 1, 2, 3, 4, 5, 6, 0, 8, 9]))  # Output: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-print(sort_array([7, 1, 2, 3, 4, 5, 6, 0, 8, 9, 10]))  # Output: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, ",
+print(sort_array([7, 1, 2, 3, 4, 5, 6, 0, 8, 9, 10]))  # Output: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, ",Passed
 encrypt,"
 def encrypt(s):
     """"""Create a function encrypt that takes a string as an argument and
@@ -5277,7 +5277,7 @@ print(encrypt('gf'))  # Output: kj
 print(encrypt('et'))  # Output: ix
 print(encrypt('Hello, World!'))  # Output: Jgnnq, Yqtnf!
 print(encrypt('123456789'))  # Output: 123456789
-print(encrypt(''))  # Output: ",
+print(encrypt(''))  # Output: ",Failed
 next_smallest,"
 def next_smallest(lst):
     """"""
@@ -5330,7 +5330,7 @@ def next_smallest(lst):
 print(next_smallest([1, 2, 3, 4, 5]) == 2)
 print(next_smallest([5, 1, 4, 3, 2]) == 2)
 print(next_smallest([]) == None)
-print(next_smallest([1, 1]) == None)",
+print(next_smallest([1, 1]) == None)",Passed
 is_bored,"
 def is_bored(S):
     """"""
@@ -5389,7 +5389,7 @@ print(is_bored(""I am bored. I am tired. I am hungry. I need to go to the bathro
 print(is_bored(""I am bored. I am tired. I am hungry. I need to go to the bathroom. I am very bored. I am very tired. I need to sleep.""))  # Output: 7
 print(is_bored(""I am bored. I am tired. I am hungry. I need to go to the bathroom. I am very bored. I am very tired. I need to sleep. I am very bored.""))  # Output: 8
 print(is_bored(""I am bored. I am tired. I am hungry. I need to go to the bathroom. I am very bored. I am very tired. I need to sleep. I am very bored. I am very tired.""))  # Output: 9
-print(is_bored(""I am bored. I am tired. I am hungry. I need to go to the bathroom. I am very bored.",
+print(is_bored(""I am bored. I am tired. I am hungry. I need to go to the bathroom. I am very bored.",Error
 any_int,"
 def any_int(x, y, z):
     '''
@@ -5450,7 +5450,7 @@ def any_int(x, y, z):
 print(any_int(5, 2, 7))  # Output: True
 print(any_int(3, 2, 2))  # Output: False
 print(any_int(3, -2, 1))  # Output: True
-print(any_int(3.6, -2.2, 2))  # Output: False",
+print(any_int(3.6, -2.2, 2))  # Output: False",Passed
 encode,"
 def encode(message):
     """"""
@@ -5508,7 +5508,7 @@ def encode(message):
 
 # Test the function with the provided examples
 print(encode('test'))  # Output: 'TGST'
-print(encode('This is a message'))  # Output: 'tHKS KS C MGSSCGG'",
+print(encode('This is a message'))  # Output: 'tHKS KS C MGSSCGG'",Failed
 skjkasdkd,"
 
 def skjkasdkd(lst):
@@ -5582,7 +5582,7 @@ print(skjkasdkd([1, 3, 1, 32, 5107, 34, 83278, 109, 163, 23, 2323, 32, 30, 1, 9,
 print(skjkasdkd([0, 724, 32, 71, 99, 32, 6, 0, 5, 91, 83, 0, 5, 6]))  # Output: 11
 print(skjkasdkd([0, 81, 12, 3, 1, 21]))  # Output: 3
 print(skjkasdkd([0, 8, 1, 2, 1, 7]))  # Output: 7
-",
+",Passed
 check_dict_case,"
 def check_dict_case(dict):
     """"""
@@ -5639,7 +5639,7 @@ print(check_dict_case({""a"":""apple"", 8:""banana"", ""a"":""apple""}))  # Outp
 print(check_dict_case({""Name"":""John"", ""Age"":""36"", ""City"":""Houston""}))  # Output: False
 print(check_dict_case({""STATE"":""NC"", ""ZIP"":""12345"" }))  # Output: True
 print(check_dict_case({}))  # Output: False
-",
+",Passed
 count_up_to,"
 def count_up_to(n):
     """"""Implement a function that takes an non-negative integer and returns an array of the first n
@@ -5699,7 +5699,7 @@ print(count_up_to(0))  # Output: []
 print(count_up_to(20))  # Output: [2, 3, 5, 7, 11, 13, 17, 19]
 print(count_up_to(1))  # Output: []
 print(count_up_to(18))  # Output: [2, 3, 5, 7, 11, 13, 17]
-",
+",Passed
 multiply,"
 def multiply(a, b):
     """"""Complete the function that takes two integers and returns 
@@ -5751,7 +5751,7 @@ print(multiply(148, 412))  # Output: 16
 print(multiply(19, 28))    # Output: 72
 print(multiply(2020, 1851))  # Output: 0
 print(multiply(14, -15))   # Output: 20
-",
+",Passed
 count_upper,"
 def count_upper(s):
     """"""
@@ -5795,7 +5795,7 @@ def count_upper(s):
 # Test cases
 print(count_upper('aBCdEf'))  # Output: 1
 print(count_upper('abcdefg'))  # Output: 0
-print(count_upper('dBBE'))  # Output: 0",
+print(count_upper('dBBE'))  # Output: 0",Failed
 closest_integer,"
 def closest_integer(value):
     '''
@@ -5854,7 +5854,7 @@ def closest_integer(value):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 make_a_pile,"
 def make_a_pile(n):
     """"""
@@ -5918,7 +5918,7 @@ def main():
 
 
 if __name__ == ""__main__"":
-    main()",
+    main()",Passed
 words_string,"
 def words_string(s):
     """"""
@@ -5998,7 +5998,7 @@ def words_string_5(s):
     to split the string into words and return an array of the words.
     
     For example:
-    words_string_5(""Hi, my name is John"") == [""Hi"", ""my"", ""name"", ""is"", """,
+    words_string_5(""Hi, my name is John"") == [""Hi"", ""my"", ""name"", ""is"", """,Error
 choose_num,"
 def choose_num(x, y):
     """"""This function takes two positive numbers x and y and returns the
@@ -6051,7 +6051,7 @@ print(choose_num(13, 12))  # Output: -1
 print(choose_num(10, 10))  # Output: 10
 print(choose_num(5, 15))   # Output: 14
 print(choose_num(7, 13))   # Output: 12
-",
+",Failed
 rounded_avg,"
 def rounded_avg(n, m):
     """"""You are given two positive integers n and m, and your task is to compute the
@@ -6107,7 +6107,7 @@ print(rounded_avg(1, 5))  # Output: ""0b11""
 print(rounded_avg(7, 5))  # Output: -1
 print(rounded_avg(10, 20))  # Output: ""0b1111""
 print(rounded_avg(20, 33))  # Output: ""0b11010""
-",
+",Passed
 unique_digits,"
 def unique_digits(x):
     """"""Given a list of positive integers x. return a sorted list of all 
@@ -6161,7 +6161,7 @@ def unique_digits(x):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 by_length,"
 def by_length(arr):
     """"""
@@ -6241,7 +6241,7 @@ print(by_length(arr))  # Output: []
 
 arr = [1, -1, 55]
 print(by_length(arr))  # Output: ['One']
-",
+",Passed
 f,"
 def f(n):
     """""" Implement the function f that takes n as a parameter,
@@ -6282,7 +6282,7 @@ def f(n):
 
 
 # Test the function with the example provided
-print(f(5))  # Output: [1, 2, 6, 24, 15]",
+print(f(5))  # Output: [1, 2, 6, 24, 15]",Passed
 even_odd_palindrome,"
 def even_odd_palindrome(n):
     """"""
@@ -6369,7 +6369,7 @@ print(even_odd_palindrome(12))  # Output: (4, 6)
 print(even_odd_palindrome(50))  # Output: (15, 25)
 print(even_odd_palindrome(100))  # Output: (25, 50)
 print(even_odd_palindrome(1000))  # Output: (250, 500)
-",
+",Passed
 count_nums,"
 def count_nums(arr):
     """"""
@@ -6413,7 +6413,7 @@ def count_nums(arr):
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Error
 move_one_ball,"
 def move_one_ball(arr):
     """"""We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The
@@ -6507,7 +6507,7 @@ print(move_one_ball([1, 3, 4, 2, 5]))  # Output: True
 print(move_one_ball([5, 4, 2, 3, 1]))  # Output: False
 print(move_one_ball([1, 4, 2, 3, 5]))  # Output: True
 print(move_one_ball([5, 2, 4, 3, 1]))  # Output: False
-print(move_one_ball([1, 4",
+print(move_one_ball([1, 4",Error
 exchange,"
 def exchange(lst1, lst2):
     """"""In this problem, you will implement a function that takes two lists of numbers,
@@ -6566,7 +6566,7 @@ print(exchange([2, 4, 6, 8], [1, 3, 5, 7]))  # Output: ""YES""
 print(exchange([1, 3, 5, 7], [2, 4, 6, 8]))  # Output: ""NO""
 print(exchange([1, 2, 3, 4], [5, 6, 7, 8]))  # Output: ""YES""
 print(exchange([5, 6, 7, 8], [1, 2, 3, 4]))  # Output: ""NO""
-",
+",Failed
 histogram,"
 def histogram(test):
     """"""Given a string representing a space separated lowercase letters, return a dictionary
@@ -6637,7 +6637,7 @@ print(histogram('a b b a'))  # Output: {'a': 2, 'b': 2}
 print(histogram('a b c a b'))  # Output: {'a': 2, 'b': 2}
 print(histogram('b b b b a'))  # Output: {'b': 4}
 print(histogram(''))  # Output: {}
-",
+",Error
 reverse_delete,"
 def reverse_delete(s,c):
     """"""Task
@@ -6681,7 +6681,7 @@ def reverse_delete(s,c):
 print(reverse_delete(""abcde"", ""ae""))  # Output: ('bcd', False)
 print(reverse_delete(""abcdef"", ""b""))  # Output: ('acdef', False)
 print(reverse_delete(""abcdedcba"", ""ab""))  # Output: ('cdedc', True)
-",
+",Passed
 odd_count,"
 def odd_count(lst):
     """"""Given a list of strings, where each string consists of only digits, return a list.
@@ -6727,7 +6727,7 @@ def odd_count(lst):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Failed
 minSubArraySum,"
 def minSubArraySum(nums):
     """"""
@@ -6791,7 +6791,7 @@ print(minSubArraySum([1, 2, 3, 4, -5]))  # Output: -5
 print(minSubArraySum([-1, -2, -3, -4, 5]))  # Output: 1
 print(minSubArraySum([1, 2, 3, 4, 5]))  # Output: 1
 print(minSubArraySum([-1, -2, -3, -4, -5]))  # Output: -5
-print(minSubArraySum([1, -",
+print(minSubArraySum([1, -",Error
 max_fill,"
 def max_fill(grid, capacity):
     import math
@@ -6894,7 +6894,7 @@ print(max_fill(grid2, bucket_capacity2))  # Output: 5
 
 grid3 = [[0, 0, 0], [0, 0, 0]]
 bucket_capacity3 = 5
-print(max_fill(grid3, bucket_capacity3))  # Output: 0",
+print(max_fill(grid3, bucket_capacity3))  # Output: 0",Failed
 sort_array,"
 def sort_array(arr):
     """"""
@@ -6940,7 +6940,7 @@ def sort_array(arr):
 
 if __name__ == ""__main__"":
     import doctest
-    doctest.testmod()",
+    doctest.testmod()",Passed
 select_words,"
 def select_words(s, n):
     """"""Given a string s and a natural number n, you have been tasked to implement 
@@ -7003,7 +7003,7 @@ print(select_words(""Mary had a little lamb"", 3))  # Output: [""Mary"", ""lamb"
 print(select_words(""simple white space"", 2))      # Output: []
 print(select_words(""Hello world"", 4))             # Output: [""world""]
 print(select_words(""Uncle sam"", 3))               # Output: [""Uncle""]
-",
+",Passed
 get_closest_vowel,"
 def get_closest_vowel(word):
     """"""You are given a word. Your task is to find the closest vowel that stands between 
@@ -7070,7 +7070,7 @@ print(get_closest_vowel(""yogurt""))  # Output: ""u""
 print(get_closest_vowel(""FULL""))  # Output: ""U""
 print(get_closest_vowel(""quick""))  # Output: """"
 print(get_closest_vowel(""ab""))  # Output: """"
-",
+",Failed
 match_parens,"
 def match_parens(lst):
     '''
@@ -7155,7 +7155,7 @@ def match_parens(lst):
 # Test cases
 print(match_parens(['()(', ')']))  # Output: 'Yes'
 print(match_parens([')', ')']))  # Output: 'No'
-",
+",Failed
 maximum,"
 def maximum(arr, k):
     """"""
@@ -7248,7 +7248,7 @@ def maximum(arr, k):
 print(maximum(arr=[-3, -4, 5], k=3))  # Output: [-4, -3, 5]
 print(maximum(arr=[4, -4, 4], k=2))  # Output: [4, 4]
 print(maximum(arr=[-3, 2, 1, 2, -1, -2, 1], k=1))  # Output: [2]
-",
+",Failed
 solution,"
 def solution(lst):
     """"""Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.
@@ -7288,7 +7288,7 @@ def solution(lst):
 # Test the function with the provided examples
 print(solution([5, 8, 7, 1]) == 12)
 print(solution([3, 3, 3, 3, 3]) == 9)
-print(solution([30, 13, 24, 321]) == 0)",
+print(solution([30, 13, 24, 321]) == 0)",Failed
 add_elements,"
 def add_elements(arr, k):
     """"""
@@ -7344,7 +7344,7 @@ def add_elements(arr, k):
 # Test the function with the provided example
 arr = [111, 21, 3, 4000, 5, 6, 7, 8, 9]
 k = 4
-print(add_elements(arr, k))  # Output: 24",
+print(add_elements(arr, k))  # Output: 24",Passed
 get_odd_collatz,"
 def get_odd_collatz(n):
     """"""
@@ -7402,7 +7402,7 @@ def get_odd_collatz(n):
     return sorted(collatz_sequence[::2])
 
 # Test the function with an example
-print(get_odd_collatz(5))  # Output: [1, 5]",
+print(get_odd_collatz(5))  # Output: [1, 5]",Failed
 valid_date,"
 def valid_date(date):
     """"""You have to write a function which validates a given date string and
@@ -7513,7 +7513,7 @@ print(valid_date('15-01-2012'))  # Output: False
 print(valid_date('04-0-2040'))   # Output: False
 print(valid_date('06-04-2020'))  # Output: True
 print(valid_date('06/04/2020'))  # Output: False
-",
+",Passed
 split_words,"
 def split_words(txt):
     '''
@@ -7562,7 +7562,7 @@ print(split_words(""1,2,3,4,5""))  # Output: [""1"", ""2"", ""3"", ""4"", ""5""]
 print(split_words(""a b c d e f""))  # Output: 3
 print(split_words(""Python is fun""))  # Output: [""Python"", ""is"", ""fun""]
 print(split_words(""No punctuation""))  # Output: [""No"", ""punctuation""]
-",
+",Failed
 is_sorted,"
 def is_sorted(lst):
     '''
@@ -7631,7 +7631,7 @@ def test_is_sorted():
 
 
 if __name__ == ""__main__"":
-    test_is_sorted()",
+    test_is_sorted()",Failed
 intersection,"
 def intersection(interval1, interval2):
     """"""You are given two intervals,
@@ -7712,7 +7712,7 @@ def is_prime(num):
 print(intersection((1, 2), (2, 3)))  # Output: ""NO""
 print(intersection((-1, 1), (0, 4)))  # Output: ""NO""
 print(intersection((-3, -1), (-5, 5)))  # Output: ""YES""
-",
+",Error
 prod_signs,"
 def prod_signs(arr):
     """"""
@@ -7772,7 +7772,7 @@ def prod_signs(arr):
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Failed
 minPath,"
 def minPath(grid, k):
     """"""
@@ -7882,7 +7882,7 @@ def minPath(grid, k):
 # Test the function with the provided examples
 print(minPath([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3))  # Output: [1, 2, 1]
 print(minPath([[5, 9, 3], [4, 1, 6], [7, 8, 2]], 1))  # Output: [1]
-",
+",Failed
 tri,"
 def tri(n):
     """"""Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
@@ -7953,7 +7953,7 @@ print(tri(7))  # Output: [1, 3, 2, 8, 3, 11, 14, 23]
 print(tri(8))  # Output: [1, 3, 2, 8, 3, 11, 14, 23, 34]
 print(tri(9))  # Output: [1, 3, 2, 8, 3, 11, 14, 23, 34, 55]
 print(tri(10))  # Output: [1, 3, 2, 8, 3, 11, 14, 23, 34, 55, 89]
-print(tri(11))  # Output: [1, 3, 2, 8, 3, 11, 14, 23, 34, 55, 89, 14",
+print(tri(11))  # Output: [1, 3, 2, 8, 3, 11, 14, 23, 34, 55, 89, 14",Failed
 digits,"
 def digits(n):
     """"""Given a positive integer n, return the product of the odd digits.
@@ -8015,7 +8015,7 @@ def test_digits():
     assert digits(12345678901234567890) == 729
     assert digits(135792468013579246801357924680) == 12345
     assert digits(1111111111111111111111111111111) == 1
-    assert digits(99",
+    assert digits(99",Error
 is_nested,"
 def is_nested(string):
     '''
@@ -8081,7 +8081,7 @@ print(is_nested('[]]]]]]][[[[[]'))  # Output: False
 print(is_nested('[][]'))  # Output: False
 print(is_nested('[]'))  # Output: False
 print(is_nested('[[][]]'))  # Output: True
-print(is_nested('[[]][['))  # Output: True",
+print(is_nested('[[]][['))  # Output: True",Failed
 sum_squares,"
 
 def sum_squares(lst):
@@ -8145,7 +8145,7 @@ print(sum_squares([1, 2, 3]))  # Output: 14
 print(sum_squares([1, 4, 9]))  # Output: 98
 print(sum_squares([1, 3, 5, 7]))  # Output: 84
 print(sum_squares([1.4, 4.2, 0]))  # Output: 29
-print(sum_squares([-2.4, 1, 1]))  # Output: 6",
+print(sum_squares([-2.4, 1, 1]))  # Output: 6",Failed
 check_if_last_char_is_a_letter,"
 def check_if_last_char_is_a_letter(txt):
     '''
@@ -8201,7 +8201,7 @@ def check_if_last_char_is_a_letter(txt):
 print(check_if_last_char_is_a_letter(""apple pie""))  # Output: False
 print(check_if_last_char_is_a_letter(""apple pi e""))  # Output: True
 print(check_if_last_char_is_a_letter(""apple pi e ""))  # Output: False
-print(check_if_last_char_is_a_letter(""""))  # Output: False",
+print(check_if_last_char_is_a_letter(""""))  # Output: False",Failed
 can_arrange,"
 def can_arrange(arr):
     """"""Create a function which returns the largest index of an element which
@@ -8247,7 +8247,7 @@ print(can_arrange([1, 2, 3]))  # Output: -1
 print(can_arrange([5, 4, 3, 2, 1]))  # Output: 0
 print(can_arrange([1, 2, 5, 4, 3]))  # Output: 2
 print(can_arrange([1, 2, 3, 4, 5]))  # Output: -1
-",
+",Failed
 largest_smallest_integers,"
 def largest_smallest_integers(lst):
     '''
@@ -8311,7 +8311,7 @@ def largest_smallest_integers(lst):
 print(largest_smallest_integers([2, 4, 1, 3, 5, 7]))  # Output: (None, 1)
 print(largest_smallest_integers([]))  # Output: (None, None)
 print(largest_smallest_integers([0]))  # Output: (None, None)
-",
+",Passed
 compare_one,"
 def compare_one(a, b):
     """"""
@@ -8367,7 +8367,7 @@ print(compare_one(1, 2.5))  # ➞ 2.5
 print(compare_one(1, ""2,3""))  # ➞ ""2,3""
 print(compare_one(""5,1"", ""6""))  # ➞ ""6""
 print(compare_one(""1"", 1))  # ➞ None
-",
+",Error
 is_equal_to_sum_even,"
 def is_equal_to_sum_even(n):
     """"""Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers
@@ -8434,7 +8434,7 @@ def is_equal_to_sum_even_odd(n):
             for k in range(j, n // 2 + 1, 2):
                 for l in range(k, n // 2 + 1, 2):
                     if i + j + k + l == n:
-                       ",
+                       ",Error
 special_factorial,"
 def special_factorial(n):
     """"""The Brazilian factorial is defined as:
@@ -8497,7 +8497,7 @@ def test_special_factorial():
     assert special_factorial(20) == 2432902008176640000000
     assert special_factorial(21) == 51090942171709440000000
     assert special_factorial(22) == 11240007277776076800000000
-    assert special_factorial(23) == 25",
+    assert special_factorial(23) == 25",Error
 fix_spaces,"
 def fix_spaces(text):
     """"""
@@ -8542,7 +8542,7 @@ print(fix_spaces(""Example""))  # Output: ""Example""
 print(fix_spaces(""Example 1""))  # Output: ""Example_1""
 print(fix_spaces("" Example 2""))  # Output: ""_Example_2""
 print(fix_spaces("" Example   3""))  # Output: ""_Example-3""
-",
+",Failed
 file_name_check,"
 def file_name_check(file_name):
     """"""Create a function which takes a string representing a file's name, and returns
@@ -8628,7 +8628,7 @@ print(file_name_check(""no_dot_in_the_name""))  # Output: 'No'
 print(file_name_check(""no_letter_before_dot.txt""))  # Output: 'No'
 print(file_name_check(""no_valid_extension.pdf""))  # Output: 'No'
 print(file_name_check(""multiple_dots..txt""))  # Output: 'No'
-",
+",Passed
 sum_squares,"
 
 
@@ -8700,7 +8700,7 @@ print(sum_squares([-5, -10, -15, -20, -25]))  # Output: -375
 print(sum_squares([2, 4, 6, 8, 10]))  # Output: 110
 print(sum_squares([1, 2, 3, 4, 5]))  # Output: 35
 print(sum_squares([0, 0, 0, 0, 0]))  # Output: 0
-print",
+print",Failed
 words_in_sentence,"
 def words_in_sentence(sentence):
     """"""
@@ -8788,7 +8788,7 @@ print(words_in_sentence(""qr st uv wx""))  # Output: ""st uv wx""
 print(words_in_sentence(""yz 12 34 56""))  # Output: ""12 34 56""
 print(words_in_sentence(""ab cd ef 12""))  # Output: ""ef 12""
 print(words_in_sentence(""ij kl mn 34""))  # Output: ""ij kl mn""
-print(words",
+print(words",Error
 simplify,"
 def simplify(x, n):
     """"""Your task is to implement a function that will simplify the expression
@@ -8845,7 +8845,7 @@ def simplify(x, n):
 print(simplify(""1/5"", ""5/1""))  # Output: True
 print(simplify(""1/6"", ""2/1""))  # Output: False
 print(simplify(""7/10"", ""10/2""))  # Output: False
-",
+",Failed
 order_by_points,"
 def order_by_points(nums):
     """"""
@@ -8893,7 +8893,7 @@ def sum_of_digits(num):
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Error
 specialFilter,"
 def specialFilter(nums):
     """"""Write a function that takes an array of numbers as input and returns 
@@ -8943,7 +8943,7 @@ print(specialFilter([-11, -22, -33, -44, -55, -66, -77, -88, -99]))  # Output: 9
 print(specialFilter([-1, -3, -5, -7, -9, -11, -13, -15, -17, -19]))  # Output: 10
 print(specialFilter([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))  # Output: 0
 print(specialFilter([100, 200, 300, 400, 500, 600, 700, 800, 900]))  # Output: 0
-print(specialFilter([111",
+print(specialFilter([111",Error
 get_max_triples,"
 def get_max_triples(n):
     """"""
@@ -8991,7 +8991,7 @@ def get_max_triples(n):
 
 # Test the function with the example
 n = 5
-print(get_max_triples(n))  # Output: 1",
+print(get_max_triples(n))  # Output: 1",Passed
 bf,"
 def bf(planet1, planet2):
     '''
@@ -9068,7 +9068,7 @@ def bf(planet1, planet2):
 print(bf(""Jupiter"", ""Neptune"") == (""Saturn"", ""Uranus""))
 print(bf(""Earth"", ""Mercury"") == (""Venus"",))
 print(bf(""Mercury"", ""Uranus"") == (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn""))
-print(bf(""Pluto"", ""Neptune"") == ())",
+print(bf(""Pluto"", ""Neptune"") == ())",Passed
 sorted_list_sum,"
 def sorted_list_sum(lst):
     """"""Write a function that accepts a list of strings as a parameter,
@@ -9126,7 +9126,7 @@ def sorted_list_sum(lst):
 # Test the function
 print(sorted_list_sum([""aa"", ""a"", ""aaa""]))  # Output: [""aa""]
 print(sorted_list_sum([""ab"", ""a"", ""aaa"", ""cd""]))  # Output: [""ab"", ""cd""]
-",
+",Passed
 x_or_y,"
 def x_or_y(n, x, y):
     """"""A simple program which should return the value of x if n is 
@@ -9196,7 +9196,7 @@ print(x_or_y(61, 27, 37) == 27)
 print(x_or_y(67, 31, 43) == 31)
 print(x_or_y(71, 37, 47) == 37)
 print(x_or_y(73, 41, 53) == 41)
-print(x_or_y(79, 47, 59)",
+print(x_or_y(79, 47, 59)",Error
 double_the_difference,"
 def double_the_difference(lst):
     '''
@@ -9250,7 +9250,7 @@ print(double_the_difference([1, 3, 2, 0]))  # Output: 10
 print(double_the_difference([-1, -2, 0]))   # Output: 0
 print(double_the_difference([9, -2]))       # Output: 81
 print(double_the_difference([0]))           # Output: 0
-print(double_the_difference([]))            # Output: 0",
+print(double_the_difference([]))            # Output: 0",Failed
 compare,"
 def compare(game,guess):
     """"""I think we all remember that feeling when the result of some long-awaited
@@ -9299,7 +9299,7 @@ def compare(game,guess):
 # Test the function with the provided examples
 print(compare([1, 2, 3, 4, 5, 1], [1, 2, 3, 4, 2, -2]))  # Output: [0, 0, 0, 0, 3, 3]
 print(compare([0, 5, 0, 0, 0, 4], [4, 1, 1, 0, 0, -2]))  # Output: [4, 4, 1, 0, 0, 6]
-",
+",Passed
 Strongest_Extension,"
 def Strongest_Extension(class_name, extensions):
     """"""You will be given the name of a class (a string) and a list of extensions.
@@ -9368,7 +9368,7 @@ def Strongest_Extension(class_name, extensions):
 
 # Test the function with the provided example
 print(Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']))  # Output: Slices.SErviNGSliCes
-",
+",Passed
 cycpattern_check,"
 def cycpattern_check(a , b):
     """"""You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
@@ -9419,7 +9419,7 @@ print(cycpattern_check(""hello"",""ell""))  # => True
 print(cycpattern_check(""whassup"",""psus""))  # => False
 print(cycpattern_check(""abab"",""baa""))  # => True
 print(cycpattern_check(""efef"",""eeff""))  # => False
-print(cycpattern_check(""himenss"",""simen""))  # => True",
+print(cycpattern_check(""himenss"",""simen""))  # => True",Passed
 even_odd_count,"
 def even_odd_count(num):
     """"""Given an integer. return a tuple that has the number of even and odd digits respectively.
@@ -9473,7 +9473,7 @@ def test_even_odd_count():
     assert even_odd_count(1000) == (4, 0)
     assert even_odd_count(-1000) == (4, 0)
     assert even_odd_count(0) == (1, 0)
-    assert even_odd_count(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    assert even_odd_count(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",Error
 int_to_mini_roman,"
 def int_to_mini_roman(number):
     """"""
@@ -9548,7 +9548,7 @@ def int_to_mini_roman(number):
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Passed
 right_angle_triangle,"
 def right_angle_triangle(a, b, c):
     '''
@@ -9613,7 +9613,7 @@ print(right_angle_triangle(17, 78, 81))  # Output: True
 print(right_angle_triangle(18, 80, 82))  # Output: True
 print(right_angle_triangle(19, 83, 85))  # Output: True
 print(right_angle_triangle(20, 84, 86))  # Output: True
-print(right",
+print(right",Error
 find_max,"
 def find_max(words):
     """"""Write a function that accepts a list of strings.
@@ -9670,7 +9670,7 @@ def find_max(words):
 print(find_max([""name"", ""of"", ""string""]))  # Output: ""string""
 print(find_max([""name"", ""enam"", ""game""]))  # Output: ""enam""
 print(find_max([""aaaaaaa"", ""bb"", ""cc""]))  # Output: ""aaaaaaa""
-",
+",Passed
 eat,"
 def eat(number, need, remaining):
     """"""
@@ -9754,7 +9754,7 @@ print(eat(5, 6, 10))  # Output: [11, 4]
 print(eat(4, 8, 9))   # Output: [12, 1]
 print(eat(1, 10, 10)) # Output: [11, 0]
 print(eat(2, 11, 5))  # Output: [7, 0]
-",
+",Failed
 do_algebra,"
 def do_algebra(operator, operand):
     """"""
@@ -9834,7 +9834,7 @@ def do_algebra(operator, operand):
 # Test the function
 operator = ['+', '*', '-']
 operand = [2, 3, 4, 5]
-print(do_algebra(operator, operand))  # Output: 9",
+print(do_algebra(operator, operand))  # Output: 9",Failed
 solve,"
 def solve(s):
     """"""You are given a string s.
@@ -9890,7 +9890,7 @@ def solve(s):
 print(solve(""1234""))  # Output: ""4321""
 print(solve(""ab""))    # Output: ""AB""
 print(solve(""#a@C""))  # Output: ""#A@c""
-",
+",Passed
 string_to_md5,"
 def string_to_md5(text):
     """"""
@@ -9933,7 +9933,7 @@ def test_string_to_md5():
 if __name__ == ""__main__"":
     import doctest
 
-    doctest.testmod()",
+    doctest.testmod()",Passed
 generate_integers,"
 def generate_integers(a, b):
     """"""
@@ -9996,4 +9996,4 @@ def test_generate_integers():
     assert generate_integers(8, 1) == [2, 4, 6, 8]
     assert generate_integers(1, 9) == [2, 4, 6, 8]
     assert generate_integers(9, 1) == [2, 4, 6, 8]
-    assert generate_integers(",
+    assert generate_integers(",Error
