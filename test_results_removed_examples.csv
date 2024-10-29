@@ -49,3 +49,360 @@ print(has_close_elements([1, 2, 3, 4, 5], 0.000001))  # Output: False
 print(has_close_elements([1, 2, 3, 4, 5], 0.0000001))  # Output: False
 print(has_close_elements([1, 2, 3, 4, 5], 0.00000001))  # Output: False
 print",
+separate_paren_groups,"from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """""" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balanced (each open brace is properly closed) and not nested within each other
+    Ignore any spaces in the input string.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('(()()) ((())) () ((())()())') == [
+        '(()())', '((()))', '()', '((())()())'
+    ]
+    assert candidate('() (()) ((())) (((())))') == [
+        '()', '(())', '((()))', '(((())))'
+    ]
+    assert candidate('(()(())((())))') == [
+        '(()(())((())))'
+    ]
+    assert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']
+","from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """""" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balanced (each open brace is properly closed) and not nested within each other
+    Ignore any spaces in the input string.""""""
+    result = []
+    current_group = """"
+    stack = []
+
+    for char in paren_string:
+        if char == '(':
+            stack.append('(')
+            current_group += char
+        elif char == ')':
+            if stack:
+                stack.pop()
+                current_group += char
+                if not stack:
+                    result.append(current_group)
+                    current_group = """"
+            else:
+                current_group += char
+        else:
+            current_group += char
+
+    return result
+
+
+# Test the function with an example
+input_string = ""((A+B)*(C-D))/(E+F)""
+output = separate_paren_groups(input_string)
+print(output)  # Output: ['((A+B)*(C-D))', '(E+F)']
+
+# Test the function with another example
+input_string = ""((A+B)*C)-D""
+output = separate_paren_groups(input_string)
+print(output)  # Output: ['((A+B)*C)', 'D']
+
+# Test the function with a nested parentheses example
+input_string = ""((A+B)*(C-D))/(E+F)""
+output = separate_paren_groups(input_string)
+print(output)  # Output: ['((A+B)*(C-D))', '(E+F)']
+
+# Test the function with a string containing multiple groups
+input_string = ""((A+B)*(C-D))/(E+F)/(G+H)""
+output = separate_paren_groups(input_string)
+print(output)  # Output: ['((A+B)*(C-D))', '(E+F)', '(G+H)']
+",
+truncate_number,"def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(3.5) == 0.5
+    assert abs(candidate(1.33) - 0.33) < 1e-6
+    assert abs(candidate(123.456) - 0.456) < 1e-6
+","def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.""""""
+    return number % 1
+
+
+def test_truncate_number():
+    assert truncate_number(3.14159) == 0.14159
+    assert truncate_number(1.23456) == 0.23456
+    assert truncate_number(5.0) == 0.0
+    assert truncate_number(10.98765) == 0.98765
+    assert truncate_number(0.0001) == 0.0001
+    assert truncate_number(99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+below_zero,"from typing import List
+
+
+def below_zero(operations: List[int]) -> bool:
+    """""" You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == False
+    assert candidate([1, 2, -3, 1, 2, -3]) == False
+    assert candidate([1, 2, -4, 5, 6]) == True
+    assert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False
+    assert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True
+    assert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True
+","from typing import List
+
+
+def below_zero(operations: List[int]) -> bool:
+    """""" You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.""""""
+
+    balance = 0
+    for operation in operations:
+        balance += operation
+        if balance < 0:
+            return True
+    return False
+
+
+# Test cases
+print(below_zero([100, -50, 20, -30]))  # Output: True
+print(below_zero([50, 20, 30, 40]))     # Output: False
+print(below_zero([-10, 20, -30, 40]))    # Output: True
+print(below_zero([10, -20, 30, -40]))    # Output: True
+print(below_zero([10, 20, 30, 40]))      # Output: False
+",
+mean_absolute_deviation,"from typing import List
+
+
+def mean_absolute_deviation(numbers: List[float]) -> float:
+    """""" For a given list of input numbers, calculate Mean Absolute Deviation
+    around the mean of this dataset.
+    Mean Absolute Deviation is the average absolute difference between each
+    element and a centerpoint (mean in this case):
+    MAD = average | x - x_mean |""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6
+    assert abs(candidate([1.0, 2.0, 3.0, 4.0]) - 1.0) < 1e-6
+    assert abs(candidate([1.0, 2.0, 3.0, 4.0, 5.0]) - 6.0/5.0) < 1e-6
+
+","from typing import List
+
+
+def mean_absolute_deviation(numbers: List[float]) -> float:
+    """""" For a given list of input numbers, calculate Mean Absolute Deviation
+    around the mean of this dataset.
+    Mean Absolute Deviation is the average absolute difference between each
+    element and a centerpoint (mean in this case):
+    MAD = average | x - x_mean |""""""
+    if not numbers:
+        return 0.0
+
+    mean = sum(numbers) / len(numbers)
+    deviations = [abs(num - mean) for num in numbers]
+    mad = sum(deviations) / len(deviations)
+    return mad
+
+
+def test_mean_absolute_deviation():
+    assert mean_absolute_deviation([1, 2, 3, 4, 5]) == 1.5
+    assert mean_absolute_deviation([1, 2, 3, 10, 11]) == 4.0
+    assert mean_absolute_deviation([1, 2, 3, 4, 100]) == 50.0
+    assert mean_absolute_deviation([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 2.5
+    assert mean_absolute_deviation([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100]) == 25.0
+    assert mean_absolute_deviation([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1000]) == 250.0
+    assert mean_absolute_deviation([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1000, 10000]) == 2500.0
+    assert mean_absolute_deviation([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1000, 10000, 100000]) == 25000.0
+    assert mean_absolute_deviation([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100,",
+intersperse,"from typing import List
+
+
+def intersperse(numbers: List[int], delimeter: int) -> List[int]:
+    """""" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([], 7) == []
+    assert candidate([5, 6, 3, 2], 8) == [5, 8, 6, 8, 3, 8, 2]
+    assert candidate([2, 2, 2], 2) == [2, 2, 2, 2, 2]
+","from typing import List
+
+
+def intersperse(numbers: List[int], delimeter: int) -> List[int]:
+    """""" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'""""""
+    return [numbers[i] if i % 2 == 0 else delimeter for i in range(len(numbers) * 2 - 1)]
+
+
+if __name__ == '__main__':
+    numbers = [1, 2, 3, 4, 5]
+    delimeter = 0
+    result = intersperse(numbers, delimeter)
+    print(result)",
+parse_nested_parens,"from typing import List
+
+
+def parse_nested_parens(paren_string: str) -> List[int]:
+    """""" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+    For each of the group, output the deepest level of nesting of parentheses.
+    E.g. (()()) has maximum two levels of nesting while ((())) has three.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]
+    assert candidate('() (()) ((())) (((())))') == [1, 2, 3, 4]
+    assert candidate('(()(())((())))') == [4]
+","from typing import List
+
+
+def parse_nested_parens(paren_string: str) -> List[int]:
+    """""" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+    For each of the group, output the deepest level of nesting of parentheses.
+    E.g. (()()) has maximum two levels of nesting while ((())) has three.""""""
+    result = []
+    for group in paren_string.split():
+        stack = []
+        max_depth = 0
+        for char in group:
+            if char == '(':
+                stack.append('(')
+                max_depth = max(max_depth, len(stack))
+            elif char == ')':
+                if stack:
+                    stack.pop()
+        result.append(max_depth)
+    return result
+
+
+# Test the function with the provided example
+paren_string = ""() () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () () ()",
+filter_by_substring,"from typing import List
+
+
+def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that contain given substring""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([], 'john') == []
+    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']
+    assert candidate(['xxx', 'asd', 'aaaxxy', 'john doe', 'xxxAAA', 'xxx'], 'xx') == ['xxx', 'aaaxxy', 'xxxAAA', 'xxx']
+    assert candidate(['grunt', 'trumpet', 'prune', 'gruesome'], 'run') == ['grunt', 'prune']
+","from typing import List
+
+
+def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that contain given substring""""""
+    return [s for s in strings if substring in s]
+
+
+# Test the function
+input_strings = [""apple"", ""banana"", ""orange"", ""grape"", ""kiwi""]
+substring_to_filter = ""a""
+filtered_strings = filter_by_substring(input_strings, substring_to_filter)
+print(filtered_strings)  # Output: ['apple', 'banana', 'orange', 'grape', 'kiwi']
+
+substring_to_filter = ""an""
+filtered_strings = filter_by_substring(input_strings, substring_to_filter)
+print(filtered_strings)  # Output: ['apple', 'banana', 'orange', 'grape', 'kiwi']
+
+substring_to_filter = ""gr""
+filtered_strings = filter_by_substring(input_strings, substring_to_filter)
+print(filtered_strings)  # Output: ['grape']
+
+substring_to_filter = ""pear""
+filtered_strings = filter_by_substring(input_strings, substring_to_filter)
+print(filtered_strings)  # Output: []
+",
+sum_product,"from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    """""" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    Empty sum should be equal to 0 and empty product should be equal to 1.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == (0, 1)
+    assert candidate([1, 1, 1]) == (3, 1)
+    assert candidate([100, 0]) == (100, 0)
+    assert candidate([3, 5, 7]) == (3 + 5 + 7, 3 * 5 * 7)
+    assert candidate([10]) == (10, 10)
+","from typing import List, Tuple
+
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    """""" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    Empty sum should be equal to 0 and empty product should be equal to 1.""""""
+    sum_result = 0
+    product_result = 1
+
+    for num in numbers:
+        sum_result += num
+        product_result *= num
+
+    return sum_result, product_result
+
+
+# Test the function with an example
+numbers = [2, 3, 4]
+sum_result, product_result = sum_product(numbers)
+print(f""Sum of numbers: {sum_result}"")
+print(f""Product of numbers: {product_result}"")",
