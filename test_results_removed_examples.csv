@@ -406,3 +406,231 @@ numbers = [2, 3, 4]
 sum_result, product_result = sum_product(numbers)
 print(f""Sum of numbers: {sum_result}"")
 print(f""Product of numbers: {product_result}"")",
+rolling_max,"from typing import List, Tuple
+
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == []
+    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]
+    assert candidate([4, 3, 2, 1]) == [4, 4, 4, 4]
+    assert candidate([3, 2, 3, 100, 3]) == [3, 3, 3, 100, 100]
+","from typing import List, Tuple
+
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.""""""
+    rolling_max_list = []
+    max_element = float('-inf')
+
+    for num in numbers:
+        max_element = max(max_element, num)
+        rolling_max_list.append(max_element)
+
+    return rolling_max_list
+
+
+def max_subarray_sum(numbers: List[int], k: int) -> Tuple[int, int]:
+    """""" Find the maximum sum of a subarray of size k in a given list of integers.""""""
+    max_sum = float('-inf')
+    current_sum = 0
+    start_index = 0
+
+    for i in range(len(numbers)):
+        current_sum += numbers[i]
+
+        if i >= k - 1:
+            max_sum = max(max_sum, current_sum)
+            current_sum -= numbers[i - (k - 1)]
+            start_index = i - (k - 1)
+
+    return max_sum, start_index
+
+
+def max_subarray_sum_sliding_window(numbers: List[int], k: int) -> Tuple[int, int]:
+    """""" Find the maximum sum of a subarray of size k in a given list of integers using sliding window technique.""""""
+    max_sum = float('-inf')
+    current_sum = 0
+    start_index = 0
+
+    for i in range(len(numbers)):
+        current_sum += numbers[i]
+
+        if i >= k:
+            current_sum -= numbers[i - k]
+
+        if i >= k - 1:
+            max_sum = max(max_sum, current_sum)
+            start_index = i - (k - 1)
+
+    return max_sum, start_index
+
+
+def max_subarray_sum_rolling_window(numbers: List[int], k: int) -> Tuple[int, int]:
+    """""" Find the maximum sum of a subarray of size k in a given list of integers using rolling window technique.""""""
+    max_sum = float('-inf')
+    current_sum = 0
+    start_index = 0
+
+    for i in range(len",
+make_palindrome,"def is_palindrome(string: str) -> bool:
+    """""" Test if given string is a palindrome """"""
+    return string == string[::-1]
+
+
+def make_palindrome(string: str) -> str:
+    """""" Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate('x') == 'x'
+    assert candidate('xyz') == 'xyzyx'
+    assert candidate('xyx') == 'xyx'
+    assert candidate('jerry') == 'jerryrrej'
+","def is_palindrome(string: str) -> bool:
+    """""" Test if given string is a palindrome """"""
+    return string == string[::-1]
+
+
+def make_palindrome(string: str) -> str:
+    """""" Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.""""""
+    if is_palindrome(string):
+        return string
+    for i in range(len(string) // 2, len(string)):
+        if is_palindrome(string[i:]):
+            return string[i:][::-1] + string
+
+
+def test_make_palindrome():
+    assert make_palindrome(""abcd"") == ""dcba""
+    assert make_palindrome(""abba"") == ""abba""
+    assert make_palindrome(""a"") == ""a""
+    assert make_palindrome(""aa"") == ""aa""
+    assert make_palindrome(""aaa"") == ""aaa""
+    assert make_palindrome(""aaaa"") == ""aaaa""
+    assert make_palindrome(""abccba"") == ""abccba""
+    assert make_palindrome(""abcba"") == ""abcba""
+    assert make_palindrome(""abbaa"") == ""abbaa""
+    assert make_palindrome(""abbba"") == ""abbba""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbaa"") == ""abbaa""
+    assert make_palindrome(""abbba"") == ""abbba""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+    assert make_palindrome(""abbab"") == ""babab""
+",
+string_xor,"from typing import List
+
+
+def string_xor(a: str, b: str) -> str:
+    """""" Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('111000', '101010') == '010010'
+    assert candidate('1', '1') == '0'
+    assert candidate('0101', '0000') == '0101'
+","from typing import List
+
+
+def string_xor(a: str, b: str) -> str:
+    """""" Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.""""""
+    return ''.join([str(int(x) ^ int(y)) for x, y in zip(a, b)])
+
+
+def string_to_bits(s: str) -> List[str]:
+    """""" Convert a string to a list of bits. """"""
+    return [bin(ord(x))[2:].zfill(8) for x in s]
+
+
+def bits_to_string(bits: List[str]) -> str:
+    """""" Convert a list of bits to a string. """"""
+    return ''.join([chr(int(x, 2)) for x in bits])
+
+
+def main():
+    a = ""10101010""
+    b = ""01010101""
+    print(string_xor(a, b))  # Output: ""11111111""
+
+    message = ""Hello, World!""
+    bits = string_to_bits(message)
+    print(bits)
+    decoded_message = bits_to_string(bits)
+    print(decoded_message)
+
+
+if __name__ == ""__main__"":
+    main()",
+longest,"from typing import List, Optional
+
+
+def longest(strings: List[str]) -> Optional[str]:
+    """""" Out of list of strings, return the longest one. Return the first one in case of multiple
+    strings of the same length. Return None in case the input list is empty.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == None
+    assert candidate(['x', 'y', 'z']) == 'x'
+    assert candidate(['x', 'yyy', 'zzzz', 'www', 'kkkk', 'abc']) == 'zzzz'
+","from typing import List, Optional
+
+
+def longest(strings: List[str]) -> Optional[str]:
+    """""" Out of list of strings, return the longest one. Return the first one in case of multiple
+    strings of the same length. Return None in case the input list is empty.""""""
+    if not strings:
+        return None
+    return max(strings, key=len)
+
+
+def test_longest():
+    assert longest([""abc"", ""def"", ""ghi""]) == ""abc""
+    assert longest([""abc"", ""def"", ""xyz""]) == ""def""
+    assert longest([""abc"", ""def"", ""xyz"", ""pqrstuv""]) == ""pqrstuv""
+    assert longest([]) is None
+    assert longest([""a""]) == ""a""
+    assert longest([""abc"", ""def"", ""xyz"", ""a""]) == ""abc""",
