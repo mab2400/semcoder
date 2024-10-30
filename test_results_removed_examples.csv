@@ -907,3 +907,150 @@ print(how_many_times(original_string, sub_string))  # Output: 1
 original_string = ""mississippi""
 sub_string = ""mississippi""
 print(",
+sort_numbers,"from typing import List
+
+
+def sort_numbers(numbers: str) -> str:
+    """""" Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate('three') == 'three'
+    assert candidate('three five nine') == 'three five nine'
+    assert candidate('five zero four seven nine eight') == 'zero four five seven eight nine'
+    assert candidate('six five four three two one zero') == 'zero one two three four five six'
+","from typing import List
+
+
+def sort_numbers(numbers: str) -> str:
+    """""" Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest""""""
+    number_dict = {
+        'zero': 0,
+        'one': 1,
+        'two': 2,
+        'three': 3,
+        'four': 4,
+        'five': 5,
+       'six': 6,
+       'seven': 7,
+        'eight': 8,
+        'nine': 9
+    }
+
+    numbers_list = numbers.split()
+    sorted_numbers = sorted(numbers_list, key=lambda x: number_dict[x])
+
+    return''.join(sorted_numbers)
+
+
+# Test the function
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort_numbers(""nine five zero two three""))  # Output: zero two three five nine
+print(sort",
+find_closest_elements,"from typing import List, Tuple
+
+
+def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
+    """""" From a supplied list of numbers (of length at least two) select and return two that are the closest to each
+    other and return them in order (smaller number, larger number).""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2]) == (3.9, 4.0)
+    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0]) == (5.0, 5.9)
+    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.2]) == (2.0, 2.2)
+    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)
+    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1]) == (2.2, 3.1)
+
+","from typing import List, Tuple
+
+
+def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
+    """""" From a supplied list of numbers (of length at least two) select and return two that are the closest to each
+    other and return them in order (smaller number, larger number).""""""
+    numbers.sort()
+    min_diff = numbers[1] - numbers[0]
+    closest_pair = (numbers[0], numbers[1])
+
+    for i in range(1, len(numbers) - 1):
+        diff = numbers[i + 1] - numbers[i]
+        if diff < min_diff:
+            min_diff = diff
+            closest_pair = (numbers[i], numbers[i + 1])
+
+    return closest_pair
+
+
+# Test the function
+numbers = [1.5, 10.5, 12.3, 5.8, 7.2, 9.1]
+closest_pair = find_closest_elements(numbers)
+print(f""The closest pair of numbers are: {closest_pair[0]} and {closest_pair[1]}"")",
+rescale_to_unit,"from typing import List
+
+
+def rescale_to_unit(numbers: List[float]) -> List[float]:
+    """""" Given list of numbers (of at least two elements), apply a linear transform to that list,
+    such that the smallest number will become 0 and the largest will become 1""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([2.0, 49.9]) == [0.0, 1.0]
+    assert candidate([100.0, 49.9]) == [1.0, 0.0]
+    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0]) == [0.0, 0.25, 0.5, 0.75, 1.0]
+    assert candidate([2.0, 1.0, 5.0, 3.0, 4.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]
+    assert candidate([12.0, 11.0, 15.0, 13.0, 14.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]
+","from typing import List
+
+
+def rescale_to_unit(numbers: List[float]) -> List[float]:
+    """""" Given list of numbers (of at least two elements), apply a linear transform to that list,
+    such that the smallest number will become 0 and the largest will become 1""""""
+    min_val = min(numbers)
+    max_val = max(numbers)
+    if min_val == max_val:
+        return [0.0] * len(numbers)
+    return [(num - min_val) / (max_val - min_val) for num in numbers]
+
+
+def rescale_to_unit_interval(numbers: List[float]) -> List[float]:
+    """""" Given list of numbers (of at least two elements), apply a linear transform to that list,
+    such that the smallest number will become 0 and the largest will become 1,
+    but the interval between 0 and 1 will be the same as the original interval""""""
+    min_val = min(numbers)
+    max_val = max(numbers)
+    if min_val == max_val:
+        return [0.0] * len(numbers)
+    return [(num - min_val) / (max_val - min_val) * (1 - 0) + 0 for num in numbers]",
