@@ -2638,3 +2638,222 @@ def check(candidate):
 # Test the function
 print(remove_vowels(""Hello, World!""))  # Output: Hll, Wrld!
 print(remove_vowels(""Python is awesome""))  # Output: Pythn s wsm",
+below_threshold,"def below_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are below threshold t.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 4, 10], 100)
+    assert not candidate([1, 20, 4, 10], 5)
+    assert candidate([1, 20, 4, 10], 21)
+    assert candidate([1, 20, 4, 10], 22)
+    assert candidate([1, 8, 4, 10], 11)
+    assert not candidate([1, 8, 4, 10], 10)
+
+","def below_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are below threshold t.""""""
+    for num in l:
+        if num >= t:
+            return False
+    return True
+
+# Test the function
+test_list = [1, 2, 3, 4, 5]
+threshold = 6
+print(below_threshold(test_list, threshold))  # Output: True
+
+threshold = 4
+print(below_threshold(test_list, threshold))  # Output: False
+",
+add,"def add(x: int, y: int):
+    """"""Add two numbers x and y""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    import random
+
+    assert candidate(0, 1) == 1
+    assert candidate(1, 0) == 1
+    assert candidate(2, 3) == 5
+    assert candidate(5, 7) == 12
+    assert candidate(7, 5) == 12
+
+    for i in range(100):
+        x, y = random.randint(0, 1000), random.randint(0, 1000)
+        assert candidate(x, y) == x + y
+
+","def add(x: int, y: int):
+    """"""Add two numbers x and y""""""
+    return x+y
+
+def subtract(x: int, y: int):
+    """"""Subtract y from x""""""
+    return x-y
+
+def multiply(x: int, y: int):
+    """"""Multiply x and y""""""
+    return x*y
+
+def divide(x: int, y: int):
+    """"""Divide x by y""""""
+    return x/y",
+same_chars,"def same_chars(s0: str, s1: str):
+    """"""
+    Check if two words have the same characters.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True
+    assert candidate('abcd', 'dddddddabc') == True
+    assert candidate('dddddddabc', 'abcd') == True
+    assert candidate('eabcd', 'dddddddabc') == False
+    assert candidate('abcd', 'dddddddabcf') == False
+    assert candidate('eabcdzzzz', 'dddzzzzzzzddddabc') == False
+    assert candidate('aabb', 'aaccc') == False
+
+","def same_chars(s0: str, s1: str):
+    """"""
+    Check if two words have the same characters.""""""
+    return sorted(s0) == sorted(s1)
+
+
+def test_same_chars():
+    assert same_chars(""listen"", ""silent"") is True
+    assert same_chars(""hello"", ""world"") is False
+    assert same_chars(""abc"", ""cba"") is True
+    assert same_chars(""python"", ""typhon"") is False
+    assert same_chars(""abcde"", ""edcba"") is True
+    assert same_chars("""", """") is True
+    assert same_chars(""a"", ""a"") is True
+    assert same_chars(""abc"", ""def"") is False
+    assert same_chars(""abc"", ""abcd"") is False
+    assert same_chars(""abc"", ""ab"") is False
+    assert same_chars(""abc"", ""a"") is False
+    assert same_chars(""a"", ""abc"") is False
+    assert same_chars(""abc"", """") is False
+    assert same_chars("""", ""abc"") is False
+    assert same_chars(""aabbcc"", ""aabbcc"") is True
+    assert same_chars(""aabbcc"", ""aabbccd"") is False
+    assert same_chars(""aabbcc"", ""aabbc"") is False
+    assert same_chars(""aabbcc"", ""aabb"") is False
+    assert same_chars(""aabbcc"", ""aab"") is False
+    assert same_chars(""aabbcc"", ""aa"") is False
+    assert same_chars(""aabbcc"", ""a"") is False
+    assert same_chars(""aabbcc"", """") is False
+    assert same_chars("""", ""aabbcc"") is False
+    assert same_chars(""abcdef"", ""fedcba"") is True
+    assert same_chars(""abcdef"", ""fedcba"") is True
+    assert same_chars(""abcdef"", ""fedcb"") is False
+    assert same_chars(""abcdef"", ""fedc"") is False
+    assert same_chars(""abcdef"", ""fed"") is False
+    assert same_chars(""abcdef",
+fib,"def fib(n: int):
+    """"""Return n-th Fibonacci number.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(10) == 55
+    assert candidate(1) == 1
+    assert candidate(8) == 21
+    assert candidate(11) == 89
+    assert candidate(12) == 144
+
+","def fib(n: int):
+    """"""Return n-th Fibonacci number.""""""
+    if n <= 1:
+        return n
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+
+def fib_iter(n: int):
+    """"""Return n-th Fibonacci number iteratively.""""""
+    if n <= 1:
+        return n
+    else:
+        prev, curr = 0, 1
+        for _ in range(2, n + 1):
+            prev, curr = curr, prev + curr
+        return curr
+
+
+def fib_memo(n: int, memo: dict = {}):
+    """"""Return n-th Fibonacci number with memoization.""""""
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    else:
+        memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo)
+        return memo[n]
+
+
+def fib_memo_iter(n: int):
+    """"""Return n-th Fibonacci number iteratively with memoization.""""""
+    if n <= 1:
+        return n
+    else:
+        memo = {0: 0, 1: 1}
+        prev, curr = 0, 1
+        for i in range(2, n + 1):
+            prev, curr = curr, prev + curr
+            memo[i] = curr
+        return curr
+
+
+def fib_bottom_up(n: int):
+    """"""Return n-th Fibonacci number using bottom-up dynamic programming.""""""
+    if n <= 1:
+        return n
+    else:
+        dp = [0] * (n + 1)
+        dp[1] = 1
+        for i in range(2, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
+        return dp[n]
+
+
+def fib_bottom_up_const_space(n: int):
+    """"""Return n-th Fibonacci number using bottom-up dynamic programming with constant space.""""""
+",
+correct_bracketing,"def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""<"" and "">"".
+    return True if every opening bracket has a corresponding closing bracket.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(""<>"")
+    assert candidate(""<<><>>"")
+    assert candidate(""<><><<><>><>"")
+    assert candidate(""<><><<<><><>><>><<><><<>>>"")
+    assert not candidate(""<<<><>>>>"")
+    assert not candidate(""><<>"")
+    assert not candidate(""<"")
+    assert not candidate(""<<<<"")
+    assert not candidate("">"")
+    assert not candidate(""<<>"")
+    assert not candidate(""<><><<><>><>><<>"")
+    assert not candidate(""<><><<><>><>>><>"")
+
+","def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""<"" and "">"".
+    return True if every opening bracket has a corresponding closing bracket.""""""
+    stack = []
+    for bracket in brackets:
+        if bracket == ""<"":
+            stack.append(""<"")
+        elif bracket == "">"":
+            if not stack:
+                return False
+            stack.pop()
+    return not stack",
