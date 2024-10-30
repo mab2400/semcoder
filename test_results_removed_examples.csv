@@ -1718,3 +1718,217 @@ def test_unique():
     assert unique([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     assert unique([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     assert unique([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5",
+max_element,"def max_element(l: list):
+    """"""Return maximum element in the list.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 3]) == 3
+    assert candidate([5, 3, -5, 2, -3, 3, 9, 0, 124, 1, -10]) == 124
+","def max_element(l: list):
+    """"""Return maximum element in the list.""""""
+    return max(l)
+
+
+def min_element(l: list):
+    """"""Return minimum element in the list.""""""
+    return min(l)
+
+
+def sum_elements(l: list):
+    """"""Return sum of elements in the list.""""""
+    return sum(l)
+
+
+def product_elements(l: list):
+    """"""Return product of elements in the list.""""""
+    product = 1
+    for element in l:
+        product *= element
+    return product
+
+
+def reverse_list(l: list):
+    """"""Return reversed list.""""""
+    return l[::-1]
+
+
+def sort_list(l: list):
+    """"""Return sorted list.""""""
+    return sorted(l)
+
+
+def remove_duplicates(l: list):
+    """"""Return list without duplicates.""""""
+    return list(set(l))
+
+
+def remove_element(l: list, element):
+    """"""Return list without specified element.""""""
+    return [x for x in l if x!= element]
+
+
+def remove_all_elements(l: list, element):
+    """"""Return list without all specified elements.""""""
+    return [x for x in l if x!= element]
+
+
+def remove_all_elements_by_value(l: list, element):
+    """"""Return list without all specified elements by value.""""""
+    return [x for x in l if x!= element]
+
+
+def remove_all_elements_by_index(l: list, index):
+    """"""Return list without all specified elements by index.""""""
+    return [x for x in l if l.index(x)!= index]
+
+
+def remove_all_elements_by_value_and_index(l: list, value, index):
+    """"""Return list without all specified elements by value and index.""""""
+    return [x for x in l if x!= value and l.index(x)!= index]
+
+
+def remove_all_elements_by_value_and_index_reverse(l: list, value, index):
+    """"""Return list without all specified elements by value and index (reverse).""""""
+    return [x for x in l if x!= value and l.index(x)!= index",
+fizz_buzz,"def fizz_buzz(n: int):
+    """"""Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(50) == 0
+    assert candidate(78) == 2
+    assert candidate(79) == 3
+    assert candidate(100) == 3
+    assert candidate(200) == 6
+    assert candidate(4000) == 192
+    assert candidate(10000) == 639
+    assert candidate(100000) == 8026
+
+","def fizz_buzz(n: int):
+    """"""Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.""""""
+    count = 0
+    for i in range(1, n):
+        if i % 11 == 0 or i % 13 == 0:
+            count += str(i).count('7')
+    return count
+
+# Test the function with n = 100
+print(fizz_buzz(100))  # Output: 24",
+sort_even,"def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])
+    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple([-10, 3, -5, 2, -3, 3, 5, 0, 9, 1, 123])
+    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple([-12, 8, 3, 4, 5, 2, 12, 11, 23, -10])
+
+","def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.""""""
+    l_even = sorted([l[i] for i in range(len(l)) if i % 2 == 0])
+    l_odd = [l[i] for i in range(len(l)) if i % 2!= 0]
+    l_sorted = [l_even.pop(0) if i % 2 == 0 else l_odd.pop(0) for i in range(len(l))]
+    return l_sorted
+
+# Test the function
+test_list = [5, 2, 8, 3, 9, 1]
+print(sort_even(test_list))  # Output: [2, 8, 3, 9, 1, 5]
+
+# The function correctly sorts the even indicies of the list while maintaining the odd indicies as they were in the original list.",
+decode_cyclic,"
+
+def encode_cyclic(s: str):
+    """"""
+    returns encoded string by cycling groups of three characters.
+    """"""
+    # split string to groups. Each of length 3.
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # cycle elements in each group. Unless group has fewer elements than 3.
+    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]
+    return """".join(groups)
+
+
+def decode_cyclic(s: str):
+    """"""
+    takes as input string encoded with encode_cyclic function. Returns decoded string.
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    from random import randint, choice
+    import string
+
+    letters = string.ascii_lowercase
+    for _ in range(100):
+        str = ''.join(choice(letters) for i in range(randint(10, 20)))
+        encoded_str = encode_cyclic(str)
+        assert candidate(encoded_str) == str
+
+","
+
+def encode_cyclic(s: str):
+    """"""
+    returns encoded string by cycling groups of three characters.
+    """"""
+    # split string to groups. Each of length 3.
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # cycle elements in each group. Unless group has fewer elements than 3.
+    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]
+    return """".join(groups)
+
+
+def decode_cyclic(s: str):
+    """"""
+    takes as input string encoded with encode_cyclic function. Returns decoded string.
+    """"""
+    # split string to groups. Each of length 3.
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # cycle elements in each group. Unless group has fewer elements than 3.
+    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]
+    return """".join(groups)
+
+
+def encode_rail_fence(s: str, n: int):
+    """"""
+    returns encoded string by zigzagging through the rail fence.
+    """"""
+    # split string to rows. Each of length n.
+    rows = [s[(n * i):min((n * i + n), len(s))] for i in range((len(s) + n - 1) // n)]
+    # zigzag through rows.
+    return """".join(["""".join([row[i] for row in rows]) for i in range(n)])
+
+
+def decode_rail_fence(s: str, n: int):
+    """"""
+    takes as input string encoded with encode_rail_fence function. Returns decoded string.
+    """"""
+    # split string to rows. Each of length n.
+    rows = [s[(n * i):min((n * i + n), len(s))] for i in range((len(s) + n - 1) // n)]
+    # zigzag through rows.
+    return """".join(["""".join([row[i] for row in rows]) for i in range(n)])
+
+
+def encode_rot13(s: str):
+    """"""
+    returns encoded string by rotating characters by 13 positions.
+    """"""
+    return s.translate(str.maketrans(
+        ""abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"",
+        ""nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM""))
+
+
+def decode",
