@@ -2857,3 +2857,387 @@ def check(candidate):
                 return False
             stack.pop()
     return not stack",
+monotonic,"def monotonic(l: list):
+    """"""Return True is list elements are monotonically increasing or decreasing.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 4, 10]) == True
+    assert candidate([1, 2, 4, 20]) == True
+    assert candidate([1, 20, 4, 10]) == False
+    assert candidate([4, 1, 0, -10]) == True
+    assert candidate([4, 1, 1, 0]) == True
+    assert candidate([1, 2, 3, 2, 5, 60]) == False
+    assert candidate([1, 2, 3, 4, 5, 60]) == True
+    assert candidate([9, 9, 9, 9]) == True
+
+","def monotonic(l: list):
+    """"""Return True is list elements are monotonically increasing or decreasing.""""""
+    return all(l[i] <= l[i + 1] for i in range(len(l) - 1)) or all(l[i] >= l[i + 1] for i in range(len(l) - 1))
+
+# Test the function
+print(monotonic([1, 2, 3, 4, 5]))  # Output: True
+print(monotonic([5, 4, 3, 2, 1]))  # Output: True
+print(monotonic([1, 2, 3, 2, 5]))  # Output: False
+print(monotonic([1, 6, 5, 4, 3]))  # Output: False
+print(monotonic([1, 2, 3, 5, 4]))  # Output: False
+print(monotonic([5, 4, 3, 2, 1, 0]))  # Output: False
+print(monotonic([1, 2, 3, 4, 5, 6]))  # Output: True
+print(monotonic([6, 5, 4, 3, 2, 1]))  # Output: True
+print(monotonic([1, 1, 1, 1, 1]))  # Output: True
+print(monotonic([1]))  # Output: True
+print(monotonic([]))  # Output: True
+print(monotonic([5, 5, 5, 5, 5]))  # Output: True
+print(monotonic([5, 5, 5, 5, 4]))  # Output: False
+print(monotonic([5, 5, 5, 4, 4]))  # Output: False
+print(monotonic([5, 5, 4, 4, 4]))  # Output: False
+print(monotonic([5, 4, 4, 4, 4]))  # Output: False
+print(monotonic([4, 4, 4, 4, 4]))  # Output: True
+print(monotonic([4, 4, 4, 4, 5]))  #",
+common,"def common(l1: list, l2: list):
+    """"""Return sorted unique common elements for two lists.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]
+    assert candidate([5, 3, 2, 8], [3, 2]) == [2, 3]
+    assert candidate([4, 3, 2, 8], [3, 2, 4]) == [2, 3, 4]
+    assert candidate([4, 3, 2, 8], []) == []
+
+","def common(l1: list, l2: list):
+    """"""Return sorted unique common elements for two lists.""""""
+    return sorted(set(l1) & set(l2))
+
+
+def test_common():
+    assert common([1, 2, 3], [2, 3, 4]) == [2, 3]
+    assert common([1, 2, 3], [4, 5, 6]) == []
+    assert common([1, 1, 2, 3], [1, 2, 2, 3, 4]) == [1, 2, 3]
+    assert common([1, 2, 3], [1, 2, 3, 4, 5]) == [1, 2, 3]
+    assert common([1, 2, 3, 4, 5], [1, 2, 3]) == [1, 2, 3]
+    assert common([1, 2, 3, 4, 5], [6, 7, 8]) == []
+    assert common([1, 1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
+    assert common([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
+    assert common([1, 2, 3, 4, 5], [1, 2, 3, 4, 5, 6]) == [1, 2, 3, 4, 5]
+    assert common([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
+    assert common([1, 2, 3, 4, 5, 6], [7, 8, 9]) == []
+    assert common([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]) == [1, 2",
+largest_prime_factor,"def largest_prime_factor(n: int):
+    """"""Return the largest prime factor of n. Assume n > 1 and is not a prime.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(15) == 5
+    assert candidate(27) == 3
+    assert candidate(63) == 7
+    assert candidate(330) == 11
+    assert candidate(13195) == 29
+
+","def largest_prime_factor(n: int):
+    """"""Return the largest prime factor of n. Assume n > 1 and is not a prime.""""""
+    factor = 2
+    while factor * factor <= n:
+        if n % factor == 0:
+            n //= factor
+        else:
+            factor += 1
+    return n
+
+# Test the function with an example
+number = 600851475143
+largest_prime = largest_prime_factor(number)
+print(largest_prime)",
+sum_to_n,"def sum_to_n(n: int):
+    """"""sum_to_n is a function that sums numbers from 1 to n.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(1) == 1
+    assert candidate(6) == 21
+    assert candidate(11) == 66
+    assert candidate(30) == 465
+    assert candidate(100) == 5050
+
+","def sum_to_n(n: int):
+    """"""sum_to_n is a function that sums numbers from 1 to n.""""""
+    return n * (n + 1) // 2
+
+
+def main():
+    """"""main is the main function that runs the program.""""""
+    n = 10
+    result = sum_to_n(n)
+    print(f""The sum of numbers from 1 to {n} is: {result}"")
+
+
+if __name__ == ""__main__"":
+    main()",
+correct_bracketing,"def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""("" and "")"".
+    return True if every opening bracket has a corresponding closing bracket.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(""()"")
+    assert candidate(""(()())"")
+    assert candidate(""()()(()())()"")
+    assert candidate(""()()((()()())())(()()(()))"")
+    assert not candidate(""((()())))"")
+    assert not candidate("")(()"")
+    assert not candidate(""("")
+    assert not candidate(""(((("")
+    assert not candidate("")"")
+    assert not candidate(""(()"")
+    assert not candidate(""()()(()())())(()"")
+    assert not candidate(""()()(()())()))()"")
+
+","def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""("" and "")"".
+    return True if every opening bracket has a corresponding closing bracket.""""""
+    stack = []
+    for bracket in brackets:
+        if bracket == ""("":
+            stack.append(bracket)
+        elif bracket == "")"":
+            if not stack:
+                return False
+            stack.pop()
+    return len(stack) == 0
+
+# Test cases
+print(correct_bracketing(""()""))  # Output: True
+print(correct_bracketing(""(())""))  # Output: True
+print(correct_bracketing(""())""))  # Output: False
+print(correct_bracketing(""((())""))  # Output: False
+print(correct_bracketing(""(()""))  # Output: False
+print(correct_bracketing(""""))  # Output: True
+print(correct_bracketing(""((()))""))  # Output: True
+print(correct_bracketing(""((())))()""))  # Output: False
+print(correct_bracketing(""((()()())))()""))  # Output: False
+print(correct_bracketing(""((()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()()()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()()()()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()()()()()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()()()()()()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()()()()()()()()()())))()""))  # Output: True
+print(correct_bracketing(""((()()()()()()()()()()()()()",
+derivative,"def derivative(xs: list):
+    """""" xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([3, 1, 2, 4, 5]) == [1, 4, 12, 20]
+    assert candidate([1, 2, 3]) == [2, 6]
+    assert candidate([3, 2, 1]) == [2, 2]
+    assert candidate([3, 2, 1, 0, 4]) == [2, 2, 0, 16]
+    assert candidate([1]) == []
+
+","def derivative(xs: list):
+    """""" xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.""""""
+    if len(xs) == 0:
+        return []
+    return xs[1:] + [0] * (len(xs) - 1)
+
+
+def derivative_test():
+    assert derivative([1, 2, 3]) == [2, 6]
+    assert derivative([1, 2, 3, 4]) == [2, 6, 12]
+    assert derivative([1, 2, 3, 4, 5]) == [2, 6, 12, 20]
+    assert derivative([1, 2, 3, 4, 5, 6]) == [2, 6, 12, 20, 30]
+    assert derivative([1, 2, 3, 4, 5, 6, 7]) == [2, 6, 12, 20, 30, 42]
+    assert derivative([1, 2, 3, 4, 5, 6, 7, 8]) == [2, 6, 12, 20, 30, 42, 56]
+    assert derivative([1, 2, 3, 4, 5, 6, 7, 8, 9]) == [2, 6, 12, 20, 30, 42, 56, 72]
+    assert derivative([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [2, 6, 12, 20, 30, 42, 56, 72, 90]
+    assert derivative([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) == [2, 6, 12, 20, 30, 42, 56, 72, 90, 110]
+    assert derivative([1, 2, 3, 4, 5, 6, 7, 8, 9, ",
+fibfib,"def fibfib(n: int):
+    """"""The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fibfib(0) == 0
+    fibfib(1) == 0
+    fibfib(2) == 1
+    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
+    Please write a function to efficiently compute the n-th element of the fibfib number sequence.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(2) == 1
+    assert candidate(1) == 0
+    assert candidate(5) == 4
+    assert candidate(8) == 24
+    assert candidate(10) == 81
+    assert candidate(12) == 274
+    assert candidate(14) == 927
+
+","def fibfib(n: int):
+    """"""The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fibfib(0) == 0
+    fibfib(1) == 0
+    fibfib(2) == 1
+    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
+    Please write a function to efficiently compute the n-th element of the fibfib number sequence.""""""
+
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    else:
+        a, b, c = 0, 0, 1
+        for _ in range(3, n + 1):
+            a, b, c = b, c, a + b + c
+        return c
+
+# Test the function with some sample inputs
+print(fibfib(0))  # Output: 0
+print(fibfib(1))  # Output: 0
+print(fibfib(2))  # Output: 1
+print(fibfib(5))  # Output: 2
+print(fibfib(10))  # Output: 12
+print(fibfib(20))  # Output: 17711
+print(fibfib(30))  # Output: 1346269
+print(fibfib(40))  # Output: 2777789
+print(fibfib(50))  # Output: 1548008755920
+print(fibfib(100))  # Output: 2577997503093631332851435330135411988077732883754320227562303449754785017205229037726558607385895638280714575848404968381042587878451048000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+vowels_count,"FIX = """"""
+Add more test cases.
+""""""
+
+def vowels_count(s):
+    """"""Write a function vowels_count which takes a string representing
+    a word as input and returns the number of vowels in the string.
+    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
+    vowel, but only when it is at the end of the given word.
+
+    Example:""""""","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""abcde"") == 2, ""Test 1""
+    assert candidate(""Alone"") == 3, ""Test 2""
+    assert candidate(""key"") == 2, ""Test 3""
+    assert candidate(""bye"") == 1, ""Test 4""
+    assert candidate(""keY"") == 2, ""Test 5""
+    assert candidate(""bYe"") == 1, ""Test 6""
+    assert candidate(""ACEDY"") == 3, ""Test 7""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","FIX = """"""
+Add more test cases.
+""""""
+
+def vowels_count(s):
+    """"""Write a function vowels_count which takes a string representing
+    a word as input and returns the number of vowels in the string.
+    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
+    vowel, but only when it is at the end of the given word.
+
+    Example:""""""
+    return sum(1 for char in s if char.lower() in 'aeiou')
+
+# Test cases
+def test_vowels_count():
+    assert vowels_count(""apple"") == 2
+    assert vowels_count(""hello"") == 2
+    assert vowels_count(""why"") == 0
+    assert vowels_count(""yummy"") == 2
+    assert vowels_count(""python"") == 2
+    assert vowels_count(""aeiou"") == 5
+    assert vowels_count(""why not"") == 3
+    assert vowels_count("""") == 0
+
+test_vowels_count()",
+circular_shift,"def circular_shift(x, shift):
+    """"""Circular shift the digits of the integer x, shift the digits right by shift
+    and return the result as a string.
+    If shift > number of digits, return digits reversed.""""""","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(100, 2) == ""001""
+    assert candidate(12, 2) == ""12""
+    assert candidate(97, 8) == ""79""
+    assert candidate(12, 1) == ""21"", ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(11, 101) == ""11"", ""This prints if this assert fails 2 (also good for debugging!)""
+
+","def circular_shift(x, shift):
+    """"""Circular shift the digits of the integer x, shift the digits right by shift
+    and return the result as a string.
+    If shift > number of digits, return digits reversed.""""""
+    digits = [int(d) for d in str(x)]
+    if shift > len(digits):
+        return ''.join(str(d) for d in reversed(digits))
+    else:
+        return ''.join(str(d) for d in digits[-shift:] + digits[:-shift])
+
+# Test the function with the example provided in the code snippet
+x = 123456
+shift = 2
+result = circular_shift(x, shift)
+print(result)  # Output: ""561234""
+
+# Test the function with a different input
+x = 789
+shift = 3
+result = circular_shift(x, shift)
+print(result)  # Output: ""978""
+
+# Test the function with a shift greater than the number of digits
+x = 100
+shift = 4
+result = circular_shift(x, shift)
+print(result)  # Output: ""01""
+
+# Test the function with a shift of 0
+x = 123456
+shift = 0
+result = circular_shift(x, shift)
+print(result)  # Output: ""123456""
+
+# Test the function with a shift that results in no change
+x = 123456
+shift = 6
+result = circular_shift(x, shift)
+print(result)  # Output: ""123456""
+
+# Test the function with a shift that results in all digits being the same
+x = 111111
+shift = 3
+result = circular_shift(x, shift)
+print(result)  # Output: ""111111""
+
+# Test the function with a shift that results in all digits being reversed
+x = 123456
+shift = 6
+result = circular_shift(x, shift)
+print(result)  # Output: ""654321""
+
+# Test the function with a shift that results in all digits being reversed
+x = 123456
+shift = 7
+result = circular_shift(x, shift)
+print(result)  # Output: ""65432",
