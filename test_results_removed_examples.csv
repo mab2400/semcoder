@@ -634,3 +634,276 @@ def test_longest():
     assert longest([]) is None
     assert longest([""a""]) == ""a""
     assert longest([""abc"", ""def"", ""xyz"", ""a""]) == ""abc""",
+greatest_common_divisor,"def greatest_common_divisor(a: int, b: int) -> int:
+    """""" Return a greatest common divisor of two integers a and b""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(3, 7) == 1
+    assert candidate(10, 15) == 5
+    assert candidate(49, 14) == 7
+    assert candidate(144, 60) == 12
+","def greatest_common_divisor(a: int, b: int) -> int:
+    """""" Return a greatest common divisor of two integers a and b""""""
+    while a!= 0 and b!= 0:
+        if a > b:
+            a %= b
+        else:
+            b %= a
+    return a + b
+
+
+def least_common_multiple(a: int, b: int) -> int:
+    """""" Return a least common multiple of two integers a and b""""""
+    return abs(a * b) // greatest_common_divisor(a, b)
+
+
+def main():
+    a, b = map(int, input().split())
+    print(greatest_common_divisor(a, b))
+    print(least_common_multiple(a, b))
+
+
+if __name__ == ""__main__"":
+    main()",
+all_prefixes,"from typing import List
+
+
+def all_prefixes(string: str) -> List[str]:
+    """""" Return list of all prefixes from shortest to longest of the input string""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == []
+    assert candidate('asdfgh') == ['a', 'as', 'asd', 'asdf', 'asdfg', 'asdfgh']
+    assert candidate('WWW') == ['W', 'WW', 'WWW']
+","from typing import List
+
+
+def all_prefixes(string: str) -> List[str]:
+    """""" Return list of all prefixes from shortest to longest of the input string""""""
+    return [string[:i] for i in range(1, len(string) + 1)]
+
+
+def all_suffixes(string: str) -> List[str]:
+    """""" Return list of all suffixes from shortest to longest of the input string""""""
+    return [string[i:] for i in range(len(string))]
+
+
+def all_substrings(string: str) -> List[str]:
+    """""" Return list of all substrings from shortest to longest of the input string""""""
+    return [string[i:j] for i in range(len(string)) for j in range(i + 1, len(string) + 1)]
+
+
+def all_substrings_2(string: str) -> List[str]:
+    """""" Return list of all substrings from shortest to longest of the input string""""""
+    return [string[i:j] for i in range(len(string)) for j in range(i + 1, len(string) + 1)]
+
+
+def all_substrings_3(string: str) -> List[str]:
+    """""" Return list of all substrings from shortest to longest of the input string""""""
+    return [string[i:j] for i in range(len(string)) for j in range(i + 1, len(string) + 1)]
+
+
+def all_substrings_4(string: str) -> List[str]:
+    """""" Return list of all substrings from shortest to longest of the input string""""""
+    return [string[i:j] for i in range(len(string)) for j in range(i + 1, len(string) + 1)]
+
+
+def all_substrings_5(string: str) -> List[str]:
+    """""" Return list of all substrings from shortest to longest of the input string""""""
+    return [string[i:j] for i in range(len(string)) for j in range(i + 1, len(string) + 1)]
+
+
+def all_substrings_6(string: str) -> List[str]:
+    """""" Return list of all substrings from shortest to longest of the input string""""""
+    return [string[i:j] for i in range(len(string)) for",
+string_sequence,"def string_sequence(n: int) -> str:
+    """""" Return a string containing space-delimited numbers starting from 0 upto n inclusive.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(0) == '0'
+    assert candidate(3) == '0 1 2 3'
+    assert candidate(10) == '0 1 2 3 4 5 6 7 8 9 10'
+","def string_sequence(n: int) -> str:
+    """""" Return a string containing space-delimited numbers starting from 0 upto n inclusive.""""""
+    return''.join(str(i) for i in range(n+1))
+
+# Test the function with n = 5
+n = 5
+result = string_sequence(n)
+print(result)",
+count_distinct_characters,"def count_distinct_characters(string: str) -> int:
+    """""" Given a string, find out how many distinct characters (regardless of case) does it consist of""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == 0
+    assert candidate('abcde') == 5
+    assert candidate('abcde' + 'cade' + 'CADE') == 5
+    assert candidate('aaaaAAAAaaaa') == 1
+    assert candidate('Jerry jERRY JeRRRY') == 5
+","def count_distinct_characters(string: str) -> int:
+    """""" Given a string, find out how many distinct characters (regardless of case) does it consist of""""""
+    distinct_chars = set()
+    for char in string:
+        if char.isalpha():
+            distinct_chars.add(char.lower())
+    return len(distinct_chars)
+
+
+# Test the function
+test_string = ""Hello, World!""
+print(count_distinct_characters(test_string))  # Output: 7 (Including space and comma)
+
+test_string = ""Python is AWESOME""
+print(count_distinct_characters(test_string))  # Output: 10 (Including space and case)
+
+test_string = ""1234567890""
+print(count_distinct_characters(test_string))  # Output: 10 (All digits are distinct)
+
+test_string = ""Same Same but different""
+print(count_distinct_characters(test_string))  # Output: 13 (Including space and case)",
+parse_music,"from typing import List
+
+
+def parse_music(music_string: str) -> List[int]:
+    """""" Input to this function is a string representing musical notes in a special ASCII format.
+    Your task is to parse this string and return list of integers corresponding to how many beats does each
+    not last.
+
+    Here is a legend:
+    'o' - whole note, lasts four beats
+    'o|' - half note, lasts two beats
+    '.|' - quater note, lasts one beat""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == []
+    assert candidate('o o o o') == [4, 4, 4, 4]
+    assert candidate('.| .| .| .|') == [1, 1, 1, 1]
+    assert candidate('o| o| .| .| o o o o') == [2, 2, 1, 1, 4, 4, 4, 4]
+    assert candidate('o| .| o| .| o o| o o|') == [2, 1, 2, 1, 4, 2, 4, 2]
+","from typing import List
+
+
+def parse_music(music_string: str) -> List[int]:
+    """""" Input to this function is a string representing musical notes in a special ASCII format.
+    Your task is to parse this string and return list of integers corresponding to how many beats does each
+    not last.
+
+    Here is a legend:
+    'o' - whole note, lasts four beats
+    'o|' - half note, lasts two beats
+    '.|' - quater note, lasts one beat""""""
+    music_dict = {'o': 4, 'o|': 2, '.|': 1}
+    music_list = [music_dict[note] for note in music_string if note in music_dict]
+    return music_list
+
+
+# Test the function with an example
+music_string = ""o.|o|o.|""
+parsed_music = parse_music(music_string)
+print(parsed_music)  # Output: [4, 1, 2, 4, 1]
+
+# Test the function with another example
+music_string = ""o|.|o.|.|""
+parsed_music = parse_music(music_string)
+print(parsed_music)  # Output: [2, 1, 4, 1, 1]
+",
+how_many_times,"def how_many_times(string: str, substring: str) -> int:
+    """""" Find how many times a given substring can be found in the original string. Count overlaping cases.""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('', 'x') == 0
+    assert candidate('xyxyxyx', 'x') == 4
+    assert candidate('cacacacac', 'cac') == 4
+    assert candidate('john doe', 'john') == 1
+","def how_many_times(string: str, substring: str) -> int:
+    """""" Find how many times a given substring can be found in the original string. Count overlaping cases.""""""
+    count = 0
+    start_index = 0
+    while start_index < len(string):
+        found_index = string.find(substring, start_index)
+        if found_index == -1:
+            break
+        count += 1
+        start_index = found_index + 1
+    return count
+
+# Test the function
+original_string = ""banana""
+sub_string = ""na""
+print(how_many_times(original_string, sub_string))  # Output: 2
+
+original_string = ""apple""
+sub_string = ""le""
+print(how_many_times(original_string, sub_string))  # Output: 1
+
+original_string = ""mississippi""
+sub_string = ""iss""
+print(how_many_times(original_string, sub_string))  # Output: 2
+
+original_string = ""hello world""
+sub_string = ""l""
+print(how_many_times(original_string, sub_string))  # Output: 3
+
+original_string = ""aaaaa""
+sub_string = ""aa""
+print(how_many_times(original_string, sub_string))  # Output: 4
+
+original_string = ""mississippi""
+sub_string = ""pi""
+print(how_many_times(original_string, sub_string))  # Output: 2
+
+original_string = ""mississippi""
+sub_string = ""issip""
+print(how_many_times(original_string, sub_string))  # Output: 1
+
+original_string = ""mississippi""
+sub_string = ""issipi""
+print(how_many_times(original_string, sub_string))  # Output: 0
+
+original_string = ""mississippi""
+sub_string = ""mississippi""
+print(how_many_times(original_string, sub_string))  # Output: 1
+
+original_string = ""mississippi""
+sub_string = ""mississippi""
+print(how_many_times(original_string, sub_string))  # Output: 1
+
+original_string = ""mississippi""
+sub_string = ""mississippi""
+print(",
