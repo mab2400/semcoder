@@ -2363,3 +2363,278 @@ print(fib4(16))  # Output: 74
 print(fib4(17))  # Output: 74
 print(fib4(18))  # Output: 134
 print(fib4(19))  # Output",
+median,"def median(l: list):
+    """"""Return median of elements in the list l.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([3, 1, 2, 4, 5]) == 3
+    assert candidate([-10, 4, 6, 1000, 10, 20]) == 8.0
+    assert candidate([5]) == 5
+    assert candidate([6, 5]) == 5.5
+    assert candidate([8, 1, 3, 9, 9, 2, 7]) == 7 
+
+","def median(l: list):
+    """"""Return median of elements in the list l.""""""
+    l.sort()
+    n = len(l)
+    if n % 2 == 1:
+        return l[n // 2]
+    else:
+        return (l[n // 2 - 1] + l[n // 2]) / 2
+
+# Test the function
+test_list = [1, 2, 3, 4, 5]
+print(median(test_list))  # Output: 3.0
+
+test_list = [1, 2, 3, 4, 5, 6]
+print(median(test_list))  # Output: 3.5
+",
+is_palindrome,"def is_palindrome(text: str):
+    """"""
+    Checks if given string is a palindrome""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('') == True
+    assert candidate('aba') == True
+    assert candidate('aaaaa') == True
+    assert candidate('zbcd') == False
+    assert candidate('xywyx') == True
+    assert candidate('xywyz') == False
+    assert candidate('xywzx') == False
+
+","def is_palindrome(text: str):
+    """"""
+    Checks if given string is a palindrome""""""
+    text = text.lower()
+    text = text.replace("" "", """")
+    return text == text[::-1]
+
+
+def is_palindrome_sentence(text: str):
+    """"""
+    Checks if given sentence is a palindrome""""""
+    text = text.lower()
+    text = text.replace("" "", """")
+    text = ''.join(char for char in text if char.isalnum())
+    return text == text[::-1]
+
+
+def is_palindrome_number(number: int):
+    """"""
+    Checks if given number is a palindrome""""""
+    return str(number) == str(number)[::-1]
+
+
+def is_palindrome_number_recursive(number: int):
+    """"""
+    Checks if given number is a palindrome recursively""""""
+    if number < 0:
+        return False
+    if number < 10:
+        return True
+    if number % 10!= number // (10 ** (len(str(number)) - 1)):
+        return False
+    return is_palindrome_number_recursive(number % (10 ** (len(str(number)) - 1)) // 10)
+
+
+def is_palindrome_number_recursive_2(number: int):
+    """"""
+    Checks if given number is a palindrome recursively""""""
+    if number < 0:
+        return False
+    if number < 10:
+        return True
+    if number % 10!= number // (10 ** (len(str(number)) - 1)):
+        return False
+    return is_palindrome_number_recursive_2(number % (10 ** (len(str(number)) - 1)) // 10)
+
+
+def is_palindrome_number_recursive_3(number: int):
+    """"""
+    Checks if given number is a palindrome recursively""""""
+    if number < 0:
+        return False
+    if number < 10:
+        return True
+    if number % 10!= number // (10 ** (len(str(number)) -",
+modp,"def modp(n: int, p: int):
+    """"""Return 2^n modulo p (be aware of numerics).""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(3, 5) == 3
+    assert candidate(1101, 101) == 2
+    assert candidate(0, 101) == 1
+    assert candidate(3, 11) == 8
+    assert candidate(100, 101) == 1
+    assert candidate(30, 5) == 4
+    assert candidate(31, 5) == 3
+
+","def modp(n: int, p: int):
+    """"""Return 2^n modulo p (be aware of numerics).""""""
+    return pow(2, n, p)
+
+
+def modp_inv(n: int, p: int):
+    """"""Return the modular inverse of n modulo p (be aware of numerics).""""""
+    return pow(n, p - 2, p)
+
+
+def modp_div(a: int, b: int, p: int):
+    """"""Return a * b^(p-2) modulo p (be aware of numerics).""""""
+    return (a * modp_inv(b, p)) % p
+
+
+def modp_sum(a: int, b: int, p: int):
+    """"""Return (a + b) modulo p (be aware of numerics).""""""
+    return (a + b) % p
+
+
+def modp_prod(a: int, b: int, p: int):
+    """"""Return (a * b) modulo p (be aware of numerics).""""""
+    return (a * b) % p
+
+
+def modp_sum_prod(a: int, b: int, c: int, p: int):
+    """"""Return (a + b * c) modulo p (be aware of numerics).""""""
+    return (a + (b * c)) % p
+
+
+def modp_sum_prod_div(a: int, b: int, c: int, d: int, p: int):
+    """"""Return (a + b * c * d^(p-2)) modulo p (be aware of numerics).""""""
+    return (a + (b * c * modp_inv(d, p))) % p
+
+
+def modp_sum_prod_div_2(a: int, b: int, c: int, d: int, p: int):
+    """"""Return (a + b * c * d^(p-2)) modulo p (be aware of numerics).""""""
+    return (a + (b * c * modp_inv(d, p))) % p
+
+
+def modp_sum_prod_div_3(a: int, b: int, c: int, d: int, p: int):
+    """"""Return (a + b * c * d^(p-2)) mod",
+decode_shift,"
+
+def encode_shift(s: str):
+    """"""
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """"""
+    return """".join([chr(((ord(ch) + 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def decode_shift(s: str):
+    """"""
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    from random import randint, choice
+    import copy
+    import string
+
+    letters = string.ascii_lowercase
+    for _ in range(100):
+        str = ''.join(choice(letters) for i in range(randint(10, 20)))
+        encoded_str = encode_shift(str)
+        assert candidate(copy.deepcopy(encoded_str)) == str
+
+","
+
+def encode_shift(s: str):
+    """"""
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """"""
+    return """".join([chr(((ord(ch) + 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def decode_shift(s: str):
+    """"""
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """"""
+    return """".join([chr(((ord(ch) - 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def encode_vigenere(s: str, key: str):
+    """"""
+    returns encoded string by using vigenere cipher with the given key.
+    """"""
+    return """".join([chr(((ord(s[i]) + ord(key[i % len(key)])) % 26) + ord(""a"")) for i in range(len(s))])
+
+
+def decode_vigenere(s: str, key: str):
+    """"""
+    takes as input string encoded with encode_vigenere function and the key used. Returns decoded string.
+    """"""
+    return """".join([chr(((ord(s[i]) - ord(key[i % len(key)])) % 26) + ord(""a"")) for i in range(len(s))])
+
+
+def encode_rail_fence(s: str, n: int):
+    """"""
+    returns encoded string by using rail fence cipher with n rails.
+    """"""
+    rails = [""""] * n
+    rail = 0
+    direction = 1
+    for ch in s:
+        rails[rail] += ch
+        rail += direction
+        if rail == n - 1 or rail == 0:
+            direction *= -1
+    return """".join(rails)
+
+
+def decode_rail_fence(s: str, n: int):
+    """"""
+    takes as input string encoded with encode_rail_fence function and the number of rails used. Returns decoded string.
+    """"""
+    rails = [""""] * n
+    rail = 0
+    direction = 1
+    for ch in s:
+        rails[rail] += ch
+        rail += direction
+        if rail == n - 1 or rail == 0:
+            direction *= -1
+    result = """"
+    i = 0
+    for _ in range(len(s)):
+        result += rails[i][0]
+        rails[i] = rails[i][1:]
+        i += direction",
+remove_vowels,"def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.""""""","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate(""abcdef\nghijklm"") == 'bcdf\nghjklm'
+    assert candidate('fedcba') == 'fdcb'
+    assert candidate('eeeee') == ''
+    assert candidate('acBAA') == 'cB'
+    assert candidate('EcBOO') == 'cB'
+    assert candidate('ybcd') == 'ybcd'
+
+","def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.""""""
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    result = ''.join(char for char in text if char.lower() not in vowels)
+    return result
+
+# Test the function
+print(remove_vowels(""Hello, World!""))  # Output: Hll, Wrld!
+print(remove_vowels(""Python is awesome""))  # Output: Pythn s wsm",
