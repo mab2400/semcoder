@@ -1054,3 +1054,218 @@ def rescale_to_unit_interval(numbers: List[float]) -> List[float]:
     if min_val == max_val:
         return [0.0] * len(numbers)
     return [(num - min_val) / (max_val - min_val) * (1 - 0) + 0 for num in numbers]",
+filter_integers,"from typing import List, Any
+
+
+def filter_integers(values: List[Any]) -> List[int]:
+    """""" Filter given list of any python values only for integers""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == []
+    assert candidate([4, {}, [], 23.2, 9, 'adasd']) == [4, 9]
+    assert candidate([3, 'c', 3, 3, 'a', 'b']) == [3, 3, 3]
+","from typing import List, Any
+
+
+def filter_integers(values: List[Any]) -> List[int]:
+    """""" Filter given list of any python values only for integers""""""
+    return [value for value in values if isinstance(value, int)]
+
+
+def filter_strings(values: List[Any]) -> List[str]:
+    """""" Filter given list of any python values only for strings""""""
+    return [value for value in values if isinstance(value, str)]
+
+
+def filter_floats(values: List[Any]) -> List[float]:
+    """""" Filter given list of any python values only for floats""""""
+    return [value for value in values if isinstance(value, float)]
+
+
+def filter_dicts(values: List[Any]) -> List[dict]:
+    """""" Filter given list of any python values only for dicts""""""
+    return [value for value in values if isinstance(value, dict)]
+
+
+def filter_lists(values: List[Any]) -> List[list]:
+    """""" Filter given list of any python values only for lists""""""
+    return [value for value in values if isinstance(value, list)]
+
+
+def filter_tuples(values: List[Any]) -> List[tuple]:
+    """""" Filter given list of any python values only for tuples""""""
+    return [value for value in values if isinstance(value, tuple)]
+
+
+def filter_sets(values: List[Any]) -> List[set]:
+    """""" Filter given list of any python values only for sets""""""
+    return [value for value in values if isinstance(value, set)]
+
+
+def filter_none(values: List[Any]) -> List[None]:
+    """""" Filter given list of any python values only for None""""""
+    return [value for value in values if value is None]
+
+
+def filter_bools(values: List[Any]) -> List[bool]:
+    """""" Filter given list of any python values only for bools""""""
+    return [value for value in values if isinstance(value, bool)]
+
+
+def filter_functions(values: List[Any]) -> List[Any]:
+    """""" Filter given list of any python values only for functions""""""
+    return [value for value in values if callable(value)]
+
+
+def filter_classes(values: List[Any]) -> List[Any]:
+    """""" Filter given list of any python values",
+strlen,"def strlen(string: str) -> int:
+    """""" Return length of given string""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == 0
+    assert candidate('x') == 1
+    assert candidate('asdasnakj') == 9
+","def strlen(string: str) -> int:
+    """""" Return length of given string""""""
+    return len(string)
+
+
+def str_reverse(string: str) -> str:
+    """""" Return reversed string""""""
+    return string[::-1]
+
+
+def str_upper(string: str) -> str:
+    """""" Return uppercase string""""""
+    return string.upper()
+
+
+def str_lower(string: str) -> str:
+    """""" Return lowercase string""""""
+    return string.lower()
+
+
+def str_capitalize(string: str) -> str:
+    """""" Return capitalized string""""""
+    return string.capitalize()
+
+
+def str_title(string: str) -> str:
+    """""" Return title case string""""""
+    return string.title()
+
+
+def str_swapcase(string: str) -> str:
+    """""" Return swapped case string""""""
+    return string.swapcase()
+
+
+def str_replace(string: str, old: str, new: str) -> str:
+    """""" Return string with old replaced by new""""""
+    return string.replace(old, new)
+
+
+def str_split(string: str, sep: str) -> list:
+    """""" Return list of strings split by separator""""""
+    return string.split(sep)
+
+
+def str_join(strings: list, sep: str) -> str:
+    """""" Return string joined by separator""""""
+    return sep.join(strings)
+
+
+def str_strip(string: str, chars: str) -> str:
+    """""" Return string with leading and trailing characters removed""""""
+    return string.strip(chars)
+
+
+def str_lstrip(string: str, chars: str) -> str:
+    """""" Return string with leading characters removed""""""
+    return string.lstrip(chars)
+
+
+def str_rstrip(string: str, chars: str) -> str:
+    """""" Return string with trailing characters removed""""""
+    return string.rstrip(chars)
+
+
+def str_center(string: str, width: int, fillchar: str) -> str:
+    """""" Return string centered in a string of given width""""""
+    return string.center(width, fillchar)
+
+",
+largest_divisor,"def largest_divisor(n: int) -> int:
+    """""" For a given number n, find the largest number that divides n evenly, smaller than n""""""","
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(3) == 1
+    assert candidate(7) == 1
+    assert candidate(10) == 5
+    assert candidate(100) == 50
+    assert candidate(49) == 7
+","def largest_divisor(n: int) -> int:
+    """""" For a given number n, find the largest number that divides n evenly, smaller than n""""""
+    for i in range(n-1, 0, -1):
+        if n % i == 0:
+            return i
+
+
+def smallest_multiple(n: int) -> int:
+    """""" For a given number n, find the smallest number that is a multiple of n""""""
+    i = n
+    while True:
+        if i % 2 == 0 and i % 3 == 0 and i % 4 == 0 and i % 5 == 0 and i % 6 == 0 and i % 7 == 0 and i % 8 == 0 and i % 9 == 0:
+            return i
+        i += n
+
+
+def sum_of_multiples(n: int) -> int:
+    """""" For a given number n, find the sum of all multiples of n below 1000""""""
+    total_sum = 0
+    for i in range(n, 1000, n):
+        total_sum += i
+    return total_sum
+
+
+def sum_of_even_fibonacci(n: int) -> int:
+    """""" For a given number n, find the sum of all even-valued terms in the Fibonacci sequence below n""""""
+    fib_sequence = [1, 2]
+    while fib_sequence[-1] + fib_sequence[-2] < n:
+        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
+
+    even_sum = sum(num for num in fib_sequence if num % 2 == 0)
+    return even_sum
+
+
+def largest_palindrome_product(n: int) -> int:
+    """""" For a given number n, find the largest palindrome made from the product of two n-digit numbers""""""
+    largest_palindrome = 0
+    for i in range(10**(n-1), 10**n):
+        for j in range(10**(n-1), 10**n):
+            product = i * j
+            if str(product) == str(product)[::-1] and product > largest_palindrome:
+                largest_palindrome = product
+    return largest_palindrome
+
+
+",
