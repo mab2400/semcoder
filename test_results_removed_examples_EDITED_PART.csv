@@ -537,3 +537,487 @@ print(is_multiply_prime(103))  # Output: False
 print(is_multiply_prime(104))  # Output: False
 print(is_multiply_prime(105))  # Output: True (3 * 5 * 7 = 105)
 ",
+is_simple_power,"
+def is_simple_power(x, n):
+    """"""Your task is to write a function that returns true if a number x is a simple
+    power of n and false in other cases.
+    x is a simple power of n if n**int=x
+  """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(16, 2)== True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(143214, 16)== False, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(4, 2)==True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(9, 3)==True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(16, 4)==True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(24, 2)==False, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(128, 4)==False, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(12, 6)==False, ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1, 1)==True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(1, 12)==True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def is_simple_power(x, n):
+    """"""Your task is to write a function that returns true if a number x is a simple
+    power of n and false in other cases.
+    x is a simple power of n if n**int=x
+  """"""
+    if n == 0:
+        return False
+    if n == 1:
+        return True
+    if x == 1:
+        return True
+    if x == 0:
+        return False
+    if x % n!= 0:
+        return False
+    return is_simple_power(x // n, n)
+
+
+def test_is_simple_power():
+    assert is_simple_power(0, 0) is False
+    assert is_simple_power(0, 1) is True
+    assert is_simple_power(1, 0) is False
+    assert is_simple_power(1, 1) is True
+    assert is_simple_power(1, 2) is True
+    assert is_simple_power(2, 2) is True
+    assert is_simple_power(2, 3) is False
+    assert is_simple_power(3, 3) is True
+    assert is_simple_power(3, 4) is False
+    assert is_simple_power(4, 4) is True
+    assert is_simple_power(4, 5) is False
+    assert is_simple_power(5, 5) is True
+    assert is_simple_power(5, 6) is False
+    assert is_simple_power(6, 6) is True
+    assert is_simple_power(6, 7) is False
+    assert is_simple_power(7, 7) is True
+    assert is_simple_power(7, 8) is False
+    assert is_simple_power(8, 8) is True
+    assert is_simple_power(8, 9) is False
+    assert is_simple_power(9, 9) is True
+    assert is_simple_power(9, 10) is False
+    assert is_simple_power(10, 10) is True
+    assert is_simple_power(10, 11) is False
+    assert is_simple_power(11, 11) is True
+    assert is_simple_power(11, 12) is False
+    assert is_simple_power(12, 12) is True
+",
+iscube,"
+def iscube(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+  '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(1) == True, ""First test error: "" + str(candidate(1))
+    assert candidate(2) == False, ""Second test error: "" + str(candidate(2))
+    assert candidate(-1) == True, ""Third test error: "" + str(candidate(-1))
+    assert candidate(64) == True, ""Fourth test error: "" + str(candidate(64))
+    assert candidate(180) == False, ""Fifth test error: "" + str(candidate(180))
+    assert candidate(1000) == True, ""Sixth test error: "" + str(candidate(1000))
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(0) == True, ""1st edge test error: "" + str(candidate(0))
+    assert candidate(1729) == False, ""2nd edge test error: "" + str(candidate(1728))
+
+","
+def iscube(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+  '''
+    x = round(a**(1/3))
+    return x*x*x == a
+
+
+def iscube2(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+  '''
+    x = round(a**(1/3))
+    return x*x*x == a
+
+
+def iscube3(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+  '''
+    x = round(a**(1/3))
+    return x*x*x == a
+
+
+def iscube4(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+  '''
+    x = round(a**(1/3))
+    return x*x*x == a
+
+
+def iscube5(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+  '''
+    x = round(a**(1/3))
+    return x*x*x == a
+
+
+def iscube6(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+  '''
+    x = round(a**(1/3))
+    return x*x*x == a
+
+
+def iscube7(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+  '''
+    x = round(a**(1/3))
+    return x*x*x",
+hex_key,"
+def hex_key(num):
+    """"""You have been tasked to write a function that receives 
+    a hexadecimal number as a string and counts the number of hexadecimal 
+    digits that are primes (prime number, or a prime, is a natural number 
+    greater than 1 that is not a product of two smaller natural numbers).
+    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
+    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
+    So you have to determine a number of the following digits: 2, 3, 5, 7, 
+    B (=decimal 11), D (=decimal 13).
+    Note: you may assume the input is always correct or empty string, 
+    and symbols A,B,C,D,E,F are always uppercase.
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""AB"") == 1, ""First test error: "" + str(candidate(""AB""))      
+    assert candidate(""1077E"") == 2, ""Second test error: "" + str(candidate(""1077E""))  
+    assert candidate(""ABED1A33"") == 4, ""Third test error: "" + str(candidate(""ABED1A33""))      
+    assert candidate(""2020"") == 2, ""Fourth test error: "" + str(candidate(""2020""))  
+    assert candidate(""123456789ABCDEF0"") == 6, ""Fifth test error: "" + str(candidate(""123456789ABCDEF0""))      
+    assert candidate(""112233445566778899AABBCCDDEEFF00"") == 12, ""Sixth test error: "" + str(candidate(""112233445566778899AABBCCDDEEFF00""))  
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([]) == 0
+
+","
+def hex_key(num):
+    """"""You have been tasked to write a function that receives 
+    a hexadecimal number as a string and counts the number of hexadecimal 
+    digits that are primes (prime number, or a prime, is a natural number 
+    greater than 1 that is not a product of two smaller natural numbers).
+    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
+    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
+    So you have to determine a number of the following digits: 2, 3, 5, 7, 
+    B (=decimal 11), D (=decimal 13).
+    Note: you may assume the input is always correct or empty string, 
+    and symbols A,B,C,D,E,F are always uppercase.
+    """"""
+    prime_digits = set('2357BCD')
+    return sum(1 for char in num if char.upper() in prime_digits)
+
+# Test the function with an example
+hex_number = '1A3B5C7D'
+print(hex_key(hex_number))  # Output: 4
+
+# Test the function with another example
+hex_number = '0123456789ABCDEF'
+print(hex_key(hex_number))  # Output: 16
+
+# Test the function with an empty string
+print(hex_key(''))  # Output: 0
+",
+decimal_to_binary,"
+def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
+   """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(0) == ""db0db""
+    assert candidate(32) == ""db100000db""
+    assert candidate(103) == ""db1100111db""
+    assert candidate(15) == ""db1111db"", ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
+   """"""
+    binary = bin(decimal)[2:]  # Convert decimal to binary
+    binary = '0' * (8 - len(binary)) + binary  # Ensure binary is 8 bits long
+    return 'db' + binary + 'db'
+
+
+def binary_to_decimal(binary):
+    """"""You will be given a number in binary form and your task is to convert it to
+    decimal format. The function should return an integer.
+
+    The input will be a string, with each character representing a binary number.
+    Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
+    """"""
+    binary = binary[2:-2]  # Remove 'db' characters
+    decimal = int(binary, 2)  # Convert binary to decimal
+    return decimal
+
+
+# Test the functions
+decimal_number = 10
+binary_number = decimal_to_binary(decimal_number)
+print(f""Decimal to Binary: {decimal_number} -> {binary_number}"")
+
+decimal_number = binary_to_decimal(binary_number)
+print(f""Binary to Decimal: {binary_number} -> {decimal_number}"")
+",
+is_happy,"
+def is_happy(s):
+    """"""You are given a string s.
+    Your task is to check if the string is happy or not.
+    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct
+   """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""a"") == False , ""a""
+    assert candidate(""aa"") == False , ""aa""
+    assert candidate(""abcd"") == True , ""abcd""
+    assert candidate(""aabb"") == False , ""aabb""
+    assert candidate(""adb"") == True , ""adb""
+    assert candidate(""xyy"") == False , ""xyy""
+    assert candidate(""iopaxpoi"") == True , ""iopaxpoi""
+    assert candidate(""iopaxioi"") == False , ""iopaxioi""
+","
+def is_happy(s):
+    """"""You are given a string s.
+    Your task is to check if the string is happy or not.
+    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct
+   """"""
+    if len(s) < 3:
+        return False
+    for i in range(len(s) - 2):
+        if s[i] == s[i + 1] == s[i + 2]:
+            return False
+    return True
+
+# Test the function
+print(is_happy(""aabbcc""))  # Output: False
+print(is_happy(""aabbccddee""))  # Output: True
+print(is_happy(""abc""))  # Output: True
+print(is_happy(""abca""))  # Output: False
+print(is_happy(""abcabca""))  # Output: False
+print(is_happy(""abcabcabc""))  # Output: True
+print(is_happy(""aaaaaaa""))  # Output: False
+print(is_happy(""abcdefg""))  # Output: True
+print(is_happy(""aabbcc""))  # Output: False
+print(is_happy(""aabbccddee""))  # Output: True
+print(is_happy(""abc""))  # Output: True
+print(is_happy(""abca""))  # Output: False
+print(is_happy(""abcabca""))  # Output: False
+print(is_happy(""abcabcabc""))  # Output: True
+print(is_happy(""aaaaaaa""))  # Output: False
+print(is_happy(""abcdefg""))  # Output: True
+",
+numerical_letter_grade,"
+def numerical_letter_grade(grades):
+    """"""It is the last week of the semester and the teacher has to give the grades
+    to students. The teacher has been making her own algorithm for grading.
+    The only problem is, she has lost the code she used for grading.
+    She has given you a list of GPAs for some students and you have to write 
+    a function that can output a list of letter grades using the following table:
+             GPA       |    Letter grade
+              4.0                A+
+            > 3.7                A 
+            > 3.3                A- 
+            > 3.0                B+
+            > 2.7                B 
+            > 2.3                B-
+            > 2.0                C+
+            > 1.7                C
+            > 1.3                C-
+            > 1.0                D+ 
+            > 0.7                D 
+            > 0.0                D-
+              0.0                E
+    
+
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([4.0, 3, 1.7, 2, 3.5]) == ['A+', 'B', 'C-', 'C', 'A-']
+    assert candidate([1.2]) == ['D+']
+    assert candidate([0.5]) == ['D-']
+    assert candidate([0.0]) == ['E']
+    assert candidate([1, 0.3, 1.5, 2.8, 3.3]) == ['D', 'D-', 'C-', 'B', 'B+']
+    assert candidate([0, 0.7]) == ['E', 'D-']
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","
+def numerical_letter_grade(grades):
+    """"""It is the last week of the semester and the teacher has to give the grades
+    to students. The teacher has been making her own algorithm for grading.
+    The only problem is, she has lost the code she used for grading.
+    She has given you a list of GPAs for some students and you have to write 
+    a function that can output a list of letter grades using the following table:
+             GPA       |    Letter grade
+              4.0                A+
+            > 3.7                A 
+            > 3.3                A- 
+            > 3.0                B+
+            > 2.7                B 
+            > 2.3                B-
+            > 2.0                C+
+            > 1.7                C
+            > 1.3                C-
+            > 1.0                D+ 
+            > 0.7                D 
+            > 0.0                D-
+              0.0                E
+    
+
+    """"""
+    letter_grades = []
+    for gpa in grades:
+        if gpa >= 4.0:
+            letter_grades.append('A+')
+        elif gpa >= 3.7:
+            letter_grades.append('A')
+        elif gpa >= 3.3:
+            letter_grades.append('A-')
+        elif gpa >= 3.0:
+            letter_grades.append('B+')
+        elif gpa >= 2.7:
+            letter_grades.append('B')
+        elif gpa >= 2.3:
+            letter_grades.append('B-')
+        elif gpa >= 2.0:
+            letter_grades.append('C+')
+        elif gpa >= 1.7:
+            letter_grades.append('C')
+        elif gpa >= 1.3:
+            letter_grades.append('C-')
+        elif gpa >= 1.0:
+            letter_grades.append('D+')
+        elif gpa >= 0.7:
+            letter_grades.append('D')
+        elif gpa >= 0.0:
+            letter_grades.append('D-')
+        else:
+            letter_grades.append('E')
+    return letter_grades
+
+# Test the function with sample data
+grades = [3.9, 2.5, 1.8, 3.2, 4.0]
+print(numerical_letter_grade(grades))",
+prime_length,"
+def prime_length(string):
+    """"""Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate('Hello') == True
+    assert candidate('abcdcba') == True
+    assert candidate('kittens') == True
+    assert candidate('orange') == False
+    assert candidate('wow') == True
+    assert candidate('world') == True
+    assert candidate('MadaM') == True
+    assert candidate('Wow') == True
+    assert candidate('') == False
+    assert candidate('HI') == True
+    assert candidate('go') == True
+    assert candidate('gogo') == False
+    assert candidate('aaaaaaaaaaaaaaa') == False
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate('Madam') == True
+    assert candidate('M') == False
+    assert candidate('0') == False
+
+","
+def prime_length(string):
+    """"""Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    """"""
+    length = len(string)
+    if length < 2:
+        return False
+    for i in range(2, int(length**0.5) + 1):
+        if length % i == 0:
+            return False
+    return True
+
+# Test the function
+print(prime_length(""hello""))  # Output: True
+print(prime_length(""world""))  # Output: False
+print(prime_length(""python""))  # Output: False
+print(prime_length(""programming""))  # Output: True
+print(prime_length(""isfun""))  # Output: False
+print(prime_length(""""))  # Output: False
+print(prime_length(""a""))  # Output: False
+print(prime_length(""ab""))  # Output: True
+print(prime_length(""abc""))  # Output: True
+print(prime_length(""abcd""))  # Output: False
+print(prime_length(""abcde""))  # Output: False
+print(prime_length(""abcdef""))  # Output: True
+print(prime_length(""abcdefg""))  # Output: False
+print(prime_length(""abcdefgh""))  # Output: False
+print(prime_length(""abcdefghi""))  # Output: False
+print(prime_length(""abcdefghij""))  # Output: False
+print(prime_length(""abcdefghijk""))  # Output: False
+print(prime_length(""abcdefghijkl""))  # Output: False
+print(prime_length(""abcdefghijklm""))  # Output: False
+print(prime_length(""abcdefghijklmn""))  # Output: False
+print(prime_length(""abcdefghijklmno""))  # Output: False
+print(prime_length(""abcdefghijklmnop""))  # Output: False
+print(prime_length(""abcdefghijklmnopq""))  # Output: False
+print(prime_length(""abcdefghijklmnopqr""))  # Output: False
+print(prime_length(""abcdefghijklmnopqrs""))  # Output: False
+print(prime_length(""abcdefghijklmnopqrst""))  # Output: False
+print(prime_length(""abcdefghij",
