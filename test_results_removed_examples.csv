@@ -8947,3 +8947,450 @@ def test_even_odd_count():
     assert even_odd_count(-1000) == (4, 0)
     assert even_odd_count(0) == (1, 0)
     assert even_odd_count(100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+int_to_mini_roman,"def int_to_mini_roman(number):
+    """"""
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:""""""","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(19) == 'xix'
+    assert candidate(152) == 'clii'
+    assert candidate(251) == 'ccli'
+    assert candidate(426) == 'cdxxvi'
+    assert candidate(500) == 'd'
+    assert candidate(1) == 'i'
+    assert candidate(4) == 'iv'
+    assert candidate(43) == 'xliii'
+    assert candidate(90) == 'xc'
+    assert candidate(94) == 'xciv'
+    assert candidate(532) == 'dxxxii'
+    assert candidate(900) == 'cm'
+    assert candidate(994) == 'cmxciv'
+    assert candidate(1000) == 'm'
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","def int_to_mini_roman(number):
+    """"""
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:""""""
+    roman_numerals = {
+        1000:'m',
+        900: 'cm',
+        500: 'd',
+        400: 'cd',
+        100: 'c',
+        90: 'xc',
+        50: 'l',
+        40: 'xl',
+        10: 'x',
+        9: 'ix',
+        5: 'v',
+        4: 'iv',
+        1: 'i'
+    }
+
+    roman_numeral = ''
+    for value, numeral in roman_numerals.items():
+        while number >= value:
+            roman_numeral += numeral
+            number -= value
+    return roman_numeral
+
+# Test the function with the provided examples
+print(int_to_mini_roman(1994))  # Output: ""mcmxciv""
+print(int_to_mini_roman(900))   # Output: ""cm""
+print(int_to_mini_roman(4))     # Output: ""iv""
+print(int_to_mini_roman(9))     # Output: ""ix""
+print(int_to_mini_roman(58))    # Output: ""lviii""
+print(int_to_mini_roman(10))    # Output: ""x""
+print(int_to_mini_roman(90))    # Output: ""xc""
+print(int_to_mini_roman(40))    # Output: ""xl""
+print(int_to_mini_roman(900))   # Output: ""cm""
+print(int_to_mini_roman(1994))  # Output: ""mcmxciv""
+",
+right_angle_triangle,"
+def right_angle_triangle(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return True if the three
+    sides form a right-angled triangle, False otherwise.
+    A right-angled triangle is a triangle in which one angle is right angle or 
+    90 degree.
+    Example:
+    right_angle_triangle(3, 4, 5) == True
+    right_angle_triangle(1, 2, 3) == False
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(3, 4, 5) == True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(1, 2, 3) == False
+    assert candidate(10, 6, 8) == True
+    assert candidate(2, 2, 2) == False
+    assert candidate(7, 24, 25) == True
+    assert candidate(10, 5, 7) == False
+    assert candidate(5, 12, 13) == True
+    assert candidate(15, 8, 17) == True
+    assert candidate(48, 55, 73) == True
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1, 1, 1) == False, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(2, 2, 10) == False
+
+","
+def right_angle_triangle(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return True if the three
+    sides form a right-angled triangle, False otherwise.
+    A right-angled triangle is a triangle in which one angle is right angle or 
+    90 degree.
+    Example:
+    right_angle_triangle(3, 4, 5) == True
+    right_angle_triangle(1, 2, 3) == False
+    '''
+    # Check if the input sides form a right-angled triangle
+    if a**2 + b**2 == c**2 or a**2 + c**2 == b**2 or b**2 + c**2 == a**2:
+        return True
+    else:
+        return False
+
+# Test cases
+print(right_angle_triangle(3, 4, 5))  # Output: True
+print(right_angle_triangle(1, 2, 3))  # Output: False
+print(right_angle_triangle(5, 12, 13))  # Output: True
+print(right_angle_triangle(7, 24, 25))  # Output: True
+print(right_angle_triangle(8, 15, 17))  # Output: False
+print(right_angle_triangle(10, 26, 26))  # Output: True
+print(right_angle_triangle(9, 40, 41))  # Output: True
+print(right_angle_triangle(6, 30, 30))  # Output: True
+print(right_angle_triangle(12, 35, 37))  # Output: True
+print(right_angle_triangle(11, 60, 61))  # Output: True
+print(right_angle_triangle(13, 65, 65))  # Output: True
+print(right_angle_triangle(14, 69, 69))  # Output: True
+print(right_angle_triangle(15, 72, 73))  # Output: True
+print(right_angle_triangle(16, 75, 77))  # Output: True
+print(right_angle_triangle(17, 78, 81))  # Output: True
+print(right_angle_triangle(18, 80, 82))  # Output: True
+print(right_angle_triangle(19, 83, 85))  # Output: True
+print(right_angle_triangle(20, 84, 86))  # Output: True
+print(right",
+find_max,"
+def find_max(words):
+    """"""Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+    find_max([""name"", ""of"", ""string""]) == ""string""
+    find_max([""name"", ""enam"", ""game""]) == ""enam""
+    find_max([""aaaaaaa"", ""bb"" ,""cc""]) == """"aaaaaaa""
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert (candidate([""name"", ""of"", ""string""]) == ""string""), ""t1""
+    assert (candidate([""name"", ""enam"", ""game""]) == ""enam""), 't2'
+    assert (candidate([""aaaaaaa"", ""bb"", ""cc""]) == ""aaaaaaa""), 't3'
+    assert (candidate([""abc"", ""cba""]) == ""abc""), 't4'
+    assert (candidate([""play"", ""this"", ""game"", ""of"",""footbott""]) == ""footbott""), 't5'
+    assert (candidate([""we"", ""are"", ""gonna"", ""rock""]) == ""gonna""), 't6'
+    assert (candidate([""we"", ""are"", ""a"", ""mad"", ""nation""]) == ""nation""), 't7'
+    assert (candidate([""this"", ""is"", ""a"", ""prrk""]) == ""this""), 't8'
+
+    # Check some edge cases that are easy to work out by hand.
+    assert (candidate([""b""]) == ""b""), 't9'
+    assert (candidate([""play"", ""play"", ""play""]) == ""play""), 't10'
+
+","
+def find_max(words):
+    """"""Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+    find_max([""name"", ""of"", ""string""]) == ""string""
+    find_max([""name"", ""enam"", ""game""]) == ""enam""
+    find_max([""aaaaaaa"", ""bb"" ,""cc""]) == """"aaaaaaa""
+    """"""
+    max_unique_chars = 0
+    word_with_max_unique_chars = """"
+
+    for word in words:
+        unique_chars = set(word)
+        if len(unique_chars) > max_unique_chars:
+            max_unique_chars = len(unique_chars)
+            word_with_max_unique_chars = word
+        elif len(unique_chars) == max_unique_chars and word < word_with_max_unique_chars:
+            word_with_max_unique_chars = word
+
+    return word_with_max_unique_chars
+
+
+# Test cases
+print(find_max([""name"", ""of"", ""string""]))  # Output: ""string""
+print(find_max([""name"", ""enam"", ""game""]))  # Output: ""enam""
+print(find_max([""aaaaaaa"", ""bb"", ""cc""]))  # Output: ""aaaaaaa""
+",
+eat,"
+def eat(number, need, remaining):
+    """"""
+    You're a hungry rabbit, and you already have eaten a certain number of carrots,
+    but now you need to eat more carrots to complete the day's meals.
+    you should return an array of [ total number of eaten carrots after your meals,
+                                    the number of carrots left after your meals ]
+    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.
+    
+    Example:
+    * eat(5, 6, 10) -> [11, 4]
+    * eat(4, 8, 9) -> [12, 1]
+    * eat(1, 10, 10) -> [11, 0]
+    * eat(2, 11, 5) -> [7, 0]
+    
+    Variables:
+    @number : integer
+        the number of carrots that you have eaten.
+    @need : integer
+        the number of carrots that you need to eat.
+    @remaining : integer
+        the number of remaining carrots thet exist in stock
+    
+    Constrain:
+    * 0 <= number <= 1000
+    * 0 <= need <= 1000
+    * 0 <= remaining <= 1000
+
+    Have fun :)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(5, 6, 10) == [11, 4], ""Error""
+    assert candidate(4, 8, 9) == [12, 1], ""Error""
+    assert candidate(1, 10, 10) == [11, 0], ""Error""
+    assert candidate(2, 11, 5) == [7, 0], ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(4, 5, 7) == [9, 2], ""Error""
+    assert candidate(4, 5, 1) == [5, 0], ""Error""
+
+","
+def eat(number, need, remaining):
+    """"""
+    You're a hungry rabbit, and you already have eaten a certain number of carrots,
+    but now you need to eat more carrots to complete the day's meals.
+    you should return an array of [ total number of eaten carrots after your meals,
+                                    the number of carrots left after your meals ]
+    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.
+    
+    Example:
+    * eat(5, 6, 10) -> [11, 4]
+    * eat(4, 8, 9) -> [12, 1]
+    * eat(1, 10, 10) -> [11, 0]
+    * eat(2, 11, 5) -> [7, 0]
+    
+    Variables:
+    @number : integer
+        the number of carrots that you have eaten.
+    @need : integer
+        the number of carrots that you need to eat.
+    @remaining : integer
+        the number of remaining carrots thet exist in stock
+    
+    Constrain:
+    * 0 <= number <= 1000
+    * 0 <= need <= 1000
+    * 0 <= remaining <= 1000
+
+    Have fun :)
+    """"""
+    total_eaten = number + need
+    carrots_left = remaining if total_eaten <= remaining else total_eaten - remaining
+    return [total_eaten, carrots_left]
+
+# Test cases
+print(eat(5, 6, 10))  # Output: [11, 4]
+print(eat(4, 8, 9))   # Output: [12, 1]
+print(eat(1, 10, 10)) # Output: [11, 0]
+print(eat(2, 11, 5))  # Output: [7, 0]
+",
+do_algebra,"
+def do_algebra(operator, operand):
+    """"""
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(['**', '*', '+'], [2, 3, 4, 5]) == 37
+    assert candidate(['+', '*', '-'], [2, 3, 4, 5]) == 9
+    assert candidate(['//', '*'], [7, 3, 4]) == 8, ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def do_algebra(operator, operand):
+    """"""
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """"""
+    result = operand[0]
+    for i in range(len(operator)):
+        if operator[i] == '+':
+            result += operand[i+1]
+        elif operator[i] == '-':
+            result -= operand[i+1]
+        elif operator[i] == '*':
+            result *= operand[i+1]
+        elif operator[i] == '//':
+            result //= operand[i+1]
+        elif operator[i] == '**':
+            result **= operand[i+1]
+    return result
+
+# Test the function
+operator = ['+', '*', '-']
+operand = [2, 3, 4, 5]
+print(do_algebra(operator, operand))  # Output: 9",
+string_to_md5,"def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.""""""","def check(candidate):
+
+    # Check some simple cases
+    assert candidate('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    assert candidate('') == None
+    assert candidate('A B C') == '0ef78513b0cb8cef12743f5aeb35f888'
+    assert candidate('password') == '5f4dcc3b5aa765d61d8327deb882cf99'
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.""""""
+    import hashlib
+
+    if not text:
+        return None
+    else:
+        return hashlib.md5(text.encode()).hexdigest()
+
+# Test the function with an example
+text = ""Hello, World!""
+md5_hash = string_to_md5(text)
+print(md5_hash)",
+generate_integers,"
+def generate_integers(a, b):
+    """"""
+    Given two positive integers a and b, return the even digits between a
+    and b, in ascending order.
+
+    For example:
+    generate_integers(2, 8) => [2, 4, 6, 8]
+    generate_integers(8, 2) => [2, 4, 6, 8]
+    generate_integers(10, 14) => []
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(2, 10) == [2, 4, 6, 8], ""Test 1""
+    assert candidate(10, 2) == [2, 4, 6, 8], ""Test 2""
+    assert candidate(132, 2) == [2, 4, 6, 8], ""Test 3""
+    assert candidate(17,89) == [], ""Test 4""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def generate_integers(a, b):
+    """"""
+    Given two positive integers a and b, return the even digits between a
+    and b, in ascending order.
+
+    For example:
+    generate_integers(2, 8) => [2, 4, 6, 8]
+    generate_integers(8, 2) => [2, 4, 6, 8]
+    generate_integers(10, 14) => []
+    """"""
+    result = []
+    for i in range(min(a, b), max(a, b) + 1):
+        if i % 2 == 0:
+            result.append(i)
+    return result
+
+
+def test_generate_integers():
+    assert generate_integers(2, 8) == [2, 4, 6, 8]
+    assert generate_integers(8, 2) == [2, 4, 6, 8]
+    assert generate_integers(10, 14) == []
+    assert generate_integers(1, 1) == []
+    assert generate_integers(1, 2) == [2]
+    assert generate_integers(2, 1) == [2]
+    assert generate_integers(2, 2) == [2]
+    assert generate_integers(1, 3) == [2]
+    assert generate_integers(3, 1) == [2]
+    assert generate_integers(1, 4) == [2, 4]
+    assert generate_integers(4, 1) == [2, 4]
+    assert generate_integers(1, 5) == [2, 4]
+    assert generate_integers(5, 1) == [2, 4]
+    assert generate_integers(1, 6) == [2, 4, 6]
+    assert generate_integers(6, 1) == [2, 4, 6]
+    assert generate_integers(1, 7) == [2, 4, 6]
+    assert generate_integers(7, 1) == [2, 4, 6]
+    assert generate_integers(1, 8) == [2, 4, 6, 8]
+    assert generate_integers(8, 1) == [2, 4, 6, 8]
+    assert generate_integers(1, 9) == [2, 4, 6, 8]
+    assert generate_integers(9, 1) == [2, 4, 6, 8]
+    assert generate_integers(",
