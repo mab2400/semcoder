@@ -4202,3 +4202,147 @@ def sorted_list_sum(lst):
 input_list = [""apple"", ""banana"", ""cherry"", ""date"", ""elephant""]
 output_list = sorted_list_sum(input_list)
 print(output_list)",
+x_or_y,"
+def x_or_y(n, x, y):
+    """"""A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
+
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(7, 34, 12) == 34
+    assert candidate(15, 8, 5) == 5
+    assert candidate(3, 33, 5212) == 33
+    assert candidate(1259, 3, 52) == 3
+    assert candidate(7919, -1, 12) == -1
+    assert candidate(3609, 1245, 583) == 583
+    assert candidate(91, 56, 129) == 129
+    assert candidate(6, 34, 1234) == 1234
+    
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1, 2, 0) == 0
+    assert candidate(2, 2, 0) == 2
+
+","
+def x_or_y(n, x, y):
+    """"""A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
+
+""""""
+    if is_prime(n):
+        return x
+    else:
+        return y
+
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+# Test the function
+print(x_or_y(7, 'x', 'y'))  # Output: 'x'
+print(x_or_y(8, 'x', 'y'))  # Output: 'y'
+print(x_or_y(13, 'x', 'y'))  # Output: 'x'
+print(x_or_y(15, 'x', 'y'))  # Output: 'y'
+",
+double_the_difference,"
+def double_the_difference(lst):
+    '''
+    Given a list of numbers, return the sum of squares of the numbers
+    in the list that are odd. Ignore numbers that are negative or not integers.
+  If the input list is empty, return 0.
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([]) == 0 , ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([5, 4]) == 25 , ""This prints if this assert fails 2 (good for debugging!)""
+    assert candidate([0.1, 0.2, 0.3]) == 0 , ""This prints if this assert fails 3 (good for debugging!)""
+    assert candidate([-10, -20, -30]) == 0 , ""This prints if this assert fails 4 (good for debugging!)""
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([-1, -2, 8]) == 0, ""This prints if this assert fails 5 (also good for debugging!)""
+    assert candidate([0.2, 3, 5]) == 34, ""This prints if this assert fails 6 (also good for debugging!)""
+    lst = list(range(-99, 100, 2))
+    odd_sum = sum([i**2 for i in lst if i%2!=0 and i > 0])
+    assert candidate(lst) == odd_sum , ""This prints if this assert fails 7 (good for debugging!)""
+
+","
+def double_the_difference(lst):
+    '''
+    Given a list of numbers, return the sum of squares of the numbers
+    in the list that are odd. Ignore numbers that are negative or not integers.
+  If the input list is empty, return 0.
+    '''
+    sum_of_squares = 0
+    for num in lst:
+        if isinstance(num, int) and num > 0 and num % 2!= 0:
+            sum_of_squares += num ** 2
+    return sum_of_squares
+
+# Test the function
+print(double_the_difference([1, 2, 3, 4, 5]))  # Output: 30
+print(double_the_difference([10, 20, 30, 40, 50]))  # Output: 0
+print(double_the_difference([-1, -2, -3, -4, -5]))  # Output: 0
+print(double_the_difference([]))  # Output: 0
+print(double_the_difference([1.5, 2.5, 3.5, 4.5, 5.5]))  # Output: 30",
+compare,"
+def compare(game,guess):
+    """"""I think we all remember that feeling when the result of some long-awaited
+    event is finally known. The feelings and thoughts you have at that moment are
+    definitely worth noting down and comparing.
+    Your task is to determine if a person correctly guessed the results of a number of matches.
+    You are given two arrays of scores and guesses of equal length, where each index shows a match. 
+    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,
+    the value is 0, and if not, the value is the absolute difference between the guess and the score.
+    
+ 
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1,2,3,4,5,1],[1,2,3,4,2,-2])==[0,0,0,0,3,3], ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([0,0,0,0,0,0],[0,0,0,0,0,0])==[0,0,0,0,0,0], ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([1,2,3],[-1,-2,-3])==[2,4,6], ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([1,2,3,5],[-1,2,3,4])==[2,0,0,1], ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def compare(game,guess):
+    """"""I think we all remember that feeling when the result of some long-awaited
+    event is finally known. The feelings and thoughts you have at that moment are
+    definitely worth noting down and comparing.
+    Your task is to determine if a person correctly guessed the results of a number of matches.
+    You are given two arrays of scores and guesses of equal length, where each index shows a match. 
+    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,
+    the value is 0, and if not, the value is the absolute difference between the guess and the score.
+    
+ 
+""""""
+    return [abs(game[i] - guess[i]) for i in range(len(game))]
+
+# Test the function with the provided example
+game = [1, 2, 3, 4, 5]
+guess = [1, 2, 3, 4, 6]
+result = compare(game, guess)
+print(result)  # Output: [0, 0, 0, 0, 1]
+
+# Additional test cases
+game2 = [10, 20, 30, 40, 50]
+guess2 = [10, 20, 30, 40, 55]
+result2 = compare(game2, guess2)
+print(result2)  # Output: [0, 0, 0, 0, 5]
+
+game3 = [5, 10, 15, 20, 25]
+guess3 = [5, 10, 15, 20, 30]
+result3 = compare(game3, guess3)
+print(result3)  # Output: [0, 0, 0, 0, 10]
+",
