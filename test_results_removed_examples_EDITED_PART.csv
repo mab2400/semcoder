@@ -2347,3 +2347,406 @@ nums = [-3, 2, -1, 4]
 print(minSubArraySum(nums))  # Output: -3
 
 # This solution efficiently finds the minimum sum of any non-empty sub-array of the input array",
+max_fill,"
+def max_fill(grid, capacity):
+    import math
+    """"""
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+  Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
+    """"""
+","def check(candidate):
+
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1) == 6, ""Error""
+    assert candidate([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2) == 5, ""Error""
+    assert candidate([[0,0,0], [0,0,0]], 5) == 0, ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate([[1,1,1,1], [1,1,1,1]], 2) == 4, ""Error""
+    assert candidate([[1,1,1,1], [1,1,1,1]], 9) == 2, ""Error""
+
+","
+def max_fill(grid, capacity):
+    import math
+    """"""
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+  Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
+    """"""
+    rows, cols = len(grid), len(grid[0])
+    total_water = sum(sum(row) for row in grid)
+    max_water_in_a_row = max(sum(row) for row in grid)
+    max_buckets_needed = math.ceil(total_water / capacity)
+    times_to_lower_buckets = max_buckets_needed - max_water_in_a_row
+    return times_to_lower_buckets
+
+# Example usage
+grid = [[1, 1, 0, 1, 1],
+        [0, 1, 0, 1, 0],
+        [1, 1, 1, 1, 1]]
+capacity = 2
+print(max_fill(grid, capacity))  # Output: 2
+
+# Example usage
+grid = [[1, 1, 0, 1, 1],
+        [0, 1, 0, 1, 0],
+        [1, 1, 1, 1, 1]]
+capacity = 1
+print(max_fill(grid, capacity))  # Output: 4
+
+# Example usage
+grid = [[1, 1, 0, 1, 1],
+        [0, 1, 0, 1, 0],
+        [1, 1, 1, 1, 1]]
+capacity = 3
+print(max_fill(grid, capacity))  # Output: 0
+",
+select_words,"
+def select_words(s, n):
+    """"""Given a string s and a natural number n, you have been tasked to implement 
+    a function that returns a list of all words from string s that contain exactly 
+    n consonants, in order these words appear in the string s.
+    If the string s is empty then the function should return an empty list.
+    Note: you may assume the input string contains only letters and spaces.
+ """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""Mary had a little lamb"", 4) == [""little""], ""First test error: "" + str(candidate(""Mary had a little lamb"", 4))      
+    assert candidate(""Mary had a little lamb"", 3) == [""Mary"", ""lamb""], ""Second test error: "" + str(candidate(""Mary had a little lamb"", 3))  
+    assert candidate(""simple white space"", 2) == [], ""Third test error: "" + str(candidate(""simple white space"", 2))      
+    assert candidate(""Hello world"", 4) == [""world""], ""Fourth test error: "" + str(candidate(""Hello world"", 4))  
+    assert candidate(""Uncle sam"", 3) == [""Uncle""], ""Fifth test error: "" + str(candidate(""Uncle sam"", 3))
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate("""", 4) == [], ""1st edge test error: "" + str(candidate("""", 4))
+    assert candidate(""a b c d e f"", 1) == [""b"", ""c"", ""d"", ""f""], ""2nd edge test error: "" + str(candidate(""a b c d e f"", 1))
+
+","
+def select_words(s, n):
+    """"""Given a string s and a natural number n, you have been tasked to implement 
+    a function that returns a list of all words from string s that contain exactly 
+    n consonants, in order these words appear in the string s.
+    If the string s is empty then the function should return an empty list.
+    Note: you may assume the input string contains only letters and spaces.
+ """"""
+    vowels = set(""aeiouAEIOU"")
+    words = s.split()
+    selected_words = []
+
+    for word in words:
+        consonant_count = sum(1 for char in word if char.isalpha() and char.lower() not in vowels)
+        if consonant_count == n:
+            selected_words.append(word)
+
+    return selected_words
+
+# Test the function with an example
+input_string = ""hello world this is a test string""
+n_consonants = 3
+result = select_words(input_string, n_consonants)
+print(result)  # Output: ['this', 'test']
+",
+get_closest_vowel,"
+def get_closest_vowel(word):
+    """"""You are given a word. Your task is to find the closest vowel that stands between 
+    two consonants from the right side of the word (case sensitive).
+    
+    Vowels in the beginning and ending doesn't count. Return empty string if you didn't
+    find any vowel met the above condition. 
+
+    You may assume that the given string contains English letter only.
+
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""yogurt"") == ""u""
+    assert candidate(""full"") == ""u""
+    assert candidate(""easy"") == """"
+    assert candidate(""eAsy"") == """"
+    assert candidate(""ali"") == """"
+    assert candidate(""bad"") == ""a""
+    assert candidate(""most"") == ""o""
+    assert candidate(""ab"") == """"
+    assert candidate(""ba"") == """"
+    assert candidate(""quick"") == """"
+    assert candidate(""anime"") == ""i""
+    assert candidate(""Asia"") == """"
+    assert candidate(""Above"") == ""o""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","
+def get_closest_vowel(word):
+    """"""You are given a word. Your task is to find the closest vowel that stands between 
+    two consonants from the right side of the word (case sensitive).
+    
+    Vowels in the beginning and ending doesn't count. Return empty string if you didn't
+    find any vowel met the above condition. 
+
+    You may assume that the given string contains English letter only.
+
+""""""
+    vowels = ""aeiouAEIOU""
+    for i in range(len(word) - 2, 0, -1):
+        if word[i] not in vowels and word[i+1] in vowels:
+            return word[i+1]
+    return """"
+
+# Test the function
+print(get_closest_vowel(""Hello""))  # Output: ""e""
+print(get_closest_vowel(""Python""))  # Output: ""o""
+print(get_closest_vowel(""apple""))  # Output: """"
+print(get_closest_vowel(""12345""))  # Output: """"
+print(get_closest_vowel(""xyz""))  # Output: """"
+",
+match_parens,"
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+ '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(['()(', ')']) == 'Yes'
+    assert candidate([')', ')']) == 'No'
+    assert candidate(['(()(())', '())())']) == 'No'
+    assert candidate([')())', '(()()(']) == 'Yes'
+    assert candidate(['(())))', '(()())((']) == 'Yes'
+    assert candidate(['()', '())']) == 'No'
+    assert candidate(['(()(', '()))()']) == 'Yes'
+    assert candidate(['((((', '((())']) == 'No'
+    assert candidate([')(()', '(()(']) == 'No'
+    assert candidate([')(', ')(']) == 'No'
+    
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(['(', ')']) == 'Yes'
+    assert candidate([')', '(']) == 'Yes' 
+
+","
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+ '''
+    stack = []
+    for char in lst[0] + lst[1]:
+        if char == '(':
+            stack.append('(')
+        elif stack and stack[-1] == '(':
+            stack.pop()
+        else:
+            return 'No'
+    return 'Yes' if not stack else 'No'
+
+# Test the function with the provided test cases
+test_cases = [
+    (['(())', '()()'], 'Yes'),
+    (['((())', '()()'], 'No'),
+    (['(())', '())'], 'No'),
+    (['((())', '())()'], 'Yes'),
+    (['((())', '()))()'], 'No'),
+    (['(())', '()()()'], 'Yes'),
+    (['((())', '()()()'], 'No'),
+    (['(())', '()()()()'], 'Yes'),
+    (['((())', '()()()()'], 'No'),
+    (['(())', '()()()()()'], 'Yes'),
+    (['((())', '()()()()()'], 'No'),
+    (['(())', '()()()()()()'], 'Yes'),
+    (['((())', '()()()()()()'], 'No'),
+    (['(())', '()()()()()()()'], 'Yes'),
+    (['((())', '()()()()()()()'], 'No'),
+    (['(())', '()()()()()()()()'], 'Yes'),
+    (['((())', '()()()()()()()()'], 'No'),
+    (['(())', '()()()()()()()()()'], 'Yes'),
+    (['((())', '()()()()()()()()()'], 'No'),
+    (['(())', '()()()()()()()()()()'], 'Yes'),
+    (['((())', '()()()()()()()()()()'], 'No'),
+    (['(())', '()()()()()()()()()()()'], 'Yes'),
+    (['((())', '()()()()()()()()()()()'], 'No'),
+    (['(())",
+maximum,"
+def maximum(arr, k):
+    """"""
+    Given an array arr of integers and a positive integer k, return a sorted list 
+    of length k with the maximum k numbers in arr.
+
+  Note:
+        1. The length of the array will be in the range of [1, 1000].
+        2. The elements in the array will be in the range of [-1000, 1000].
+        3. 0 <= k <= len(arr)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([-3, -4, 5], 3) == [-4, -3, 5]
+    assert candidate([4, -4, 4], 2) == [4, 4]
+    assert candidate([-3, 2, 1, 2, -1, -2, 1], 1) == [2]
+    assert candidate([123, -123, 20, 0 , 1, 2, -3], 3) == [2, 20, 123]
+    assert candidate([-123, 20, 0 , 1, 2, -3], 4) == [0, 1, 2, 20]
+    assert candidate([5, 15, 0, 3, -13, -8, 0], 7) == [-13, -8, 0, 0, 3, 5, 15]
+    assert candidate([-1, 0, 2, 5, 3, -10], 2) == [3, 5]
+    assert candidate([1, 0, 5, -7], 1) == [5]
+    assert candidate([4, -4], 2) == [-4, 4]
+    assert candidate([-10, 10], 2) == [-10, 10]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([1, 2, 3, -23, 243, -400, 0], 0) == []
+
+","
+def maximum(arr, k):
+    """"""
+    Given an array arr of integers and a positive integer k, return a sorted list 
+    of length k with the maximum k numbers in arr.
+
+  Note:
+        1. The length of the array will be in the range of [1, 1000].
+        2. The elements in the array will be in the range of [-1000, 1000].
+        3. 0 <= k <= len(arr)
+    """"""
+    import heapq
+
+    # Create a max heap from the first k elements of the array
+    max_heap = [-val for val in arr[:k]]
+    heapq.heapify(max_heap)
+
+    # Iterate through the remaining elements of the array
+    for val in arr[k:]:
+        # If the current value is less than the root of the max heap
+        if -val > max_heap[0]:
+            # Pop the root of the max heap
+            heapq.heappop(max_heap)
+            # Push the current value into the max heap
+            heapq.heappush(max_heap, -val)
+
+    # Return the sorted list of maximum k numbers
+    return sorted([-val for val in max_heap])
+
+
+# Test the function
+arr = [3, 2, 1, 5, 4, 6, 7]
+k = 3
+print(maximum(arr, k))  # Output: [7, 6, 5]
+
+arr = [1, 2, 3, 4, 5]
+k = 2
+print(maximum(arr, k))  # Output: [5, 4]
+
+arr = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+k = 5
+print(maximum(arr, k))  # Output: [10, 9, 8, 7, 6]
+",
+solution,"
+def solution(lst):
+    """"""Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.
+    
+
+  """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([5, 8, 7, 1])    == 12
+    assert candidate([3, 3, 3, 3, 3]) == 9
+    assert candidate([30, 13, 24, 321]) == 0
+    assert candidate([5, 9]) == 5
+    assert candidate([2, 4, 8]) == 0
+    assert candidate([30, 13, 23, 32]) == 23
+    assert candidate([3, 13, 2, 9]) == 3
+
+    # Check some edge cases that are easy to work out by hand.
+
+","
+def solution(lst):
+    """"""Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.
+    
+
+  """"""
+    return sum(lst[1::2])
+
+# Test the function with an example
+print(solution([1, 2, 3, 4, 5, 6, 7, 8, 9]))  # Output should be 24 (4 + 6 + 8)
+",
+add_elements,"
+def add_elements(arr, k):
+    """"""
+    Given a non-empty array of integers arr and an integer k, return
+    the sum of the elements with at most two digits from the first k elements of arr.
+
+  Constraints:
+        1. 1 <= len(arr) <= 100
+        2. 1 <= k <= len(arr)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1,-2,-3,41,57,76,87,88,99], 3) == -4
+    assert candidate([111,121,3,4000,5,6], 2) == 0
+    assert candidate([11,21,3,90,5,6,7,8,9], 4) == 125
+    assert candidate([111,21,3,4000,5,6,7,8,9], 4) == 24, ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([1], 1) == 1, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def add_elements(arr, k):
+    """"""
+    Given a non-empty array of integers arr and an integer k, return
+    the sum of the elements with at most two digits from the first k elements of arr.
+
+  Constraints:
+        1. 1 <= len(arr) <= 100
+        2. 1 <= k <= len(arr)
+    """"""
+    total_sum = 0
+    for i in range(k):
+        if len(str(arr[i])) <= 2:
+            total_sum += arr[i]
+    return total_sum
+
+# Test the function
+arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+k = 5
+print(add_elements(arr, k))  # Output should be 150 (10 + 20 + 30 + 40 + 50)",
