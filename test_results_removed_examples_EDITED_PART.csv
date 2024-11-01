@@ -3448,3 +3448,243 @@ print(check_if_last_char_is_a_letter(""Python is versatile!""))  # Output: False
 print(check_if_last_char_is_a_letter(""Python is versatile!""))  # Output: False
 print(check_if_last_char_is_a_letter(""Python is versatile!""))  # Output: False
 print(check_if_last_char_is_a_letter(""Python is versatile!""",
+can_arrange,"
+def can_arrange(arr):
+    """"""Create a function which returns the largest index of an element which
+    is not greater than or equal to the element immediately preceding it. If
+    no such element exists then return -1. The given array will not contain
+    duplicate values.
+
+ """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1,2,4,3,5])==3
+    assert candidate([1,2,4,5])==-1
+    assert candidate([1,4,2,5,6,7,8,9,10])==2
+    assert candidate([4,8,5,7,3])==4
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([])==-1
+
+","
+def can_arrange(arr):
+    """"""Create a function which returns the largest index of an element which
+    is not greater than or equal to the element immediately preceding it. If
+    no such element exists then return -1. The given array will not contain
+    duplicate values.
+
+ """"""
+    for i in range(len(arr) - 1, -1, -1):
+        if i == 0 or arr[i] < arr[i - 1]:
+            return i
+    return -1
+
+# Test the function
+arr = [1, 2, 3, 4, 5]
+print(can_arrange(arr))  # Output: 4
+
+arr = [5, 4, 3, 2, 1]
+print(can_arrange(arr))  # Output: -1
+
+arr = [1, 2, 3, 5, 4]
+print(can_arrange(arr))  # Output: 3
+
+arr = [1, 2, 3, 4, 5, 6]
+print(can_arrange(arr))  # Output: 5
+
+arr = [6, 5, 4, 3, 2, 1]
+print(can_arrange(arr))  # Output: 0
+",
+largest_smallest_integers,"
+def largest_smallest_integers(lst):
+    '''
+    Create a function that returns a tuple (a, b), where 'a' is
+    the largest of negative integers, and 'b' is the smallest
+    of positive integers in a list.
+    If there is no negative or positive integers, return them as None.
+
+'''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([2, 4, 1, 3, 5, 7]) == (None, 1)
+    assert candidate([2, 4, 1, 3, 5, 7, 0]) == (None, 1)
+    assert candidate([1, 3, 2, 4, 5, 6, -2]) == (-2, 1)
+    assert candidate([4, 5, 3, 6, 2, 7, -7]) == (-7, 2)
+    assert candidate([7, 3, 8, 4, 9, 2, 5, -9]) == (-9, 2)
+    assert candidate([]) == (None, None)
+    assert candidate([0]) == (None, None)
+    assert candidate([-1, -3, -5, -6]) == (-1, None)
+    assert candidate([-1, -3, -5, -6, 0]) == (-1, None)
+    assert candidate([-6, -4, -4, -3, 1]) == (-3, 1)
+    assert candidate([-6, -4, -4, -3, -100, 1]) == (-3, 1)
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+","
+def largest_smallest_integers(lst):
+    '''
+    Create a function that returns a tuple (a, b), where 'a' is
+    the largest of negative integers, and 'b' is the smallest
+    of positive integers in a list.
+    If there is no negative or positive integers, return them as None.
+
+'''
+    negatives = [num for num in lst if num < 0]
+    positives = [num for num in lst if num > 0]
+
+    if not negatives:
+        largest_negative = None
+    else:
+        largest_negative = max(negatives)
+
+    if not positives:
+        smallest_positive = None
+    else:
+        smallest_positive = min(positives)
+
+    return (largest_negative, smallest_positive)
+
+# Test the function
+test_list = [5, -3, 2, 10, -7, 8]
+result = largest_smallest_integers(test_list)
+print(result)  # Output should be (-3, 2)
+
+test_list2 = [1, 2, 3, 4, 5]
+result2 = largest_smallest_integers(test_list2)
+print(result2)  # Output should be (None, 1)
+
+test_list3 = [-5, -3, -2, -1, 0]
+result3 = largest_smallest_integers(test_list3)
+print(result3)  # Output should be (-5, None)
+",
+compare_one,"
+def compare_one(a, b):
+    """"""
+    Create a function that takes integers, floats, or strings representing
+    real numbers, and returns the larger variable in its given variable type.
+    Return None if the values are equal.
+    Note: If a real number is represented as a string, the floating point might be . or ,
+
+ """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(1, 2) == 2
+    assert candidate(1, 2.5) == 2.5
+    assert candidate(2, 3) == 3
+    assert candidate(5, 6) == 6
+    assert candidate(1, ""2,3"") == ""2,3""
+    assert candidate(""5,1"", ""6"") == ""6""
+    assert candidate(""1"", ""2"") == ""2""
+    assert candidate(""1"", 1) == None
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","
+def compare_one(a, b):
+    """"""
+    Create a function that takes integers, floats, or strings representing
+    real numbers, and returns the larger variable in its given variable type.
+    Return None if the values are equal.
+    Note: If a real number is represented as a string, the floating point might be . or ,
+
+ """"""
+    if a == b:
+        return None
+    elif type(a) == type(b):
+        if a > b:
+            return a
+        else:
+            return b
+    else:
+        if type(a) == str:
+            a = float(a.replace("","", "".""))
+        elif type(b) == str:
+            b = float(b.replace("","", "".""))
+        if a > b:
+            return a
+        else:
+            return b
+
+
+# Test cases
+print(compare_one(5, 3))  # Output: 5
+print(compare_one(5.0, 3))  # Output: 5.0
+print(compare_one(""5.0"", 3))  # Output: 5.0
+print(compare_one(5, 5))  # Output: None
+print(compare_one(""5,0"", 5))  # Output: 5.0
+print(compare_one(5, ""5,0""))  # Output: 5
+print(compare_one(""5,0"", ""5,0""))  # Output: None
+print(compare_one(""5,0"", 5.0))  # Output: 5.0
+print(compare_one(5.0, ""5,0""))  # Output: 5.0
+",
+is_equal_to_sum_even,"
+def is_equal_to_sum_even(n):
+    """"""Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers
+ """"""
+","def check(candidate):
+    assert candidate(4) == False
+    assert candidate(6) == False
+    assert candidate(8) == True
+    assert candidate(10) == True
+    assert candidate(11) == False
+    assert candidate(12) == True
+    assert candidate(13) == False
+    assert candidate(16) == True
+","
+def is_equal_to_sum_even(n):
+    """"""Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers
+ """"""
+    for i in range(2, n, 2):
+        for j in range(i, n, 2):
+            for k in range(j, n, 2):
+                for l in range(k, n, 2):
+                    if i + j + k + l == n:
+                        return True
+    return False
+
+# Test the function with a sample input
+number = 16
+if is_equal_to_sum_even(number):
+    print(f""{number} can be written as the sum of 4 positive even numbers."")
+else:
+    print(f""{number} cannot be written as the sum of 4 positive even numbers."")",
+fix_spaces,"
+def fix_spaces(text):
+    """"""
+    Given a string text, replace all spaces in it with underscores, 
+    and if a string has more than 2 consecutive spaces, 
+    then replace all consecutive spaces with - 
+    
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""Example"") == ""Example"", ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(""Mudasir Hanif "") == ""Mudasir_Hanif_"", ""This prints if this assert fails 2 (good for debugging!)""
+    assert candidate(""Yellow Yellow  Dirty  Fellow"") == ""Yellow_Yellow__Dirty__Fellow"", ""This prints if this assert fails 3 (good for debugging!)""
+    
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(""Exa   mple"") == ""Exa-mple"", ""This prints if this assert fails 4 (good for debugging!)""
+    assert candidate(""   Exa 1 2 2 mple"") == ""-Exa_1_2_2_mple"", ""This prints if this assert fails 4 (good for debugging!)""
+
+","
+def fix_spaces(text):
+    """"""
+    Given a string text, replace all spaces in it with underscores, 
+    and if a string has more than 2 consecutive spaces, 
+    then replace all consecutive spaces with - 
+    
+""""""
+    text = text.replace(""  "", ""-"")
+    text = text.replace("" "", ""_"")
+    return text
+
+# Test the function
+print(fix_spaces(""Hello  World""))  # Output: Hello_-_World
+print(fix_spaces(""Python  Programming""))  # Output: Python_-_Programming
+print(fix_spaces(""Python  Programming  Language""))  # Output: Python_-_Programming_-_Language
+",
