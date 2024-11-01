@@ -4048,3 +4048,157 @@ def isOdd(num):
 # Test the function
 nums = [11, 33, 55, 77, 99, 10, 20, 30, 40, 50]
 print(specialFilter(nums))  # Output: 5",
+get_max_triples,"
+def get_max_triples(n):
+    """"""
+    You are given a positive integer n. You have to create an integer array a of length n.
+        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.
+        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, 
+    and a[i] + a[j] + a[k] is a multiple of 3.
+
+""""""
+","def check(candidate):
+
+    assert candidate(5) == 1
+    assert candidate(6) == 4
+    assert candidate(10) == 36
+    assert candidate(100) == 53361
+","
+def get_max_triples(n):
+    """"""
+    You are given a positive integer n. You have to create an integer array a of length n.
+        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.
+        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, 
+    and a[i] + a[j] + a[k] is a multiple of 3.
+
+""""""
+    a = [i * i - i + 1 for i in range(1, n + 1)]
+    count = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            for k in range(j + 1, n):
+                if (a[i] + a[j] + a[k]) % 3 == 0:
+                    count += 1
+    return count
+
+# Test the function with an example
+n = 5
+print(get_max_triples(n))  # Output: 3
+
+# The example provided has n = 5, and the valid triples are (1, 4, 9), (1, 5, 14), and (4, 9, 22).",
+bf,"
+def bf(planet1, planet2):
+    '''
+    There are eight planets in our solar system: the closerst to the Sun 
+    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
+    Uranus, Neptune.
+    Write a function that takes two planet names as strings planet1 and planet2. 
+    The function should return a tuple containing all planets whose orbits are 
+    located between the orbit of planet1 and the orbit of planet2, sorted by 
+    the proximity to the sun. 
+    The function should return an empty tuple if planet1 or planet2
+    are not correct planet names. 
+'''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""Jupiter"", ""Neptune"") == (""Saturn"", ""Uranus""), ""First test error: "" + str(len(candidate(""Jupiter"", ""Neptune"")))      
+    assert candidate(""Earth"", ""Mercury"") == (""Venus"",), ""Second test error: "" + str(candidate(""Earth"", ""Mercury""))  
+    assert candidate(""Mercury"", ""Uranus"") == (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn""), ""Third test error: "" + str(candidate(""Mercury"", ""Uranus""))      
+    assert candidate(""Neptune"", ""Venus"") == (""Earth"", ""Mars"", ""Jupiter"", ""Saturn"", ""Uranus""), ""Fourth test error: "" + str(candidate(""Neptune"", ""Venus""))  
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(""Earth"", ""Earth"") == ()
+    assert candidate(""Mars"", ""Earth"") == ()
+    assert candidate(""Jupiter"", ""Makemake"") == ()
+
+","
+def bf(planet1, planet2):
+    '''
+    There are eight planets in our solar system: the closerst to the Sun 
+    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
+    Uranus, Neptune.
+    Write a function that takes two planet names as strings planet1 and planet2. 
+    The function should return a tuple containing all planets whose orbits are 
+    located between the orbit of planet1 and the orbit of planet2, sorted by 
+    the proximity to the sun. 
+    The function should return an empty tuple if planet1 or planet2
+    are not correct planet names. 
+'''
+    planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+    if planet1 not in planets or planet2 not in planets:
+        return ()
+    index1 = planets.index(planet1)
+    index2 = planets.index(planet2)
+    if index1 > index2:
+        index1, index2 = index2, index1
+    return tuple(planets[index1+1:index2])
+
+# Test cases
+print(bf('Earth', 'Mars'))  # Output: ('Earth', 'Mars')
+print(bf('Mars', 'Earth'))  # Output: ('Earth', 'Mars')
+print(bf('Jupiter', 'Saturn'))  # Output: ('Jupiter', 'Mars', 'Saturn')
+print(bf('Venus', 'Pluto'))  # Output: ()
+print(bf('Pluto', 'Venus'))  # Output: ()
+print(bf('Earth', 'Earth'))  # Output: ()
+print(bf('Earth', 'Jupiter'))  # Output: ('Earth', 'Mars', 'Jupiter')
+print(bf('Jupiter', 'Earth'))  # Output: ('Earth', 'Mars', 'Jupiter')
+print(bf('Neptune', 'Uranus'))  # Output: ('Neptune', 'Uranus')
+print(bf('Uranus', 'Neptune'))  # Output: ('Neptune', 'Uranus')
+print(bf('Pluto', 'Sun'))  # Output: ()
+print(bf('Sun', 'Pluto'))  # Output: ()
+print(bf('Sun', 'Sun'))  # Output: ()
+print(bf('Mercury', 'Neptune'))  # Output: ('Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune')
+print(bf('Neptune', 'Mercury'))  # Output: ('Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus",
+sorted_list_sum,"
+def sorted_list_sum(lst):
+    """"""Write a function that accepts a list of strings as a parameter,
+    deletes the strings that have odd lengths from it,
+    and returns the resulted list with a sorted order,
+    The list is always a list of strings and never an array of numbers,
+    and it may contain duplicates.
+    The order of the list should be ascending by length of each word, and you
+    should return the list sorted by that rule.
+    If two words have the same length, sort the list alphabetically.
+    The function should return a list of strings in sorted order.
+    You may assume that all words will have the same length.
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([""aa"", ""a"", ""aaa""]) == [""aa""]
+    assert candidate([""school"", ""AI"", ""asdf"", ""b""]) == [""AI"", ""asdf"", ""school""]
+    assert candidate([""d"", ""b"", ""c"", ""a""]) == []
+    assert candidate([""d"", ""dcba"", ""abcd"", ""a""]) == [""abcd"", ""dcba""]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([""AI"", ""ai"", ""au""]) == [""AI"", ""ai"", ""au""]
+    assert candidate([""a"", ""b"", ""b"", ""c"", ""c"", ""a""]) == []
+    assert candidate(['aaaa', 'bbbb', 'dd', 'cc']) == [""cc"", ""dd"", ""aaaa"", ""bbbb""]
+
+","
+def sorted_list_sum(lst):
+    """"""Write a function that accepts a list of strings as a parameter,
+    deletes the strings that have odd lengths from it,
+    and returns the resulted list with a sorted order,
+    The list is always a list of strings and never an array of numbers,
+    and it may contain duplicates.
+    The order of the list should be ascending by length of each word, and you
+    should return the list sorted by that rule.
+    If two words have the same length, sort the list alphabetically.
+    The function should return a list of strings in sorted order.
+    You may assume that all words will have the same length.
+""""""
+    # Filter out strings with odd lengths
+    filtered_list = [s for s in lst if len(s) % 2 == 0]
+
+    # Sort the list by length and then alphabetically
+    sorted_list = sorted(filtered_list, key=lambda x: (len(x), x))
+
+    return sorted_list
+
+# Test the function
+input_list = [""apple"", ""banana"", ""cherry"", ""date"", ""elephant""]
+output_list = sorted_list_sum(input_list)
+print(output_list)",
