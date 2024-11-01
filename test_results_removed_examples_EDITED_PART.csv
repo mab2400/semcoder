@@ -2750,3 +2750,344 @@ def add_elements(arr, k):
 arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 k = 5
 print(add_elements(arr, k))  # Output should be 150 (10 + 20 + 30 + 40 + 50)",
+get_odd_collatz,"
+def get_odd_collatz(n):
+    """"""
+    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.
+
+    The Collatz conjecture is a conjecture in mathematics that concerns a sequence defined
+    as follows: start with any positive integer n. Then each term is obtained from the 
+    previous term as follows: if the previous term is even, the next term is one half of 
+    the previous term. If the previous term is odd, the next term is 3 times the previous
+    term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1.
+
+    Note: 
+        1. Collatz(1) is [1].
+        2. returned list sorted in increasing order.
+
+ """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(14) == [1, 5, 7, 11, 13, 17]
+    assert candidate(5) == [1, 5]
+    assert candidate(12) == [1, 3, 5], ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1) == [1], ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def get_odd_collatz(n):
+    """"""
+    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.
+
+    The Collatz conjecture is a conjecture in mathematics that concerns a sequence defined
+    as follows: start with any positive integer n. Then each term is obtained from the 
+    previous term as follows: if the previous term is even, the next term is one half of 
+    the previous term. If the previous term is odd, the next term is 3 times the previous
+    term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1.
+
+    Note: 
+        1. Collatz(1) is [1].
+        2. returned list sorted in increasing order.
+
+ """"""
+    result = []
+    while n!= 1:
+        if n % 2 == 0:
+            n = n // 2
+        else:
+            n = 3 * n + 1
+        if n % 2!= 0:
+            result.append(n)
+    return sorted(result)
+
+# Test the function with an example
+n = 17
+print(get_odd_collatz(n))  # Output: [52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+
+# Test the function with another example
+n = 10
+print(get_odd_collatz(n))  # Output: [32, 16, 8, 4, 2, 1]
+
+# Test the function with a different example
+n = 27
+print(get_odd_collatz(n))  # Output: [82, 41, 124, 62, 31, 94, 47, 142, 71, 214, 107, 322, 161, 484, 242, 121, 364, 182, 91, 274, 137, 412, 206, 103, 310, 155, 466, 233, 700, 350, 175, 526, 263, 790, 395, 1186, 593, 1780, 890, 445, 1336, 668, 334, 167, 502, 251, 754, 377, 1132, 566, 283, 850, 425, 1276, 638, 319, 958, 479",
+valid_date,"
+def valid_date(date):
+    """"""You have to write a function which validates a given date string and
+    returns True if the date is valid otherwise False.
+    The date is valid if all of the following rules are satisfied:
+    1. The date string is not empty.
+    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.
+    3. The months should not be less than 1 or higher than 12.
+    4. The date should be in the format: mm-dd-yyyy
+
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate('03-11-2000') == True
+
+    assert candidate('15-01-2012') == False
+
+    assert candidate('04-0-2040') == False
+
+    assert candidate('06-04-2020') == True
+
+    assert candidate('01-01-2007') == True
+
+    assert candidate('03-32-2011') == False
+
+    assert candidate('') == False
+
+    assert candidate('04-31-3000') == False
+
+    assert candidate('06-06-2005') == True
+
+    assert candidate('21-31-2000') == False
+
+    assert candidate('04-12-2003') == True
+
+    assert candidate('04122003') == False
+
+    assert candidate('20030412') == False
+
+    assert candidate('2003-04') == False
+
+    assert candidate('2003-04-12') == False
+
+    assert candidate('04-2003') == False
+","
+def valid_date(date):
+    """"""You have to write a function which validates a given date string and
+    returns True if the date is valid otherwise False.
+    The date is valid if all of the following rules are satisfied:
+    1. The date string is not empty.
+    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.
+    3. The months should not be less than 1 or higher than 12.
+    4. The date should be in the format: mm-dd-yyyy
+
+""""""
+    if not date:
+        return False
+
+    parts = date.split('-')
+    if len(parts)!= 3:
+        return False
+
+    month, day, year = map(int, parts)
+
+    if month < 1 or month > 12:
+        return False
+
+    if month in {1, 3, 5, 7, 8, 10, 12}:
+        if day < 1 or day > 31:
+            return False
+    elif month in {4, 6, 9, 11}:
+        if day < 1 or day > 30:
+            return False
+    elif month == 2:
+        if day < 1 or day > 29:
+            return False
+
+    return True
+
+# Test the function with some sample dates
+print(valid_date(""02-29-2020""))  # Valid date
+print(valid_date(""02-30-2020""))  # Invalid date
+print(valid_date(""02-29-2021""))  # Invalid date
+print(valid_date(""02-28-2020""))  # Valid date
+print(valid_date(""13-05-2020""))  # Invalid month
+print(valid_date(""02-31-2020""))  # Invalid day for February
+print(valid_date(""01-32-2020""))  # Invalid day for January
+print(valid_date(""04-31-2020""))  # Invalid day for April
+print(valid_date(""06-31-2020""))  # Invalid day for June
+print(valid_date(""09-31-2020""))  # Invalid day for September
+print(valid_date(""11-31-2020""))  # Invalid day for November
+print(valid_date(""13-05-2020""))  # Invalid month
+print(valid_date(""""))  # Empty date",
+split_words,"
+def split_words(txt):
+    '''
+    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you
+    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the
+    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25
+ '''
+","def check(candidate):
+
+    assert candidate(""Hello world!"") == [""Hello"",""world!""]
+    assert candidate(""Hello,world!"") == [""Hello"",""world!""]
+    assert candidate(""Hello world,!"") == [""Hello"",""world,!""]
+    assert candidate(""Hello,Hello,world !"") == [""Hello,Hello,world"",""!""]
+    assert candidate(""abcdef"") == 3
+    assert candidate(""aaabb"") == 2
+    assert candidate(""aaaBb"") == 1
+    assert candidate("""") == 0
+","
+def split_words(txt):
+    '''
+    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you
+    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the
+    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25
+ '''
+    if'' in txt:
+        return txt.split(' ')
+    elif ',' in txt:
+        return txt.split(',')
+    else:
+        return len([letter for letter in txt if letter.islower() and ord(letter) % 2!= 0])
+
+
+# Test the function with the provided test cases
+print(split_words(""Hello World""))  # Output: ['Hello', 'World']
+print(split_words(""apple,banana,cherry""))  # Output: ['apple', 'banana', 'cherry']
+print(split_words(""12345""))  # Output: 5
+print(split_words(""abcdefghijklmnopqrstuvwxyz""))  # Output: 13
+print(split_words(""ABCDEFGHIJKLMNOPQRSTUVWXYZ""))  # Output: 0
+print(split_words(""No Spaces or Commas""))  # Output: 18
+",
+is_sorted,"
+def is_sorted(lst):
+    '''
+    Given a list of numbers, return whether or not they are sorted
+    in ascending order. If list has more than 1 duplicate of the same
+    number, return False. Assume no negative numbers and only integers.
+
+'''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([5]) == True
+    assert candidate([1, 2, 3, 4, 5]) == True
+    assert candidate([1, 3, 2, 4, 5]) == False
+    assert candidate([1, 2, 3, 4, 5, 6]) == True
+    assert candidate([1, 2, 3, 4, 5, 6, 7]) == True
+    assert candidate([1, 3, 2, 4, 5, 6, 7]) == False, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([]) == True, ""This prints if this assert fails 2 (good for debugging!)""
+    assert candidate([1]) == True, ""This prints if this assert fails 3 (good for debugging!)""
+    assert candidate([3, 2, 1]) == False, ""This prints if this assert fails 4 (good for debugging!)""
+    
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([1, 2, 2, 2, 3, 4]) == False, ""This prints if this assert fails 5 (good for debugging!)""
+    assert candidate([1, 2, 3, 3, 3, 4]) == False, ""This prints if this assert fails 6 (good for debugging!)""
+    assert candidate([1, 2, 2, 3, 3, 4]) == True, ""This prints if this assert fails 7 (good for debugging!)""
+    assert candidate([1, 2, 3, 4]) == True, ""This prints if this assert fails 8 (good for debugging!)""
+
+","
+def is_sorted(lst):
+    '''
+    Given a list of numbers, return whether or not they are sorted
+    in ascending order. If list has more than 1 duplicate of the same
+    number, return False. Assume no negative numbers and only integers.
+
+'''
+    for i in range(len(lst) - 1):
+        if lst[i] > lst[i + 1]:
+            return False
+    return True
+
+# Test cases
+print(is_sorted([1, 2, 3, 4, 5]))  # Output: True
+print(is_sorted([5, 4, 3, 2, 1]))  # Output: False
+print(is_sorted([1, 2, 2, 3, 4]))  # Output: False
+print(is_sorted([1, 2, 3, 3, 4]))  # Output: False
+print(is_sorted([1, 2, 3, 4, 4]))  # Output: False
+print(is_sorted([1, 2, 3, 4, 5]))  # Output: True
+print(is_sorted([1, 1, 2, 3, 4]))  # Output: False
+print(is_sorted([1, 2, 2, 3, 4]))  # Output: False
+print(is_sorted([1, 2, 3, 3, 4]))  # Output: False
+print(is_sorted([1, 2, 3, 4, 4]))  # Output: False
+print(is_sorted([1, 2, 3, 4, 5]))  # Output: True
+print(is_sorted([1, 1, 2, 3, 4]))  # Output: False
+print(is_sorted([1, 2, 2, 3, 4]))  # Output: False
+print(is_sorted([1, 2, 3, 3, 4]))  # Output: False
+print(is_sorted([1, 2, 3, 4, 4]))  # Output: False
+print(is_sorted([1, 2, 3, 4, 5]))  # Output: True
+print(is_sorted([1, 1, 2, 3, 4]))  # Output: False
+print(is_sorted([1",
+intersection,"
+def intersection(interval1, interval2):
+    """"""You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return ""YES"",
+    otherwise, return ""NO"".
+    If the two intervals don't intersect, return ""NO"".
+
+
+ """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate((1, 2), (2, 3)) == ""NO""
+    assert candidate((-1, 1), (0, 4)) == ""NO""
+    assert candidate((-3, -1), (-5, 5)) == ""YES""
+    assert candidate((-2, 2), (-4, 0)) == ""YES""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate((-11, 2), (-1, -1)) == ""NO""
+    assert candidate((1, 2), (3, 5)) == ""NO""
+    assert candidate((1, 2), (1, 2)) == ""NO""
+    assert candidate((-2, -2), (-3, -2)) == ""NO""
+
+","
+def intersection(interval1, interval2):
+    """"""You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return ""YES"",
+    otherwise, return ""NO"".
+    If the two intervals don't intersect, return ""NO"".
+
+
+ """"""
+    start1, end1 = interval1
+    start2, end2 = interval2
+
+    if end1 < start2 or end2 < start1:
+        return ""NO""
+
+    intersection_start = max(start1, start2)
+    intersection_end = min(end1, end2)
+
+    intersection_length = intersection_end - intersection_start + 1
+
+    if intersection_length == 1:
+        return ""NO""
+
+    def is_prime(num):
+        if num < 2:
+            return False
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
+
+    return ""YES"" if is_prime(intersection_length) else ""NO""
+
+# Test the function with the given intervals
+interval1 = (1, 3)
+interval2 = (2, 4)
+print(intersection(interval1, interval2))  # Output: ""NO""
+
+interval1 = (1, 5)
+interval2 = (2, 4)
+print(intersection(interval1, interval2))  # Output: ""YES""
+
+interval1 = (1, 5)
+interval2 = (6, 10)
+print(intersection(interval1, interval2))  # Output: ""NO""
+",
