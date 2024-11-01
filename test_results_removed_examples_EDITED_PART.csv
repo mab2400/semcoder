@@ -1021,3 +1021,212 @@ print(prime_length(""abcdefghijklmnopqr""))  # Output: False
 print(prime_length(""abcdefghijklmnopqrs""))  # Output: False
 print(prime_length(""abcdefghijklmnopqrst""))  # Output: False
 print(prime_length(""abcdefghij",
+starts_one_ends,"
+def starts_one_ends(n):
+    """"""
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(1) == 1
+    assert candidate(2) == 18
+    assert candidate(3) == 180
+    assert candidate(4) == 1800
+    assert candidate(5) == 18000
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def starts_one_ends(n):
+    """"""
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """"""
+    if n == 1:
+        return 10
+    else:
+        return 9 * 10**(n - 1)
+
+# Test the function with an example
+n = 2
+print(starts_one_ends(n))  # Output: 90
+
+# Test the function with another example
+n = 3
+print(starts_one_ends(n))  # Output: 900
+
+# Test the function with a different example
+n = 4
+print(starts_one_ends(n))  # Output: 9000
+
+# Test the function with a larger example
+n = 5
+print(starts_one_ends(n))  # Output: 90000
+
+# Test the function with a larger example
+n = 6
+print(starts_one_ends(n))  # Output: 900000
+
+# Test the function with a larger example
+n = 7
+print(starts_one_ends(n))  # Output: 9000000
+
+# Test the function with a larger example
+n = 8
+print(starts_one_ends(n))  # Output: 90000000
+
+# Test the function with a larger example
+n = 9
+print(starts_one_ends(n))  # Output: 900000000
+
+# Test the function with a larger example
+n = 10
+print(starts_one_ends(n))  # Output: 9000000000
+
+# Test the function with a larger example
+n = 11
+print(starts_one_ends(n))  # Output: 90000000000
+
+# Test the function with a larger example
+n = 12
+print(starts_one_ends(n))  # Output: 900000000000
+
+# Test the function with a larger example
+n = 13
+print(starts_one_ends(n))  # Output: 9000000000000
+
+# Test the function with a larger example
+n = 14
+",
+solve,"
+def solve(N):
+    """"""Given a positive integer N, return the total sum of its digits in binary.
+    
+     Variables:
+        @N integer
+             Constraints: 0 ≤ N ≤ 10000.
+    Output:
+         a string of binary number
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(1000) == ""1"", ""Error""
+    assert candidate(150) == ""110"", ""Error""
+    assert candidate(147) == ""1100"", ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(333) == ""1001"", ""Error""
+    assert candidate(963) == ""10010"", ""Error""
+
+","
+def solve(N):
+    """"""Given a positive integer N, return the total sum of its digits in binary.
+    
+     Variables:
+        @N integer
+             Constraints: 0 ≤ N ≤ 10000.
+    Output:
+         a string of binary number
+    """"""
+    # Convert the integer N to binary
+    binary_N = bin(N)[2:]
+    
+    # Calculate the sum of digits in the binary representation
+    sum_of_digits = sum(int(digit) for digit in binary_N)
+    
+    return sum_of_digits
+
+# Test the function with the example input
+N = 12345
+print(solve(N))  # Output: 12
+
+# Test the function with a random input
+import random
+random_N = random.randint(0, 10000)
+print(f""Random input: {random_N}"")
+print(solve(random_N))",
+add,"
+def add(lst):
+    """"""Given a non-empty list of integers lst. add the even elements that are at odd indices..
+
+
+ """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([4, 88]) == 88
+    assert candidate([4, 5, 6, 7, 2, 122]) == 122
+    assert candidate([4, 0, 6, 7]) == 0
+    assert candidate([4, 4, 6, 8]) == 12
+
+    # Check some edge cases that are easy to work out by hand.
+    
+","
+def add(lst):
+    """"""Given a non-empty list of integers lst. add the even elements that are at odd indices..
+
+
+ """"""
+    return sum(lst[1::2])
+
+
+def test_add():
+    assert add([1, 2, 3, 4, 5]) == 6
+    assert add([10, 20, 30, 40, 50]) == 60
+    assert add([100, 200, 300, 400, 500]) == 600
+    assert add([1000, 2000, 3000, 4000, 5000]) == 6000
+    assert add([10000, 20000, 30000, 40000, 50000]) == 60000
+    assert add([100000, 200000, 300000, 400000, 500000]) == 600000
+    assert add([1000000, 2000000, 3000000, 4000000, 5000000]) == 6000000
+    assert add([10000000, 20000000, 30000000, 40000000, 50000000]) == 60000000
+    assert add([100000000, 200000000, 300000000, 400000000, 500000000]) == 600000000
+    assert add([1000000000, 2000000000, 3000000000, 4000000000, 5000000000]) == 6000000000
+    assert add([10000000",
+anti_shuffle,"
+def anti_shuffle(s):
+    """"""
+    Write a function that takes a string and returns an ordered version of it.
+    Ordered version of string, is a string where all words (separated by space)
+    are replaced by a new word where all the characters arranged in
+    ascending order based on ascii value.
+    Note: You should keep the order of words and blank spaces in the sentence.
+
+ """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate('Hi') == 'Hi'
+    assert candidate('hello') == 'ehllo'
+    assert candidate('number') == 'bemnru'
+    assert candidate('abcd') == 'abcd'
+    assert candidate('Hello World!!!') == 'Hello !!!Wdlor'
+    assert candidate('') == ''
+    assert candidate('Hi. My name is Mister Robot. How are you?') == '.Hi My aemn is Meirst .Rboot How aer ?ouy'
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","
+def anti_shuffle(s):
+    """"""
+    Write a function that takes a string and returns an ordered version of it.
+    Ordered version of string, is a string where all words (separated by space)
+    are replaced by a new word where all the characters arranged in
+    ascending order based on ascii value.
+    Note: You should keep the order of words and blank spaces in the sentence.
+
+ """"""
+    return''.join([''.join(sorted(word)) for word in s.split()])
+
+
+# Test the function with the given example
+input_string = ""I love programming""
+output_string = anti_shuffle(input_string)
+print(output_string)  # Output: ""I egl lovegniporrm""
+",
