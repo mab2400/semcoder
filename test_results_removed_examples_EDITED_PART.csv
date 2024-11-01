@@ -3688,3 +3688,363 @@ print(fix_spaces(""Hello  World""))  # Output: Hello_-_World
 print(fix_spaces(""Python  Programming""))  # Output: Python_-_Programming
 print(fix_spaces(""Python  Programming  Language""))  # Output: Python_-_Programming_-_Language
 ",
+file_name_check,"
+def file_name_check(file_name):
+    """"""Create a function which takes a string representing a file's name, and returns
+    'Yes' if the the file's name is valid, and returns 'No' otherwise.
+    A file's name is considered to be valid if and only if all the following conditions 
+    are met:
+    - There should not be more than three digits ('0'-'9') in the file's name.
+    - The file's name contains exactly one dot '.'
+    - The substring before the dot should not be empty, and it starts with a letter from 
+    the latin alphapet ('a'-'z' and 'A'-'Z').
+    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""example.txt"") == 'Yes'
+    assert candidate(""1example.dll"") == 'No'
+    assert candidate('s1sdf3.asd') == 'No'
+    assert candidate('K.dll') == 'Yes'
+    assert candidate('MY16FILE3.exe') == 'Yes'
+    assert candidate('His12FILE94.exe') == 'No'
+    assert candidate('_Y.txt') == 'No'
+    assert candidate('?aREYA.exe') == 'No'
+    assert candidate('/this_is_valid.dll') == 'No'
+    assert candidate('this_is_valid.wow') == 'No'
+    assert candidate('this_is_valid.txt') == 'Yes'
+    assert candidate('this_is_valid.txtexe') == 'No'
+    assert candidate('#this2_i4s_5valid.ten') == 'No'
+    assert candidate('@this1_is6_valid.exe') == 'No'
+    assert candidate('this_is_12valid.6exe4.txt') == 'No'
+    assert candidate('all.exe.txt') == 'No'
+    assert candidate('I563_No.exe') == 'Yes'
+    assert candidate('Is3youfault.txt') == 'Yes'
+    assert candidate('no_one#knows.dll') == 'Yes'
+    assert candidate('1I563_Yes3.exe') == 'No'
+    assert candidate('I563_Yes3.txtt') == 'No'
+    assert candidate('final..txt') == 'No'
+    assert candidate('final132') == 'No'
+    assert candidate('_f4indsartal132.') == 'No'
+    
+        
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate('.txt') == 'No'
+    assert candidate('s.') == 'No'
+
+","
+def file_name_check(file_name):
+    """"""Create a function which takes a string representing a file's name, and returns
+    'Yes' if the the file's name is valid, and returns 'No' otherwise.
+    A file's name is considered to be valid if and only if all the following conditions 
+    are met:
+    - There should not be more than three digits ('0'-'9') in the file's name.
+    - The file's name contains exactly one dot '.'
+    - The substring before the dot should not be empty, and it starts with a letter from 
+    the latin alphapet ('a'-'z' and 'A'-'Z').
+    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']
+""""""
+    # Check if the file name contains at most 3 digits
+    if sum(c.isdigit() for c in file_name) > 3:
+        return 'No'
+
+    # Check if the file name contains exactly one dot
+    if file_name.count('.')!= 1:
+        return 'No'
+
+    # Split the file name into the prefix and suffix
+    prefix, suffix = file_name.split('.')
+
+    # Check if the prefix is not empty and starts with a letter
+    if not prefix or not prefix[0].isalpha():
+        return 'No'
+
+    # Check if the suffix is one of the valid extensions
+    if suffix not in ['txt', 'exe', 'dll']:
+        return 'No'
+
+    return 'Yes'
+
+# Test the function with the provided test cases
+test_cases = [
+    'file123.txt',
+    'file.txt',
+    'file123.dll',
+    'file.exe',
+    'file.',
+    'file',
+    'file.java',
+    'file1234.txt',
+    'file12.exe',
+    'file1.txt',
+    'file123.txt',
+    'file123.dll',
+    'file123.exe',
+    'file123.java',
+    'file123.cpp',
+    'file123.js',
+    'file123.py',
+    'file123.rb',
+    'file123.go',
+    'file123.php',
+    'file123.swift',
+    'file123.kotlin',
+    'file123.rust',
+    'file123.dart',
+    'file123.erlang',
+    'file123.perl',
+    'file123.lua',
+    'file123.scracHPad',
+    'file123.txt',
+    'file123.txt',
+    'file123.txt',
+    'file123.txt',
+    '",
+sum_squares,"
+
+
+def sum_squares(lst):
+    """"""""
+    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a 
+    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not 
+    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. 
+    
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    
+    assert candidate([1,2,3]) == 6
+    assert candidate([1,4,9]) == 14
+    assert candidate([]) == 0
+    assert candidate([1,1,1,1,1,1,1,1,1]) == 9
+    assert candidate([-1,-1,-1,-1,-1,-1,-1,-1,-1]) == -3
+    assert candidate([0]) == 0
+    assert candidate([-1,-5,2,-1,-5]) == -126
+    assert candidate([-56,-99,1,0,-2]) == 3030
+    assert candidate([-1,0,0,0,0,0,0,0,-1]) == 0
+    assert candidate([-16, -9, -2, 36, 36, 26, -20, 25, -40, 20, -4, 12, -26, 35, 37]) == -14196
+    assert candidate([-1, -3, 17, -1, -15, 13, -1, 14, -14, -12, -5, 14, -14, 6, 13, 11, 16, 16, 4, 10]) == -1448
+    
+    
+    # Don't remove this line:
+","
+
+
+def sum_squares(lst):
+    """"""""
+    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a 
+    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not 
+    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. 
+    
+""""""
+    sum_result = 0
+    for index, num in enumerate(lst):
+        if index % 3 == 0 and index % 4!= 0:
+            sum_result += num ** 2
+        elif index % 4 == 0:
+            sum_result += num ** 3
+        else:
+            sum_result += num
+    return sum_result
+
+# Test the function with an example list
+example_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+result = sum_squares(example_list)
+print(result)  # Output should be 139
+
+# Test the function with a different example list
+different_list = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+different_result = sum_squares(different_list)
+print(different_result)  # Output should be 387
+
+# Test the function with a third example list
+third_list = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
+third_result = sum_squares(third_list)
+print(third_result)  # Output should be 753
+
+# Test the function with a fourth example list
+fourth_list = [4, 8, 12, 16, 20, 24, 28, 32, 36, 40]
+fourth_result = sum_squares(fourth_list)
+print(fourth_result)  # Output should be 1287
+
+# Test the function with a fifth example list
+fifth_list = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+fifth_result = sum_squares(fifth_list)
+print(fifth_result)  # Output should be 1853
+
+# Test the function with a sixth example list
+",
+words_in_sentence,"
+def words_in_sentence(sentence):
+    """"""
+    You are given a string representing a sentence,
+    the sentence contains some words separated by a space,
+    and you have to return a string that contains the words from the original sentence,
+    whose lengths are prime numbers,
+    the order of the words in the new string should be the same as the original one.
+
+ Constraints:
+        * 1 <= len(sentence) <= 100
+        * sentence contains only letters
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""This is a test"") == ""is""
+    assert candidate(""lets go for swimming"") == ""go for""
+    assert candidate(""there is no place available here"") == ""there is no place""
+    assert candidate(""Hi I am Hussein"") == ""Hi am Hussein""
+    assert candidate(""go for it"") == ""go for it""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(""here"") == """"
+    assert candidate(""here is"") == ""is""
+
+","
+def words_in_sentence(sentence):
+    """"""
+    You are given a string representing a sentence,
+    the sentence contains some words separated by a space,
+    and you have to return a string that contains the words from the original sentence,
+    whose lengths are prime numbers,
+    the order of the words in the new string should be the same as the original one.
+
+ Constraints:
+        * 1 <= len(sentence) <= 100
+        * sentence contains only letters
+    """"""
+    def is_prime(num):
+        if num < 2:
+            return False
+        for i in range(2, int(num ** 0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
+
+    words = sentence.split()
+    prime_words = [word for word in words if is_prime(len(word))]
+    return''.join(prime_words)
+
+# Test the function with the provided test cases
+test_cases = [
+    (""hello world"", ""hello world""),
+    (""the quick brown fox jumps over the lazy dog"", ""quick brown jumps over""),
+    (""a b c d e f g h i j k l m n o p q r s t u v w x y z"", ""a b c d e f g h i j k l m n o p q r s t u v w x y z""),
+    (""a b c d e f g h i j k l m n o p q r s t u v w x y z"", ""a b c d e f g h i j k l m n o p q r s t u v w x y z""),
+    (""a b c d e f g h i j k l m n o p q r s t u v w x y z"", ""a b c d e f g h i j k l m n o p q r s t u v w x y z""),
+    (""a b c d e f g h i j k l m n o p q r s t u v w x y z"", ""a b c d e f g h i j k l m n o p q r s t u v w x y z""),
+    (""a b c d e f g h i j k l m n o p q r s t u v w x y z"", ""a b c d e f g h i j k l m n o p q r s t u v w x y z""),
+    (""a b c d e f g h i j k l m n o p q r s t u v w x y z"", ""a b c d e f g h i j k l m n o p q r s t u v w x y z""),
+    (""a b c d e f g h i j k l m",
+simplify,"
+def simplify(x, n):
+    """"""Your task is to implement a function that will simplify the expression
+    x * n. The function returns True if x * n evaluates to a whole number and False
+    otherwise. Both x and n, are string representation of a fraction, and have the following format,
+    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.
+
+    You can assume that x, and n are valid fractions, and do not have zero as denominator.
+
+ """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""1/5"", ""5/1"") == True, 'test1'
+    assert candidate(""1/6"", ""2/1"") == False, 'test2'
+    assert candidate(""5/1"", ""3/1"") == True, 'test3'
+    assert candidate(""7/10"", ""10/2"") == False, 'test4'
+    assert candidate(""2/10"", ""50/10"") == True, 'test5'
+    assert candidate(""7/2"", ""4/2"") == True, 'test6'
+    assert candidate(""11/6"", ""6/1"") == True, 'test7'
+    assert candidate(""2/3"", ""5/2"") == False, 'test8'
+    assert candidate(""5/2"", ""3/5"") == False, 'test9'
+    assert candidate(""2/4"", ""8/4"") == True, 'test10'
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(""2/4"", ""4/2"") == True, 'test11'
+    assert candidate(""1/5"", ""5/1"") == True, 'test12'
+    assert candidate(""1/5"", ""1/5"") == False, 'test13'
+
+","
+def simplify(x, n):
+    """"""Your task is to implement a function that will simplify the expression
+    x * n. The function returns True if x * n evaluates to a whole number and False
+    otherwise. Both x and n, are string representation of a fraction, and have the following format,
+    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.
+
+    You can assume that x, and n are valid fractions, and do not have zero as denominator.
+
+ """"""
+    x_num, x_den = map(int, x.split('/'))
+    n_num, n_den = map(int, n.split('/'))
+
+    result_num = x_num * n_num
+    result_den = x_den * n_den
+
+    return result_num % result_den == 0
+
+# Test the function with the provided test cases
+print(simplify('1/2', '2/4'))  # Output: True
+print(simplify('3/4', '2/4'))  # Output: False
+print(simplify('1/3', '2/6'))  # Output: True
+print(simplify('1/4', '1/2'))  # Output: False
+print(simplify('5/6', '2/3'))  # Output: False
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8', '1/16'))  # Output: True
+print(simplify('1/8',",
+specialFilter,"
+def specialFilter(nums):
+    """"""Write a function that takes an array of numbers as input and returns 
+    the number of elements in the array that are greater than 10 and both 
+    first and last digits of a number are odd (1, 3, 5, 7, 9).
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([5, -2, 1, -5]) == 0  
+    assert candidate([15, -73, 14, -15]) == 1
+    assert candidate([33, -2, -3, 45, 21, 109]) == 2
+    assert candidate([43, -12, 93, 125, 121, 109]) == 4
+    assert candidate([71, -2, -33, 75, 21, 19]) == 3
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([1]) == 0              
+    assert candidate([]) == 0                   
+
+","
+def specialFilter(nums):
+    """"""Write a function that takes an array of numbers as input and returns 
+    the number of elements in the array that are greater than 10 and both 
+    first and last digits of a number are odd (1, 3, 5, 7, 9).
+""""""
+    count = 0
+    for num in nums:
+        if num > 10 and isOdd(num):
+            count += 1
+    return count
+
+def isOdd(num):
+    if num % 2!= 0:
+        return True
+    return False
+
+# Test the function
+nums = [11, 33, 55, 77, 99, 10, 20, 30, 40, 50]
+print(specialFilter(nums))  # Output: 5",
