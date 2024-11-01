@@ -4545,3 +4545,288 @@ print(right_angle_triangle(6, 30, 30))  # Output: True
 print(right_angle_triangle(12, 35, 37))  # Output: True
 print(right_angle_triangle(11, 60, 61))  # Output: True
 ",
+find_max,"
+def find_max(words):
+    """"""Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert (candidate([""name"", ""of"", ""string""]) == ""string""), ""t1""
+    assert (candidate([""name"", ""enam"", ""game""]) == ""enam""), 't2'
+    assert (candidate([""aaaaaaa"", ""bb"", ""cc""]) == ""aaaaaaa""), 't3'
+    assert (candidate([""abc"", ""cba""]) == ""abc""), 't4'
+    assert (candidate([""play"", ""this"", ""game"", ""of"",""footbott""]) == ""footbott""), 't5'
+    assert (candidate([""we"", ""are"", ""gonna"", ""rock""]) == ""gonna""), 't6'
+    assert (candidate([""we"", ""are"", ""a"", ""mad"", ""nation""]) == ""nation""), 't7'
+    assert (candidate([""this"", ""is"", ""a"", ""prrk""]) == ""this""), 't8'
+
+    # Check some edge cases that are easy to work out by hand.
+    assert (candidate([""b""]) == ""b""), 't9'
+    assert (candidate([""play"", ""play"", ""play""]) == ""play""), 't10'
+
+","
+def find_max(words):
+    """"""Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+""""""
+    max_unique_chars = 0
+    word_with_max_unique_chars = """"
+
+    for word in words:
+        unique_chars = set(word)
+        if len(unique_chars) > max_unique_chars:
+            max_unique_chars = len(unique_chars)
+            word_with_max_unique_chars = word
+        elif len(unique_chars) == max_unique_chars and word < word_with_max_unique_chars:
+            word_with_max_unique_chars = word
+
+    return word_with_max_unique_chars
+
+# Test the function
+words = [""apple"", ""banana"", ""orange"", ""pear"", ""grape""]
+print(find_max(words))  # Output: ""orange""
+
+words = [""hello"", ""world"", ""python"", ""programming"", ""coding""]
+print(find_max(words))  # Output: ""programming""
+
+words = [""cat"", ""dog"", ""rabbit"", ""fish"", ""elephant""]
+print(find_max(words))  # Output: ""rabbit""
+",
+eat,"
+def eat(number, need, remaining):
+    """"""
+    You're a hungry rabbit, and you already have eaten a certain number of carrots,
+    but now you need to eat more carrots to complete the day's meals.
+    you should return an array of [ total number of eaten carrots after your meals,
+                                    the number of carrots left after your meals ]
+    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.
+    
+Variables:
+    @number : integer
+        the number of carrots that you have eaten.
+    @need : integer
+        the number of carrots that you need to eat.
+    @remaining : integer
+        the number of remaining carrots thet exist in stock
+    
+    Constrain:
+    * 0 <= number <= 1000
+    * 0 <= need <= 1000
+    * 0 <= remaining <= 1000
+
+    Have fun :)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(5, 6, 10) == [11, 4], ""Error""
+    assert candidate(4, 8, 9) == [12, 1], ""Error""
+    assert candidate(1, 10, 10) == [11, 0], ""Error""
+    assert candidate(2, 11, 5) == [7, 0], ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(4, 5, 7) == [9, 2], ""Error""
+    assert candidate(4, 5, 1) == [5, 0], ""Error""
+
+","
+def eat(number, need, remaining):
+    """"""
+    You're a hungry rabbit, and you already have eaten a certain number of carrots,
+    but now you need to eat more carrots to complete the day's meals.
+    you should return an array of [ total number of eaten carrots after your meals,
+                                    the number of carrots left after your meals ]
+    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.
+    
+Variables:
+    @number : integer
+        the number of carrots that you have eaten.
+    @need : integer
+        the number of carrots that you need to eat.
+    @remaining : integer
+        the number of remaining carrots thet exist in stock
+    
+    Constrain:
+    * 0 <= number <= 1000
+    * 0 <= need <= 1000
+    * 0 <= remaining <= 1000
+
+    Have fun :)
+    """"""
+    if need > remaining:
+        return [number + remaining, 0]
+    else:
+        return [number + need, remaining - need]
+
+# Test the function
+print(eat(5, 2, 10))  # Output: [7, 3]
+print(eat(10, 5, 20))  # Output: [15, 0]
+print(eat(3, 7, 15))   # Output: [10, 5]
+",
+do_algebra,"
+def do_algebra(operator, operand):
+    """"""
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+ Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(['**', '*', '+'], [2, 3, 4, 5]) == 37
+    assert candidate(['+', '*', '-'], [2, 3, 4, 5]) == 9
+    assert candidate(['//', '*'], [7, 3, 4]) == 8, ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def do_algebra(operator, operand):
+    """"""
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+ Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """"""
+    result = operand[0]
+    for i in range(len(operator)):
+        if operator[i] == '+':
+            result += operand[i + 1]
+        elif operator[i] == '-':
+            result -= operand[i + 1]
+        elif operator[i] == '*':
+            result *= operand[i + 1]
+        elif operator[i] == '//':
+            result //= operand[i + 1]
+        elif operator[i] == '**':
+            result **= operand[i + 1]
+    return result
+
+# Test the function with the provided test cases
+print(do_algebra(['+', '*'], [10, 5, 2]))  # Output: 30
+print(do_algebra(['+', '*', '//'], [10, 5, 2, 3]))  # Output: 10
+print(do_algebra(['+', '*', '//', '**'], [10, 5, 2, 3, 2]))  # Output: 100
+print(do_algebra(['+', '*', '//', '**', '-'], [10, 5, 2, 3, 2, 5]))  # Output: 95
+print(do_algebra(['+', '*', '//', '**', '-', '+'], [10, 5, 2, 3, 2, 5, 10]))  # Output: 105
+print(do_algebra(['+', '*', '//', '**', '-', '+', '*'], [10, 5, 2, 3, 2, 5, 10, 2]))  # Output: 210
+print(do_algebra(['+', '*', '//', '**', '-', '+', '*', '//'], [10, 5, 2, 3, 2, 5, 10, 2, 3]))  # Output: 70
+print(do_algebra(['+', '*', '//', '**', '-', '+', '*', '//', '**'], [",
+solve,"
+def solve(s):
+    """"""You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""AsDf"") == ""aSdF""
+    assert candidate(""1234"") == ""4321""
+    assert candidate(""ab"") == ""AB""
+    assert candidate(""#a@C"") == ""#A@c""
+    assert candidate(""#AsdfW^45"") == ""#aSDFw^45""
+    assert candidate(""#6@2"") == ""2@6#""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(""#$a^D"") == ""#$A^d""
+    assert candidate(""#ccc"") == ""#CCC""
+
+    # Don't remove this line:
+","
+def solve(s):
+    """"""You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+""""""
+    result = """"
+    for char in s:
+        if char.isalpha():
+            if char.islower():
+                result += char.upper()
+            else:
+                result += char.lower()
+        else:
+            result += char
+    if not any(char.isalpha() for char in s):
+        result = s[::-1]
+    return result
+
+# Test the function
+print(solve(""Hello, World!""))  # Output: ""hELLO, wORLD!""
+print(solve(""12345""))  # Output: ""54321""
+print(solve(""NoLettersHere""))  # Output: ""enOtSrEh""
+",
+generate_integers,"
+def generate_integers(a, b):
+    """"""
+    Given two positive integers a and b, return the even digits between a
+    and b, in ascending order.
+
+""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(2, 10) == [2, 4, 6, 8], ""Test 1""
+    assert candidate(10, 2) == [2, 4, 6, 8], ""Test 2""
+    assert candidate(132, 2) == [2, 4, 6, 8], ""Test 3""
+    assert candidate(17,89) == [], ""Test 4""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def generate_integers(a, b):
+    """"""
+    Given two positive integers a and b, return the even digits between a
+    and b, in ascending order.
+
+""""""
+    even_integers = []
+    for num in range(a, b + 1):
+        if num % 2 == 0:
+            even_integers.append(num)
+    return even_integers
+
+# Test the function with a = 10 and b = 20
+a = 10
+b = 20
+result = generate_integers(a, b)
+print(result)",
