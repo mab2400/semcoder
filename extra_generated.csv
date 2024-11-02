@@ -1,0 +1,86 @@
+entry_point,formatted_prompt,test_cases,generated_code,all_tests_passed
+sort_array,"
+def sort_array(arr):
+    """"""
+    In this Kata, you have to sort an array of non-negative integers according to
+    number of ones in their binary representation in ascending order.
+    For similar number of ones, sort based on decimal value.""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([1,5,2,3,4]) == [1, 2, 4, 3, 5]
+    assert candidate([-2,-3,-4,-5,-6]) == [-4, -2, -6, -5, -3]
+    assert candidate([1,0,2,3,4]) == [0, 1, 2, 4, 3]
+    assert candidate([]) == []
+    assert candidate([2,5,77,4,5,3,5,7,2,3,4]) == [2, 2, 4, 4, 3, 3, 5, 5, 5, 7, 77]
+    assert candidate([3,6,44,12,32,5]) == [32, 3, 5, 6, 12, 44]
+    assert candidate([2,4,8,16,32]) == [2, 4, 8, 16, 32]
+    assert candidate([2,4,8,16,32]) == [2, 4, 8, 16, 32]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def sort_array(arr):
+    """"""
+    In this Kata, you have to sort an array of non-negative integers according to
+    number of ones in their binary representation in ascending order.
+    For similar number of ones, sort based on decimal value.""""""
+    return sorted(arr, key=lambda x: (bin(x).count('1'), x))
+
+
+def test_sort_array():
+    assert sort_array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) == [0, 1, 2, 4, 8, 3, 5, 6, 9, 7]
+    assert sort_array([10, 11, 12]) == [10, 12, 11]
+    assert sort_array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [0, 1, 2, 4, 8, 3, 5, 6, 9, 7, 10]
+    assert sort_array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]) == [0, 1, 2, 4, 8, 3, 5, 6, 9, 7, 10, 12, 15, 13, 14, 11]
+    assert sort_array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]) == [0, 1, 2, 4, 8, 3, 5, 6, 9, 7, 10, 12, 15, 13, 14, 11, 16, 18, 20, 17, 19]
+    assert sort_array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ",
+solve,"
+def solve(s):
+    """"""You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.""""""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""AsDf"") == ""aSdF""
+    assert candidate(""1234"") == ""4321""
+    assert candidate(""ab"") == ""AB""
+    assert candidate(""#a@C"") == ""#A@c""
+    assert candidate(""#AsdfW^45"") == ""#aSDFw^45""
+    assert candidate(""#6@2"") == ""2@6#""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(""#$a^D"") == ""#$A^d""
+    assert candidate(""#ccc"") == ""#CCC""
+
+    # Don't remove this line:
+","
+def solve(s):
+    """"""You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.""""""
+    result = """"
+    for i in range(len(s)):
+        if s[i].isalpha():
+            if s[i].islower():
+                result += s[i].upper()
+            else:
+                result += s[i].lower()
+        else:
+            result += s[i]
+    if not any(c.isalpha() for c in s):
+        result = result[::-1]
+    return result
+
+# Test the function
+print(solve(""Hello, World!""))  # Output: ""hELLO, wORLD!""
+print(solve(""12345""))  # Output: ""54321""
+print(solve(""NoLettersHere""))  # Output: ""nolettershere""
+",
