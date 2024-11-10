@@ -112,7 +112,7 @@ A script that runs SemCoder and executes test cases on a single example from eit
 python run_single_example.py <entry_point>
 ```
 
-## `calculate_results.py`
+## `calculate_results.py <input_file>`
 A script that calculates the overall pass percentage and category breakdown of pass rates for the datasets (both "control" and "ablation").
 
 ### Functionality:
