@@ -1,8 +1,11 @@
-import csv
+import os
 import sys
+import csv
+import argparse
+from transformers import pipeline
 
-# Path to CSV file containing 'test_cases', 'generated_code', 'entry_point', and 'all_tests_passed' columns
-csv_file_path = 'test_results_pass_fail.csv'
+# Load SemCoder model using the text-generation pipeline
+pipe = pipeline("text-generation", model="semcoder/semcoder")
 
 def run_example(test_cases, generated_code, entry_point):
     """
@@ -30,27 +33,45 @@ check({entry_point})
         print(f"An error occurred: {e}\n")
         return "Error"
 
-def run_single_test(entry_point):
+def process_single_entry(input_csv_file_path, entry_point):
     """
-    Runs a single test specified by the entry point by locating it in the CSV and then testing it.
+    Processes a single entry specified by `entry_point`, runs the relevant tests, 
+    and prints the results to the terminal.
     """
-    with open(csv_file_path, mode='r', newline='') as csvfile:
+    with open(input_csv_file_path, mode='r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
-
+        
         for row in reader:
             if row['entry_point'] == entry_point:
+                print(f"Generating code for {entry_point}...")
+                prompt = row['prompt']
+                
+                # Generate code based on the prompt
+                generated_code = pipe(prompt, max_new_tokens=512, num_return_sequences=1)[0]['generated_text']
+                row['generated_code'] = generated_code
+                
+                # Test the generated code using the given test cases
                 test_cases = row['test_cases']
-                generated_code = row['generated_code']
+                print(f"Evaluating against given test cases...")
                 result = run_example(test_cases, generated_code, entry_point)
-                print(f"Result for {entry_point}: {result}")
+                
+                # Print the result to the terminal
+                print(f"Entry Point: {entry_point}")
+                print(f"Prompt: {prompt}")
+                print(f"Generated Code:\n{generated_code}")
+                print(f"Test Cases:\n{test_cases}")
+                print(f"Result: {result}")
+                print(f"Category: {row.get('category', 'N/A')}")
                 return
-
+        
         print(f"No entry found for entry point '{entry_point}'.")
 
 # Usage
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        entry_point = sys.argv[1]
-        run_single_test(entry_point)
-    else:
-        print("Usage: python run_single_example.py <entry_point>")
+    parser = argparse.ArgumentParser(description="Run SemCoder on a single entry from a CSV dataset and print results.")
+    parser.add_argument("input_csv", help="Path to the input CSV file")
+    parser.add_argument("entry_point", help="The entry point of the example to test")
+
+    args = parser.parse_args()
+
+    process_single_entry(args.input_csv, args.entry_point)
