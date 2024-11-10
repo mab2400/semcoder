@@ -1,4 +1,3 @@
-README for Github:
 #### Project Overview
 TODO: WILL GO HERE
 
