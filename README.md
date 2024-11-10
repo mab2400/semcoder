@@ -1,5 +1,9 @@
 #### Project Overview
-TODO: WILL GO HERE
+[SemCoder Ablation Study] Programming by examples. How useful are the input/output examples
+described in the prompt?
+- What will happen if we remove those examples from the HumanEval prompt, how much will the
+performance drop?
+- Is the execution training increasing/decreasing the dependence on these I/O examples?
 
 #### Requirements
 - 1 GPU
