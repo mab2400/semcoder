@@ -55,7 +55,6 @@ def read_existing_code(csv_file_path):
 
 # Load SemCoder model using the text-generation pipeline
 pipe = pipeline("text-generation", model="semcoder/semcoder")
-#pipe = pipeline("text-generation", model="semcoder/semcoder", device_map="auto", offload_folder="/mnt/300GB-disk")
 
 
 # Specify the path to your JSON file and CSV file

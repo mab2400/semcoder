@@ -1,7 +1,7 @@
 import csv
 import sys
 
-# Path to your CSV file containing 'test_cases', 'generated_code', 'entry_point', and 'all_tests_passed' columns
+# Path to CSV file containing 'test_cases', 'generated_code', 'entry_point', and 'all_tests_passed' columns
 csv_file_path = 'test_results_pass_fail.csv'
 
 def run_example(test_cases, generated_code, entry_point):
