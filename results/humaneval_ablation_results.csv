@@ -5549,4 +5549,3 @@ generate_integers,"def generate_integers(a, b):
         if num % 2 == 0:
             even_integers.append(num)
     return even_integers",Failed,ListArray
-,,,PASSED %:,57.93%,

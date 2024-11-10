@@ -9997,4 +9997,3 @@ def test_generate_integers():
     assert generate_integers(1, 9) == [2, 4, 6, 8]
     assert generate_integers(9, 1) == [2, 4, 6, 8]
     assert generate_integers(",Failed,ListArray
-,,,PASSED %:,62.80%,
