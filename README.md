@@ -82,10 +82,10 @@ Ensure you have access to:
 This script runs SemCoder on a given dataset (either control or ablation) and executes the test cases on the generated code. It produces an output CSV file with the generated code and the pass/fail results.
 
 ### Functionality:
-- **Load dataset**
-- **Run SemCoder on each example**
-- **Execute provided test cases on the generated code**
-- **Generate a CSV output** with columns:
+- Load dataset
+- Run SemCoder on each example
+- Execute provided test cases on the generated code
+- Generate a CSV output with columns:
   - `entry_point`
   - `prompt`
   - `test_cases`
@@ -95,34 +95,33 @@ This script runs SemCoder on a given dataset (either control or ablation) and ex
 
 ### Usage:
 ```bash
-    python run.py <input_file> <output_file>
+python run.py <input_file> <output_file>
 ```
 
 ## `run_single_example.py <entry_point>`
 A script that runs SemCoder and executes test cases on a single example from either dataset. Useful for testing or debugging individual entries.
 
 ### Functionality:
-- **Take an example as input via the command line**
-- **Run SemCoder on the given example: Generates code for a single prompt**
-- **Execute test cases and display results**
-- **Display the result in the terminal**
+- Take an example as input via the command line
+- Run SemCoder on the given example
+- Execute test cases and display results
+- Display the result in the terminal
 
 ### Usage:
 ```bash
-    python run_single_example.py <entry_point>
+python run_single_example.py <entry_point>
 ```
 
 ## `calculate_results.py`
 A script that calculates the overall pass percentage and category breakdown of pass rates for the datasets (both "control" and "ablation").
 
 ### Functionality:
-- **Load the CSV file containing pass/fail results and categories**
-- **Calculate the overall success rate**
-- **Compute category-wise success rates**
-- **Prints a report**
+- Load the CSV file containing pass/fail results and categories
+- Calculate the overall success rate
+- Compute category-wise success rates
+- Prints a report
 
 ### Usage:
 ```bash
-    python calculate_results.py <results_csv_file>
+python calculate_results.py <results_csv_file>
 ```
-
