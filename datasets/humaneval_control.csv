@@ -1,4 +1,4 @@
-entry_point,prompt,test_cases,all_tests_passed,category
+entry_point,prompt,test_cases,generated_code,all_tests_passed,category
 has_close_elements,"from typing import List
 
 
@@ -27,7 +27,7 @@ def check(candidate):
     assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True
     assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False
 
-",,ListArray
+",,,ListArray
 separate_paren_groups,"from typing import List
 
 
@@ -58,7 +58,7 @@ def check(candidate):
         '(()(())((())))'
     ]
     assert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']
-",,DS
+",,,DS
 truncate_number,"
 
 def truncate_number(number: float) -> float:
@@ -82,7 +82,7 @@ def check(candidate):
     assert candidate(3.5) == 0.5
     assert abs(candidate(1.33) - 0.33) < 1e-6
     assert abs(candidate(123.456) - 0.456) < 1e-6
-",,Math
+",,,Math
 below_zero,"from typing import List
 
 
@@ -110,7 +110,7 @@ def check(candidate):
     assert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False
     assert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True
     assert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True
-",,ListArray
+",,,ListArray
 mean_absolute_deviation,"from typing import List
 
 
@@ -136,7 +136,7 @@ def check(candidate):
     assert abs(candidate([1.0, 2.0, 3.0, 4.0]) - 1.0) < 1e-6
     assert abs(candidate([1.0, 2.0, 3.0, 4.0, 5.0]) - 6.0/5.0) < 1e-6
 
-",,Math
+",,,Math
 intersperse,"from typing import List
 
 
@@ -159,7 +159,7 @@ def check(candidate):
     assert candidate([], 7) == []
     assert candidate([5, 6, 3, 2], 8) == [5, 8, 6, 8, 3, 8, 2]
     assert candidate([2, 2, 2], 2) == [2, 2, 2, 2, 2]
-",,ListArray
+",,,ListArray
 parse_nested_parens,"from typing import List
 
 
@@ -183,7 +183,7 @@ def check(candidate):
     assert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]
     assert candidate('() (()) ((())) (((())))') == [1, 2, 3, 4]
     assert candidate('(()(())((())))') == [4]
-",,DS
+",,,DS
 filter_by_substring,"from typing import List
 
 
@@ -207,7 +207,7 @@ def check(candidate):
     assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']
     assert candidate(['xxx', 'asd', 'aaaxxy', 'john doe', 'xxxAAA', 'xxx'], 'xx') == ['xxx', 'aaaxxy', 'xxxAAA', 'xxx']
     assert candidate(['grunt', 'trumpet', 'prune', 'gruesome'], 'run') == ['grunt', 'prune']
-",,String
+",,,String
 sum_product,"from typing import List, Tuple
 
 
@@ -233,7 +233,7 @@ def check(candidate):
     assert candidate([100, 0]) == (100, 0)
     assert candidate([3, 5, 7]) == (3 + 5 + 7, 3 * 5 * 7)
     assert candidate([10]) == (10, 10)
-",,Math
+",,,Math
 rolling_max,"from typing import List, Tuple
 
 
@@ -256,7 +256,7 @@ def check(candidate):
     assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]
     assert candidate([4, 3, 2, 1]) == [4, 4, 4, 4]
     assert candidate([3, 2, 3, 100, 3]) == [3, 3, 3, 100, 100]
-",,ListArray
+",,,ListArray
 make_palindrome,"
 
 def is_palindrome(string: str) -> bool:
@@ -290,7 +290,7 @@ def check(candidate):
     assert candidate('xyz') == 'xyzyx'
     assert candidate('xyx') == 'xyx'
     assert candidate('jerry') == 'jerryrrej'
-",,String
+",,,String
 string_xor,"from typing import List
 
 
@@ -312,7 +312,7 @@ def check(candidate):
     assert candidate('111000', '101010') == '010010'
     assert candidate('1', '1') == '0'
     assert candidate('0101', '0000') == '0101'
-",,String
+",,,String
 longest,"from typing import List, Optional
 
 
@@ -338,7 +338,7 @@ def check(candidate):
     assert candidate([]) == None
     assert candidate(['x', 'y', 'z']) == 'x'
     assert candidate(['x', 'yyy', 'zzzz', 'www', 'kkkk', 'abc']) == 'zzzz'
-",,String
+",,,String
 greatest_common_divisor,"
 
 def greatest_common_divisor(a: int, b: int) -> int:
@@ -361,7 +361,7 @@ def check(candidate):
     assert candidate(10, 15) == 5
     assert candidate(49, 14) == 7
     assert candidate(144, 60) == 12
-",,Math
+",,,Math
 all_prefixes,"from typing import List
 
 
@@ -382,7 +382,7 @@ def check(candidate):
     assert candidate('') == []
     assert candidate('asdfgh') == ['a', 'as', 'asd', 'asdf', 'asdfg', 'asdfgh']
     assert candidate('WWW') == ['W', 'WW', 'WWW']
-",,String
+",,,String
 string_sequence,"
 
 def string_sequence(n: int) -> str:
@@ -404,7 +404,7 @@ def check(candidate):
     assert candidate(0) == '0'
     assert candidate(3) == '0 1 2 3'
     assert candidate(10) == '0 1 2 3 4 5 6 7 8 9 10'
-",,String
+",,,String
 count_distinct_characters,"
 
 def count_distinct_characters(string: str) -> int:
@@ -428,7 +428,7 @@ def check(candidate):
     assert candidate('abcde' + 'cade' + 'CADE') == 5
     assert candidate('aaaaAAAAaaaa') == 1
     assert candidate('Jerry jERRY JeRRRY') == 5
-",,String
+",,,String
 parse_music,"from typing import List
 
 
@@ -459,7 +459,7 @@ def check(candidate):
     assert candidate('.| .| .| .|') == [1, 1, 1, 1]
     assert candidate('o| o| .| .| o o o o') == [2, 2, 1, 1, 4, 4, 4, 4]
     assert candidate('o| .| o| .| o o| o o|') == [2, 1, 2, 1, 4, 2, 4, 2]
-",,DS
+",,,DS
 how_many_times,"
 
 def how_many_times(string: str, substring: str) -> int:
@@ -484,7 +484,7 @@ def check(candidate):
     assert candidate('xyxyxyx', 'x') == 4
     assert candidate('cacacacac', 'cac') == 4
     assert candidate('john doe', 'john') == 1
-",,String
+",,,String
 sort_numbers,"from typing import List
 
 
@@ -509,7 +509,7 @@ def check(candidate):
     assert candidate('three five nine') == 'three five nine'
     assert candidate('five zero four seven nine eight') == 'zero four five seven eight nine'
     assert candidate('six five four three two one zero') == 'zero one two three four five six'
-",,ListArray
+",,,ListArray
 find_closest_elements,"from typing import List, Tuple
 
 
@@ -536,7 +536,7 @@ def check(candidate):
     assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)
     assert candidate([1.1, 2.2, 3.1, 4.1, 5.1]) == (2.2, 3.1)
 
-",,ListArray
+",,,ListArray
 rescale_to_unit,"from typing import List
 
 
@@ -560,7 +560,7 @@ def check(candidate):
     assert candidate([1.0, 2.0, 3.0, 4.0, 5.0]) == [0.0, 0.25, 0.5, 0.75, 1.0]
     assert candidate([2.0, 1.0, 5.0, 3.0, 4.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]
     assert candidate([12.0, 11.0, 15.0, 13.0, 14.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]
-",,Math
+",,,Math
 filter_integers,"from typing import List, Any
 
 
@@ -583,7 +583,7 @@ def check(candidate):
     assert candidate([]) == []
     assert candidate([4, {}, [], 23.2, 9, 'adasd']) == [4, 9]
     assert candidate([3, 'c', 3, 3, 'a', 'b']) == [3, 3, 3]
-",,ListArray
+",,,ListArray
 strlen,"
 
 def strlen(string: str) -> int:
@@ -605,7 +605,7 @@ def check(candidate):
     assert candidate('') == 0
     assert candidate('x') == 1
     assert candidate('asdasnakj') == 9
-",,String
+",,,String
 largest_divisor,"
 
 def largest_divisor(n: int) -> int:
@@ -627,7 +627,7 @@ def check(candidate):
     assert candidate(10) == 5
     assert candidate(100) == 50
     assert candidate(49) == 7
-",,Math
+",,,Math
 factorize,"from typing import List
 
 
@@ -659,7 +659,7 @@ def check(candidate):
     assert candidate(3 * 19 * 3 * 19 * 3 * 19) == [3, 3, 3, 19, 19, 19]
     assert candidate(3 * 19 * 19 * 19) == [3, 19, 19, 19]
     assert candidate(3 * 2 * 3) == [2, 3, 3]
-",,Math
+",,,Math
 remove_duplicates,"from typing import List
 
 
@@ -681,7 +681,7 @@ def check(candidate):
     assert candidate([]) == []
     assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]
     assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]
-",,ListArray
+",,,ListArray
 flip_case,"
 
 def flip_case(string: str) -> str:
@@ -701,7 +701,7 @@ def check(candidate):
     assert candidate('') == ''
     assert candidate('Hello!') == 'hELLO!'
     assert candidate('These violent delights have violent ends') == 'tHESE VIOLENT DELIGHTS HAVE VIOLENT ENDS'
-",,String
+",,,String
 concatenate,"from typing import List
 
 
@@ -724,7 +724,7 @@ def check(candidate):
     assert candidate([]) == ''
     assert candidate(['x', 'y', 'z']) == 'xyz'
     assert candidate(['x', 'y', 'z', 'w', 'k']) == 'xyzwk'
-",,String
+",,,String
 filter_by_prefix,"from typing import List
 
 
@@ -746,7 +746,7 @@ METADATA = {
 def check(candidate):
     assert candidate([], 'john') == []
     assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']
-",,String
+",,,String
 get_positive,"
 
 def get_positive(l: list):
@@ -767,7 +767,7 @@ def check(candidate):
     assert candidate([-1, -2]) == []
     assert candidate([]) == []
 
-",,ListArray
+",,,ListArray
 is_prime,"
 
 def is_prime(n):
@@ -807,7 +807,7 @@ def check(candidate):
     assert candidate(11 * 7) == False
     assert candidate(13441 * 19) == False
 
-",,Math
+",,,Math
 find_zero,"import math
 
 
@@ -852,7 +852,7 @@ def check(candidate):
         solution = candidate(copy.deepcopy(coeffs))
         assert math.fabs(poly(coeffs, solution)) < 1e-4
 
-",,Math
+",,,Math
 sort_third,"
 
 def sort_third(l: list):
@@ -878,7 +878,7 @@ def check(candidate):
     assert tuple(candidate([5, 6, 9, 4, 8, 3, 2])) == tuple([2, 6, 9, 4, 8, 3, 5])
     assert tuple(candidate([5, 6, 3, 4, 8, 9, 2, 1])) == tuple([2, 6, 3, 4, 8, 9, 5, 1])
 
-",,ListArray
+",,,ListArray
 unique,"
 
 def unique(l: list):
@@ -894,7 +894,7 @@ METADATA = {}
 def check(candidate):
     assert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123]
 
-",,ListArray
+",,,ListArray
 max_element,"
 
 def max_element(l: list):
@@ -912,7 +912,7 @@ METADATA = {}
 def check(candidate):
     assert candidate([1, 2, 3]) == 3
     assert candidate([5, 3, -5, 2, -3, 3, 9, 0, 124, 1, -10]) == 124
-",,ListArray
+",,,ListArray
 fizz_buzz,"
 
 def fizz_buzz(n: int):
@@ -939,7 +939,7 @@ def check(candidate):
     assert candidate(10000) == 639
     assert candidate(100000) == 8026
 
-",,Math
+",,,Math
 sort_even,"
 
 def sort_even(l: list):
@@ -961,7 +961,7 @@ def check(candidate):
     assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple([-10, 3, -5, 2, -3, 3, 5, 0, 9, 1, 123])
     assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple([-12, 8, 3, 4, 5, 2, 12, 11, 23, -10])
 
-",,ListArray
+",,,ListArray
 decode_cyclic,"
 
 def encode_cyclic(s: str):
@@ -994,7 +994,7 @@ def check(candidate):
         encoded_str = encode_cyclic(str)
         assert candidate(encoded_str) == str
 
-",,String
+",,,String
 prime_fib,"
 
 def prime_fib(n: int):
@@ -1028,7 +1028,7 @@ def check(candidate):
     assert candidate(9) == 514229
     assert candidate(10) == 433494437
 
-",,Math
+",,,Math
 triples_sum_to_zero,"
 
 def triples_sum_to_zero(l: list):
@@ -1064,7 +1064,7 @@ def check(candidate):
     assert candidate([1, 3, 5, -100]) == False
     assert candidate([100, 3, 5, -100]) == False
 
-",,ListArray
+",,,ListArray
 car_race_collision,"
 
 def car_race_collision(n: int):
@@ -1091,7 +1091,7 @@ def check(candidate):
     assert candidate(8) == 64
     assert candidate(10) == 100
 
-",,DS
+",,,DS
 incr_list,"
 
 def incr_list(l: list):
@@ -1111,7 +1111,7 @@ def check(candidate):
     assert candidate([3, 2, 1]) == [4, 3, 2]
     assert candidate([5, 2, 5, 2, 3, 3, 9, 0, 123]) == [6, 3, 6, 3, 4, 4, 10, 1, 124]
 
-",,ListArray
+",,,ListArray
 pairs_sum_to_zero,"
 
 def pairs_sum_to_zero(l):
@@ -1147,7 +1147,7 @@ def check(candidate):
     assert candidate([-3, 9, -1, 4, 2, 30]) == False
     assert candidate([-3, 9, -1, 4, 2, 31]) == False
 
-",,ListArray
+",,,ListArray
 change_base,"
 
 def change_base(x: int, base: int):
@@ -1176,7 +1176,7 @@ def check(candidate):
     for x in range(2, 8):
         assert candidate(x, x + 1) == str(x)
 
-",,Math
+",,,Math
 triangle_area,"
 
 def triangle_area(a, h):
@@ -1194,7 +1194,7 @@ def check(candidate):
     assert candidate(2, 2) == 2.0
     assert candidate(10, 8) == 40.0
 
-",,Math
+",,,Math
 fib4,"
 
 def fib4(n: int):
@@ -1223,7 +1223,7 @@ def check(candidate):
     assert candidate(10) == 104
     assert candidate(12) == 386
 
-",,Math
+",,,Math
 median,"
 
 def median(l: list):
@@ -1245,7 +1245,7 @@ def check(candidate):
     assert candidate([6, 5]) == 5.5
     assert candidate([8, 1, 3, 9, 9, 2, 7]) == 7 
 
-",,Math
+",,,Math
 is_palindrome,"
 
 def is_palindrome(text: str):
@@ -1274,7 +1274,7 @@ def check(candidate):
     assert candidate('xywyz') == False
     assert candidate('xywzx') == False
 
-",,String
+",,,String
 modp,"
 
 def modp(n: int, p: int):
@@ -1304,7 +1304,7 @@ def check(candidate):
     assert candidate(30, 5) == 4
     assert candidate(31, 5) == 3
 
-",,Math
+",,,Math
 decode_shift,"
 
 def encode_shift(s: str):
@@ -1334,7 +1334,7 @@ def check(candidate):
         encoded_str = encode_shift(str)
         assert candidate(copy.deepcopy(encoded_str)) == str
 
-",,String
+",,,String
 remove_vowels,"
 
 def remove_vowels(text):
@@ -1367,7 +1367,7 @@ def check(candidate):
     assert candidate('EcBOO') == 'cB'
     assert candidate('ybcd') == 'ybcd'
 
-",,String
+",,,String
 below_threshold,"
 
 def below_threshold(l: list, t: int):
@@ -1390,7 +1390,7 @@ def check(candidate):
     assert candidate([1, 8, 4, 10], 11)
     assert not candidate([1, 8, 4, 10], 10)
 
-",,ListArray
+",,,ListArray
 add,"
 
 def add(x: int, y: int):
@@ -1418,7 +1418,7 @@ def check(candidate):
         x, y = random.randint(0, 1000), random.randint(0, 1000)
         assert candidate(x, y) == x + y
 
-",,Math
+",,,Math
 same_chars,"
 
 def same_chars(s0: str, s1: str):
@@ -1451,7 +1451,7 @@ def check(candidate):
     assert candidate('eabcdzzzz', 'dddzzzzzzzddddabc') == False
     assert candidate('aabb', 'aaccc') == False
 
-",,String
+",,,String
 fib,"
 
 def fib(n: int):
@@ -1475,7 +1475,7 @@ def check(candidate):
     assert candidate(11) == 89
     assert candidate(12) == 144
 
-",,Math
+",,,Math
 correct_bracketing,"
 
 def correct_bracketing(brackets: str):
@@ -1510,7 +1510,7 @@ def check(candidate):
     assert not candidate(""<><><<><>><>><<>"")
     assert not candidate(""<><><<><>><>>><>"")
 
-",,DS
+",,,DS
 monotonic,"
 
 def monotonic(l: list):
@@ -1537,7 +1537,7 @@ def check(candidate):
     assert candidate([1, 2, 3, 4, 5, 60]) == True
     assert candidate([9, 9, 9, 9]) == True
 
-",,ListArray
+",,,ListArray
 common,"
 
 def common(l1: list, l2: list):
@@ -1559,7 +1559,7 @@ def check(candidate):
     assert candidate([4, 3, 2, 8], [3, 2, 4]) == [2, 3, 4]
     assert candidate([4, 3, 2, 8], []) == []
 
-",,ListArray
+",,,ListArray
 largest_prime_factor,"
 
 def largest_prime_factor(n: int):
@@ -1581,7 +1581,7 @@ def check(candidate):
     assert candidate(330) == 11
     assert candidate(13195) == 29
 
-",,Math
+",,,Math
 sum_to_n,"
 
 def sum_to_n(n: int):
@@ -1609,7 +1609,7 @@ def check(candidate):
     assert candidate(30) == 465
     assert candidate(100) == 5050
 
-",,Math
+",,,Math
 correct_bracketing,"
 
 def correct_bracketing(brackets: str):
@@ -1644,7 +1644,7 @@ def check(candidate):
     assert not candidate(""()()(()())())(()"")
     assert not candidate(""()()(()())()))()"")
 
-",,DS
+",,,DS
 derivative,"
 
 def derivative(xs: list):
@@ -1668,7 +1668,7 @@ def check(candidate):
     assert candidate([3, 2, 1, 0, 4]) == [2, 2, 0, 16]
     assert candidate([1]) == []
 
-",,Math
+",,,Math
 fibfib,"
 
 def fibfib(n: int):
@@ -1699,7 +1699,7 @@ def check(candidate):
     assert candidate(12) == 274
     assert candidate(14) == 927
 
-",,Math
+",,,Math
 vowels_count,"
 FIX = """"""
 Add more test cases.
@@ -1731,7 +1731,7 @@ def vowels_count(s):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,String
+",,,String
 circular_shift,"
 def circular_shift(x, shift):
     """"""Circular shift the digits of the integer x, shift the digits right by shift
@@ -1753,7 +1753,7 @@ def circular_shift(x, shift):
     # Check some edge cases that are easy to work out by hand.
     assert candidate(11, 101) == ""11"", ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,String
+",,,String
 digitSum,"
 def digitSum(s):
     """"""Task
@@ -1784,7 +1784,7 @@ def digitSum(s):
     assert candidate("" How are yOu?"") == 151, ""Error""
     assert candidate(""You arE Very Smart"") == 327, ""Error""
 
-",,String
+",,,String
 fruit_distribution,"
 def fruit_distribution(s,n):
     """"""
@@ -1809,7 +1809,7 @@ def fruit_distribution(s,n):
     assert candidate(""2 apples and 3 oranges"",100) == 95
     assert candidate(""2 apples and 3 oranges"",5) == 0
     assert candidate(""1 apples and 100 oranges"",120) == 19
-",,Math
+",,,Math
 pluck,"
 def pluck(arr):
     """"""
@@ -1861,7 +1861,7 @@ def pluck(arr):
     assert candidate([7, 6, 7, 1]) == [6, 1], ""Error""
     assert candidate([7, 9, 7, 1]) == [], ""Error""
 
-",,ListArray
+",,,ListArray
 search,"
 def search(lst):
     '''
@@ -1905,7 +1905,7 @@ def search(lst):
     assert candidate([7, 9, 9, 9, 3, 4, 1, 5, 9, 1, 2, 1, 1, 10, 7, 5, 6, 7, 6, 7, 7, 6]) == 1
     assert candidate([3, 10, 10, 9, 2]) == -1
 
-",,ListArray
+",,,ListArray
 strange_sort_list,"
 def strange_sort_list(lst):
     '''
@@ -1934,7 +1934,7 @@ def strange_sort_list(lst):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,ListArray
+",,,ListArray
 triangle_area,"
 def triangle_area(a, b, c):
     '''
@@ -1962,7 +1962,7 @@ def triangle_area(a, b, c):
     assert candidate(1, 1, 1) == 0.43, ""This prints if this assert fails 2 (also good for debugging!)""
     assert candidate(2, 2, 10) == -1
 
-",,Math
+",,,Math
 will_it_fly,"
 def will_it_fly(q,w):
     '''
@@ -1995,7 +1995,7 @@ def will_it_fly(q,w):
     assert candidate([1, 2, 3], 6) is False
     assert candidate([5], 5) is True
 
-",,DS
+",,,DS
 smallest_change,"
 def smallest_change(arr):
     """"""
@@ -2022,7 +2022,7 @@ def smallest_change(arr):
     assert candidate([1]) == 0
     assert candidate([0, 1]) == 1
 
-",,ListArray
+",,,ListArray
 total_match,"
 def total_match(lst1, lst2):
     '''
@@ -2056,7 +2056,7 @@ def total_match(lst1, lst2):
     assert candidate([], ['this']) == []
     assert candidate(['this'], []) == []
 
-",,String
+",,,String
 is_multiply_prime,"
 def is_multiply_prime(a):
     """"""Write a function that returns true if the given number is the multiplication of 3 prime numbers
@@ -2079,7 +2079,7 @@ def is_multiply_prime(a):
     assert candidate(11 * 9 * 9) == False
     assert candidate(11 * 13 * 7) == True
 
-",,Math
+",,,Math
 is_simple_power,"
 def is_simple_power(x, n):
     """"""Your task is to write a function that returns true if a number x is a simple
@@ -2109,7 +2109,7 @@ def is_simple_power(x, n):
     assert candidate(1, 1)==True, ""This prints if this assert fails 2 (also good for debugging!)""
     assert candidate(1, 12)==True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,Math
+",,,Math
 iscube,"
 def iscube(a):
     '''
@@ -2139,7 +2139,7 @@ def iscube(a):
     assert candidate(0) == True, ""1st edge test error: "" + str(candidate(0))
     assert candidate(1729) == False, ""2nd edge test error: "" + str(candidate(1728))
 
-",,Math
+",,,Math
 hex_key,"
 def hex_key(num):
     """"""You have been tasked to write a function that receives 
@@ -2173,7 +2173,7 @@ def hex_key(num):
     # Check some edge cases that are easy to work out by hand.
     assert candidate([]) == 0
 
-",,Math
+",,,Math
 decimal_to_binary,"
 def decimal_to_binary(decimal):
     """"""You will be given a number in decimal form and your task is to convert it to
@@ -2198,7 +2198,7 @@ def decimal_to_binary(decimal):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,Math
+",,,Math
 is_happy,"
 def is_happy(s):
     """"""You are given a string s.
@@ -2223,7 +2223,7 @@ def is_happy(s):
     assert candidate(""xyy"") == False , ""xyy""
     assert candidate(""iopaxpoi"") == True , ""iopaxpoi""
     assert candidate(""iopaxioi"") == False , ""iopaxioi""
-",,String
+",,,String
 numerical_letter_grade,"
 def numerical_letter_grade(grades):
     """"""It is the last week of the semester and the teacher has to give the grades
@@ -2263,7 +2263,7 @@ def numerical_letter_grade(grades):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,DS
+",,,DS
 prime_length,"
 def prime_length(string):
     """"""Write a function that takes a string and returns True if the string
@@ -2296,7 +2296,7 @@ def prime_length(string):
     assert candidate('M') == False
     assert candidate('0') == False
 
-",,String
+",,,String
 starts_one_ends,"
 def starts_one_ends(n):
     """"""
@@ -2316,7 +2316,7 @@ def starts_one_ends(n):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,Math
+",,,Math
 solve,"
 def solve(N):
     """"""Given a positive integer N, return the total sum of its digits in binary.
@@ -2345,7 +2345,7 @@ def solve(N):
     assert candidate(333) == ""1001"", ""Error""
     assert candidate(963) == ""10010"", ""Error""
 
-",,Math
+",,,Math
 add,"
 def add(lst):
     """"""Given a non-empty list of integers lst. add the even elements that are at odd indices..
@@ -2364,7 +2364,7 @@ def add(lst):
 
     # Check some edge cases that are easy to work out by hand.
     
-",,ListArray
+",,,ListArray
 anti_shuffle,"
 def anti_shuffle(s):
     """"""
@@ -2392,7 +2392,7 @@ def anti_shuffle(s):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,String
+",,,String
 get_row,"
 def get_row(lst, x):
     """"""
@@ -2446,7 +2446,7 @@ def get_row(lst, x):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,DS
+",,,DS
 sort_array,"
 def sort_array(array):
     """"""
@@ -2478,7 +2478,7 @@ def sort_array(array):
     assert candidate([15, 42, 87, 32 ,11, 0]) == [0, 11, 15, 32, 42, 87], ""Error""
     assert candidate([21, 14, 23, 11]) == [23, 21, 14, 11], ""Error""
 
-",,ListArray
+",,,ListArray
 encrypt,"
 def encrypt(s):
     """"""Create a function encrypt that takes a string as an argument and
@@ -2506,7 +2506,7 @@ def encrypt(s):
     # Check some edge cases that are easy to work out by hand.
     assert candidate('a')=='e', ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,String
+",,,String
 next_smallest,"
 def next_smallest(lst):
     """"""
@@ -2533,7 +2533,7 @@ def next_smallest(lst):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,ListArray
+",,,ListArray
 is_bored,"
 def is_bored(S):
     """"""
@@ -2560,7 +2560,7 @@ def is_bored(S):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,String
+",,,String
 any_int,"
 def any_int(x, y, z):
     '''
@@ -2596,7 +2596,7 @@ def any_int(x, y, z):
     assert candidate(3,4,7)==True, ""This prints if this assert fails 9 (also good for debugging!)""
     assert candidate(3.0,4,7)==False, ""This prints if this assert fails 10 (also good for debugging!)""
 
-",,Math
+",,,Math
 encode,"
 def encode(message):
     """"""
@@ -2623,7 +2623,7 @@ def encode(message):
     assert candidate('This is a message') == 'tHKS KS C MGSSCGG', ""This prints if this assert fails 2 (also good for debugging!)""
     assert candidate(""I DoNt KnOw WhAt tO WrItE"") == 'k dQnT kNqW wHcT Tq wRkTg', ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,String
+",,,String
 skjkasdkd,"
 
 def skjkasdkd(lst):
@@ -2661,7 +2661,7 @@ def skjkasdkd(lst):
     assert candidate([8191]) == 19, ""This prints if this assert fails 7 (also good for debugging!)""
     assert candidate([8191, 123456, 127, 7]) == 19, ""This prints if this assert fails 8 (also good for debugging!)""
     assert candidate([127, 97, 8192]) == 10, ""This prints if this assert fails 9 (also good for debugging!)""
-",,Math
+",,,Math
 check_dict_case,"
 def check_dict_case(dict):
     """"""
@@ -2689,7 +2689,7 @@ def check_dict_case(dict):
     # Check some edge cases that are easy to work out by hand.
     assert candidate({}) == False, ""1st edge test error: "" + str(candidate({}))
 
-",,DS
+",,,DS
 count_up_to,"
 def count_up_to(n):
     """"""Implement a function that takes an non-negative integer and returns an array of the first n
@@ -2715,7 +2715,7 @@ def count_up_to(n):
     assert candidate(47) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]
     assert candidate(101) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 
-",,Math
+",,,Math
 multiply,"
 def multiply(a, b):
     """"""Complete the function that takes two integers and returns 
@@ -2742,7 +2742,7 @@ def multiply(a, b):
     assert candidate(0, 1) == 0, ""1st edge test error: "" + str(candidate(0, 1))
     assert candidate(0, 0) == 0, ""2nd edge test error: "" + str(candidate(0, 0))
 
-",,Math
+",,,Math
 count_upper,"
 def count_upper(s):
     """"""
@@ -2767,7 +2767,7 @@ def count_upper(s):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,String
+",,,String
 closest_integer,"
 def closest_integer(value):
     '''
@@ -2798,7 +2798,7 @@ def closest_integer(value):
     # Check some edge cases that are easy to work out by hand.
     assert candidate(""0"") == 0, ""Test 0""
 
-",,Math
+",,,Math
 make_a_pile,"
 def make_a_pile(n):
     """"""
@@ -2826,7 +2826,7 @@ def make_a_pile(n):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,DS
+",,,DS
 words_string,"
 def words_string(s):
     """"""
@@ -2851,7 +2851,7 @@ def words_string(s):
     assert candidate("""") == []
     assert candidate(""ahmed     , gamal"") == [""ahmed"", ""gamal""]
 
-",,String
+",,,String
 choose_num,"
 def choose_num(x, y):
     """"""This function takes two positive numbers x and y and returns the
@@ -2876,7 +2876,7 @@ def choose_num(x, y):
     assert candidate(7, 7) == -1
     assert candidate(546, 546) == 546
 
-",,Math
+",,,Math
 rounded_avg,"
 def rounded_avg(n, m):
     """"""You are given two positive integers n and m, and your task is to compute the
@@ -2908,7 +2908,7 @@ def rounded_avg(n, m):
     assert candidate(5, 1) == -1
     assert candidate(5, 5) == ""0b101""
 
-",,Math
+",,,Math
 unique_digits,"
 def unique_digits(x):
     """"""Given a list of positive integers x. return a sorted list of all 
@@ -2933,7 +2933,7 @@ def unique_digits(x):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,ListArray
+",,,ListArray
 by_length,"
 def by_length(arr):
     """"""
@@ -2970,7 +2970,7 @@ def by_length(arr):
     assert candidate([1, -1, 3, 2]) == [""Three"", ""Two"", ""One""]
     assert candidate([9, 4, 8]) == [""Nine"", ""Eight"", ""Four""]
 
-",,ListArray
+",,,ListArray
 f,"
 def f(n):
     """""" Implement the function f that takes n as a parameter,
@@ -2987,7 +2987,7 @@ def f(n):
     assert candidate(7) == [1, 2, 6, 24, 15, 720, 28]
     assert candidate(1) == [1]
     assert candidate(3) == [1, 2, 6]
-",,Math
+",,,Math
 even_odd_palindrome,"
 def even_odd_palindrome(n):
     """"""
@@ -3026,7 +3026,7 @@ def even_odd_palindrome(n):
     # Check some edge cases that are easy to work out by hand.
     assert candidate(1) == (0, 1), ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,Math
+",,,Math
 count_nums,"
 def count_nums(arr):
     """"""
@@ -3053,7 +3053,7 @@ def count_nums(arr):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,ListArray
+",,,ListArray
 move_one_ball,"
 def move_one_ball(arr):
     """"""We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The
@@ -3091,7 +3091,7 @@ def move_one_ball(arr):
     # Check some edge cases that are easy to work out by hand.
     assert candidate([3, 5, 4, 1, 2])==False, ""This prints if this assert fails 2 (also good for debugging!)""
     assert candidate([])==True
-",,DS
+",,,DS
 exchange,"
 def exchange(lst1, lst2):
     """"""In this problem, you will implement a function that takes two lists of numbers,
@@ -3119,7 +3119,7 @@ def exchange(lst1, lst2):
     # Check some edge cases that are easy to work out by hand.
     assert candidate([100, 200], [200, 200]) == ""YES""
 
-",,ListArray
+",,,ListArray
 histogram,"
 def histogram(test):
     """"""Given a string representing a space separated lowercase letters, return a dictionary
@@ -3149,7 +3149,7 @@ def histogram(test):
     assert candidate('') == {}, ""This prints if this assert fails 7 (also good for debugging!)""
     assert candidate('a') == {'a': 1}, ""This prints if this assert fails 8 (also good for debugging!)""
 
-",,String
+",,,String
 reverse_delete,"
 def reverse_delete(s,c):
     """"""Task
@@ -3173,7 +3173,7 @@ def reverse_delete(s,c):
     assert candidate(""abcdedcba"",""v"") == ('abcdedcba',True)
     assert candidate(""vabba"",""v"") == ('abba',True)
     assert candidate(""mamma"", ""mia"") == ("""", True)
-",,String
+",,,String
 odd_count,"
 def odd_count(lst):
     """"""Given a list of strings, where each string consists of only digits, return a list.
@@ -3201,7 +3201,7 @@ def odd_count(lst):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,String
+",,,String
 minSubArraySum,"
 def minSubArraySum(nums):
     """"""
@@ -3228,7 +3228,7 @@ def minSubArraySum(nums):
     assert candidate([-10]) == -10, ""This prints if this assert fails 2 (also good for debugging!)""
     assert candidate([7]) == 7
     assert candidate([1, -1]) == -1
-",,ListArray
+",,,ListArray
 max_fill,"
 def max_fill(grid, capacity):
     import math
@@ -3279,7 +3279,7 @@ def max_fill(grid, capacity):
     assert candidate([[1,1,1,1], [1,1,1,1]], 2) == 4, ""Error""
     assert candidate([[1,1,1,1], [1,1,1,1]], 9) == 2, ""Error""
 
-",,DS
+",,,DS
 sort_array,"
 def sort_array(arr):
     """"""
@@ -3308,7 +3308,7 @@ def sort_array(arr):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,ListArray
+",,,ListArray
 select_words,"
 def select_words(s, n):
     """"""Given a string s and a natural number n, you have been tasked to implement 
@@ -3337,7 +3337,7 @@ def select_words(s, n):
     assert candidate("""", 4) == [], ""1st edge test error: "" + str(candidate("""", 4))
     assert candidate(""a b c d e f"", 1) == [""b"", ""c"", ""d"", ""f""], ""2nd edge test error: "" + str(candidate(""a b c d e f"", 1))
 
-",,String
+",,,String
 get_closest_vowel,"
 def get_closest_vowel(word):
     """"""You are given a word. Your task is to find the closest vowel that stands between 
@@ -3374,7 +3374,7 @@ def get_closest_vowel(word):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,String
+",,,String
 match_parens,"
 def match_parens(lst):
     '''
@@ -3410,7 +3410,7 @@ def match_parens(lst):
     assert candidate(['(', ')']) == 'Yes'
     assert candidate([')', '(']) == 'Yes' 
 
-",,DS
+",,,DS
 maximum,"
 def maximum(arr, k):
     """"""
@@ -3454,7 +3454,7 @@ def maximum(arr, k):
     # Check some edge cases that are easy to work out by hand.
     assert candidate([1, 2, 3, -23, 243, -400, 0], 0) == []
 
-",,DS
+",,,DS
 solution,"
 def solution(lst):
     """"""Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.
@@ -3478,7 +3478,7 @@ def solution(lst):
 
     # Check some edge cases that are easy to work out by hand.
 
-",,ListArray
+",,,ListArray
 add_elements,"
 def add_elements(arr, k):
     """"""
@@ -3505,7 +3505,7 @@ def add_elements(arr, k):
     # Check some edge cases that are easy to work out by hand.
     assert candidate([1], 1) == 1, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,Math
+",,,Math
 get_odd_collatz,"
 def get_odd_collatz(n):
     """"""
@@ -3534,7 +3534,7 @@ def get_odd_collatz(n):
     # Check some edge cases that are easy to work out by hand.
     assert candidate(1) == [1], ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,Math
+",,,Math
 valid_date,"
 def valid_date(date):
     """"""You have to write a function which validates a given date string and
@@ -3590,7 +3590,7 @@ def valid_date(date):
     assert candidate('2003-04-12') == False
 
     assert candidate('04-2003') == False
-",,DS
+",,,DS
 split_words,"
 def split_words(txt):
     '''
@@ -3612,7 +3612,7 @@ def split_words(txt):
     assert candidate(""aaabb"") == 2
     assert candidate(""aaaBb"") == 1
     assert candidate("""") == 0
-",,String
+",,,String
 is_sorted,"
 def is_sorted(lst):
     '''
@@ -3649,7 +3649,7 @@ def is_sorted(lst):
     assert candidate([1, 2, 2, 3, 3, 4]) == True, ""This prints if this assert fails 7 (good for debugging!)""
     assert candidate([1, 2, 3, 4]) == True, ""This prints if this assert fails 8 (good for debugging!)""
 
-",,ListArray
+",,,ListArray
 intersection,"
 def intersection(interval1, interval2):
     """"""You are given two intervals,
@@ -3685,7 +3685,7 @@ def intersection(interval1, interval2):
     assert candidate((1, 2), (1, 2)) == ""NO""
     assert candidate((-2, -2), (-3, -2)) == ""NO""
 
-",,Math
+",,,Math
 prod_signs,"
 def prod_signs(arr):
     """"""
@@ -3715,7 +3715,7 @@ def prod_signs(arr):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,Math
+",,,Math
 minPath,"
 def minPath(grid, k):
     """"""
@@ -3765,7 +3765,7 @@ def minPath(grid, k):
     assert candidate([[1, 2], [3, 4]], 10) == [1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
     assert candidate([[1, 3], [3, 2]], 10) == [1, 3, 1, 3, 1, 3, 1, 3, 1, 3]
 
-",,DS
+",,,DS
 tri,"
 def tri(n):
     """"""Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
@@ -3800,7 +3800,7 @@ def tri(n):
     # Check some edge cases that are easy to work out by hand.
     assert candidate(0) == [1]
     assert candidate(1) == [1, 3]
-",,Math
+",,,Math
 digits,"
 def digits(n):
     """"""Given a positive integer n, return the product of the odd digits.
@@ -3823,7 +3823,7 @@ def digits(n):
     # Check some edge cases that are easy to work out by hand.
     assert candidate(2468) == 0
 
-",,Math
+",,,Math
 is_nested,"
 def is_nested(string):
     '''
@@ -3858,7 +3858,7 @@ def is_nested(string):
     assert candidate('[[[[[[[[') == False
     assert candidate(']]]]]]]]') == False
 
-",,DS
+",,,DS
 sum_squares,"
 
 def sum_squares(lst):
@@ -3894,7 +3894,7 @@ def sum_squares(lst):
     assert candidate([-1])==1, ""This prints if this assert fails 2 (also good for debugging!)""
     assert candidate([-1,1,0])==2, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,ListArray
+",,,ListArray
 check_if_last_char_is_a_letter,"
 def check_if_last_char_is_a_letter(txt):
     '''
@@ -3926,7 +3926,7 @@ def check_if_last_char_is_a_letter(txt):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,String
+",,,String
 can_arrange,"
 def can_arrange(arr):
     """"""Create a function which returns the largest index of an element which
@@ -3949,7 +3949,7 @@ def can_arrange(arr):
     # Check some edge cases that are easy to work out by hand.
     assert candidate([])==-1
 
-",,ListArray
+",,,ListArray
 largest_smallest_integers,"
 def largest_smallest_integers(lst):
     '''
@@ -3980,7 +3980,7 @@ def largest_smallest_integers(lst):
 
     # Check some edge cases that are easy to work out by hand.
     assert True
-",,ListArray
+",,,ListArray
 compare_one,"
 def compare_one(a, b):
     """"""
@@ -4009,7 +4009,7 @@ def compare_one(a, b):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,Math
+",,,Math
 is_equal_to_sum_even,"
 def is_equal_to_sum_even(n):
     """"""Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers
@@ -4027,7 +4027,7 @@ def is_equal_to_sum_even(n):
     assert candidate(12) == True
     assert candidate(13) == False
     assert candidate(16) == True
-",,Math
+",,,Math
 special_factorial,"
 def special_factorial(n):
     """"""The Brazilian factorial is defined as:
@@ -4051,7 +4051,7 @@ def special_factorial(n):
     # Check some edge cases that are easy to work out by hand.
     assert candidate(1) == 1, ""Test 1""
 
-",,Math
+",,,Math
 fix_spaces,"
 def fix_spaces(text):
     """"""
@@ -4075,7 +4075,7 @@ def fix_spaces(text):
     assert candidate(""Exa   mple"") == ""Exa-mple"", ""This prints if this assert fails 4 (good for debugging!)""
     assert candidate(""   Exa 1 2 2 mple"") == ""-Exa_1_2_2_mple"", ""This prints if this assert fails 4 (good for debugging!)""
 
-",,String
+",,,String
 file_name_check,"
 def file_name_check(file_name):
     """"""Create a function which takes a string representing a file's name, and returns
@@ -4125,7 +4125,7 @@ def file_name_check(file_name):
     assert candidate('.txt') == 'No'
     assert candidate('s.') == 'No'
 
-",,String
+",,,String
 sum_squares,"
 
 
@@ -4158,7 +4158,7 @@ def sum_squares(lst):
     
     
     # Don't remove this line:
-",,Math
+",,,Math
 words_in_sentence,"
 def words_in_sentence(sentence):
     """"""
@@ -4193,7 +4193,7 @@ def words_in_sentence(sentence):
     assert candidate(""here"") == """"
     assert candidate(""here is"") == ""is""
 
-",,String
+",,,String
 simplify,"
 def simplify(x, n):
     """"""Your task is to implement a function that will simplify the expression
@@ -4227,7 +4227,7 @@ def simplify(x, n):
     assert candidate(""1/5"", ""5/1"") == True, 'test12'
     assert candidate(""1/5"", ""1/5"") == False, 'test13'
 
-",,Math
+",,,Math
 order_by_points,"
 def order_by_points(nums):
     """"""
@@ -4253,7 +4253,7 @@ def order_by_points(nums):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,ListArray
+",,,ListArray
 specialFilter,"
 def specialFilter(nums):
     """"""Write a function that takes an array of numbers as input and returns 
@@ -4277,7 +4277,7 @@ def specialFilter(nums):
     assert candidate([1]) == 0              
     assert candidate([]) == 0                   
 
-",,ListArray
+",,,ListArray
 get_max_triples,"
 def get_max_triples(n):
     """"""
@@ -4299,7 +4299,7 @@ def get_max_triples(n):
     assert candidate(6) == 4
     assert candidate(10) == 36
     assert candidate(100) == 53361
-",,Math
+",,,Math
 bf,"
 def bf(planet1, planet2):
     '''
@@ -4331,7 +4331,7 @@ def bf(planet1, planet2):
     assert candidate(""Mars"", ""Earth"") == ()
     assert candidate(""Jupiter"", ""Makemake"") == ()
 
-",,DS
+",,,DS
 sorted_list_sum,"
 def sorted_list_sum(lst):
     """"""Write a function that accepts a list of strings as a parameter,
@@ -4361,7 +4361,7 @@ def sorted_list_sum(lst):
     assert candidate([""a"", ""b"", ""b"", ""c"", ""c"", ""a""]) == []
     assert candidate(['aaaa', 'bbbb', 'dd', 'cc']) == [""cc"", ""dd"", ""aaaa"", ""bbbb""]
 
-",,String
+",,,String
 x_or_y,"
 def x_or_y(n, x, y):
     """"""A simple program which should return the value of x if n is 
@@ -4389,7 +4389,7 @@ def x_or_y(n, x, y):
     assert candidate(1, 2, 0) == 0
     assert candidate(2, 2, 0) == 2
 
-",,Math
+",,,Math
 double_the_difference,"
 def double_the_difference(lst):
     '''
@@ -4419,7 +4419,7 @@ def double_the_difference(lst):
     odd_sum = sum([i**2 for i in lst if i%2!=0 and i > 0])
     assert candidate(lst) == odd_sum , ""This prints if this assert fails 7 (good for debugging!)""
 
-",,Math
+",,,Math
 compare,"
 def compare(game,guess):
     """"""I think we all remember that feeling when the result of some long-awaited
@@ -4447,7 +4447,7 @@ def compare(game,guess):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,Math
+",,,Math
 Strongest_Extension,"
 def Strongest_Extension(class_name, extensions):
     """"""You will be given the name of a class (a string) and a list of extensions.
@@ -4481,7 +4481,7 @@ def Strongest_Extension(class_name, extensions):
     assert candidate('_', ['Bb', '91245']) == '_.Bb'
     assert candidate('Sp', ['671235', 'Bb']) == 'Sp.671235'
     
-",,DS
+",,,DS
 cycpattern_check,"
 def cycpattern_check(a , b):
     """"""You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
@@ -4507,7 +4507,7 @@ def cycpattern_check(a , b):
     assert  candidate(""abab"",""aabb"") == False , ""test #4""
     assert  candidate(""winemtt"",""tinem"") == True , ""test #5""
 
-",,String
+",,,String
 even_odd_count,"
 def even_odd_count(num):
     """"""Given an integer. return a tuple that has the number of even and odd digits respectively.
@@ -4532,7 +4532,7 @@ def even_odd_count(num):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,Math
+",,,Math
 int_to_mini_roman,"
 def int_to_mini_roman(number):
     """"""
@@ -4566,7 +4566,7 @@ def int_to_mini_roman(number):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,Math
+",,,Math
 right_angle_triangle,"
 def right_angle_triangle(a, b, c):
     '''
@@ -4595,7 +4595,7 @@ def right_angle_triangle(a, b, c):
     assert candidate(1, 1, 1) == False, ""This prints if this assert fails 2 (also good for debugging!)""
     assert candidate(2, 2, 10) == False
 
-",,Math
+",,,Math
 find_max,"
 def find_max(words):
     """"""Write a function that accepts a list of strings.
@@ -4623,7 +4623,7 @@ def find_max(words):
     assert (candidate([""b""]) == ""b""), 't9'
     assert (candidate([""play"", ""play"", ""play""]) == ""play""), 't10'
 
-",,String
+",,,String
 eat,"
 def eat(number, need, remaining):
     """"""
@@ -4668,7 +4668,7 @@ def eat(number, need, remaining):
     assert candidate(4, 5, 7) == [9, 2], ""Error""
     assert candidate(4, 5, 1) == [5, 0], ""Error""
 
-",,Math
+",,,Math
 do_algebra,"
 def do_algebra(operator, operand):
     """"""
@@ -4705,7 +4705,7 @@ def do_algebra(operator, operand):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,Math
+",,,Math
 solve,"
 def solve(s):
     """"""You are given a string s.
@@ -4733,7 +4733,7 @@ def solve(s):
     assert candidate(""#ccc"") == ""#CCC""
 
     # Don't remove this line:
-",,String
+",,,String
 string_to_md5,"
 def string_to_md5(text):
     """"""
@@ -4753,7 +4753,7 @@ def string_to_md5(text):
     # Check some edge cases that are easy to work out by hand.
     assert True
 
-",,String
+",,,String
 generate_integers,"
 def generate_integers(a, b):
     """"""
@@ -4776,4 +4776,4 @@ def generate_integers(a, b):
     # Check some edge cases that are easy to work out by hand.
     assert True, ""This prints if this assert fails 2 (also good for debugging!)""
 
-",,ListArray
+",,,ListArray
