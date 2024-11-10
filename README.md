@@ -68,10 +68,10 @@ Ensure you have access to:
 
 **Guide 2: Without Using an External Disk**
 
-1. **Install requirements Locally**:
-   ```bash
-pip install -r requirements.txt
-   ```
+1. **Install requirements locally**:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 2. **Install Git**:
    ```bash
