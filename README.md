@@ -1,6 +1,6 @@
 README for Github:
 #### Project Overview
-Provide a brief summary of the project, objectives, and expected outcomes.
+TODO: WILL GO HERE
 
 #### Requirements
 - 1 GPU
@@ -35,8 +35,10 @@ Ensure you have access to:
    ```
 
 2. Set cache and install directories:
-export TRANSFORMERS_CACHE=/mnt/extra-disk/huggingface_cache
-export HF_HOME=/mnt/extra-disk/huggingface_home
+   ```bash
+    export TRANSFORMERS_CACHE=/mnt/extra-disk/huggingface_cache
+    export HF_HOME=/mnt/extra-disk/huggingface_home
+    ```
 
 3. **Create a Temporary Directory**:
    ```bash
@@ -61,7 +63,7 @@ export HF_HOME=/mnt/extra-disk/huggingface_home
 7. **Run the Script**:
    ```bash
    cd semcoder/scripts
-python run.py ../datasets/<dataset_file> ../results/<results_file>
+   python run.py ../datasets/<dataset_file> ../results/<results_file>
    ```
 
 **Guide 2: Without Using an External Disk**
