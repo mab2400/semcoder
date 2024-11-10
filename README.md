@@ -82,7 +82,7 @@ Ensure you have access to:
 
 # Project Scripts Overview
 
-## `run.py <input_file> <output_file>`
+## Step 1: `run.py <input_file> <output_file>`
 This script runs SemCoder on a given dataset (either control or ablation) and executes the test cases on the generated code. It produces an output CSV file with the generated code and the pass/fail results.
 
 ### Functionality:
@@ -102,7 +102,7 @@ This script runs SemCoder on a given dataset (either control or ablation) and ex
 python run.py <input_file> <output_file>
 ```
 
-## `run_single_example.py <entry_point>`
+## (Optional Debugging Step:) `run_single_example.py <entry_point>`
 A script that runs SemCoder and executes test cases on a single example from either dataset. Useful for testing or debugging individual entries.
 
 ### Functionality:
@@ -116,7 +116,7 @@ A script that runs SemCoder and executes test cases on a single example from eit
 python run_single_example.py <entry_point>
 ```
 
-## `calculate_results.py <input_file>`
+## Step 2: `calculate_results.py <input_file>`
 A script that calculates the overall pass percentage and category breakdown of pass rates for the datasets (both "control" and "ablation").
 
 ### Functionality:
@@ -129,3 +129,14 @@ A script that calculates the overall pass percentage and category breakdown of p
 ```bash
 python calculate_results.py <results_csv_file>
 ```
+
+### Important Note: 
+While examining the generated code, I noticed that SemCoder will sometimes generate test cases
+for a prompt if it has not met the max_token limit yet. Since I only use the Humaneval-provided
+test cases for my evaluations, these extra SemCoder-generated test cases are not needed (and 
+actually created many errors during evaluation because often the generated test cases would 
+get cut off at the max_token limit and leave an unfinished bit of code). To maintain consistency
+and accuracy in my evaluations, I decided to hand-remove any extraneous generations from the 
+'generated_code' section of the CSV output file. If you do NOT choose to hand-remove any part 
+of the generated code, be aware that your performance percentages might appear LOWER than the 
+values I reported.
