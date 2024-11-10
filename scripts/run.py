@@ -12,12 +12,6 @@ import os
 import sys
 import csv
 import argparse
-
-# Set cache and package directories
-os.environ["TRANSFORMERS_CACHE"] = "/mnt/300GB-disk/huggingface_cache"
-os.environ["HF_HOME"] = "/mnt/300GB-disk/huggingface_home"
-sys.path.append('/mnt/300GB-disk/python_packages')
-
 from transformers import pipeline
 
 # Load SemCoder model using the text-generation pipeline
