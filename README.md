@@ -64,7 +64,7 @@ Ensure you have access to:
 
 6. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/semcoder.git
+   git clone https://github.com/mab2400/semcoder.git
    ```
 
 **Guide 2: Without Using an External Disk**
