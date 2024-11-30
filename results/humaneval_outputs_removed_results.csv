@@ -2790,3 +2790,1103 @@ def modp_iter(n: int, p: int):
 if __name__ == ""__main__"":
     import doctest
     doctest.testmod()",Passed,Math
+decode_shift,"
+
+def encode_shift(s: str):
+    """"""
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """"""
+    return """".join([chr(((ord(ch) + 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def decode_shift(s: str):
+    """"""
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    from random import randint, choice
+    import copy
+    import string
+
+    letters = string.ascii_lowercase
+    for _ in range(100):
+        str = ''.join(choice(letters) for i in range(randint(10, 20)))
+        encoded_str = encode_shift(str)
+        assert candidate(copy.deepcopy(encoded_str)) == str
+
+","
+
+def encode_shift(s: str):
+    """"""
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """"""
+    return """".join([chr(((ord(ch) + 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def decode_shift(s: str):
+    """"""
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """"""
+    return """".join([chr(((ord(ch) - 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
+
+
+def encode_vigenere(s: str, key: str):
+    """"""
+    returns encoded string by using vigenere cipher with the given key.
+    """"""
+    return """".join([chr(((ord(s[i]) + ord(key[i % len(key)])) % 26) + ord(""a"")) for i in range(len(s))])
+
+
+def decode_vigenere(s: str, key: str):
+    """"""
+    takes as input string encoded with encode_vigenere function and the key used. Returns decoded string.
+    """"""
+    return """".join([chr(((ord(s[i]) - ord(key[i % len(key)])) % 26) + ord(""a"")) for i in range(len(s))])
+
+
+def encode_rail_fence(s: str, n: int):
+    """"""
+    returns encoded string by using rail fence cipher with n rails.
+    """"""
+    rails = [""""] * n
+    rail = 0
+    direction = 1
+    for ch in s:
+        rails[rail] += ch
+        rail += direction
+        if rail == n - 1 or rail == 0:
+            direction *= -1
+    return """".join(rails)
+
+
+def decode_rail_fence(s: str, n: int):
+    """"""
+    takes as input string encoded with encode_rail_fence function and the number of rails used. Returns decoded string.
+    """"""
+    rails = [""""] * n
+    rail = 0
+    direction = 1
+    for ch in s:
+        rails[rail] += ch
+        rail += direction
+        if rail == n - 1 or rail == 0:
+            direction *= -1
+    result = """"
+    i = 0
+    for _ in range(len(s)):
+        result += rails[i][0]
+        rails[i] = rails[i][1:]
+        i += direction",Passed,String
+remove_vowels,"
+
+def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.
+    >>> remove_vowels('')
+    >>> remove_vowels(""abcdef\nghijklm"")
+    >>> remove_vowels('abcdef')
+    >>> remove_vowels('aaaaa')
+    >>> remove_vowels('aaBAA')
+    >>> remove_vowels('zbcd')
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate(""abcdef\nghijklm"") == 'bcdf\nghjklm'
+    assert candidate('fedcba') == 'fdcb'
+    assert candidate('eeeee') == ''
+    assert candidate('acBAA') == 'cB'
+    assert candidate('EcBOO') == 'cB'
+    assert candidate('ybcd') == 'ybcd'
+
+","
+
+def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.
+    >>> remove_vowels('')
+    >>> remove_vowels(""abcdef\nghijklm"")
+    >>> remove_vowels('abcdef')
+    >>> remove_vowels('aaaaa')
+    >>> remove_vowels('aaBAA')
+    >>> remove_vowels('zbcd')
+    """"""
+    return text.translate(None, 'aeiouAEIOU')
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",Error,String
+below_threshold,"
+
+def below_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are below threshold t.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    >>> below_threshold([1, 20, 4, 10], 5)
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 4, 10], 100)
+    assert not candidate([1, 20, 4, 10], 5)
+    assert candidate([1, 20, 4, 10], 21)
+    assert candidate([1, 20, 4, 10], 22)
+    assert candidate([1, 8, 4, 10], 11)
+    assert not candidate([1, 8, 4, 10], 10)
+
+","
+
+def below_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are below threshold t.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    >>> below_threshold([1, 20, 4, 10], 5)
+    """"""
+    for num in l:
+        if num >= t:
+            return False
+    return True
+
+
+def above_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are above threshold t.
+    >>> above_threshold([1, 2, 4, 10], 0)
+    >>> above_threshold([1, 20, 4, 10], 5)
+    """"""
+    for num in l:
+        if num <= t:
+            return False
+    return True
+
+
+def sum_of_squares(l: list):
+    """"""Return the sum of squares of numbers in the list l.
+    >>> sum_of_squares([1, 2, 3])
+    14
+    >>> sum_of_squares([4, 5, 6])
+    57
+    """"""
+    return sum([num ** 2 for num in l])
+
+
+def sum_of_cubes(l: list):
+    """"""Return the sum of cubes of numbers in the list l.
+    >>> sum_of_cubes([1, 2, 3])
+    36
+    >>> sum_of_cubes([4, 5, 6])
+    221
+    """"""
+    return sum([num ** 3 for num in l])
+
+
+def sum_of_products(l: list):
+    """"""Return the sum of products of consecutive numbers in the list l.
+    >>> sum_of_products([1, 2, 3])
+    5
+    >>> sum_of_products([4, 5, 6])
+    15
+    """"""
+    return sum([l[i] * l[i + 1] for i in range(len(l) - 1)])
+
+
+def sum_of_quotients(l: list):
+    """"""Return the sum of quotients of consecutive numbers in the list l.
+    >>> sum_of_quotients([1, 2, 3])
+    0.5
+    >>> sum_of_quotients([4, 5, 6])
+    1.0
+    """"""
+    return sum([l[i] / l[i",Error,ListArray
+add,"
+
+def add(x: int, y: int):
+    """"""Add two numbers x and y
+    >>> add(2, 3)
+    >>> add(5, 7)
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    import random
+
+    assert candidate(0, 1) == 1
+    assert candidate(1, 0) == 1
+    assert candidate(2, 3) == 5
+    assert candidate(5, 7) == 12
+    assert candidate(7, 5) == 12
+
+    for i in range(100):
+        x, y = random.randint(0, 1000), random.randint(0, 1000)
+        assert candidate(x, y) == x + y
+
+","
+
+def add(x: int, y: int):
+    """"""Add two numbers x and y
+    >>> add(2, 3)
+    >>> add(5, 7)
+    """"""
+    return x+y
+
+
+def subtract(x: int, y: int):
+    """"""Subtract two numbers x and y
+    >>> subtract(2, 3)
+    >>> subtract(5, 7)
+    """"""
+    return x-y
+
+
+def multiply(x: int, y: int):
+    """"""Multiply two numbers x and y
+    >>> multiply(2, 3)
+    >>> multiply(5, 7)
+    """"""
+    return x*y
+
+
+def divide(x: int, y: int):
+    """"""Divide two numbers x and y
+    >>> divide(2, 3)
+    >>> divide(5, 7)
+    """"""
+    return x/y",Passed,Math
+same_chars,"
+
+def same_chars(s0: str, s1: str):
+    """"""
+    Check if two words have the same characters.
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
+    >>> same_chars('abcd', 'dddddddabc')
+    >>> same_chars('dddddddabc', 'abcd')
+    >>> same_chars('eabcd', 'dddddddabc')
+    >>> same_chars('abcd', 'dddddddabce')
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True
+    assert candidate('abcd', 'dddddddabc') == True
+    assert candidate('dddddddabc', 'abcd') == True
+    assert candidate('eabcd', 'dddddddabc') == False
+    assert candidate('abcd', 'dddddddabcf') == False
+    assert candidate('eabcdzzzz', 'dddzzzzzzzddddabc') == False
+    assert candidate('aabb', 'aaccc') == False
+
+","
+
+def same_chars(s0: str, s1: str):
+    """"""
+    Check if two words have the same characters.
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
+    >>> same_chars('abcd', 'dddddddabc')
+    >>> same_chars('dddddddabc', 'abcd')
+    >>> same_chars('eabcd', 'dddddddabc')
+    >>> same_chars('abcd', 'dddddddabce')
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
+    """"""
+    return sorted(s0) == sorted(s1)
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",Failed,String
+fib,"
+
+def fib(n: int):
+    """"""Return n-th Fibonacci number.
+    >>> fib(10)
+    >>> fib(1)
+    >>> fib(8)
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(10) == 55
+    assert candidate(1) == 1
+    assert candidate(8) == 21
+    assert candidate(11) == 89
+    assert candidate(12) == 144
+
+","
+
+def fib(n: int):
+    """"""Return n-th Fibonacci number.
+    >>> fib(10)
+    >>> fib(1)
+    >>> fib(8)
+    """"""
+    if n == 1 or n == 2:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",Passed,Math
+correct_bracketing,"
+
+def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""<"" and "">"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""<"")
+    >>> correct_bracketing(""<>"")
+    >>> correct_bracketing(""<<><>>"")
+    >>> correct_bracketing(""><<>"")
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(""<>"")
+    assert candidate(""<<><>>"")
+    assert candidate(""<><><<><>><>"")
+    assert candidate(""<><><<<><><>><>><<><><<>>>"")
+    assert not candidate(""<<<><>>>>"")
+    assert not candidate(""><<>"")
+    assert not candidate(""<"")
+    assert not candidate(""<<<<"")
+    assert not candidate("">"")
+    assert not candidate(""<<>"")
+    assert not candidate(""<><><<><>><>><<>"")
+    assert not candidate(""<><><<><>><>>><>"")
+
+","
+
+def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""<"" and "">"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""<"")
+    >>> correct_bracketing(""<>"")
+    >>> correct_bracketing(""<<><>>"")
+    >>> correct_bracketing(""><<>"")
+    """"""
+    stack = []
+    for bracket in brackets:
+        if bracket == ""<"":
+            stack.append(bracket)
+        elif bracket == "">"":
+            if not stack:
+                return False
+            stack.pop()
+    return not stack
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",Passed,DS
+monotonic,"
+
+def monotonic(l: list):
+    """"""Return True is list elements are monotonically increasing or decreasing.
+    >>> monotonic([1, 2, 4, 20])
+    >>> monotonic([1, 20, 4, 10])
+    >>> monotonic([4, 1, 0, -10])
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 2, 4, 10]) == True
+    assert candidate([1, 2, 4, 20]) == True
+    assert candidate([1, 20, 4, 10]) == False
+    assert candidate([4, 1, 0, -10]) == True
+    assert candidate([4, 1, 1, 0]) == True
+    assert candidate([1, 2, 3, 2, 5, 60]) == False
+    assert candidate([1, 2, 3, 4, 5, 60]) == True
+    assert candidate([9, 9, 9, 9]) == True
+
+","
+
+def monotonic(l: list):
+    """"""Return True is list elements are monotonically increasing or decreasing.
+    >>> monotonic([1, 2, 4, 20])
+    >>> monotonic([1, 20, 4, 10])
+    >>> monotonic([4, 1, 0, -10])
+    """"""
+    return all(l[i] <= l[i + 1] for i in range(len(l) - 1)) or all(l[i] >= l[i + 1] for i in range(len(l) - 1))
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",Passed,ListArray
+common,"
+
+def common(l1: list, l2: list):
+    """"""Return sorted unique common elements for two lists.
+    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
+    >>> common([5, 3, 2, 8], [3, 2])
+
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]
+    assert candidate([5, 3, 2, 8], [3, 2]) == [2, 3]
+    assert candidate([4, 3, 2, 8], [3, 2, 4]) == [2, 3, 4]
+    assert candidate([4, 3, 2, 8], []) == []
+
+","
+
+def common(l1: list, l2: list):
+    """"""Return sorted unique common elements for two lists.
+    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
+    >>> common([5, 3, 2, 8], [3, 2])
+
+    """"""
+    return sorted(set(l1) & set(l2))
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",Passed,ListArray
+largest_prime_factor,"
+
+def largest_prime_factor(n: int):
+    """"""Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    >>> largest_prime_factor(13195)
+    >>> largest_prime_factor(2048)
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(15) == 5
+    assert candidate(27) == 3
+    assert candidate(63) == 7
+    assert candidate(330) == 11
+    assert candidate(13195) == 29
+
+","
+
+def largest_prime_factor(n: int):
+    """"""Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    >>> largest_prime_factor(13195)
+    >>> largest_prime_factor(2048)
+    """"""
+    factor = 2
+    while factor * factor <= n:
+        if n % factor == 0:
+            n //= factor
+        else:
+            factor += 1
+    return n
+
+
+def main():
+    print(largest_prime_factor(13195))
+    print(largest_prime_factor(2048))
+
+
+if __name__ == ""__main__"":
+    main()",Passed,Math
+sum_to_n,"
+
+def sum_to_n(n: int):
+    """"""sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    >>> sum_to_n(100)
+    >>> sum_to_n(5)
+    >>> sum_to_n(10)
+    >>> sum_to_n(1)
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(1) == 1
+    assert candidate(6) == 21
+    assert candidate(11) == 66
+    assert candidate(30) == 465
+    assert candidate(100) == 5050
+
+","
+
+def sum_to_n(n: int):
+    """"""sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    >>> sum_to_n(100)
+    >>> sum_to_n(5)
+    >>> sum_to_n(10)
+    >>> sum_to_n(1)
+    """"""
+    total_sum = 0
+    for i in range(1, n + 1):
+        total_sum += i
+    print(f""The sum of numbers from 1 to {n} is: {total_sum}"")
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",Failed,Math
+correct_bracketing,"
+
+def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""("" and "")"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""("")
+    >>> correct_bracketing(""()"")
+    >>> correct_bracketing(""(()())"")
+    >>> correct_bracketing("")(()"")
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(""()"")
+    assert candidate(""(()())"")
+    assert candidate(""()()(()())()"")
+    assert candidate(""()()((()()())())(()()(()))"")
+    assert not candidate(""((()())))"")
+    assert not candidate("")(()"")
+    assert not candidate(""("")
+    assert not candidate(""(((("")
+    assert not candidate("")"")
+    assert not candidate(""(()"")
+    assert not candidate(""()()(()())())(()"")
+    assert not candidate(""()()(()())()))()"")
+
+","
+
+def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""("" and "")"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""("")
+    >>> correct_bracketing(""()"")
+    >>> correct_bracketing(""(()())"")
+    >>> correct_bracketing("")(()"")
+    """"""
+    stack = []
+    for bracket in brackets:
+        if bracket == ""("":
+            stack.append(bracket)
+        elif bracket == "")"":
+            if not stack:
+                return False
+            stack.pop()
+    return not stack
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",Passed,DS
+derivative,"
+
+def derivative(xs: list):
+    """""" xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    >>> derivative([1, 2, 3])
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([3, 1, 2, 4, 5]) == [1, 4, 12, 20]
+    assert candidate([1, 2, 3]) == [2, 6]
+    assert candidate([3, 2, 1]) == [2, 2]
+    assert candidate([3, 2, 1, 0, 4]) == [2, 2, 0, 16]
+    assert candidate([1]) == []
+
+","
+
+def derivative(xs: list):
+    """""" xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    >>> derivative([1, 2, 3])
+    """"""
+    return [xs[i] * i for i in range(1, len(xs))]
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",Passed,Math
+fibfib,"
+
+def fibfib(n: int):
+    """"""The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fibfib(0) == 0
+    fibfib(1) == 0
+    fibfib(2) == 1
+    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
+    Please write a function to efficiently compute the n-th element of the fibfib number sequence.
+    >>> fibfib(1)
+    >>> fibfib(5)
+    >>> fibfib(8)
+    """"""
+","
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(2) == 1
+    assert candidate(1) == 0
+    assert candidate(5) == 4
+    assert candidate(8) == 24
+    assert candidate(10) == 81
+    assert candidate(12) == 274
+    assert candidate(14) == 927
+
+","
+
+def fibfib(n: int):
+    """"""The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fibfib(0) == 0
+    fibfib(1) == 0
+    fibfib(2) == 1
+    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
+    Please write a function to efficiently compute the n-th element of the fibfib number sequence.
+    >>> fibfib(1)
+    >>> fibfib(5)
+    >>> fibfib(8)
+    """"""
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    else:
+        a, b, c = 0, 0, 1
+        for _ in range(3, n + 1):
+            a, b, c = b, c, a + b + c
+        return c
+
+
+if __name__ == ""__main__"":
+    import doctest
+    doctest.testmod()",Passed,Math
+vowels_count,"
+FIX = """"""
+Add more test cases.
+""""""
+
+def vowels_count(s):
+    """"""Write a function vowels_count which takes a string representing
+    a word as input and returns the number of vowels in the string.
+    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
+    vowel, but only when it is at the end of the given word.
+
+    Example:
+    >>> vowels_count(""abcde"")
+    >>> vowels_count(""ACEDY"")
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""abcde"") == 2, ""Test 1""
+    assert candidate(""Alone"") == 3, ""Test 2""
+    assert candidate(""key"") == 2, ""Test 3""
+    assert candidate(""bye"") == 1, ""Test 4""
+    assert candidate(""keY"") == 2, ""Test 5""
+    assert candidate(""bYe"") == 1, ""Test 6""
+    assert candidate(""ACEDY"") == 3, ""Test 7""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+FIX = """"""
+Add more test cases.
+""""""
+
+def vowels_count(s):
+    """"""Write a function vowels_count which takes a string representing
+    a word as input and returns the number of vowels in the string.
+    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
+    vowel, but only when it is at the end of the given word.
+
+    Example:
+    >>> vowels_count(""abcde"")
+    >>> vowels_count(""ACEDY"")
+    """"""
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    count = 0
+    for char in s:
+        if char.lower() in vowels:
+            count += 1
+    return count
+
+# Test cases
+print(vowels_count(""abcde""))  # Output: 2
+print(vowels_count(""ACEDY""))  # Output: 2
+print(vowels_count(""hello""))  # Output: 2
+print(vowels_count(""world""))  # Output: 1
+print(vowels_count(""Python""))  # Output: 2
+print(vowels_count(""programming""))  # Output: 3
+print(vowels_count(""mississippi""))  # Output: 4
+print(vowels_count(""hannah""))  # Output: 3
+print(vowels_count(""yay""))  # Output: 1
+print(vowels_count(""aeiou""))  # Output: 5
+print(vowels_count(""why""))  # Output: 0
+print(vowels_count(""bcdfghjklmnpqrstvwxz""))  # Output: 0
+print(vowels_count(""""))  # Output: 0
+",Failed,String
+circular_shift,"
+def circular_shift(x, shift):
+    """"""Circular shift the digits of the integer x, shift the digits right by shift
+    and return the result as a string.
+    If shift > number of digits, return digits reversed.
+    >>> circular_shift(12, 1)
+    >>> circular_shift(12, 2)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(100, 2) == ""001""
+    assert candidate(12, 2) == ""12""
+    assert candidate(97, 8) == ""79""
+    assert candidate(12, 1) == ""21"", ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(11, 101) == ""11"", ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def circular_shift(x, shift):
+    """"""Circular shift the digits of the integer x, shift the digits right by shift
+    and return the result as a string.
+    If shift > number of digits, return digits reversed.
+    >>> circular_shift(12, 1)
+    >>> circular_shift(12, 2)
+    """"""
+    digits = [int(d) for d in str(x)]
+    if shift > len(digits):
+        return ''.join(str(d) for d in reversed(digits))
+    else:
+        return ''.join(str(d) for d in digits[-shift:] + digits[:-shift])
+
+# Test the function with the provided test cases
+print(circular_shift(12, 1))  # Output: 21
+print(circular_shift(12, 2))  # Output: 12
+print(circular_shift(12345, 2))  # Output: 34512
+print(circular_shift(12345, 6))  # Output: 54321
+print(circular_shift(1209, 1))  # Output: 9120
+print(circular_shift(1209, 4))  # Output: 9120
+print(circular_shift(1209, 5))  # Output: 1209
+print(circular_shift(1209, 6))  # Output: 9120
+print(circular_shift(1209, 7))  # Output: 9120
+print(circular_shift(1209, 8))  # Output: 9120
+print(circular_shift(1209, 9))  # Output: 9120
+print(circular_shift(1209, 10))  # Output: 9120
+print(circular_shift(1209, 11))  # Output: 9120
+print(circular_shift(1209, 12))  # Output: 9120
+print(circular_shift(1209, 13))  # Output: 9120
+print(circular_shift(1209, 14))  # Output: 9120
+print(circular_shift(1209, 15))  # Output: 91",Passed,String
+digitSum,"
+def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("""")
+        digitSum(""abAB"")
+        digitSum(""abcCd"")
+        digitSum(""helloE"")
+        digitSum(""woArBld"")
+        digitSum(""aAaaaXa"")
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate("""") == 0, ""Error""
+    assert candidate(""abAB"") == 131, ""Error""
+    assert candidate(""abcCd"") == 67, ""Error""
+    assert candidate(""helloE"") == 69, ""Error""
+    assert candidate(""woArBld"") == 131, ""Error""
+    assert candidate(""aAaaaXa"") == 153, ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate("" How are yOu?"") == 151, ""Error""
+    assert candidate(""You arE Very Smart"") == 327, ""Error""
+
+","
+def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("""")
+        digitSum(""abAB"")
+        digitSum(""abcCd"")
+        digitSum(""helloE"")
+        digitSum(""woArBld"")
+        digitSum(""aAaaaXa"")
+    """"""
+    return sum(ord(c) - ord('A') + 1 for c in s if c.isupper())
+
+
+if __name__ == ""__main__"":
+    print(digitSum(""""))
+    print(digitSum(""abAB""))
+    print(digitSum(""abcCd""))
+    print(digitSum(""helloE""))
+    print(digitSum(""woArBld""))
+    print(digitSum(""aAaaaXa""))",Failed,String
+fruit_distribution,"
+def fruit_distribution(s,n):
+    """"""
+    In this task, you will be given a string that represents a number of apples and oranges 
+    that are distributed in a basket of fruit this basket contains 
+    apples, oranges, and mango fruits. Given the string that represents the total number of 
+    the oranges and apples and an integer that represent the total number of the fruits 
+    in the basket return the number of the mango fruits in the basket.
+    for examble:
+    fruit_distribution(""5 apples and 6 oranges"", 19)
+    fruit_distribution(""0 apples and 1 oranges"",3)
+    fruit_distribution(""2 apples and 3 oranges"", 100)
+    fruit_distribution(""100 apples and 1 oranges"",120)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""5 apples and 6 oranges"",19) == 8
+    assert candidate(""5 apples and 6 oranges"",21) == 10
+    assert candidate(""0 apples and 1 oranges"",3) == 2
+    assert candidate(""1 apples and 0 oranges"",3) == 2
+    assert candidate(""2 apples and 3 oranges"",100) == 95
+    assert candidate(""2 apples and 3 oranges"",5) == 0
+    assert candidate(""1 apples and 100 oranges"",120) == 19
+","
+def fruit_distribution(s,n):
+    """"""
+    In this task, you will be given a string that represents a number of apples and oranges 
+    that are distributed in a basket of fruit this basket contains 
+    apples, oranges, and mango fruits. Given the string that represents the total number of 
+    the oranges and apples and an integer that represent the total number of the fruits 
+    in the basket return the number of the mango fruits in the basket.
+    for examble:
+    fruit_distribution(""5 apples and 6 oranges"", 19)
+    fruit_distribution(""0 apples and 1 oranges"",3)
+    fruit_distribution(""2 apples and 3 oranges"", 100)
+    fruit_distribution(""100 apples and 1 oranges"",120)
+    """"""
+    # Extract the number of apples and oranges from the input string
+    apples_count = int(s.split()[0])
+    oranges_count = int(s.split()[-2])
+    
+    # Calculate the total number of fruits in the basket
+    total_fruits = apples_count + oranges_count
+    
+    # Calculate the number of mango fruits in the basket
+    mango_count = n - total_fruits
+    
+    return mango_count
+
+# Test cases
+print(fruit_distribution(""5 apples and 6 oranges"", 19))  # Output: 4
+print(fruit_distribution(""0 apples and 1 oranges"",3))    # Output: 2
+print(fruit_distribution(""2 apples and 3 oranges"", 100)) # Output: 97
+print(fruit_distribution(""100 apples and 1 oranges"",120)) # Output: 119
+",Passed,Math
+pluck,"
+def pluck(arr):
+    """"""
+    ""Given an array representing a branch of a tree that has non-negative integer nodes
+    your task is to pluck one of the nodes and return it.
+    The plucked node should be the node with the smallest even value.
+    If multiple nodes with the same smallest even value are found return the node that has smallest index.
+
+    The plucked node should be returned in a list, [ smalest_value, its index ],
+    If there are no even values or the given array is empty, return [].
+
+    Example 1:
+        Input: [4,2,3]
+
+    Example 2:
+        Input: [1,2,3]
+
+    Example 3:
+        Input: []
+    
+    Example 4:
+        Input: [5, 0, 3, 0, 4, 2]
+
+    Constraints:
+        * 1 <= nodes.length <= 10000
+        * 0 <= node.value
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([4,2,3]) == [2, 1], ""Error""
+    assert candidate([1,2,3]) == [2, 1], ""Error""
+    assert candidate([]) == [], ""Error""
+    assert candidate([5, 0, 3, 0, 4, 2]) == [0, 1], ""Error""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate([1, 2, 3, 0, 5, 3]) == [0, 3], ""Error""
+    assert candidate([5, 4, 8, 4 ,8]) == [4, 1], ""Error""
+    assert candidate([7, 6, 7, 1]) == [6, 1], ""Error""
+    assert candidate([7, 9, 7, 1]) == [], ""Error""
+
+","
+def pluck(arr):
+    """"""
+    ""Given an array representing a branch of a tree that has non-negative integer nodes
+    your task is to pluck one of the nodes and return it.
+    The plucked node should be the node with the smallest even value.
+    If multiple nodes with the same smallest even value are found return the node that has smallest index.
+
+    The plucked node should be returned in a list, [ smalest_value, its index ],
+    If there are no even values or the given array is empty, return [].
+
+    Example 1:
+        Input: [4,2,3]
+
+    Example 2:
+        Input: [1,2,3]
+
+    Example 3:
+        Input: []
+    
+    Example 4:
+        Input: [5, 0, 3, 0, 4, 2]
+
+    Constraints:
+        * 1 <= nodes.length <= 10000
+        * 0 <= node.value
+    """"""
+    if not arr:
+        return []
+
+    even_values = [(val, idx) for idx, val in enumerate(arr) if val % 2 == 0]
+
+    if not even_values:
+        return []
+
+    min_even_value = min(even_values, key=lambda x: x[0])
+    min_index = arr.index(min_even_value[0])
+
+    return [min_even_value[0], min_index]
+
+
+# Test cases
+print(pluck([4, 2, 3]))  # Output: [2, 1]
+print(pluck([1, 2, 3]))  # Output: [2, 1]
+print(pluck([]))  # Output: []
+print(pluck([5, 0, 3, 0, 4, 2]))  # Output: [0, 1]
+",Passed,ListArray
+search,"
+def search(lst):
+    '''
+    You are given a non-empty list of positive integers. Return the greatest integer that is greater than 
+    zero, and has a frequency greater than or equal to the value of the integer itself. 
+    The frequency of an integer is the number of times it appears in the list.
+    If no such a value exist, return -1.
+    Examples:
+        search([4, 1, 2, 2, 3, 1])
+        search([1, 2, 2, 3, 3, 3, 4, 4, 4])
+        search([5, 5, 4, 4, 4])
+    '''
+","def check(candidate):
+
+    # manually generated tests
+    assert candidate([5, 5, 5, 5, 1]) == 1
+    assert candidate([4, 1, 4, 1, 4, 4]) == 4
+    assert candidate([3, 3]) == -1
+    assert candidate([8, 8, 8, 8, 8, 8, 8, 8]) == 8
+    assert candidate([2, 3, 3, 2, 2]) == 2
+
+    # automatically generated tests
+    assert candidate([2, 7, 8, 8, 4, 8, 7, 3, 9, 6, 5, 10, 4, 3, 6, 7, 1, 7, 4, 10, 8, 1]) == 1
+    assert candidate([3, 2, 8, 2]) == 2
+    assert candidate([6, 7, 1, 8, 8, 10, 5, 8, 5, 3, 10]) == 1
+    assert candidate([8, 8, 3, 6, 5, 6, 4]) == -1
+    assert candidate([6, 9, 6, 7, 1, 4, 7, 1, 8, 8, 9, 8, 10, 10, 8, 4, 10, 4, 10, 1, 2, 9, 5, 7, 9]) == 1
+    assert candidate([1, 9, 10, 1, 3]) == 1
+    assert candidate([6, 9, 7, 5, 8, 7, 5, 3, 7, 5, 10, 10, 3, 6, 10, 2, 8, 6, 5, 4, 9, 5, 3, 10]) == 5
+    assert candidate([1]) == 1
+    assert candidate([8, 8, 10, 6, 4, 3, 5, 8, 2, 4, 2, 8, 4, 6, 10, 4, 2, 1, 10, 2, 1, 1, 5]) == 4
+    assert candidate([2, 10, 4, 8, 2, 10, 5, 1, 2, 9, 5, 5, 6, 3, 8, 6, 4, 10]) == 2
+    assert candidate([1, 6, 10, 1, 6, 9, 10, 8, 6, 8, 7, 3]) == 1
+    assert candidate([9, 2, 4, 1, 5, 1, 5, 2, 5, 7, 7, 7, 3, 10, 1, 5, 4, 2, 8, 4, 1, 9, 10, 7, 10, 2, 8, 10, 9, 4]) == 4
+    assert candidate([2, 6, 4, 2, 8, 7, 5, 6, 4, 10, 4, 6, 3, 7, 8, 8, 3, 1, 4, 2, 2, 10, 7]) == 4
+    assert candidate([9, 8, 6, 10, 2, 6, 10, 2, 7, 8, 10, 3, 8, 2, 6, 2, 3, 1]) == 2
+    assert candidate([5, 5, 3, 9, 5, 6, 3, 2, 8, 5, 6, 10, 10, 6, 8, 4, 10, 7, 7, 10, 8]) == -1
+    assert candidate([10]) == -1
+    assert candidate([9, 7, 7, 2, 4, 7, 2, 10, 9, 7, 5, 7, 2]) == 2
+    assert candidate([5, 4, 10, 2, 1, 1, 10, 3, 6, 1, 8]) == 1
+    assert candidate([7, 9, 9, 9, 3, 4, 1, 5, 9, 1, 2, 1, 1, 10, 7, 5, 6, 7, 6, 7, 7, 6]) == 1
+    assert candidate([3, 10, 10, 9, 2]) == -1
+
+","
+def search(lst):
+    '''
+    You are given a non-empty list of positive integers. Return the greatest integer that is greater than 
+    zero, and has a frequency greater than or equal to the value of the integer itself. 
+    The frequency of an integer is the number of times it appears in the list.
+    If no such a value exist, return -1.
+    Examples:
+        search([4, 1, 2, 2, 3, 1])
+        search([1, 2, 2, 3, 3, 3, 4, 4, 4])
+        search([5, 5, 4, 4, 4])
+    '''
+    freq_dict = {}
+    for num in lst:
+        if num in freq_dict:
+            freq_dict[num] += 1
+        else:
+            freq_dict[num] = 1
+    
+    for num in sorted(freq_dict.keys(), reverse=True):
+        if num > 0 and freq_dict[num] >= num:
+            return num
+    
+    return -1
+
+# Test the function with the provided examples
+print(search([4, 1, 2, 2, 3, 1]))  # Output: 3
+print(search([1, 2, 2, 3, 3, 3, 4, 4, 4]))  # Output: 3
+print(search([5, 5, 4, 4, 4]))  # Output: -1
+",Passed,ListArray
