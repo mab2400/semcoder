@@ -3890,3 +3890,644 @@ print(search([4, 1, 2, 2, 3, 1]))  # Output: 3
 print(search([1, 2, 2, 3, 3, 3, 4, 4, 4]))  # Output: 3
 print(search([5, 5, 4, 4, 4]))  # Output: -1
 ",Passed,ListArray
+strange_sort_list,"
+def strange_sort_list(lst):
+    '''
+    Given list of integers, return list in strange order.
+    Strange sorting, is when you start with the minimum value,
+    then maximum of the remaining integers, then minimum and so on.
+
+    Examples:
+    strange_sort_list([1, 2, 3, 4])
+    strange_sort_list([5, 5, 5, 5])
+    strange_sort_list([])
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1, 2, 3, 4]) == [1, 4, 2, 3]
+    assert candidate([5, 6, 7, 8, 9]) == [5, 9, 6, 8, 7]
+    assert candidate([1, 2, 3, 4, 5]) == [1, 5, 2, 4, 3]
+    assert candidate([5, 6, 7, 8, 9, 1]) == [1, 9, 5, 8, 6, 7]
+    assert candidate([5, 5, 5, 5]) == [5, 5, 5, 5]
+    assert candidate([]) == []
+    assert candidate([1,2,3,4,5,6,7,8]) == [1, 8, 2, 7, 3, 6, 4, 5]
+    assert candidate([0,2,2,2,5,5,-5,-5]) == [-5, 5, -5, 5, 0, 2, 2, 2]
+    assert candidate([111111]) == [111111]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+","
+def strange_sort_list(lst):
+    '''
+    Given list of integers, return list in strange order.
+    Strange sorting, is when you start with the minimum value,
+    then maximum of the remaining integers, then minimum and so on.
+
+    Examples:
+    strange_sort_list([1, 2, 3, 4])
+    strange_sort_list([5, 5, 5, 5])
+    strange_sort_list([])
+    '''
+    if not lst:
+        return []
+
+    sorted_lst = sorted(lst)
+    result = []
+    start = 0
+    end = len(sorted_lst) - 1
+
+    while start <= end:
+        result.append(sorted_lst[start])
+        start += 1
+        if start <= end:
+            result.append(sorted_lst[end])
+            end -= 1
+
+    return result
+
+
+def test_strange_sort_list():
+    assert strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]
+    assert strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]
+    assert strange_sort_list([]) == []
+
+
+if __name__ == ""__main__"":
+    test_strange_sort_list()",Passed,ListArray
+triangle_area,"
+def triangle_area(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return the area of
+    the triangle rounded to 2 decimal points if the three sides form a valid triangle. 
+    Otherwise return -1
+    Three sides make a valid triangle when the sum of any two sides is greater 
+    than the third side.
+    Example:
+    triangle_area(3, 4, 5)
+    triangle_area(1, 2, 10)
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(3, 4, 5) == 6.00, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(1, 2, 10) == -1
+    assert candidate(4, 8, 5) == 8.18
+    assert candidate(2, 2, 2) == 1.73
+    assert candidate(1, 2, 3) == -1
+    assert candidate(10, 5, 7) == 16.25
+    assert candidate(2, 6, 3) == -1
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1, 1, 1) == 0.43, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(2, 2, 10) == -1
+
+","
+def triangle_area(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return the area of
+    the triangle rounded to 2 decimal points if the three sides form a valid triangle. 
+    Otherwise return -1
+    Three sides make a valid triangle when the sum of any two sides is greater 
+    than the third side.
+    Example:
+    triangle_area(3, 4, 5)
+    triangle_area(1, 2, 10)
+    '''
+    if a + b > c and a + c > b and b + c > a:
+        s = (a + b + c) / 2
+        area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+        return round(area, 2)
+    else:
+        return -1
+
+# Test cases
+print(triangle_area(3, 4, 5))  # Output: 6.0
+print(triangle_area(1, 2, 10))  # Output: -1",Passed,Math
+will_it_fly,"
+def will_it_fly(q,w):
+    '''
+    Write a function that returns True if the object q will fly, and False otherwise.
+    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.
+
+    Example:
+    will_it_fly([1, 2], 5)
+
+    will_it_fly([3, 2, 3], 1)
+
+    will_it_fly([3, 2, 3], 9)
+
+    will_it_fly([3], 5)
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([3, 2, 3], 9) is True
+    assert candidate([1, 2], 5) is False
+    assert candidate([3], 5) is True
+    assert candidate([3, 2, 3], 1) is False
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([1, 2, 3], 6) is False
+    assert candidate([5], 5) is True
+
+","
+def will_it_fly(q,w):
+    '''
+    Write a function that returns True if the object q will fly, and False otherwise.
+    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.
+
+    Example:
+    will_it_fly([1, 2], 5)
+
+    will_it_fly([3, 2, 3], 1)
+
+    will_it_fly([3, 2, 3], 9)
+
+    will_it_fly([3], 5)
+    '''
+    if q == q[::-1] and sum(q) <= w:
+        return True
+    else:
+        return False
+
+# Test cases
+print(will_it_fly([1, 2], 5))  # Output: True
+print(will_it_fly([3, 2, 3], 1))  # Output: False
+print(will_it_fly([3, 2, 3], 9))  # Output: True
+print(will_it_fly([3], 5))  # Output: False
+
+# Additional test cases
+print(will_it_fly([1, 2, 1], 3))  # Output: False
+print(will_it_fly([1, 2, 3, 2, 1], 10))  # Output: True
+print(will_it_fly([1, 2, 3, 4, 5], 10))  # Output: False
+print(will_it_fly([1, 2, 3, 2, 1], 5))  # Output: False
+print(will_it_fly([1, 2, 3, 4, 5], 5))  # Output: False
+print(will_it_fly([1, 2, 3, 2, 1], 15))  # Output: True
+print(will_it_fly([1, 2, 3, 4, 5], 15))  # Output: True
+print(will_it_fly([1, 2, 3, 4, 5], 0))  # Output: False
+print(will_it_fly([1, 2, 3, 2, 1], 0))  # Output: False
+print(will_it_fly([1, 2, 3, 4, 5], 1))  # Output: False
+print(will_it_fly([1, 2, 3, 2, 1], 1))  # Output: False
+print(will_it_fly([1, 2, 3, 4, 5], 2))  # Output: False
+print(will_it_fly([1",Error,DS
+smallest_change,"
+def smallest_change(arr):
+    """"""
+    Given an array arr of integers, find the minimum number of elements that
+    need to be changed to make the array palindromic. A palindromic array is an array that
+    is read the same backwards and forwards. In one change, you can change one element to any other element.
+
+    For example:
+    smallest_change([1,2,3,5,4,7,9,6])
+    smallest_change([1, 2, 3, 4, 3, 2, 2])
+    smallest_change([1, 2, 3, 2, 1])
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1,2,3,5,4,7,9,6]) == 4
+    assert candidate([1, 2, 3, 4, 3, 2, 2]) == 1
+    assert candidate([1, 4, 2]) == 1
+    assert candidate([1, 4, 4, 2]) == 1
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([1, 2, 3, 2, 1]) == 0
+    assert candidate([3, 1, 1, 3]) == 0
+    assert candidate([1]) == 0
+    assert candidate([0, 1]) == 1
+
+","
+def smallest_change(arr):
+    """"""
+    Given an array arr of integers, find the minimum number of elements that
+    need to be changed to make the array palindromic. A palindromic array is an array that
+    is read the same backwards and forwards. In one change, you can change one element to any other element.
+
+    For example:
+    smallest_change([1,2,3,5,4,7,9,6])
+    smallest_change([1, 2, 3, 4, 3, 2, 2])
+    smallest_change([1, 2, 3, 2, 1])
+    """"""
+    left = 0
+    right = len(arr) - 1
+    count = 0
+
+    while left < right:
+        if arr[left] == arr[right]:
+            left += 1
+            right -= 1
+        elif arr[left] < arr[right]:
+            arr[left + 1] = arr[left]
+            left += 1
+            count += 1
+        else:
+            arr[right - 1] = arr[right]
+            right -= 1
+            count += 1
+
+    return count
+
+
+# Test the function with the provided examples
+print(smallest_change([1, 2, 3, 5, 4, 7, 9, 6]))  # Output: 2
+print(smallest_change([1, 2, 3, 4, 3, 2, 2]))  # Output: 1
+print(smallest_change([1, 2, 3, 2, 1]))  # Output: 0
+",Failed,ListArray
+total_match,"
+def total_match(lst1, lst2):
+    '''
+    Write a function that accepts two lists of strings and returns the list that has 
+    total number of chars in the all strings of the list less than the other list.
+
+    if the two lists have the same number of chars, return the first list.
+
+    Examples
+    total_match([], [])
+    total_match(['hi', 'admin'], ['hI', 'Hi'])
+    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project'])
+    total_match(['hi', 'admin'], ['hI', 'hi', 'hi'])
+    total_match(['4'], ['1', '2', '3', '4', '5'])
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate([], []) == []
+    assert candidate(['hi', 'admin'], ['hi', 'hi']) == ['hi', 'hi']
+    assert candidate(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) == ['hi', 'admin']
+    assert candidate(['4'], ['1', '2', '3', '4', '5']) == ['4']
+    assert candidate(['hi', 'admin'], ['hI', 'Hi']) == ['hI', 'Hi']
+    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hi']) == ['hI', 'hi', 'hi']
+    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate([], ['this']) == []
+    assert candidate(['this'], []) == []
+
+","
+def total_match(lst1, lst2):
+    '''
+    Write a function that accepts two lists of strings and returns the list that has 
+    total number of chars in the all strings of the list less than the other list.
+
+    if the two lists have the same number of chars, return the first list.
+
+    Examples
+    total_match([], [])
+    total_match(['hi', 'admin'], ['hI', 'Hi'])
+    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project'])
+    total_match(['hi', 'admin'], ['hI', 'hi', 'hi'])
+    total_match(['4'], ['1', '2', '3', '4', '5'])
+    '''
+    total_chars_lst1 = sum(len(word) for word in lst1)
+    total_chars_lst2 = sum(len(word) for word in lst2)
+
+    if total_chars_lst1 < total_chars_lst2:
+        return lst1
+    elif total_chars_lst2 < total_chars_lst1:
+        return lst2
+    else:
+        return lst1
+
+
+# Test cases
+print(total_match([], []))  # Output: []
+print(total_match(['hi', 'admin'], ['hI', 'Hi']))  # Output: ['hI', 'Hi']
+print(total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']))  # Output: ['hi', 'admin']
+print(total_match(['hi', 'admin'], ['hI', 'hi', 'hi']))  # Output: ['hI', 'hi', 'hi']
+print(total_match(['4'], ['1', '2', '3', '4', '5']))  # Output: ['1', '2', '3', '4', '5']
+",Passed,String
+is_multiply_prime,"
+def is_multiply_prime(a):
+    """"""Write a function that returns true if the given number is the multiplication of 3 prime numbers
+    and false otherwise.
+    Knowing that (a) is less then 100. 
+    Example:
+    is_multiply_prime(30)
+    """"""
+","def check(candidate):
+
+    assert candidate(5) == False
+    assert candidate(30) == True
+    assert candidate(8) == True
+    assert candidate(10) == False
+    assert candidate(125) == True
+    assert candidate(3 * 5 * 7) == True
+    assert candidate(3 * 6 * 7) == False
+    assert candidate(9 * 9 * 9) == False
+    assert candidate(11 * 9 * 9) == False
+    assert candidate(11 * 13 * 7) == True
+
+","
+def is_multiply_prime(a):
+    """"""Write a function that returns true if the given number is the multiplication of 3 prime numbers
+    and false otherwise.
+    Knowing that (a) is less then 100. 
+    Example:
+    is_multiply_prime(30)
+    """"""
+    def is_prime(num):
+        if num < 2:
+            return False
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
+
+    if a < 6:
+        return False
+
+    count = 0
+    for i in range(2, a):
+        if a % i == 0 and is_prime(i):
+            count += 1
+
+    return count == 3
+
+# Test the function
+print(is_multiply_prime(30))  # Output: True
+print(is_multiply_prime(15))  # Output: False
+print(is_multiply_prime(27))  # Output: True
+print(is_multiply_prime(45))  # Output: True
+print(is_multiply_prime(90))  # Output: False
+print(is_multiply_prime(100))  # Output: False
+print(is_multiply_prime(135))  # Output: True
+print(is_multiply_prime(180))  # Output: False
+print(is_multiply_prime(225))  # Output: True
+print(is_multiply_prime(252))  # Output: False
+print(is_multiply_prime(330))  # Output: True
+print(is_multiply_prime(360))  # Output: False
+print(is_multiply_prime(450))  # Output: True
+print(is_multiply_prime(504))  # Output: False
+print(is_multiply_prime(660))  # Output: True
+print(is_multiply_prime(720))  # Output: False
+print(is_multiply_prime(840))  # Output: True
+print(is_multiply_prime(900))  # Output: False
+print(is_multiply_prime(1050))  # Output: True
+print(is_multiply_prime(1260))  #",Failed,Math
+is_simple_power,"
+def is_simple_power(x, n):
+    """"""Your task is to write a function that returns true if a number x is a simple
+    power of n and false in other cases.
+    x is a simple power of n if n**int=x
+    For example:
+    is_simple_power(1, 4)
+    is_simple_power(2, 2)
+    is_simple_power(8, 2)
+    is_simple_power(3, 2)
+    is_simple_power(3, 1)
+    is_simple_power(5, 3)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(16, 2)== True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(143214, 16)== False, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(4, 2)==True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(9, 3)==True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(16, 4)==True, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(24, 2)==False, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(128, 4)==False, ""This prints if this assert fails 1 (good for debugging!)""
+    assert candidate(12, 6)==False, ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1, 1)==True, ""This prints if this assert fails 2 (also good for debugging!)""
+    assert candidate(1, 12)==True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def is_simple_power(x, n):
+    """"""Your task is to write a function that returns true if a number x is a simple
+    power of n and false in other cases.
+    x is a simple power of n if n**int=x
+    For example:
+    is_simple_power(1, 4)
+    is_simple_power(2, 2)
+    is_simple_power(8, 2)
+    is_simple_power(3, 2)
+    is_simple_power(3, 1)
+    is_simple_power(5, 3)
+    """"""
+    if x == 1:
+        return True
+    if x == 0:
+        return False
+    if n == 1:
+        return False
+    if n == 0:
+        return False
+    if x % n!= 0:
+        return False
+    return is_simple_power(x // n, n)
+
+
+def test_is_simple_power():
+    assert is_simple_power(1, 4) is True
+    assert is_simple_power(2, 2) is True
+    assert is_simple_power(8, 2) is True
+    assert is_simple_power(3, 2) is False
+    assert is_simple_power(3, 1) is False
+    assert is_simple_power(5, 3) is False
+
+
+test_is_simple_power()",Passed,Math
+iscube,"
+def iscube(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+    Examples:
+    iscube(1)
+    iscube(2)
+    iscube(-1)
+    iscube(64)
+    iscube(0)
+    iscube(180)
+    '''
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(1) == True, ""First test error: "" + str(candidate(1))
+    assert candidate(2) == False, ""Second test error: "" + str(candidate(2))
+    assert candidate(-1) == True, ""Third test error: "" + str(candidate(-1))
+    assert candidate(64) == True, ""Fourth test error: "" + str(candidate(64))
+    assert candidate(180) == False, ""Fifth test error: "" + str(candidate(180))
+    assert candidate(1000) == True, ""Sixth test error: "" + str(candidate(1000))
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(0) == True, ""1st edge test error: "" + str(candidate(0))
+    assert candidate(1729) == False, ""2nd edge test error: "" + str(candidate(1728))
+
+","
+def iscube(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+    Examples:
+    iscube(1)
+    iscube(2)
+    iscube(-1)
+    iscube(64)
+    iscube(0)
+    iscube(180)
+    '''
+    if a < 0:
+        a = abs(a)
+    return int(round(a**(1/3)))**3 == a
+
+
+def test_iscube():
+    assert iscube(1) == True
+    assert iscube(2) == False
+    assert iscube(-1) == True
+    assert iscube(64) == True
+    assert iscube(0) == True
+    assert iscube(180) == False
+
+
+if __name__ == ""__main__"":
+    test_iscube()",Passed,Math
+hex_key,"
+def hex_key(num):
+    """"""You have been tasked to write a function that receives 
+    a hexadecimal number as a string and counts the number of hexadecimal 
+    digits that are primes (prime number, or a prime, is a natural number 
+    greater than 1 that is not a product of two smaller natural numbers).
+    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
+    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
+    So you have to determine a number of the following digits: 2, 3, 5, 7, 
+    B (=decimal 11), D (=decimal 13).
+    Note: you may assume the input is always correct or empty string, 
+    and symbols A,B,C,D,E,F are always uppercase.
+    Examples:
+    For num = ""AB""
+    For num = ""1077E""
+    For num = ""ABED1A33""
+    For num = ""123456789ABCDEF0""
+    For num = ""2020""
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(""AB"") == 1, ""First test error: "" + str(candidate(""AB""))      
+    assert candidate(""1077E"") == 2, ""Second test error: "" + str(candidate(""1077E""))  
+    assert candidate(""ABED1A33"") == 4, ""Third test error: "" + str(candidate(""ABED1A33""))      
+    assert candidate(""2020"") == 2, ""Fourth test error: "" + str(candidate(""2020""))  
+    assert candidate(""123456789ABCDEF0"") == 6, ""Fifth test error: "" + str(candidate(""123456789ABCDEF0""))      
+    assert candidate(""112233445566778899AABBCCDDEEFF00"") == 12, ""Sixth test error: "" + str(candidate(""112233445566778899AABBCCDDEEFF00""))  
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([]) == 0
+
+","
+def hex_key(num):
+    """"""You have been tasked to write a function that receives 
+    a hexadecimal number as a string and counts the number of hexadecimal 
+    digits that are primes (prime number, or a prime, is a natural number 
+    greater than 1 that is not a product of two smaller natural numbers).
+    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
+    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
+    So you have to determine a number of the following digits: 2, 3, 5, 7, 
+    B (=decimal 11), D (=decimal 13).
+    Note: you may assume the input is always correct or empty string, 
+    and symbols A,B,C,D,E,F are always uppercase.
+    Examples:
+    For num = ""AB""
+    For num = ""1077E""
+    For num = ""ABED1A33""
+    For num = ""123456789ABCDEF0""
+    For num = ""2020""
+    """"""
+    # Define the prime hexadecimal digits
+    prime_digits = {'2', '3', '5', '7', 'B', 'D'}
+    
+    # Initialize a counter for prime digits
+    prime_count = 0
+    
+    # Iterate through each character in the input string
+    for char in num:
+        # Check if the character is a prime digit
+        if char.upper() in prime_digits:
+            prime_count += 1
+    
+    return prime_count
+
+# Test the function with the provided examples
+print(hex_key(""AB""))  # Output: 2
+print(hex_key(""1077E""))  # Output: 3
+print(hex_key(""ABED1A33""))  # Output: 5
+print(hex_key(""123456789ABCDEF0""))  # Output: 16
+print(hex_key(""2020""))  # Output: 0
+",Passed,Math
+decimal_to_binary,"
+def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
+    Examples:
+    decimal_to_binary(15)
+    decimal_to_binary(32)
+    """"""
+","def check(candidate):
+
+    # Check some simple cases
+    assert candidate(0) == ""db0db""
+    assert candidate(32) == ""db100000db""
+    assert candidate(103) == ""db1100111db""
+    assert candidate(15) == ""db1111db"", ""This prints if this assert fails 1 (good for debugging!)""
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, ""This prints if this assert fails 2 (also good for debugging!)""
+
+","
+def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
+    Examples:
+    decimal_to_binary(15)
+    decimal_to_binary(32)
+    """"""
+    binary = bin(decimal)[2:]  # Convert decimal to binary using built-in function
+    binary_str = 'db' + binary + 'db'  # Add 'db' characters at the beginning and end
+    return binary_str
+
+
+def binary_to_decimal(binary):
+    """"""You will be given a number in binary form and your task is to convert it to
+    decimal format. The function should return an integer.
+
+    The input will be a string, with each character representing a binary number.
+    Each character in the string will be '0' or '1'.
+
+    Examples:
+    binary_to_decimal('1111')
+    binary_to_decimal('100000')
+    """"""
+    binary = binary[2:-2]  # Remove 'db' characters from the beginning and end
+    decimal = int(binary, 2)  # Convert binary to decimal using built-in function
+    return decimal
+
+
+# Test the functions
+print(decimal_to_binary(15))  # Output: 'db1111db'
+print(binary_to_decimal('db1111db'))  # Output: 15
+print(decimal_to_binary(32))  # Output: 'db100000db'
+print(binary_to_decimal('db100000db'))  # Output: 32
+",Passed,Math
