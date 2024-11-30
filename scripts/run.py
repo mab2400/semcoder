@@ -43,9 +43,10 @@ check({entry_point})
         print(f"An error occurred: {e}\n")
         return "Error"
 
-def process_all_entries(input_csv_file_path, output_csv_file_path):
+def process_all_entries(input_csv_file_path, output_csv_file_path, save_interval=10):
     """
-    Processes each entry in the CSV, runs the relevant tests, updates the pass/fail status, and writes back to the CSV.
+    Processes each entry in the CSV, runs the relevant tests, updates the pass/fail status, 
+    and writes back to the CSV. Progress is saved periodically.
     """
     updated_rows = []
 
@@ -68,12 +69,22 @@ def process_all_entries(input_csv_file_path, output_csv_file_path):
 
             updated_rows.append(row)
 
+            # Save progress to the CSV file every `save_interval` entries
+            if (i + 1) % save_interval == 0:
+                with open(output_csv_file_path, mode='w', newline='') as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                    writer.writeheader()
+                    writer.writerows(updated_rows)
+                print(f"Progress saved at entry {i + 1}.")
+
+    # Final save to ensure all rows are written
     with open(output_csv_file_path, mode='w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(updated_rows)
 
     print(f"CSV file updated with pass/fail results at {output_csv_file_path}")
+
 
 # Usage
 if __name__ == "__main__":
