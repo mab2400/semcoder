@@ -48,6 +48,8 @@ def process_single_entry(input_csv_file_path, entry_point):
                 
                 # Generate code based on the prompt
                 generated_code = pipe(prompt, max_new_tokens=512, num_return_sequences=1)[0]['generated_text']
+                print("Generated code:")
+                print(generated_code)
                 row['generated_code'] = generated_code
                 
                 # Test the generated code using the given test cases
